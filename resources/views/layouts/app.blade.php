@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
-<!-- Contenedor de la barra de búsqueda -->
-<div class="search-container">
-    <input type="text" class="search-input" placeholder="Buscar...">
-    <button class="search-button">🔍</button>
-</div>
-
 <!-- Navbar Horizontal Mejorado -->
 <div style="width: 100vw; height: 200px; position: fixed; top: 0; left: 0; z-index: 1000; background-color: white;">
     <div style="max-width: 1400px; height: 100%; overflow: hidden; margin: auto;">
         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
+            
             <!-- Logo centrado y más grande -->
             <div class="logo-container" style="position: absolute; left: 50%; transform: translateX(-50%); z-index: 20;">
                 <a href="/">
@@ -25,16 +20,24 @@
                 </a>
             </div>
 
-
             <!-- Barra de navegación -->
-            <div class="navbar-menu" style="width: 100%; height: 60px; background-color: #3B83BD; border-radius: 30px; padding: 15px 40px; display: flex; justify-content: center; align-items: center;">
+            <div class="navbar-menu">
                 <div class="nav-item">Noticias</div>
                 <div class="nav-item">Encuestas</div>
                 <div class="nav-item">Redes</div>
                 <div class="nav-item">Contáctanos</div>
+
+                <!-- Botón de búsqueda (Lupa) -->
+                <button id="search-icon" class="search-button">🔍</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
+<div id="search-container" class="search-container">
+    <input type="text" class="search-input" placeholder="Buscar...">
+    <button class="search-button">🔍</button>
 </div>
 
 
@@ -63,7 +66,7 @@
                     <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 4">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 5">
+                    <img src="htt_ps://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 5">
                 </div>
             </div>
 
@@ -145,6 +148,9 @@
     </main>
 
     <!-- Scripts -->
+    
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

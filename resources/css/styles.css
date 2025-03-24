@@ -12,23 +12,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
-/* Efecto hover en los enlaces */
-.nav-item {
-    position: relative; /* Necesario para el efecto de subrayado */
-    color: white;
-    font-weight: bold;
-    font-size: 24px;
-    padding: 15px 10px;
-    margin: 0 30px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    text-align: center;
+
+/* Alineación y diseño de la barra de navegación */
+.navbar-menu {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 100px;
+    width: 100%;
+    height: 60px;
+    background-color: #3B83BD; /* 🔥 Celeste */
+    border-radius: 30px;
+    padding: 15px 40px;
 }
+
 
 /* 🔥 Nuevo efecto: Subrayado animado */
 .nav-item::after {
@@ -41,7 +40,6 @@
     background-color: rgb(0, 0, 0);
     transition: width 0.3s ease, left 0.3s ease;
 }
-
 
 /* Efecto hover */
 .nav-item:hover {
@@ -62,12 +60,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 120px;
+    gap: 100px;
 }
 
 /* 🔥 Aumentamos el espacio solo entre "Encuestas" y "Redes" */
 .nav-item:nth-child(2) {
-    margin-right: 120px;
+    margin-right: 80px;
 }
 
 /* Ajuste del logo */
@@ -75,7 +73,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    left: 85%; /* 🔥 Movemos un poco a la izquierda */
+    transform: translateX(-50%);
+    z-index: 20;
 }
+
 .logo-container img {
     width: 120px;
     height: 120px;
@@ -83,48 +86,51 @@
     border-radius: 10px;
 }
 
-/* 🔥 Contenedor de la barra de búsqueda */
+/* 🔍 Estilos del botón de búsqueda */
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 15px;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+/* Efecto hover para el botón de búsqueda */
+.search-button:hover {
+    transform: scale(1.2);
+}
+
+/* 🔥 Barra de búsqueda (oculta inicialmente) */
 .search-container {
     position: fixed;
-    top: 10px; /* Ajusta la distancia desde arriba */
-    right: 250px; /* Alineado a la derecha */
-    display: flex;
+    top: 80px; /* Debajo del navbar */
+    right: 20px;
+    display: none; /* Oculta por defecto */
+    flex-direction: row;
     align-items: center;
     background-color: white;
-    border: 2px solid black; /* ✅ Borde correcto */
-    border-radius: 25px; /* Bordes redondeados */
-    padding: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1100; /* Más alto que el navbar */
+    border: 1px solid #000;
+    border-radius: 25px;
+    padding: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* 🔥 Input de búsqueda */
+/* Campo de entrada de texto */
 .search-input {
     border: none;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 20px 0 0 20px;
+    padding: 8px;
     outline: none;
-    width: 400px; /* Ajusta el tamaño */
-}
-
-/* 🔥 Botón de búsqueda */
-.search-button {
-    border: none;
-    background-color: #3B83BD;
-    color: white;
+    width: 200px;
     font-size: 16px;
-    padding: 10px 15px;
-    border-radius: 0 20px 20px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-/* Efecto hover en el botón */
-.search-button:hover {
-    background-color: #2a6da8;
+/* Espaciado entre el botón de búsqueda y el campo de entrada */
+.search-container .search-button {
+    margin-left: 10px;
+    color: black;
 }
-
 
 /* Estilos de la lista */
 .navbar-nav {

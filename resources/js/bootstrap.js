@@ -26,3 +26,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("search-icon").addEventListener("click", function() {
+        var searchBox = document.getElementById("search-container");
+
+        // Alternar visibilidad de la barra de búsqueda
+        if (searchBox.style.display === "none" || searchBox.style.display === "") {
+            searchBox.style.display = "flex";
+        } else {
+            searchBox.style.display = "none";
+        }
+    });
+});
