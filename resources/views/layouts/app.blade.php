@@ -90,11 +90,41 @@
         <section id="noticias" class="content-section">
             <div class="section-box">
                 <h3 class="sub-title">Noticias</h3>
+
+                <!-- Botón para buscar noticias -->
+                <div class="search-news-container" style="display: flex; justify-content: center; margin-bottom: 15px;">
+                    <a href="{{ route('noticias') }}" class="search-button">Buscar noticias 🔍</a>
+                </div>
+
                 <div class="news-grid">
-                    <div class="news-item"></div>
-                    <div class="news-item"></div>
-                    <div class="news-item"></div>
-                    <div class="news-item"></div>
+                    <div class="news-item">
+                    <img src="{{ asset('images/image1.jpg') }}" alt="Noticia 1">
+                        <p>Descripción de la noticia 1. Aquí puedes una descripción breve de la noticia.</p>
+                    </div>
+                    <div class="news-item">
+                        <img src="{{ asset('images/image2.jpg') }}" alt="Noticia 2">
+                        <p>Descripción de la noticia 2. Este es otro resumen o descripción de la noticia.</p>
+                    </div>
+                    <div class="news-item">
+                        <img src="{{ asset('images/image3.jpg') }}" alt="Noticia 3">
+                        <p>Descripción de la noticia 3. Añade aquí la información relevante sobre la noticia.</p>
+                    </div>
+                    <div class="news-item">
+                        <img src="{{ asset('images/image4.jpg') }}" alt="Noticia 4">
+                        <p>Descripción de la noticia 4. Proporciona detalles adicionales sobre esta noticia.</p>
+                    </div>
+                    <div class="news-item">
+                        <img src="{{ asset('images/image5.jpg') }}" alt="Noticia 5">
+                        <p>Descripción de la noticia 5. Aquí puedes una descripción breve de la noticia.</p>
+                    </div>
+                    <div class="news-item">
+                        <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 6">
+                        <p>Descripción de la noticia 6. Este es otro resumen o descripción de la noticia.</p>
+                    </div>
+                </div>
+                <!-- Botón para ver más noticias -->
+                <div class="view-more-container" style="display: flex; justify-content: center; margin-top: 15px;">
+                    <button class="view-more-button">Ver más</button>
                 </div>
             </div>
         </section>
