@@ -100,8 +100,11 @@
         </section>
 
         <!-- Sección Encuestas -->
-        <!-- Sección Encuestas -->
-        <section id="encuestas" class="content-section">
+<!-- Sección Encuestas -->
+<section id="encuestas" class="content-section">
+    <h2 class="main-title" onclick="toggleEncuestas()">Encuestas</h2>
+    
+    <div id="encuestas-container" class="hidden">
         <div class="section-box" onclick="toggleList('presidenciales')">
             <h3 class="sub-title">Encuestas Presidenciales</h3>
             <ul id="presidenciales">
@@ -118,14 +121,21 @@
                 <li>Castilla</li> 
             </ul>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        function toggleList(id) {
-            var list = document.getElementById(id);
-            list.style.display = (list.style.display === 'none' || list.style.display === '') ? 'block' : 'none';
-        }
-    </script>
+<script>
+    function toggleEncuestas() {
+        var container = document.getElementById("encuestas-container");
+        container.classList.toggle("show");
+        container.classList.toggle("hidden");
+    }
+
+    function toggleList(id) {
+        var list = document.getElementById(id);
+        list.style.display = (list.style.display === 'none' || list.style.display === '') ? 'block' : 'none';
+    }
+</script>
 
         <!-- Sección Redes Sociales -->
         <section id="redes" class="content-section">

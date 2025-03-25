@@ -265,56 +265,114 @@ h2 {
     display: inline-block;
 }
 
-        /* Estilos de las encuestas */
-        .content-section {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 40px;
-            padding: 20px;
-        }
+/* Apartado de encuestas */
+/* Contenedor principal */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+}
 
-        .section-box {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
-            background-color: #f4f4f4;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+/* Título principal */
+.main-title {
+    font-size: 32px;
+    font-weight: bold;
+    background-color: #3B83BD;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
 
-        .section-box:hover {
-            transform: translateY(-5px);
-        }
+.main-title:hover {
+    background-color: #2A6FA0;
+}
 
-        ul {
-            display: none;
-            margin-top: 10px;
-            padding: 0;
-            list-style: none;
-        }
+/* Contenedor de encuestas oculto inicialmente */
+#encuestas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
-        li {
-            font-size: 22px;
-            font-weight: bold;
-            margin: 10px 0;
-            padding: 8px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-        }
+/* Cuando se muestra */
+#encuestas-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        .sub-title {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
+/* Cuando está oculto */
+#encuestas-container.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+/* Estilo de los cuadros */
+.section-box {
+    width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #333;
+}
+
+.section-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Listas ocultas */
+ul {
+    display: none;
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Estilos de los elementos de la lista */
+li {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 12px;
+    background-color: #3B83BD;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Animación al pasar el mouse */
+li:hover {
+    background-color: #5DADE2;
+    transform: scale(1.05);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Títulos de cada sección */
+.sub-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
 
 
 /* Estilos de las redes sociales */
