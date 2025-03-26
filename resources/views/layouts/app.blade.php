@@ -130,24 +130,42 @@
         </section>
 
         <!-- Sección Encuestas -->
-        <section id="encuestas" class="content-section">
-            <div class="section-box">
-                <h3 class="sub-title">Encuestas Presidenciales</h3>
-                <ul>
-                    <li>Lima</li>
-                    <li>Chiclayo</li>
-                    <li>Piura</li>
-                </ul>
-            </div>
-            <div class="section-box">
-                <h3 class="sub-title">Encuestas Piura</h3>
-                <ul>
-                    <li>Morropón</li>
-                    <li>Piura</li>
-                    <li>Castilla</li>
-                </ul>
-            </div>
-        </section>
+<!-- Sección Encuestas -->
+<section id="encuestas" class="content-section">
+    <h2 class="main-title" onclick="toggleEncuestas()">Encuestas</h2>
+    
+    <div id="encuestas-container" class="hidden">
+        <div class="section-box" onclick="toggleList('presidenciales')">
+            <h3 class="sub-title">Encuestas Presidenciales</h3>
+            <ul id="presidenciales">
+                <li>Lima</li>
+                <li>Chiclayo</li>
+                <li>Piura</li>
+            </ul>
+        </div>
+        <div class="section-box" onclick="toggleList('piura')">
+            <h3 class="sub-title">Encuestas Piura</h3>
+            <ul id="piura">
+                <li>Morropón</li>
+                <li>Piura</li>
+                <li>Castilla</li> 
+            </ul>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleEncuestas() {
+        var container = document.getElementById("encuestas-container");
+        container.classList.toggle("show");
+        container.classList.toggle("hidden");
+    }
+
+    function toggleList(id) {
+        var list = document.getElementById(id);
+        list.style.display = (list.style.display === 'none' || list.style.display === '') ? 'block' : 'none';
+    }
+</script>
 
         <!-- Sección Redes Sociales -->
         <section id="redes" class="content-section">
