@@ -19493,13 +19493,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("search-icon").addEventListener("click", function () {
-    var searchBox = document.querySelector(".search-container");
-
-    // Alternar visibilidad
-    if (searchBox.style.display === "none" || searchBox.style.display === "") {
-      searchBox.style.display = "flex";
+    var searchContainer = document.getElementById("search-container");
+    if (searchContainer.style.display === "flex") {
+      searchContainer.style.display = "none";
     } else {
-      searchBox.style.display = "none";
+      searchContainer.style.display = "flex";
     }
   });
 });
@@ -19540,18 +19538,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("search-icon").addEventListener("click", function () {
-    var searchBox = document.getElementById("search-container");
+/***/ }),
 
-    // Alternar visibilidad de la barra de búsqueda
-    if (searchBox.style.display === "none" || searchBox.style.display === "") {
-      searchBox.style.display = "flex";
-    } else {
-      searchBox.style.display = "none";
-    }
-  });
-});
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ })
 
@@ -19666,7 +19664,8 @@ document.addEventListener("DOMContentLoaded", function () {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/styles": 0
+/******/ 			"css/styles": 0,
+/******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -19716,8 +19715,9 @@ document.addEventListener("DOMContentLoaded", function () {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/styles"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/styles"], () => (__webpack_require__("./resources/css/styles.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/styles","css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/styles","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/styles","css/app"], () => (__webpack_require__("./resources/css/styles.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

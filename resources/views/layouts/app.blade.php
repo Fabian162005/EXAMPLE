@@ -6,45 +6,68 @@
     <title>Noticias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="{{ asset('resources\js\app.js') }}"></script>
+    @vite(['resources/js/app.js'])
+
+</head>
+
 </head>
 <body>
-<!-- Navbar Horizontal Mejorado -->
-<div style="width: 100vw; height: 200px; position: fixed; top: 0; left: 0; z-index: 1000; background-color: white;">
-    <div style="max-width: 1400px; height: 100%; overflow: hidden; margin: auto;">
-        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
-            
-            <!-- Logo centrado y más grande -->
-            <div class="logo-container" style="position: absolute; left: 50%; transform: translateX(-50%); z-index: 20;">
+<!-- Redes sociales arriba del navbar -->
+<div class="social-icons">
+    <a href="https://www.facebook.com/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    <a href="https://twitter.com/" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.twitch.tv/" target="_blank" class="twitch"><i class="fab fa-twitch"></i></a>
+</div>
+
+
+<!-- Navbar Fijo -->
+<div class="navbar-container">
+    <div class="navbar-content">
+        <!-- Barra de navegación -->
+        <div class="navbar-menu">
+            <div class="nav-item nav-noticias">Noticias</div>
+            <div class="nav-item nav-encuestas">Encuestas</div>
+
+            <!-- 🔥 Logo en medio -->
+            <div class="logo-container">
                 <a href="/">
-                    <img src="{{ asset('storage/images/logogpcanal.jpg') }}" alt="Logo" style="width: 100px; height: 100px;">
+                    <img src="{{ asset('storage/images/logogpcanal.jpg') }}" alt="Logo">
                 </a>
             </div>
-
-            <!-- Barra de navegación -->
-            <div class="navbar-menu">
-                <div class="nav-item">Noticias</div>
-                <div class="nav-item">Encuestas</div>
-                <div class="nav-item">Redes</div>
-                <div class="nav-item">Contáctanos</div>
-
-                <!-- Botón de búsqueda (Lupa) -->
-                <button id="search-icon" class="search-button">🔍</button>
-            </div>
+            <div class="nav-item nav-contacto">Contáctanos</div>
+            <!-- Botón de búsqueda dentro del navbar -->
+            <button id="search-icon" class="search-button">🔍</button>
         </div>
     </div>
 </div>
+
 
 <!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
 <div id="search-container" class="search-container">
     <input type="text" class="search-input" placeholder="Buscar...">
     <button class="search-button">🔍</button>
 </div>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("search-icon").addEventListener("click", function () {
+                let searchContainer = document.getElementById("search-container");
+                if (searchContainer.style.display === "flex") {
+                    searchContainer.style.display = "none";
+                } else {
+                    searchContainer.style.display = "flex";
+                }
+            });
+        });
+    </script>
 
 
 <!-- Espaciado para que el contenido no quede oculto debajo del navbar -->
 <div style="height: 140px;"></div>
 
-<h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
 <!-- Contenedor del Slider con Fondo -->
 <div style="width: 100%; height: 250px; display: flex; justify-content: center; margin-top: 5px; position: relative;">
@@ -86,7 +109,6 @@
     </div>
 </div>
 
-
     <!-- Contenido principal con Scroll Snap -->
     <main>
         <!-- Sección Noticias -->
@@ -122,35 +144,144 @@
             </div>
         </section>
 
-        <!-- Sección Redes Sociales -->
-        <section id="redes" class="content-section">
-            <div class="section-box">
-                <h3 class="sub-title">Síguenos en:</h3>
-                <div class="social-media">
-                    <span>INSTAGRAM</span>
-                    <span>FACEBOOK</span>
-                    <span>YOUTUBE</span>
-                    <span>TWITCH</span>
-                    <span>TIKTOK</span>
-                    <span>X (TWITTER)</span>
-                </div>
-            </div>
-        </section>
+    <!-- Sección Redes Sociales Mejorada con 3D -->
+<section id="redes" class="content-section redes-section">
+    <div class="container">
+        <h3 class="sub-title">🌎 Síguenos en Redes Sociales</h3>
+        <div class="social-container">
+            <a href="#" target="_blank" class="social-btn" style="--clr: #E1306C;"><i class="bi bi-instagram"></i> Instagram</a>
+            <a href="#" target="_blank" class="social-btn" style="--clr: #1877F2;"><i class="bi bi-facebook"></i> Facebook</a>
+            <a href="#" target="_blank" class="social-btn" style="--clr: #FF0000;"><i class="bi bi-youtube"></i> YouTube</a>
+            <a href="#" target="_blank" class="social-btn" style="--clr: #6441A5;"><i class="bi bi-twitch"></i> Twitch</a>
+            <a href="#" target="_blank" class="social-btn" style="--clr: #000000;"><i class="bi bi-tiktok"></i> TikTok</a>
+            <a href="#" target="_blank" class="social-btn" style="--clr: #1DA1F2;"><i class="bi bi-twitter-x"></i> X (Twitter)</a>
+        </div>
+    </div>
+</section>
 
-        <!-- Sección Contacto -->
-        <section id="contacto" class="content-section">
-            <div class="section-box">
-                <h3 class="sub-title">Contáctanos</h3>
-                <p>Correo: info@noticias.com</p>
-                <p>Teléfono: +51 987 654 321</p>
-            </div>
-        </section>
+<!-- Sección Contacto Mejorada con 3D -->
+<section id="contacto" class="content-section contacto-section">
+    <div class="container">
+        <div class="contact-card">
+            <h3 class="sub-title">📩 Contáctanos</h3>
+            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
+            <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
+            <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
+            <p><i class="bi bi-clock-fill"></i> Lunes - Viernes: 9:00 AM - 6:00 PM</p>
+        </div>
+    </div>
+</section>
+
+<!-- Estilos CSS con Animaciones 3D y Efectos WOW -->
+<style>
+    /* Fondo Futurista */
+    body {
+        background:rgb(235, 238, 243);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Sección de Redes Sociales */
+    .redes-section {
+        background: linear-gradient(135deg, #141e30, #243b55);
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    .sub-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Botones con efecto 3D */
+    .social-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        perspective: 1000px;
+    }
+
+    .social-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--clr);
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        transition: 0.4s ease-in-out;
+        transform-style: preserve-3d;
+        transform: rotateX(10deg) rotateY(10deg);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .social-btn:hover {
+        transform: rotateX(0deg) rotateY(0deg) translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .social-btn i {
+        font-size: 1.8rem;
+    }
+
+    /* Sección Contacto con efecto Tarjeta 3D */
+    .contacto-section {
+        background: linear-gradient(135deg, #1B263B, #415A77);
+        padding: 100px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contact-card {
+        background: white;
+        color: black;
+        padding: 40px;
+        border-radius: 15px;
+        max-width: 500px;
+        text-align: center;
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        transform: perspective(1000px) rotateX(5deg);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-card:hover {
+        transform: perspective(1000px) rotateX(0deg) translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-card p {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .contact-card a {
+        color: #007BFF;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .contact-card a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+</style>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+        
     </main>
 
     <!-- Scripts -->
-    
-    <script src="{{ asset('js/app.js') }}"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

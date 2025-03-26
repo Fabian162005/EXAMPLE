@@ -1,315 +1,300 @@
-/* Estilos para los enlaces del navbar */
+/* ICONOS DE REDES SOCIALES */
+/* 🔥 Contenedor principal de los iconos */
+.social-icons {
+    display: flex;
+    justify-content: center; /* 🔥 Los alinea sin que se separen demasiado */
+    align-items: center;
+    gap: 90px; /* 🔥 Espaciado entre iconos */
+    padding: 10px 20px; /* 🔥 Ajuste fino del espacio */
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+.social-icons a {
+    color: rgb(0, 0, 0); /* Color de los iconos */
+    font-size: 27px;
+    margin: 0 10px;
+    text-decoration: none;
+    top: 1px
+}/* 🔵 Facebook */
+.facebook {
+    font-size: 60px; /* 🔥 Más grande */
+    color: #1877F2;
+    margin-right: 15px;
+}
+
+/* 🟣 Instagram */
+.instagram {
+    font-size: 40px; /* 🔥 Más grande */
+    color: #E1306C;
+    margin-right: 15px;
+}
+
+/* 🔴 YouTube */
+.youtube {
+    font-size: 45px;
+    color: #FF0000;
+    margin-right: 15px;
+    transform: translateY(-5px); /* 🔥 Alternativa más efectiva */
+}
+
+
+
+/* ⚫ Twitter */
+.twitter {
+    font-size: 38px; /* 🔥 Más grande */
+    color: black;
+    margin-right: 15px;
+}
+
+/* 🟣 Twitch */
+.twitch {
+    font-size: 50px; /* 🔥 Más grande */
+    color: #9146FF;
+}
+
+
+
+/* 🔥 Cambia el color al pasar el mouse */
+.social-icons a:hover {
+    color: #3B83BD;
+}
+
+
+/* Fijar la barra de redes sociales arriba */
+.social-icons {
+    position: fixed;
+    top: -7px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff; /* Fondo oscuro */
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000; /* Asegurar que esté encima de todo */
+}
+
+
+/* Ajustar el navbar para que no se superponga */
+.navbar-container {
+    position: fixed;
+    top: 40px; /* Para dejar espacio a los iconos de redes */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Un poco menor que los iconos */
+}
+
+
+/* 🔥 Navbar fijo y con separación de 5px arriba */
+.navbar-container {
+    width: 1300px;
+    height: 75px;  /* Ajuste de altura */
+    position: fixed;
+    top: 40px;  /* 🔥 Baja el navbar */
+    left: 300px;
+    z-index: 1000;
+    background-color: #3B83BD; /* 🔥 Azul */
+    border-radius: 20px;  /* 🔥 Efecto flotante */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 📌 Contenedor del navbar */
+.navbar-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🔥 Menú de navegación */
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 80px; /* Espacio entre elementos */
+    width: 100%;
+    justify-content: center;
+}
+
+/* 🎨 Estilos de los enlaces */
 .nav-item {
     color: white;
     font-weight: bold;
-    font-size: 24px;
-    padding: 15px 10px; /* 🔥 Reducimos el área del recuadro */
-    margin: 0 30px;
+    font-size: 20px;
+    padding: 15px 20px;
+    cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
-/* Alineación y diseño de la barra de navegación */
-.navbar-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    width: 100%;
-    height: 60px;
-    background-color: #3B83BD; /* 🔥 Celeste */
-    border-radius: 30px;
-    padding: 15px 40px;
-}
-
-
-/* 🔥 Nuevo efecto: Subrayado animado */
-.nav-item::after {
-    content: "";
-    position: absolute;
-    bottom: -5px; /* Ajusta la posición del subrayado */
-    left: 50%;
-    width: 0%;
-    height: 3px;
-    background-color: rgb(0, 0, 0);
-    transition: width 0.3s ease, left 0.3s ease;
-}
-
-/* Efecto hover */
+/* ✨ Efecto hover */
 .nav-item:hover {
     background-color: #3d8ed6;
-    color: rgb(23, 23, 23);
-    transform: scale(1.01);
+    color: black;
+    transform: scale(1.05);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* 🔥 Animación del subrayado */
-.nav-item:hover::after {
-    width: 100%;
-    left: 0;
-}
-
-/* Alineación del contenedor de enlaces */
+/* 📌 Contenedor del menú */
 .navbar-menu {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 100px;
+    justify-content: space-between; /* 🔥 Separa los elementos */
+    width: 100%;
+    padding: 0 20px;
 }
 
-/* 🔥 Aumentamos el espacio solo entre "Encuestas" y "Redes" */
-.nav-item:nth-child(2) {
-    margin-right: 80px;
+/* 📌 Ajuste individual de cada elemento */
+.nav-noticias {
+    margin-left: 30px; /* 🔥 Mueve a la izquierda */
 }
 
-/* Ajuste del logo */
+.nav-encuestas {
+    margin-left: 78px; /* 🔥 Más distancia entre Noticias y Encuestas */
+}
+
+.logo-container {
+    flex-grow: 0.5; /* 🔥 Ocupa espacio para centrar el logo */
+    display: flex;
+    justify-content: center;
+}
+
+.nav-contacto {
+    margin-right: 200px; /* 🔥 Mueve a la izquierda */
+}
+
+.search-button {
+    margin-right: 80px; /* 🔥 Mueve el botón de búsqueda */
+}
+
+
+/* 🔥 Logo centrado */
 .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 85%; /* 🔥 Movemos un poco a la izquierda */
-    transform: translateX(-50%);
-    z-index: 20;
 }
 
 .logo-container img {
-    width: 120px;
-    height: 120px;
-    -o-object-fit: cover;
-       object-fit: cover;
-    border-radius: 10px;
+    width: 95px;
+    height: 100px;
+    -o-object-fit: contain;
+       object-fit: contain;
+    border-radius: 15%;
 }
 
-/* 🔍 Estilos del botón de búsqueda */
+/* 🔍 Botón de búsqueda */
 .search-button {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 22px;
-    margin-left: 15px;
     color: white;
     transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    right: 20px;
 }
 
-/* Efecto hover para el botón de búsqueda */
+/* 🔍 Efecto hover para la lupa */
 .search-button:hover {
     transform: scale(1.2);
 }
-
-/* 🔥 Barra de búsqueda (oculta inicialmente) */
+/* 🔍 Contenedor de la barra de búsqueda (inicialmente oculto) */
 .search-container {
     position: fixed;
-    top: 80px; /* Debajo del navbar */
-    right: 20px;
-    display: none; /* Oculta por defecto */
+    top: 45px; /* 🔥 Ajuste para que no esté pegado al navbar */
+    right: 410px;
+    display: none; /* 🔥 Oculto por defecto */
     flex-direction: row;
     align-items: center;
     background-color: white;
-    border: 1px solid #000;
+    border: 2px solid #3B83BD; /* 🔵 Color del borde */
     border-radius: 25px;
-    padding: 8px;
+    padding: 8px 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    width: fit-content; /* 🔥 Ajusta el tamaño al contenido */
 }
 
-/* Campo de entrada de texto */
+
+/* 🔍 Campo de entrada de texto */
 .search-input {
     border: none;
     padding: 8px;
     outline: none;
-    width: 200px;
-    font-size: 16px;
-}
-
-/* Espaciado entre el botón de búsqueda y el campo de entrada */
-.search-container .search-button {
-    margin-left: 10px;
+    width: 210px;
+    font-size: 17px;
     color: black;
 }
 
-/* Estilos de la lista */
-.navbar-nav {
-    display: flex;
-    align-items: center;
-}
-
-/* Estilos de los enlaces */
-.nav-link {
-    color: #000 !important;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px 15px;
-}
-
-.nav-link:hover {
-    color: rgb(0, 0, 0) !important;
-}
-
-/* Estilos del logo */
-.logo-container {
-    background-color: rgb(3, 3, 3);
-    border-radius: 23%;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo-container img {
-    width: 70px;
-    height: 70px;
-    display: flexbox;
-}
-
-/* STYLE DEL APARTADO INDEX FUERA DEL NAVBAR */
-
-/* Estilos generales */
-body {
-    background-color: #f8f9fa;
-    font-family: Arial, sans-serif;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-}
-
-/* Estilos del Slider */
-.carousel-inner img {
-    border-radius: 10px;
-}
-
-/* Secciones principales */
-h2 {
-    color: #3375d6;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* Estilos de las tarjetas */
-.card {
+/* 🔍 Botón de búsqueda dentro del contenedor */
+.search-container .search-button {
+    background: none;
     border: none;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    background-color: white;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+    cursor: pointer;
+    font-size: 22px;
+    color: #3B83BD; /* 🔵 Color de la lupa */
+    transition: transform 0.2s ease;
+    position: absolute;
+    right: -80px; /* 🔥 Ajusta su posición sin agrandar el contenedor */
 }
 
-.card:hover {
-    transform: scale(1.05);
+/* Efecto hover para el botón de búsqueda */
+.search-container .search-button:hover {
+    transform: scale(1.2);
 }
-
-/* Sección de redes sociales */
-.social-links {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.social-links a {
-    margin: 0 10px;
-    color: #3375d6;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    color: #000;
-}
-
-/* Estilos de las secciones */
-.content-section {
-    height: 100vh;
+/* 🔥 Contenedor de la sección del título */
+.section-container {
+    position: relative;
+    width: 100%;
+    height: 150px; /* 🔥 Ajusta según el espacio entre navbar y slider */
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    scroll-snap-align: start;
-    border-bottom: 2px solid #ddd;
+    justify-content: center; /* 🔥 Centra el título horizontalmente */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.05); /* 🔥 Color de fondo opcional */
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
+/* 🔥 Estilo para el título */
 .section-title {
+    font-size: 36px;
     font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.section-box {
-    border: 2px solid black;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-.sub-title {
-    font-weight: bold;
+    color: #000000;
     text-transform: uppercase;
+    padding: 1px 1px;
+    margin: 0;
+    position: relative;
+    right: -450px;
+    bottom: 15px;
 }
 
-/* Estilos de noticias */
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
+/* 🔥 Animación de arriba hacia abajo sin moverse lateralmente */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px); /* 🔥 Inicia arriba */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* 🔥 Termina en su posición normal */
+    }
 }
 
-.news-item {
-    width: 100px;
-    height: 80px;
-    background-color: lightgray;
-    border-radius: 8px;
-    display: inline-block;
+/* 🔥 Aplica la animación */
+.section-title {
+    animation: fadeInDown 0.8s ease-out;
 }
-
-/* Estilos de las encuestas */
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-/* Estilos de las redes sociales */
-.social-media {
-    display: flex;
-    justify-content: space-around;
-    font-weight: bold;
-    margin-top: 10px;
-}
-/* Ajuste para el título */
-h2 {
-    margin-top: 10px;
-}
-
-/* Ajuste del título */
-h2 {
-    margin-top: 20px;
-}
-
-/* Centrar el slider */
-.carousel {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Ajustar el diseño de las tarjetas */
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
