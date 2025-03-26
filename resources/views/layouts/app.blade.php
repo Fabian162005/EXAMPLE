@@ -41,7 +41,7 @@
 <!-- Espaciado para que el contenido no quede oculto debajo del navbar -->
 <div style="height: 140px;"></div>
 
-<h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
+
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
 <!-- Contenedor del Slider con Fondo -->
 <div style="width: 100%; height: 250px; display: flex; justify-content: center; margin-top: 5px; position: relative;">
@@ -89,7 +89,7 @@
         <!-- Sección Noticias -->
         <section id="noticias" class="content-section">
             <div class="section-box">
-                <h3 class="sub-title">Noticias</h3>
+                <h2 class="titulonoticias">Noticias</h2>
 
                 <!-- Botón para buscar noticias -->
                 <div class="search-news-container" style="display: flex; justify-content: center; margin-bottom: 15px;">
@@ -130,42 +130,37 @@
         </section>
 
         <!-- Sección Encuestas -->
-<!-- Sección Encuestas -->
-<section id="encuestas" class="content-section">
-    <h2 class="main-title" onclick="toggleEncuestas()">Encuestas</h2>
-    
-    <div id="encuestas-container" class="hidden">
-        <div class="section-box" onclick="toggleList('presidenciales')">
-            <h3 class="sub-title">Encuestas Presidenciales</h3>
-            <ul id="presidenciales">
-                <li>Lima</li>
-                <li>Chiclayo</li>
-                <li>Piura</li>
-            </ul>
-        </div>
-        <div class="section-box" onclick="toggleList('piura')">
-            <h3 class="sub-title">Encuestas Piura</h3>
-            <ul id="piura">
-                <li>Morropón</li>
-                <li>Piura</li>
-                <li>Castilla</li> 
-            </ul>
-        </div>
-    </div>
-</section>
+        <section id="encuestas" class="content-section">
+        <div class="section-box"> <h2 class="tituloencuesta">Encuestas</h2>
 
-<script>
-    function toggleEncuestas() {
-        var container = document.getElementById("encuestas-container");
-        container.classList.toggle("show");
-        container.classList.toggle("hidden");
-    }
+            <div id="encuestas-container">
+                <div class="section-box" onclick="toggleList('presidenciales')">
+                    <h3 class="sub-title">Encuestas Presidenciales</h3>
+                    <ul id="presidenciales">
+                        <li>Lima</li>
+                        <li>Chiclayo</li>
+                        <li>Piura</li>
+                    </ul>
+                </div>
+                <div class="section-box" onclick="toggleList('piura')">
+                    <h3 class="sub-title">Encuestas Piura</h3>
+                    <ul id="piura">
+                        <li>Morropón</li>
+                        <li>Piura</li>
+                        <li>Castilla</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function toggleList(id) {
-        var list = document.getElementById(id);
-        list.style.display = (list.style.display === 'none' || list.style.display === '') ? 'block' : 'none';
-    }
-</script>
+    <script>
+        function toggleList(id) {
+            var list = document.getElementById(id);
+            list.style.display = (list.style.display === 'none' || list.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
 
         <!-- Sección Redes Sociales -->
         <section id="redes" class="content-section">

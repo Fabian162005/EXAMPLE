@@ -1,22 +1,30 @@
-/* Estilos para los enlaces del navbar */
-.nav-item {
-    color: white;
+/* Encabezado principal */
+h2 {
+    font-size: 36px;
     font-weight: bold;
-    font-size: 24px;
-    padding: 15px 10px; /* 🔥 Reducimos el área del recuadro */
-    margin: 0 30px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 60px; /* Aumenta la separación superior */
+    color: #3B83BD;
 }
 
-/* Efecto hover en los enlaces */
+.titulonoticias{
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 60px; /* Aumenta la separación superior */
+    color: #3B83BD;
+}
+
+.tituloencuesta{
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 60px; /* Aumenta la separación superior */
+    color: #3B83BD;
+}
+
+/* Estilos para los enlaces del navbar */
 .nav-item {
-    position: relative; /* Necesario para el efecto de subrayado */
     color: white;
     font-weight: bold;
     font-size: 24px;
@@ -29,17 +37,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-/* 🔥 Nuevo efecto: Subrayado animado */
+/* Efecto de subrayado animado */
 .nav-item::after {
     content: "";
     position: absolute;
-    bottom: -5px; /* Ajusta la posición del subrayado */
+    bottom: -5px;
     left: 50%;
     width: 0%;
     height: 3px;
-    background-color: rgb(0, 0, 0);
+    background-color: black;
     transition: width 0.3s ease, left 0.3s ease;
 }
 
@@ -51,13 +60,12 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* 🔥 Animación del subrayado */
 .nav-item:hover::after {
     width: 100%;
     left: 0;
 }
 
-/* Alineación del contenedor de enlaces */
+/* Contenedor del navbar */
 .navbar-menu {
     display: flex;
     justify-content: center;
@@ -65,50 +73,45 @@
     gap: 120px;
 }
 
-/* 🔥 Aumentamos el espacio solo entre "Encuestas" y "Redes" */
-.nav-item:nth-child(2) {
-    margin-right: 120px;
-}
-
 /* Ajuste del logo */
 .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.logo-container img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
+    background-color: black;
+    border-radius: 23%;
+    padding: 5px;
 }
 
-/* 🔥 Contenedor de la barra de búsqueda */
+.logo-container img {
+    width: 70px;
+    height: 70px;
+}
+
+/* Contenedor de la barra de búsqueda */
 .search-container {
     position: fixed;
-    top: 10px; /* Ajusta la distancia desde arriba */
-    right: 250px; /* Alineado a la derecha */
+    top: 10px;
+    right: 250px;
     display: flex;
     align-items: center;
     background-color: white;
-    border: 2px solid black; /* ✅ Borde correcto */
-    border-radius: 25px; /* Bordes redondeados */
+    border: 2px solid black;
+    border-radius: 25px;
     padding: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1100; /* Más alto que el navbar */
+    z-index: 1100;
 }
 
-/* 🔥 Input de búsqueda */
 .search-input {
     border: none;
     padding: 10px;
     font-size: 16px;
     border-radius: 20px 0 0 20px;
     outline: none;
-    width: 400px; /* Ajusta el tamaño */
+    width: 400px;
 }
 
-/* 🔥 Botón de búsqueda */
 .search-button {
     border: none;
     background-color: #3B83BD;
@@ -120,359 +123,138 @@
     transition: background-color 0.3s ease;
 }
 
-/* Efecto hover en el botón */
 .search-button:hover {
     background-color: #2a6da8;
 }
 
-/* Estilos de la lista */
-.navbar-nav {
-    display: flex;
-    align-items: center;
-}
-
-/* Estilos de los enlaces */
-.nav-link {
-    color: #000 !important;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px 15px;
-}
-
-.nav-link:hover {
-    color: rgb(0, 0, 0) !important;
-}
-
-/* Estilos del logo */
-.logo-container {
-    background-color: rgb(3, 3, 3);
-    border-radius: 23%;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo-container img {
-    width: 70px;
-    height: 70px;
-    display: flexbox;
-}
-
-/* STYLE DEL APARTADO INDEX FUERA DEL NAVBAR */
-
-/* Estilos generales */
-body {
-    background-color: #f8f9fa;
-    font-family: Arial, sans-serif;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-}
-
-/* Estilos del Slider */
-.carousel-inner img {
-    border-radius: 10px;
-}
-
-/* Secciones principales */
-h2 {
-    color: #3375d6;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* Estilos de las tarjetas */
-.card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    background-color: white;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-/* Sección de redes sociales */
-.social-links {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.social-links a {
-    margin: 0 10px;
-    color: #3375d6;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    color: #000;
-}
-
-/* Estilos de las secciones */
-.content-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    scroll-snap-align: start;
-    border-bottom: 2px solid #ddd;
-}
-
-.section-title {
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
+/* Sección de noticias */
 .section-box {
-    border: 2px solid black;
-    padding: 15px;
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
     border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
 }
 
-.sub-title {
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-/* Separador para la sección de noticias */
-.news-section {
-    margin-top: 100px; /* Agrega espacio entre el carrusel y las noticias */
-    padding-top: 20px;
-    border-top: 10px solid #ddd; /* Línea separadora */
-}
-
-/* Estilos de noticias */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
-    justify-content: center;
-    max-width: 1000px;
-    margin: auto;
-}
-
-.news-item {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.news-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.news-item:hover {
-    transform: scale(1.05);
-}
-
-.news-item p {
-    font-size: 14px;
-    color: #333;
-    margin-top: 10px;
-}
-
-/* Contenedor de búsqueda en noticias */
-.search-news-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-/* Botón de búsqueda en noticias */
-.search-button {
-    padding: 8px 15px;
-    background-color: #3B83BD;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-    background-color: #2A5E90;
-}
-
-/* Botón "Ver más" en noticias */
-.view-more-container {
-    display: flex;
-    justify-content: center;
     margin-top: 15px;
 }
 
-.view-more-button {
-    padding: 10px 20px;
-    background-color: #3B83BD;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.view-more-button:hover {
-    background-color: #2A5E90;
-}
-
-/* Apartado de encuestas */
-/* Contenedor principal */
-.content-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    position: relative;
-}
-
-/* Título principal */
-.main-title {
-    font-size: 32px;
-    font-weight: bold;
-    background-color: #3B83BD;
-    color: white;
-    text-align: center;
-    width: 100%;
+.news-item {
+    background: #fff;
     padding: 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añade transiciones */
 }
 
-.main-title:hover {
-    background-color: #2A6FA0;
+.news-item:hover {
+    transform: translateY(-5px); /* Eleva ligeramente el cuadro */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
 }
 
-/* Contenedor de encuestas oculto inicialmente */
+.news-item img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Sección de encuestas */
 #encuestas-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    justify-content: space-around;
+    margin: 20px auto;
+    max-width: 90%;
+    flex-wrap: nowrap;
 }
 
-/* Cuando se muestra */
-#encuestas-container.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Cuando está oculto */
-#encuestas-container.hidden {
-    opacity: 0;
-    transform: translateY(-20px);
-    pointer-events: none;
-}
-
-/* Estilo de los cuadros */
-.section-box {
-    width: 350px;
-    background-color: #fff;
+#encuestas-container .section-box {
+    width: 48%;
+    background: white;
     padding: 20px;
-    border-radius: 12px;
-    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #333;
+    box-sizing: border-box;
+    margin: 0 1%;
+}
+
+#encuestas-container .section-box h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+#encuestas-container .section-box ul {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+}
+
+#encuestas-container .section-box ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+#encuestas-container .section-box ul li:last-child {
+    border-bottom: none;
 }
 
 .section-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Listas ocultas */
-ul {
-    display: none;
-    margin-top: 10px;
-    padding: 0;
-    list-style: none;
-}
-
-/* Estilos de los elementos de la lista */
-li {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px 0;
-    padding: 12px;
-    background-color: #3B83BD;
-    border-radius: 8px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    color: white;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-/* Animación al pasar el mouse */
-li:hover {
-    background-color: #5DADE2;
-    transform: scale(1.05);
-    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Títulos de cada sección */
-.sub-title {
-    font-size: 22px;
-    margin-bottom: 10px;
-    font-weight: bold;
+    transform: translateY(-5px); /* Eleva ligeramente el cuadro */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
 }
 
 
-/* Estilos de las redes sociales */
+/* Ajustes específicos para redes sociales */
 .social-media {
     display: flex;
-    justify-content: space-around;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-/* Ajuste para el título */
-h2 {
-    margin-top: 10px;
-}
-
-/* Ajuste del título */
-h2 {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
     margin-top: 20px;
 }
 
-/* Centrar el slider */
-.carousel {
-    max-width: 1200px;
-    margin: 0 auto;
+.social-media span {
+    background: #3B83BD;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* Ajustar el diseño de las tarjetas */
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.social-media span:hover {
+    background: #2a6b9e;
 }
 
-/* Aumentar el margen superior de la sección de noticias */
-#noticias {
-    margin-top: 100px;
+/* Ajustes específicos para contacto */
+#contacto .section-box {
+    text-align: center; /
 }
+
+#contacto .section-box p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.content-section {
+    margin: 40px auto;
+    max-width: 90%;
+}
+
+.section-box {
+    background: white;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+
