@@ -1,227 +1,214 @@
-/* ICONOS DE REDES SOCIALES */
-/* 🔥 Contenedor principal de los iconos */
+/* 🌟 Barra de Redes Sociales */
 .social-icons {
     display: flex;
-    justify-content: center; /* 🔥 Los alinea sin que se separen demasiado */
+    justify-content: center;
     align-items: center;
-    gap: 90px; /* 🔥 Espaciado entre iconos */
-    padding: 10px 20px; /* 🔥 Ajuste fino del espacio */
-    background-color: #ffffff;
+    gap: 65px; /* 🔥 Espaciado entre iconos reducido */
+    padding: 5px 15px;
     position: fixed;
-    top: 0;
+    top: -14.9px;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    background-color: transparent;
+    z-index: 900;
+    transform: translateX(8px); /* Mover los iconos 3px a la derecha */
 }
 
-
+/* 🔗 Iconos de redes sociales */
 .social-icons a {
-    color: rgb(0, 0, 0); /* Color de los iconos */
-    font-size: 27px;
-    margin: 0 10px;
     text-decoration: none;
-    top: 1px
-}/* 🔵 Facebook */
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 🔥 Efecto de resplandor */
+.social-icons a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+}
+
+/* 🔥 Hover - Efecto de salto y resplandor */
+
+
+.social-icons a:hover::before {
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* 🔥 Facebook */
 .facebook {
-    font-size: 60px; /* 🔥 Más grande */
-    color: #1877F2;
-    margin-right: 15px;
+    font-size: 30px;
+    color: black;
+    transition: color 0.3s ease;
+}
+.facebook:hover {
+    color: #0d5be1;
 }
 
 /* 🟣 Instagram */
 .instagram {
-    font-size: 40px; /* 🔥 Más grande */
-    color: #E1306C;
-    margin-right: 15px;
+    font-size: 30px;
+    color: black;
+    transition: color 0.3s ease;
+}
+.instagram:hover {
+    color: #c7225e;
 }
 
 /* 🔴 YouTube */
 .youtube {
-    font-size: 45px;
-    color: #FF0000;
-    margin-right: 15px;
-    transform: translateY(-5px); /* 🔥 Alternativa más efectiva */
+    font-size: 39px;
+    color: black;
+    transition: color 0.3s ease;
 }
-
-
+.youtube:hover {
+    color: #cc0000;
+}
 
 /* ⚫ Twitter */
 .twitter {
-    font-size: 38px; /* 🔥 Más grande */
+    font-size: 30px;
     color: black;
-    margin-right: 15px;
+    transition: color 0.3s ease;
 }
+
 
 /* 🟣 Twitch */
 .twitch {
-    font-size: 50px; /* 🔥 Más grande */
-    color: #9146FF;
-}
-
-
-
-/* 🔥 Cambia el color al pasar el mouse */
-.social-icons a:hover {
-    color: #3B83BD;
-}
-
-
-/* Fijar la barra de redes sociales arriba */
-.social-icons {
-    position: fixed;
-    top: -7px;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff; /* Fondo oscuro */
-    padding: 10px 0;
-    text-align: center;
-    z-index: 1000; /* Asegurar que esté encima de todo */
-}
-
-
-/* Ajustar el navbar para que no se superponga */
-.navbar-container {
-    position: fixed;
-    top: 40px; /* Para dejar espacio a los iconos de redes */
-    left: 0;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 999; /* Un poco menor que los iconos */
-}
-
-
-/* 🔥 Navbar fijo y con separación de 5px arriba */
-.navbar-container {
-    width: 1300px;
-    height: 75px;  /* Ajuste de altura */
-    position: fixed;
-    top: 40px;  /* 🔥 Baja el navbar */
-    left: 300px;
-    z-index: 1000;
-    background-color: #3B83BD; /* 🔥 Azul */
-    border-radius: 20px;  /* 🔥 Efecto flotante */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 📌 Contenedor del navbar */
-.navbar-content {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 🔥 Menú de navegación */
-.navbar-menu {
-    display: flex;
-    align-items: center;
-    gap: 80px; /* Espacio entre elementos */
-    width: 100%;
-    justify-content: center;
-}
-
-/* 🎨 Estilos de los enlaces */
-.nav-item {
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 15px 20px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* ✨ Efecto hover */
-.nav-item:hover {
-    background-color: #3d8ed6;
+    font-size: 30px;
     color: black;
-    transform: scale(1.05);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease;
+}
+.twitch:hover {
+    color: #6b32cc;
+}
+/* 🌟 Contenedor del Navbar (Flotante y Fijo) */
+.navbar-container {
+    position: fixed; /* Fijo en la parte superior */
+    top: 48px; /* Lo ponemos 40px por debajo de la parte superior */
+    left: 50%;
+    transform: translateX(-50%); /* Centramos */
+    width: 90%; /* Ocupa el 100% del ancho de la pantalla */
+    max-width: 1820px; /* Máximo ancho, evitando deformación en pantallas grandes */
+    min-width: 720px;
+    background-color: #3B83BD; /* Fondo semi-transparente */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Sombra flotante */
+    border-radius: 12px; /* Bordes redondeados */
+    padding: 20px 20px; /* Reducir padding para mayor control sobre la altura */
+    display: flex;
+    justify-content: space-between; /* Mantiene espacio entre los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    z-index: 1000; /* Asegura que el navbar quede por encima de otros elementos */
+}   
+
+/* Contenedor del logo, aseguramos que esté centrado */
+.logo-container {
+    position: absolute; /* Saca el logo del flujo del flexbox */
+    top: 50%; /* Centra el logo verticalmente */
+    left: 50%; /* Centra el logo horizontalmente */
+    transform: translate(-48%, -50%); /* Asegura que el logo esté centrado */
+    z-index: 1001; /* Asegura que el logo esté encima de los otros elementos */
+    border-radius: 12px; /* Borde circular */
+    padding: 10px; /* Espaciado entre el borde y el logo */
 }
 
-/* 📌 Contenedor del menú */
+/* Logo dentro del contenedor */
+.logo-container img {
+    height: 102px; /* Tamaño del logo */
+    width: auto;  /* Mantiene la relación de aspecto */
+    border-radius: 8px; /* Bordes redondeados en la imagen */
+}
+
+
+/* 📜 Menú de navegación */
 .navbar-menu {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* 🔥 Separa los elementos */
-    width: 100%;
-    padding: 0 20px;
+    gap: 10px; /* Puedes ajustar esto si es necesario */
+    justify-content: center; /* Centra los elementos en el navbar */
+    z-index: 1000;
+    margin-left: 100px; /* Ajusta el margen izquierdo si es necesario */
 }
 
-/* 📌 Ajuste individual de cada elemento */
+/* 🔗 Estilos de los items */
+.nav-item {
+    font-size: 25px; /* Aumentamos el tamaño de la fuente */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Personalizar cada item del menú */
 .nav-noticias {
-    margin-left: 30px; /* 🔥 Mueve a la izquierda */
+    margin-left: 230px; /* Ajusta la distancia a la izquierda */
+    margin-right: 90px; /* Ajusta la distancia a la derecha */
 }
 
 .nav-encuestas {
-    margin-left: 78px; /* 🔥 Más distancia entre Noticias y Encuestas */
-}
-
-.logo-container {
-    flex-grow: 0.5; /* 🔥 Ocupa espacio para centrar el logo */
-    display: flex;
-    justify-content: center;
+    margin-left: 70px;
+    margin-right: 150px;
 }
 
 .nav-contacto {
-    margin-right: 200px; /* 🔥 Mueve a la izquierda */
+    margin-left: 52px;
+    margin-right: 15px;
 }
 
-.search-button {
-    margin-right: 80px; /* 🔥 Mueve el botón de búsqueda */
-}
-
-
-/* 🔥 Logo centrado */
+/* Estilos para el logo centrado */
 .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-grow: 1; /* Asegura que el logo esté en el medio */
+    text-align: center;
 }
 
-.logo-container img {
-    width: 95px;
-    height: 100px;
-    -o-object-fit: contain;
-       object-fit: contain;
-    border-radius: 15%;
-}
-
-/* 🔍 Botón de búsqueda */
+/* Estilo para el botón de búsqueda */
 .search-button {
-    background: none;
+    margin-left: 20px; /* Ajusta la distancia al lado izquierdo del ícono */
+}
+
+
+/* 🔍 Botón de búsqueda con sombra */
+.search-button {
+    position: absolute; /* Saca el botón del flujo normal */
+    background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 22px;
-    color: white;
-    transition: transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    right: 20px;
+    color: black; /* Lupa negra */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    padding: 10px;
+    border-radius: 12px;
+    top: 10px;  /* Ajusta el valor para moverlo hacia abajo o hacia arriba */
+    right: 20px; /* Ajusta el valor para moverlo hacia la izquierda o derecha */
+
+
 }
 
 /* 🔍 Efecto hover para la lupa */
 .search-button:hover {
     transform: scale(1.2);
+    background-color: rgba(0, 0, 0, 0.1); /* Efecto de resaltado */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
 }
+
+
 /* 🔍 Contenedor de la barra de búsqueda (inicialmente oculto) */
 .search-container {
     position: fixed;
-    top: 45px; /* 🔥 Ajuste para que no esté pegado al navbar */
-    right: 410px;
+    top: 49.9px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
+    right: 420px;
     display: none; /* 🔥 Oculto por defecto */
     flex-direction: row;
     align-items: center;
-    background-color: white;
-    border: 2px solid #3B83BD; /* 🔵 Color del borde */
+    background-color: #ffffff;
+    border: 2px solid #000000; /* 🔵 Color del borde */
     border-radius: 25px;
     padding: 8px 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
@@ -229,13 +216,13 @@
     width: fit-content; /* 🔥 Ajusta el tamaño al contenido */
 }
 
-
 /* 🔍 Campo de entrada de texto */
 .search-input {
     border: none;
     padding: 8px;
     outline: none;
-    width: 210px;
+    width: 180px; /* Limita el ancho del campo de entrada */
+    max-width: 180px; /* Añadido para limitar el texto al tamaño */
     font-size: 17px;
     color: black;
 }
@@ -249,8 +236,10 @@
     color: #3B83BD; /* 🔵 Color de la lupa */
     transition: transform 0.2s ease;
     position: absolute;
-    right: -80px; /* 🔥 Ajusta su posición sin agrandar el contenedor */
+    top: -0.1px;
+    right: 14px; /* 🔥 Ajusta su posición sin agrandar el contenedor */
 }
+
 
 /* Efecto hover para el botón de búsqueda */
 .search-container .search-button:hover {
@@ -297,4 +286,65 @@
 /* 🔥 Aplica la animación */
 .section-title {
     animation: fadeInDown 0.8s ease-out;
+}
+
+/* Ajuste del tamaño de las imágenes del slider */
+/* Ajuste del tamaño de las imágenes del slider */
+.custom-slider-img {
+    width: 10%; /* Asegura que las imágenes ocupen todo el ancho del contenedor */
+    height: 10%; /* La altura se ajusta al contenedor */
+    object-fit: cover; /* Hace que la imagen se ajuste dentro del contenedor sin recortarse */
+    border-radius: 8px; /* Bordes redondeados para dar un efecto suave */
+    object-position: center; /* Centra la imagen para que el recorte se haga de manera equilibrada */
+}
+
+
+/* Ajuste de la altura de cada slide */
+.carousel-item {
+    height: 254px; /* Ajusta la altura del slide */
+}
+
+/* Asegura que las imágenes no se salgan del contenedor */
+.carousel-inner {
+    overflow: hidden; /* Elimina cualquier parte de la imagen que sobresalga */
+}
+
+/* Asegura que el carousel se vea bien y las imágenes se adapten al tamaño del contenedor */
+.carousel-item img {
+    width:100%; /* Las imágenes ocupan todo el ancho del contenedor */
+    height: 90%; /* Asegura que la altura sea proporcional al contenedor */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
+    border-radius: 12px; /* Bordes redondeados */
+}
+
+/* Estilo del botón Anterior */
+.carousel-control-prev {
+    position: absolute;  /* Colocamos el botón en una posición absoluta dentro del contenedor */
+    top: 37.5%;            /* Centra el botón verticalmente */
+    left: 350px;         /* Ajusta la posición a la izquierda */
+    transform: translateY(-50%);  /* Centra el botón correctamente */
+    background: rgba(0, 0, 0, 0.5);  /* Fondo semi-transparente */
+    width: 48px;         /* Ancho del botón */
+    height: 260px;       /* Alto del botón */
+    border-radius: 11%;  /* Bordes redondeados */
+    z-index: 100;        /* Asegura que el botón esté encima de otros elementos */
+}
+
+/* Estilo del botón Siguiente */
+.carousel-control-next {
+    position: absolute;  /* Colocamos el botón en una posición absoluta dentro del contenedor */
+    top: 37.5%;            /* Centra el botón verticalmente */
+    right: 350px;        /* Ajusta la posición a la derecha */
+    transform: translateY(-50%);  /* Centra el botón correctamente */
+    background: rgba(0, 0, 0, 0.5);  /* Fondo semi-transparente */
+    width: 48px;         /* Ancho del botón */
+    height: 260px;       /* Alto del botón */
+    border-radius: 11%;  /* Bordes redondeados */
+    z-index: 100;        /* Asegura que el botón esté encima de otros elementos */
+}
+
+/* Estilo para el icono dentro del botón */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgb(0, 0, 0.2s);  /* Cambia el color del icono */
 }

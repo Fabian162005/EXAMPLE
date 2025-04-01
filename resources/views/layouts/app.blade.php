@@ -6,10 +6,10 @@
     <title>Noticias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="{{ asset('resources\js\app.js') }}"></script>
     @vite(['resources/js/app.js'])
-
+    <!-- Agrega FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 </head>
@@ -39,8 +39,10 @@
                 </a>
             </div>
             <div class="nav-item nav-contacto">Contáctanos</div>
-            <!-- Botón de búsqueda dentro del navbar -->
-            <button id="search-icon" class="search-button">🔍</button>
+            <!-- Botón de búsqueda estilizado -->
+            <button id="search-icon" class="search-button">
+                <i class="fas fa-search"></i> <!-- Ícono de lupa -->
+            </button>
         </div>
     </div>
 </div>
@@ -69,43 +71,41 @@
 <div style="height: 140px;"></div>
 
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
-<!-- Contenedor del Slider con Fondo -->
-<div style="width: 100%; height: 250px; display: flex; justify-content: center; margin-top: 5px; position: relative;">
-    <div style="width: 90%; max-width: 1200px; padding: 15px; background: rgba(84, 84, 84, 0.2); border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); position: relative;">
-
-        <!-- Slider -->
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 3">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 4">
-                </div>
-                <div class="carousel-item">
-                    <img src="htt_ps://via.placeholder.com/1200x400" class="d-block w-100" alt="Slide 5">
+            <!-- Contenedor del Slider con Fondo -->
+            <div style="width: 100%; height: 250px; display: flex; justify-content: center; margin-top: 5px; position: relative;">
+                <div style="width: 90%; max-width: 1200px; padding: 15px; background: rgba(84, 84, 84, 0.2); border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); position: relative;">
+                        <!-- Slider -->
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('storage/images/485055934_963133949339637_6587303526016761817_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 1">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('storage/images/480487921_945020837817615_6087008265131444593_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('storage/images/487180354_968403768812655_384319847441050549_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 3">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100 custom-slider-img" alt="Slide 4">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100 custom-slider-img" alt="Slide 5">
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
+                <!-- Botón Anterior -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
 
-            <!-- Botón Anterior -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
-                style="position: flex; top: 50%; left: -18px; transform: translateY(-10%); background: rgba(0, 0, 0, 0.3); width: 55px; height: 250px; border-radius: 10%;">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-
-            <!-- Botón Siguiente -->
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"
-                style="position: flex; top: 50%; right: -18px; transform: translateY(-10%); background: rgba(0, 0, 0, 0.3); width: 55px; height: 250px; border-radius: 10%;">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-
+                <!-- Botón Siguiente -->
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
     </div>
 </div>
 
