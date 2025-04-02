@@ -13,3 +13,9 @@ Route::get('/noticias', function () {
 Route::get('/volver', function () {
     return view('layouts.app');
 })->name('app');
+
+Route::get('/menunoticias', function () {
+    return view('layouts.menunoticias'); // Aquí se carga el archivo menunoticias.blade.php
+})->name('menunoticias');
+
+

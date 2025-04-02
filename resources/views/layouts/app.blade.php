@@ -28,7 +28,12 @@
 
             <!-- Barra de navegación -->
             <div class="navbar-menu" style="width: 100%; height: 60px; background-color: #3B83BD; border-radius: 30px; padding: 15px 40px; display: flex; justify-content: center; align-items: center;">
-                <div class="nav-item">Noticias</div>
+            <div class="nav-item">
+                <a href="{{ route('menunoticias') }}" style="color:rgb(255, 255, 255); text-decoration: none;">Noticias</a>
+            </div>
+
+
+
                 <div class="nav-item">Encuestas</div>
                 <div class="nav-item">Redes</div>
                 <div class="nav-item">Contáctanos</div>
