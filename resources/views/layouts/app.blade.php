@@ -99,47 +99,76 @@
             </div>
         </section>
 
- <!-- Sección Encuestas -->
-<section id="encuestas" class="content-section">
-    <h2 class="main-title" onclick="toggleEncuestas()">Encuestas</h2>
+<!-- Sección Encuestas -->
+<section id="encuestas" class="encuestas-section">
+    <h2 class="section-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleEncuestas()">
+        Encuestas
+        <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+    </h2>
     
-    <div id="encuestas-container" class="hidden">
-        <div class="section-box">
-            <h3 class="sub-title" onclick="toggleList('presidenciales')">Encuestas Presidenciales</h3>
-            <ul id="presidenciales" class="list-hidden">
-                <li><a href="/encuestas/lima">Lima</a></li>
-                <li><a href="/encuestas/chiclayo">Chiclayo</a></li>
-                <li><a href="/encuestas/piura">Piura</a></li>
+    <div id="encuestas-container" class="encuestas-grid hidden">
+        <!-- Tarjeta Presidenciales -->
+        <article class="encuesta-card">
+            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('presidenciales')">
+                <h3 class="card-title">Encuestas Presidenciales</h3>
+                <span class="toggle-arrow">▼</span>
+            </div>
+            <ul id="presidenciales" class="card-list hidden">
+                <li class="card-item"><a href="{{ url('/encuestas/lima') }}" class="card-link">Lima</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/chiclayo') }}" class="card-link">Chiclayo</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/piura') }}" class="card-link">Piura</a></li>
             </ul>
-        </div>
-        <div class="section-box">
-            <h3 class="sub-title" onclick="toggleList('piura')">Encuestas Piura</h3>
-            <ul id="piura" class="list-hidden">
-                <li><a href="/encuestas/morropon">Morropón</a></li>
-                <li><a href="/encuestas/piura">Piura</a></li>
-                <li><a href="/encuestas/castilla">Castilla</a></li> 
+        </article>
+
+        <!-- Tarjeta Piura -->
+        <article class="encuesta-card">
+            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('piura')">
+                <h3 class="card-title">Encuestas Piura</h3>
+                <span class="toggle-arrow">▼</span>
+            </div>
+            <ul id="piura" class="card-list hidden">
+                <li class="card-item"><a href="{{ url('/encuestas/morropon') }}" class="card-link">Morropón</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/castilla') }}" class="card-link">Castilla</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/plura2') }}" class="card-link">Plura2</a></li>
             </ul>
-        </div>
+        </article>
     </div>
 </section>
 
 <script>
-    function toggleEncuestas() {
-        var container = document.getElementById("encuestas-container");
-        container.classList.toggle("show");
-        container.classList.toggle("hidden");
-    }
+// Toggle sección principal
+function toggleEncuestas() {
+    const container = document.getElementById("encuestas-container");
+    const header = document.querySelector(".section-header");
+    const icon = document.querySelector(".toggle-icon");
+    
+    container.classList.toggle("hidden");
+    container.classList.toggle("show");
+    icon.classList.toggle("rotate-180");
+    header.setAttribute("aria-expanded", container.classList.contains("show"));
+}
 
-    function toggleList(id) {
-        var list = document.getElementById(id);
-        if (list.style.display === "none" || list.style.display === "") {
-            list.style.display = "block";
-        } else {
-            list.style.display = "none";
-        }
+// Toggle listas individuales
+function toggleList(id) {
+    const list = document.getElementById(id);
+    const arrow = list.previousElementSibling.querySelector(".toggle-arrow");
+    
+    list.classList.toggle("hidden");
+    list.classList.toggle("show");
+    arrow.classList.toggle("rotate-180");
+    list.parentElement.setAttribute("aria-expanded", list.classList.contains("show"));
+}
+
+// Cerrar al hacer click fuera (opcional)
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.encuesta-card') && !e.target.closest('.section-header')) {
+        document.getElementById("encuestas-container").classList.add("hidden");
+        document.querySelector(".toggle-icon").classList.remove("rotate-180");
     }
+});
 </script>
-
 
         <!-- Sección Redes Sociales -->
         <section id="redes" class="content-section">

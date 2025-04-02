@@ -163,61 +163,159 @@ h2 {
     border-radius: 10px;
     margin-bottom: 10px;
 }
-/* Sección de encuestas */
-#encuestas-container {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px auto;
-    max-width: 90%;
-    flex-wrap: wrap;
+:root {
+    --primary-color: #2563eb;    /* Azul vibrante */
+    --hover-color: #1d4ed8;      /* Azul oscuro */
+    --bg-color: #f8fafc;         /* Fondo claro */
+    --text-color: #1e293b;       /* Texto oscuro */
+    --transition-speed: 0.3s;    /* Velocidad animaciones */
 }
 
-.section-box {
-    width: 45%;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Contenedor Principal */
+.encuestas-section {
+    padding: 2rem 1rem;
+    background: var(--bg-color);
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+/* Encabezado Sección */
+.section-header {
+    font-size: 1.75rem;
+    color: var(--text-color);
     cursor: pointer;
-    box-sizing: border-box;
-    margin: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all var(--transition-speed);
 }
 
-.section-box h3 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #000;
+.section-header:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.section-box ul {
-    list-style-type: none;
-    padding: 0;
-    display: none;
+/* Icono de Toggle */
+.toggle-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: transform var(--transition-speed);
 }
 
-.section-box ul li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    text-align: center;
+/* Grid de Tarjetas */
+.encuestas-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-top: 1.5rem;
 }
 
-.section-box ul li:last-child {
-    border-bottom: none;
+/* Tarjeta Individual */
+.encuesta-card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    overflow: hidden;
 }
 
-.section-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.encuesta-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
 }
 
-.section-box ul li a {
+/* Cabecera Tarjeta */
+.card-header {
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: #ffffff;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-color);
+}
+
+/* Flecha de Toggle */
+.toggle-arrow {
+    transition: transform var(--transition-speed);
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+/* Lista de Enlaces */
+.card-list {
+    padding: 0 1.25rem 1.25rem;
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.card-item {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: #f1f5f9;
+    transition: background var(--transition-speed);
+}
+
+.card-item:hover {
+    background: #e2e8f0;
+}
+
+.card-link {
+    color: var(--primary-color);
     text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
+    font-weight: 500;
+    display: block;
 }
 
-.section-box ul li a:hover {
+.card-link:hover {
+    color: var(--hover-color);
     text-decoration: underline;
+}
+
+/* Estados */
+.hidden {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all var(--transition-speed);
+}
+
+.show {
+    max-height: 1000px;
+    opacity: 1;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Responsividad */
+@media (max-width: 640px) {
+    .encuestas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        font-size: 1.5rem;
+        padding: 0.75rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .card-item {
+        padding: 0.5rem;
+    }
 }
 
 /* Ajustes específicos para redes sociales */
