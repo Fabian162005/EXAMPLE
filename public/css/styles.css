@@ -1,3 +1,23 @@
+/* CONFIGURACIONES DE PANTALLA*/
+
+/* 🔹 Elimina el scroll horizontal no deseado */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* 🔹 Si hay algún `position: absolute`, asegúrate de que no lo desborde */
+.navbar-container, .logo-container {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 🔹 Previene margen extra en el slider */
+.carousel {
+    overflow: hidden;
+    width: 100%;
+}
+
 /* 🌟 Barra de Redes Sociales */
 .social-icons {
     display: flex;
@@ -37,8 +57,6 @@
 }
 
 /* 🔥 Hover - Efecto de salto y resplandor */
-
-
 .social-icons a:hover::before {
     transform: translate(-50%, -50%) scale(1.5);
 }
@@ -80,7 +98,6 @@
     transition: color 0.3s ease;
 }
 
-
 /* 🟣 Twitch */
 .twitch {
     font-size: 30px;
@@ -90,76 +107,115 @@
 .twitch:hover {
     color: #6b32cc;
 }
-/* 🌟 Contenedor del Navbar (Flotante y Fijo) */
+
 .navbar-container {
-    position: fixed; /* Fijo en la parte superior */
-    top: 48px; /* Lo ponemos 40px por debajo de la parte superior */
+    position: fixed;
+    top: 50px;
     left: 50%;
-    transform: translateX(-50%); /* Centramos */
-    width: 90%; /* Ocupa el 100% del ancho de la pantalla */
-    max-width: 1820px; /* Máximo ancho, evitando deformación en pantallas grandes */
-    min-width: 720px;
-    background-color: #3B83BD; /* Fondo semi-transparente */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Sombra flotante */
-    border-radius: 12px; /* Bordes redondeados */
-    padding: 20px 20px; /* Reducir padding para mayor control sobre la altura */
+    transform: translateX(-50%);
+    width: 70%; /* 🔥 Hace el navbar más ancho */
+    max-width: 1300px; /* 🔥 Evita que sea demasiado ancho en pantallas grandes */
+    height: 70px; /* 🔥 Aumenta la altura */
+    background-color: #3B83BD;
+    border-radius: 20px; /* 🔥 Bordes redondeados */
+    z-index: 1000;
     display: flex;
-    justify-content: space-between; /* Mantiene espacio entre los elementos */
-    align-items: center; /* Centra los elementos verticalmente */
-    z-index: 1000; /* Asegura que el navbar quede por encima de otros elementos */
-}   
-
-/* Contenedor del logo, aseguramos que esté centrado */
+    justify-content: center;
+    align-items: center;
+    padding: 0 3rem; /* 🔥 Más espacio interno */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* 🔥 Asegura que el padding no afecte el tamaño total */
+}
+/* 📌 Contenedor del logo (Ahora flotante y sobresalido) */
 .logo-container {
-    position: absolute; /* Saca el logo del flujo del flexbox */
-    top: 50%; /* Centra el logo verticalmente */
-    left: 50%; /* Centra el logo horizontalmente */
-    transform: translate(-48%, -50%); /* Asegura que el logo esté centrado */
-    z-index: 1001; /* Asegura que el logo esté encima de los otros elementos */
-    border-radius: 12px; /* Borde circular */
-    padding: 10px; /* Espaciado entre el borde y el logo */
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-48%);
+    z-index: 1001;
 }
 
-/* Logo dentro del contenedor */
 .logo-container img {
-    height: 102px; /* Tamaño del logo */
-    width: auto;  /* Mantiene la relación de aspecto */
-    border-radius: 8px; /* Bordes redondeados en la imagen */
+    height: 100px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-
-
-/* 📜 Menú de navegación */
 .navbar-menu {
     display: flex;
     align-items: center;
-    gap: 10px; /* Puedes ajustar esto si es necesario */
-    justify-content: center; /* Centra los elementos en el navbar */
-    z-index: 1000;
-    margin-left: 100px; /* Ajusta el margen izquierdo si es necesario */
+    justify-content: center;
+    gap: 80px; /* 🔥 Aumenta la separación entre los elementos */
 }
 
-/* 🔗 Estilos de los items */
+/* 🔹 Agregar padding a los elementos del navbar */
 .nav-item {
-    font-size: 25px; /* Aumentamos el tamaño de la fuente */
+    padding: 15px 20px; /* 🔥 Más espacio alrededor de cada elemento */
+    font-size: 22px;
     font-weight: bold;
-    cursor: pointer;
+    text-align: center;
+    color: white;
     transition: color 0.3s ease;
 }
 
-/* Personalizar cada item del menú */
-.nav-noticias {
-    margin-left: 230px; /* Ajusta la distancia a la izquierda */
-    margin-right: 90px; /* Ajusta la distancia a la derecha */
+.nav-item:hover {
+    color: #000000; /* 🔥 Cambio de color al pasar el mouse */
 }
 
-.nav-encuestas {
-    margin-left: 70px;
-    margin-right: 150px;
+.nav-item.nav-noticias {
+    margin-left: -150px; /* 🔥 Mueve 'Noticias' hacia la derecha */
 }
 
-.nav-contacto {
-    margin-left: 52px;
-    margin-right: 15px;
+
+.nav-item.nav-encuestas {
+    margin-left: -30px; /* 🔥 Mueve 'Encuestas' hacia la derecha */
+}
+
+
+.nav-item.nav-contactanos {
+    margin-left: 0px; /* 🔥 Mueve 'Contáctanos' hacia la derecha */
+}
+
+/* 📱 Ajustes para pantallas pequeñas */
+@media (max-width: 430px) {
+    .navbar-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Evita el estiramiento */
+        align-items: center;
+        background-color: #005FAD; /* Fondo azul para mejor contraste */
+        height: auto; /* Evita que sea más alto de lo necesario */
+        padding: 5px 0; /* Reduce el espacio interno */
+    }
+
+    .nav-item {
+        font-size: 16px; /* Tamaño ajustado para que no se vea enorme */
+        width: 100%;
+        text-align: center;
+        padding: 12px 0; /* Reduce el espacio entre elementos */
+        color: #ffffff; /* Texto blanco para contraste */
+        background-color: transparent; /* Evita bloques de color extraños */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea sutil de separación */
+    }
+
+    .nav-item:last-child {
+        border-bottom: none; /* Elimina la línea del último elemento */
+    }
+
+    .nav-item.nav-encuestas,
+    .nav-item.nav-noticias,
+    .nav-item.nav-contactanos {
+        font-size: 18px; 
+        width: 100%; 
+    }
+}
+
+/* Ajuste en pantallas grandes */
+@media (min-width: 1600px) { 
+    .navbar-container {
+        width: 80%; /* Más ancho en monitores grandes */
+    }
 }
 
 /* Estilos para el logo centrado */
@@ -173,22 +229,19 @@
     margin-left: 20px; /* Ajusta la distancia al lado izquierdo del ícono */
 }
 
-
 /* 🔍 Botón de búsqueda con sombra */
 .search-button {
     position: absolute; /* Saca el botón del flujo normal */
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 28px;
     color: black; /* Lupa negra */
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     padding: 10px;
     border-radius: 12px;
-    top: 10px;  /* Ajusta el valor para moverlo hacia abajo o hacia arriba */
+    top: 6px;  /* Ajusta el valor para moverlo hacia abajo o hacia arriba */
     right: 20px; /* Ajusta el valor para moverlo hacia la izquierda o derecha */
-
-
 }
 
 /* 🔍 Efecto hover para la lupa */
@@ -198,12 +251,11 @@
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
 }
 
-
 /* 🔍 Contenedor de la barra de búsqueda (inicialmente oculto) */
 .search-container {
     position: fixed;
     top: 49.9px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
-    right: 420px;
+    right: 320px;
     display: none; /* 🔥 Oculto por defecto */
     flex-direction: row;
     align-items: center;
@@ -221,8 +273,7 @@
     border: none;
     padding: 8px;
     outline: none;
-    width: 180px; /* Limita el ancho del campo de entrada */
-    max-width: 180px; /* Añadido para limitar el texto al tamaño */
+    width: 300px; /* Limita el ancho del campo de entrada */
     font-size: 17px;
     color: black;
 }
@@ -240,11 +291,11 @@
     right: 14px; /* 🔥 Ajusta su posición sin agrandar el contenedor */
 }
 
-
 /* Efecto hover para el botón de búsqueda */
 .search-container .search-button:hover {
     transform: scale(1.2);
 }
+
 /* 🔥 Contenedor de la sección del título */
 .section-container {
     position: relative;
@@ -256,6 +307,7 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 0.05); /* 🔥 Color de fondo opcional */
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    
 }
 
 /* 🔥 Estilo para el título */
@@ -265,10 +317,12 @@
     color: #000000;
     text-transform: uppercase;
     padding: 1px 1px;
-    margin: 0;
+    margin: 0 auto;
     position: relative;
     right: -450px;
     bottom: 15px;
+    max-width: 90%;
+    text-align: center;
 }
 
 /* 🔥 Animación de arriba hacia abajo sin moverse lateralmente */
@@ -289,15 +343,13 @@
 }
 
 /* Ajuste del tamaño de las imágenes del slider */
-/* Ajuste del tamaño de las imágenes del slider */
 .custom-slider-img {
-    width: 10%; /* Asegura que las imágenes ocupen todo el ancho del contenedor */
-    height: 10%; /* La altura se ajusta al contenedor */
+    width: 100%; /* Asegura que las imágenes ocupen todo el ancho del contenedor */
+    height: 100%; /* La altura se ajusta al contenedor */
     object-fit: cover; /* Hace que la imagen se ajuste dentro del contenedor sin recortarse */
     border-radius: 8px; /* Bordes redondeados para dar un efecto suave */
     object-position: center; /* Centra la imagen para que el recorte se haga de manera equilibrada */
 }
-
 
 /* Ajuste de la altura de cada slide */
 .carousel-item {
@@ -319,32 +371,32 @@
 
 /* Estilo del botón Anterior */
 .carousel-control-prev {
-    position: absolute;  /* Colocamos el botón en una posición absoluta dentro del contenedor */
-    top: 37.5%;            /* Centra el botón verticalmente */
-    left: 350px;         /* Ajusta la posición a la izquierda */
-    transform: translateY(-50%);  /* Centra el botón correctamente */
-    background: rgba(0, 0, 0, 0.5);  /* Fondo semi-transparente */
-    width: 48px;         /* Ancho del botón */
-    height: 260px;       /* Alto del botón */
-    border-radius: 11%;  /* Bordes redondeados */
-    z-index: 100;        /* Asegura que el botón esté encima de otros elementos */
+    position: absolute;
+    top: 37.5%;
+    left: 350px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    width: 48px;
+    height: 260px;
+    border-radius: 11%;
+    z-index: 100;
 }
 
 /* Estilo del botón Siguiente */
 .carousel-control-next {
-    position: absolute;  /* Colocamos el botón en una posición absoluta dentro del contenedor */
-    top: 37.5%;            /* Centra el botón verticalmente */
-    right: 350px;        /* Ajusta la posición a la derecha */
-    transform: translateY(-50%);  /* Centra el botón correctamente */
-    background: rgba(0, 0, 0, 0.5);  /* Fondo semi-transparente */
-    width: 48px;         /* Ancho del botón */
-    height: 260px;       /* Alto del botón */
-    border-radius: 11%;  /* Bordes redondeados */
-    z-index: 100;        /* Asegura que el botón esté encima de otros elementos */
+    position: absolute;
+    top: 37.5%;
+    right: 350px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    width: 48px;
+    height: 260px;
+    border-radius: 11%;
+    z-index: 100;
 }
 
 /* Estilo para el icono dentro del botón */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: rgb(0, 0, 0.2s);  /* Cambia el color del icono */
+    background-color: rgb(0, 0, 0.2s); /* Cambia el color del icono */
 }
