@@ -99,6 +99,9 @@
             </div>
         </section>
 
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
 <!-- Sección Encuestas -->
 <section id="encuestas" class="encuestas-section">
     <h2 class="section-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleEncuestas()">
@@ -170,6 +173,9 @@ document.addEventListener('click', (e) => {
 });
 </script>
 
+
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
         <!-- Sección Redes Sociales -->
         <section id="redes" class="content-section">
             <div class="section-box">
