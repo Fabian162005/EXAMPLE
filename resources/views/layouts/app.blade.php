@@ -123,161 +123,106 @@
             </div>
         </section>
 
-        <!-- Sección Encuestas -->
-        <section id="encuestas" class="content-section">
-            <div class="section-box">
-                <h3 class="sub-title">Encuestas Presidenciales</h3>
-                <ul>
-                    <li>Lima</li>
-                    <li>Chiclayo</li>
-                    <li>Piura</li>
-                </ul>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+<!-- Sección Encuestas -->
+<section id="encuestas" class="encuestas-section">
+    <h2 class="section-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleEncuestas()">
+        Encuestas
+        <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+    </h2>
+    
+    <div id="encuestas-container" class="encuestas-grid hidden">
+        <!-- Tarjeta Presidenciales -->
+        <article class="encuesta-card">
+            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('presidenciales')">
+                <h3 class="card-title">Encuestas Presidenciales</h3>
+                <span class="toggle-arrow">▼</span>
             </div>
+            <ul id="presidenciales" class="card-list hidden">
+                <li class="card-item"><a href="{{ url('/encuestas/lima') }}" class="card-link">Lima</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/chiclayo') }}" class="card-link">Chiclayo</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/piura') }}" class="card-link">Piura</a></li>
+            </ul>
+        </article>
+
+        <!-- Tarjeta Piura -->
+        <article class="encuesta-card">
+            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('piura')">
+                <h3 class="card-title">Encuestas Piura</h3>
+                <span class="toggle-arrow">▼</span>
+            </div>
+            <ul id="piura" class="card-list hidden">
+                <li class="card-item"><a href="{{ url('/encuestas/morropon') }}" class="card-link">Morropón</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/castilla') }}" class="card-link">Castilla</a></li>
+                <li class="card-item"><a href="{{ url('/encuestas/plura2') }}" class="card-link">Plura2</a></li>
+            </ul>
+        </article>
+    </div>
+</section>
+
+<script>
+// Toggle sección principal
+function toggleEncuestas() {
+    const container = document.getElementById("encuestas-container");
+    const header = document.querySelector(".section-header");
+    const icon = document.querySelector(".toggle-icon");
+    
+    container.classList.toggle("hidden");
+    container.classList.toggle("show");
+    icon.classList.toggle("rotate-180");
+    header.setAttribute("aria-expanded", container.classList.contains("show"));
+}
+
+// Toggle listas individuales
+function toggleList(id) {
+    const list = document.getElementById(id);
+    const arrow = list.previousElementSibling.querySelector(".toggle-arrow");
+    
+    list.classList.toggle("hidden");
+    list.classList.toggle("show");
+    arrow.classList.toggle("rotate-180");
+    list.parentElement.setAttribute("aria-expanded", list.classList.contains("show"));
+}
+
+// Cerrar al hacer click fuera (opcional)
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.encuesta-card') && !e.target.closest('.section-header')) {
+        document.getElementById("encuestas-container").classList.add("hidden");
+        document.querySelector(".toggle-icon").classList.remove("rotate-180");
+    }
+});
+</script>
+
+
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- Sección Redes Sociales -->
+        <section id="redes" class="content-section">
             <div class="section-box">
-                <h3 class="sub-title">Encuestas Piura</h3>
-                <ul>
-                    <li>Morropón</li>
-                    <li>Piura</li>
-                    <li>Castilla</li>
-                </ul>
+                <h3 class="sub-title">Síguenos en:</h3>
+                <div class="social-media">
+                    <span>INSTAGRAM</span>
+                    <span>FACEBOOK</span>
+                    <span>YOUTUBE</span>
+                    <span>TWITCH</span>
+                    <span>TIKTOK</span>
+                    <span>X (TWITTER)</span>
+                </div>
             </div>
         </section>
 
-    <!-- Sección Redes Sociales Mejorada con 3D -->
-<section id="redes" class="content-section redes-section">
-    <div class="container">
-        <h3 class="sub-title">🌎 Síguenos en Redes Sociales</h3>
-        <div class="social-container">
-            <a href="#" target="_blank" class="social-btn" style="--clr: #E1306C;"><i class="bi bi-instagram"></i> Instagram</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #1877F2;"><i class="bi bi-facebook"></i> Facebook</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #FF0000;"><i class="bi bi-youtube"></i> YouTube</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #6441A5;"><i class="bi bi-twitch"></i> Twitch</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #000000;"><i class="bi bi-tiktok"></i> TikTok</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #1DA1F2;"><i class="bi bi-twitter-x"></i> X (Twitter)</a>
-        </div>
-    </div>
-</section>
-
-<!-- Sección Contacto Mejorada con 3D -->
-<section id="contacto" class="content-section contacto-section">
-    <div class="container">
-        <div class="contact-card">
-            <h3 class="sub-title">📩 Contáctanos</h3>
-            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
-            <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
-            <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
-            <p><i class="bi bi-clock-fill"></i> Lunes - Viernes: 9:00 AM - 6:00 PM</p>
-        </div>
-    </div>
-</section>
-
-<!-- Estilos CSS con Animaciones 3D y Efectos WOW -->
-<style>
-    /* Fondo Futurista */
-    body {
-        background:rgb(235, 238, 243);
-        color: white;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    /* Sección de Redes Sociales */
-    .redes-section {
-        background: linear-gradient(135deg, #141e30, #243b55);
-        padding: 80px 0;
-        text-align: center;
-    }
-
-    .sub-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Botones con efecto 3D */
-    .social-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        perspective: 1000px;
-    }
-
-    .social-btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--clr);
-        padding: 15px 30px;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: white;
-        text-decoration: none;
-        transition: 0.4s ease-in-out;
-        transform-style: preserve-3d;
-        transform: rotateX(10deg) rotateY(10deg);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .social-btn:hover {
-        transform: rotateX(0deg) rotateY(0deg) translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .social-btn i {
-        font-size: 1.8rem;
-    }
-
-    /* Sección Contacto con efecto Tarjeta 3D */
-    .contacto-section {
-        background: linear-gradient(135deg, #1B263B, #415A77);
-        padding: 100px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .contact-card {
-        background: white;
-        color: black;
-        padding: 40px;
-        border-radius: 15px;
-        max-width: 500px;
-        text-align: center;
-        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-        transform: perspective(1000px) rotateX(5deg);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .contact-card:hover {
-        transform: perspective(1000px) rotateX(0deg) translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    .contact-card p {
-        font-size: 1.2rem;
-        margin: 10px 0;
-    }
-
-    .contact-card a {
-        color: #007BFF;
-        font-weight: bold;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    .contact-card a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
-</style>
-
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
-        
+        <!-- Sección Contacto -->
+        <section id="contacto" class="content-section">
+            <div class="section-box">
+                <h3 class="sub-title">Contáctanos</h3>
+                <p>Correo: info@noticias.com</p>
+                <p>Teléfono: +51 987 654 321</p>
+            </div>
+        </section>
     </main>
 
     <!-- Scripts -->
