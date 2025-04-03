@@ -118,143 +118,126 @@
                 </ul>
             </div>
         </section>
-<!-- Sección Redes Sociales Mejorada con 3D -->
-<section id="redes" class="content-section redes-section">
-    <div class="container">
-        <h3 class="sub-title">🌎 Síguenos en Redes Sociales</h3>
-        <div class="social-container">
-            <a href="#" target="_blank" class="social-btn" style="--clr: #E1306C;"><i class="bi bi-instagram"></i> Instagram</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #1877F2;"><i class="bi bi-facebook"></i> Facebook</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #FF0000;"><i class="bi bi-youtube"></i> YouTube</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #6441A5;"><i class="bi bi-twitch"></i> Twitch</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #000000;"><i class="bi bi-tiktok"></i> TikTok</a>
-            <a href="#" target="_blank" class="social-btn" style="--clr: #1DA1F2;"><i class="bi bi-twitter-x"></i> X (Twitter)</a>
-        </div>
-    </div>
-</section>
 
-<!-- Sección Contacto Mejorada con 3D -->
-<section id="contacto" class="content-section contacto-section">
-    <div class="container">
-        <div class="contact-card">
-            <h3 class="sub-title">📩 Contáctanos</h3>
-            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
-            <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
-            <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
-            <p><i class="bi bi-clock-fill"></i> Lunes - Viernes: 9:00 AM - 6:00 PM</p>
-        </div>
-    </div>
-</section>
-
-<!-- Estilos CSS con Animaciones 3D y Efectos WOW -->
-<style>
-    /* Fondo Futurista */
-    body {
-        background:rgb(226, 232, 248);
+        <section id="contacto" class="contacto-3d">
+  <div class="container">
+    <div class="card-3d">
+      <!-- Contacto -->
+      <div class="columna">
+        <h3>📩 Contáctanos</h3>
+        <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
+        <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
+        <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
+        <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 9am - 6pm</p>
+      </div>
       
-        font-family: 'Poppins', sans-serif;
-    }
+      <!-- Redes -->
+      <div class="columna">
+        <h3>🌐 Síguenos</h3>
+        <div class="redes">
+          <a href="#" class="bi bi-facebook" title="Facebook"></a>
+          <a href="#" class="bi bi-instagram" title="Instagram"></a>
+          <a href="#" class="bi bi-twitter" title="Twitter"></a>
+          <a href="#" class="bi bi-linkedin" title="LinkedIn"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* Sección de Redes Sociales */
-    .redes-section {
-        background: linear-gradient(135deg,rgb(49, 102, 201), #243b55);
-        padding: 80px 0;
-        text-align: center;
-    }
+<!-- Estilo 3D ULTRA PRO -->
+<style>
+.contacto-3d {
+  background: linear-gradient(135deg, #1b1b2f, #16213e);
+  padding: 80px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .sub-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
+.container {
+  width: 100%;
+  max-width: 1200px;
+}
 
-    /* Botones con efecto 3D */
-    .social-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        perspective: 1000px;
-    }
+.card-3d {
+  display: flex;
+  gap: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 50px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  animation: float 5s ease-in-out infinite;
+}
 
-    .social-btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--clr);
-        padding: 15px 30px;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: white;
-        text-decoration: none;
-        transition: 0.4s ease-in-out;
-        transform-style: preserve-3d;
-        transform: rotateX(10deg) rotateY(10deg);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
+.card-3d:hover {
+  transform: rotateY(1deg) rotateX(1deg) scale(1.01);
+  box-shadow: 0 60px 100px rgba(255, 255, 255, 0.1);
+}
 
-    .social-btn:hover {
-        transform: rotateX(0deg) rotateY(0deg) translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-    }
+.columna {
+  flex: 1 1 400px;
+  color: #ffffff;
+  text-shadow: 0 1px 2px #000;
+}
 
-    .social-btn i {
-        font-size: 1.8rem;
-    }
+.columna h3 {
+  font-size: 1.8rem;
+  color: #FFD700;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 10px;
+}
 
-    /* Sección Contacto con efecto Tarjeta 3D */
-    .contacto-section {
-        background: linear-gradient(135deg, #1B263B, #415A77);
-        padding: 100px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.columna p {
+  margin: 12px 0;
+  font-size: 1.1rem;
+}
 
-    .contact-card {
-        background: white;
-        color: black;
-        padding: 40px;
-        border-radius: 15px;
-        max-width: 500px;
-        text-align: center;
-        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-        transform: perspective(1000px) rotateX(5deg);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
+.columna a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
 
-    .contact-card:hover {
-        transform: perspective(1000px) rotateX(0deg) translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    }
+.columna a:hover {
+  color: #FFD700;
+  text-shadow: 0 0 10px #FFD700;
+}
 
-    .contact-card p {
-        font-size: 1.2rem;
-        margin: 10px 0;
-    }
+.redes {
+  display: flex;
+  gap: 25px;
+  font-size: 2.2rem;
+  margin-top: 20px;
+}
 
-    .contact-card a {
-        color: #007BFF;
-        font-weight: bold;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
+.redes a {
+  color: #fff;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
 
-    .contact-card a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
+.redes a:hover {
+  color: #00fff7;
+  transform: scale(1.3) rotate(5deg);
+}
+
+/* Animación flotante */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(1deg) rotateY(1deg);
+  }
+}
 </style>
 
 <!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
 </html>
