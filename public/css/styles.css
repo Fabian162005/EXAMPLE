@@ -145,12 +145,12 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 80px; /* 🔥 Aumenta la separación entre los elementos */
+    gap: 100px; /* 🔥 Aumenta la separación entre los elementos */
 }
 
 /* 🔹 Agregar padding a los elementos del navbar */
 .nav-item {
-    padding: 15px 20px; /* 🔥 Más espacio alrededor de cada elemento */
+    padding: 15px 10px; /* 🔥 Más espacio alrededor de cada elemento */
     font-size: 22px;
     font-weight: bold;
     text-align: center;
@@ -179,7 +179,7 @@ html, body {
 /* 📱 Ajustes para pantallas pequeñas */
 @media (max-width: 430px) {
     .navbar-container {
-        width: 100%;
+        width: 100vw; /* Se mantiene en el 100% del ancho de la ventana */
         display: flex;
         flex-direction: column;
         justify-content: flex-start; /* Evita el estiramiento */
@@ -206,16 +206,23 @@ html, body {
     .nav-item.nav-encuestas,
     .nav-item.nav-noticias,
     .nav-item.nav-contactanos {
-        font-size: 18px; 
-        width: 100%; 
+        font-size: 18px;
+        width: 100%;
     }
 }
 
 /* Ajuste en pantallas grandes */
-@media (min-width: 1600px) { 
+@media (min-width: 1600px) {
     .navbar-container {
-        width: 80%; /* Más ancho en monitores grandes */
+        width: max(1200px, 80vw); /* Mínimo 1200px, pero puede crecer hasta el 80% */
+        max-width: 1600px; /* Evita que crezca demasiado en monitores ultraanchos */
     }
+}
+
+/* Mantiene el tamaño del navbar fijo en zoom */
+.navbar-container {
+    width: max(80%, 1200px); /* Se achicó al 70% */
+    max-width: 1600px;
 }
 
 /* Estilos para el logo centrado */
@@ -223,44 +230,49 @@ html, body {
     flex-grow: 1; /* Asegura que el logo esté en el medio */
     text-align: center;
 }
-
 /* Estilo para el botón de búsqueda */
 .search-button {
     margin-left: 20px; /* Ajusta la distancia al lado izquierdo del ícono */
 }
 
-/* 🔍 Botón de búsqueda con sombra */
+/* Icono de la lupa*/
 .search-button {
-    position: absolute; /* Saca el botón del flujo normal */
-    background-color: transparent;
-    border: none;
+    position: absolute;
+    background-color: transparent; /* Fondo completamente transparente */
+    border: none; /* Sin bordes */
+    outline: none; /* Evita el borde al hacer clic */
     cursor: pointer;
     font-size: 28px;
-    color: black; /* Lupa negra */
+    color: black; /* Ícono de lupa en negro */
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     padding: 10px;
-    border-radius: 12px;
-    top: 6px;  /* Ajusta el valor para moverlo hacia abajo o hacia arriba */
-    right: 20px; /* Ajusta el valor para moverlo hacia la izquierda o derecha */
+    top: 6px;
+    right: 20px;
+    box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
 
-/* 🔍 Efecto hover para la lupa */
+/* 🔍 Efecto hover elegante */
 .search-button:hover {
-    transform: scale(1.2);
-    background-color: rgba(0, 0, 0, 0.1); /* Efecto de resaltado */
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
+    transform: scale(1.1); /* Aumenta ligeramente de tamaño */
+    box-shadow: none; /* Asegura que no haya borde visual */
 }
 
-/* 🔍 Contenedor de la barra de búsqueda (inicialmente oculto) */
+/* 🔍 Efecto al hacer clic */
+.search-button:active {
+    transform: scale(0.95); /* Efecto de presión */
+    box-shadow: none; /* Sin sombra al hacer clic */
+}
+
+/* 🔍 Contenedor de la barra de búsqueda */
 .search-container {
     position: fixed;
-    top: 49.9px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
-    right: 320px;
+    top: 55.9px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
+    right: 390px;
     display: none; /* 🔥 Oculto por defecto */
     flex-direction: row;
     align-items: center;
     background-color: #ffffff;
-    border: 2px solid #000000; /* 🔵 Color del borde */
+    border: none; /* 🔥 Se elimina el borde */
     border-radius: 25px;
     padding: 8px 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
@@ -282,6 +294,7 @@ html, body {
 .search-container .search-button {
     background: none;
     border: none;
+    outline: none; /* Asegura que no tenga borde al hacer clic */
     cursor: pointer;
     font-size: 22px;
     color: #3B83BD; /* 🔵 Color de la lupa */
@@ -289,12 +302,15 @@ html, body {
     position: absolute;
     top: -0.1px;
     right: 14px; /* 🔥 Ajusta su posición sin agrandar el contenedor */
+    box-shadow: none; /* Asegura que no tenga borde */
 }
 
 /* Efecto hover para el botón de búsqueda */
 .search-container .search-button:hover {
     transform: scale(1.2);
+    box-shadow: none; /* Sin sombra en hover */
 }
+
 
 /* 🔥 Contenedor de la sección del título */
 .section-container {
@@ -319,27 +335,31 @@ html, body {
     padding: 1px 1px;
     margin: 0 auto;
     position: relative;
-    right: -450px;
-    bottom: 15px;
+    right: -35px; /* Se movió 20px a la izquierda */
+    bottom: -5px; /* Se movió 5px más abajo */
     max-width: 90%;
     text-align: center;
 }
 
-/* 🔥 Animación de arriba hacia abajo sin moverse lateralmente */
-@keyframes fadeInDown {
+/* 🔥 Animación suave y neutral */
+@keyframes fadeInSmooth {
     0% {
         opacity: 0;
-        transform: translateY(-50px); /* 🔥 Inicia arriba */
+        transform: translateY(10px); /* Comienza ligeramente desplazado */
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(0); /* Mitad del camino hacia la posición original */
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* 🔥 Termina en su posición normal */
+        transform: translateY(0); /* Finaliza en su posición original */
     }
 }
 
-/* 🔥 Aplica la animación */
+/* 🔥 Aplica la animación suave */
 .section-title {
-    animation: fadeInDown 0.8s ease-out;
+    animation: fadeInSmooth 1s ease-out; /* Animación más suave y de mayor duración */
 }
 
 /* Ajuste del tamaño de las imágenes del slider */
