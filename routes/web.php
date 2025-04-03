@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('layouts.home');
-<<<<<<< HEAD
-});
-
-=======
 
 
 //RUTA DE LAS ENCUESTAS-----------------------------------------------------------------------------------------------------------------
@@ -36,4 +32,3 @@ Route::get('/encuestas/plura2', function () {
     return view('encuestas.plura2');
 });
 //----------------------------------------------------------------------------------------------------------------------------------------
->>>>>>> origin/RAMA-JULIO
