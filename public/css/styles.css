@@ -163,17 +163,17 @@ html, body {
 }
 
 .nav-item.nav-noticias {
-    margin-left: -150px; /* 🔥 Mueve 'Noticias' hacia la derecha */
+    margin-left: -180px; /* 🔥 Mueve 'Noticias' hacia la derecha */
 }
 
 
 .nav-item.nav-encuestas {
-    margin-left: -30px; /* 🔥 Mueve 'Encuestas' hacia la derecha */
+    margin-left: -6px; /* 🔥 Mueve 'Encuestas' hacia la derecha */
 }
 
 
 .nav-item.nav-contactanos {
-    margin-left: 0px; /* 🔥 Mueve 'Contáctanos' hacia la derecha */
+    margin-left: 10px; /* 🔥 Mueve 'Contáctanos' hacia la derecha */
 }
 
 /* 📱 Ajustes para pantallas pequeñas */
