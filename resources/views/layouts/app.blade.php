@@ -9,6 +9,7 @@
     <script src="{{ asset('resources\js\app.js') }}"></script>
     <!-- Agrega FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 </head>
 
 </head>
@@ -107,16 +108,13 @@
             </div>
     </div>
 </div>
-
-    <!-- Contenido principal con Scroll Snap -->
-    <main>
-        <!-- Sección Noticias -->
-        <section id="noticias" class="content-section">
-            <div class="section-box">
-                <h2 class="titulonoticias">Noticias</h2>
+       <!-- Sección Noticias -->
+            <section id="noticias" class="content-section">
+                <div class="section-box">
+                    <h2 class="titulonoticias">Noticias</h2>
 
                 <!-- Botón para buscar noticias -->
-                <div class="search-news-container" style="display: flex; justify-content: center; margin-bottom: 15px;">
+                <div class="search-news-container">
                     <a href="{{ route('noticias') }}" class="search-button">Buscar noticias 🔍</a>
                 </div>
 
@@ -153,6 +151,7 @@
             </div>
         </section>
 
+    
 <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -257,97 +256,6 @@ document.addEventListener('click', (e) => {
   </div>
 </section>
 
-<!-- Estilo 3D ULTRA PRO -->
-<style>
-.contacto-3d {
-  background: linear-gradient(135deg, #1b1b2f, #16213e);
-  padding: 80px 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-}
-
-.card-3d {
-  display: flex;
-  gap: 40px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border-radius: 30px;
-  padding: 50px;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  animation: float 5s ease-in-out infinite;
-}
-
-.card-3d:hover {
-  transform: rotateY(1deg) rotateX(1deg) scale(1.01);
-  box-shadow: 0 60px 100px rgba(255, 255, 255, 0.1);
-}
-
-.columna {
-  flex: 1 1 400px;
-  color: #ffffff;
-  text-shadow: 0 1px 2px #000;
-}
-
-.columna h3 {
-  font-size: 1.8rem;
-  color: #FFD700;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #FFD700;
-  padding-bottom: 10px;
-}
-
-.columna p {
-  margin: 12px 0;
-  font-size: 1.1rem;
-}
-
-.columna a {
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-.columna a:hover {
-  color: #FFD700;
-  text-shadow: 0 0 10px #FFD700;
-}
-
-.redes {
-  display: flex;
-  gap: 25px;
-  font-size: 2.2rem;
-  margin-top: 20px;
-}
-
-.redes a {
-  color: #fff;
-  transition: transform 0.4s ease, color 0.4s ease;
-}
-
-.redes a:hover {
-  color: #00fff7;
-  transform: scale(1.3) rotate(5deg);
-}
-
-/* Animación flotante */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotateX(0deg) rotateY(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotateX(1deg) rotateY(1deg);
-  }
-}
-</style>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
