@@ -32,6 +32,10 @@ Route::get('/encuestas/plura2', function () {
     return view('encuestas.plura2');
 });
 //----------------------------------------------------------------------------------------------------------------------------------------
+Route::get('/noticias', function () {
+    return view('layouts.noticias');
+})->name('noticias');
+
 Route::get('/volver', function () {
     return view('layouts.app');
 })->name('app');
