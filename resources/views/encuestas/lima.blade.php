@@ -714,7 +714,7 @@
                     const name = input.name;
                     if(!document.querySelector(`input[name="${name}"]:checked`)) {
                         isValid = false;
-                        // Resaltar el grupo de opciones
+                        // Resaltar el grupo de opcionesp
                         const group = input.closest('.opciones') || input.closest('.escala');
                         if(group) {
                             group.style.boxShadow = '0 0 0 2px var(--error-color)';
