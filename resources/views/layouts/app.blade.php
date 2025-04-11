@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <script src="{{ asset('resources\js\app.js') }}"></script>
-    <!-- Agrega FontAwesome para iconos -->
+
+    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-</head>
-
+    <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
+    <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
 </head>
 <body>
+<!-- En tu HTML (justo después de <body>) -->
+<div class="fullpage-background"></div>
+
+    <div id="particles-js"></div>
+
 <!-- Redes sociales arriba del navbar -->
 <div class="social-icons">
     <a href="https://www.facebook.com/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
@@ -32,12 +41,13 @@
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
 
-            <!-- 🔥 Logo en medio -->
+            <!-- Logo en medio -->
             <div class="logo-container">
                 <a href="/">
-                    <img src="{{ asset('storage/images/logogpcanal.jpg') }}" alt="Logo">
+                    <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo GP Canal" class="navbar-logo">
                 </a>
             </div>
+            
             <div class="nav-item nav-contacto">Contáctanos</div>
             <!-- Botón de búsqueda estilizado -->
             <button id="search-icon" class="search-button">
@@ -46,7 +56,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
 <div id="search-container" class="search-container">
@@ -69,93 +78,101 @@
 
 <!-- Espaciado para que el contenido no quede oculto debajo del navbar -->
 <div style="height: 140px;"></div>
-
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
-            <!-- Contenedor del Slider con Fondo -->
-            <div style="width: 100%; height: 250px; display: flex; justify-content: center; margin-top: 5px; position: relative;">
-                <div style="width: 90%; max-width: 1200px; padding: 15px; background: rgba(84, 84, 84, 0.2); border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); position: relative;">
-                        <!-- Slider -->
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="{{ asset('storage/images/485055934_963133949339637_6587303526016761817_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 1">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('storage/images/480487921_945020837817615_6087008265131444593_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 2">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('storage/images/487180354_968403768812655_384319847441050549_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 3">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100 custom-slider-img" alt="Slide 4">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100 custom-slider-img" alt="Slide 5">
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-                <!-- Botón Anterior -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
 
-                <!-- Botón Siguiente -->
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
+
+
+<div class="slider-background-container">
+    <div class="slider-container">
+        <div class="carousel">
+            <!-- Slider -->
+            <div id="mainCarousel" class="carousel slide carousel-custom" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <img src="{{ asset('images/1800x3.png') }}" class="d-block w-100" alt="Slide 1" loading="lazy">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/1800x2.png') }}" class="d-block w-100" alt="Slide 2" loading="lazy">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/1800.png') }}" class="d-block w-100" alt="Slide 3" loading="lazy">
+                    </div>
+                </div>
+                
+                <!-- Controles -->
+                <button class="carousel-control-prev carousel-control-custom" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next carousel-control-custom" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
                 </button>
             </div>
+        </div>
     </div>
 </div>
-       <!-- Sección Noticias -->
-            <section id="noticias" class="content-section">
-                <div class="section-box">
-                    <h2 class="titulonoticias">Noticias</h2>
-
-                <!-- Botón para buscar noticias -->
-                <div class="search-news-container">
-                    <a href="{{ route('noticias') }}" class="search-button">Buscar noticias 🔍</a>
-                </div>
-
+<!-- Sección Noticias -->
+<section class="noticias-background">
+    <div id="noticias" class="content-section">
+        <div class="content-container">
+            <div class="section-box">
+                <h2 class="titulonoticias">Noticias</h2>
+                
                 <div class="news-grid">
+                    <!-- Noticia 1 -->
                     <div class="news-item">
-                    <img src="{{ asset('images/image1.jpg') }}" alt="Noticia 1">
+                        <img src="{{ asset('images/image1.jpg') }}" alt="Noticia 1">
                         <p>Descripción de la noticia 1. Aquí puedes una descripción breve de la noticia.</p>
                     </div>
+                    
+                    <!-- Noticia 2 -->
                     <div class="news-item">
                         <img src="{{ asset('images/image2.jpg') }}" alt="Noticia 2">
                         <p>Descripción de la noticia 2. Este es otro resumen o descripción de la noticia.</p>
                     </div>
+                    
+                    <!-- Noticia 3 -->
                     <div class="news-item">
                         <img src="{{ asset('images/image3.jpg') }}" alt="Noticia 3">
                         <p>Descripción de la noticia 3. Añade aquí la información relevante sobre la noticia.</p>
                     </div>
+                    
+                    <!-- Noticia 4 -->
                     <div class="news-item">
                         <img src="{{ asset('images/image4.jpg') }}" alt="Noticia 4">
                         <p>Descripción de la noticia 4. Proporciona detalles adicionales sobre esta noticia.</p>
                     </div>
+                    
+                    <!-- Noticia 5 -->
                     <div class="news-item">
                         <img src="{{ asset('images/image5.jpg') }}" alt="Noticia 5">
                         <p>Descripción de la noticia 5. Aquí puedes una descripción breve de la noticia.</p>
                     </div>
+                    
+                    <!-- Noticia 6 -->
                     <div class="news-item">
                         <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 6">
                         <p>Descripción de la noticia 6. Este es otro resumen o descripción de la noticia.</p>
                     </div>
                 </div>
-                <!-- Botón para ver más noticias -->
-                <div class="view-more-container" style="display: flex; justify-content: center; margin-top: 15px;">
-                    <button class="view-more-button">Ver más</button>
+                
+                <!-- Botón "Ver más" -->
+                <div class="view-more-container">
+                    <a href="{{ route('noticias') }}" class="view-more-button">Buscar noticias 🔍</a>
                 </div>
             </div>
-        </section>
-
-    
+        </div>
+    </div>
+</section>
 <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
 <!-- Sección Encuestas -->
+<div class="encuestas-background">
 <section id="encuestas" class="encuestas-section">
     <h2 class="section-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleEncuestas()">
         Encuestas
@@ -165,6 +182,7 @@
     </h2>
     
     <div id="encuestas-container" class="encuestas-grid hidden">
+        
         <!-- Tarjeta Presidenciales -->
         <article class="encuesta-card">
             <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('presidenciales')">
@@ -191,6 +209,7 @@
             </ul>
         </article>
     </div>
+    </div>
 </section>
 
 <script>
@@ -198,7 +217,7 @@
 function toggleEncuestas() {
     const container = document.getElementById("encuestas-container");
     const header = document.querySelector(".section-header");
-    const icon = document.querySelector(".toggle-icon");
+    const icon = header.querySelector(".toggle-icon");
     
     container.classList.toggle("hidden");
     container.classList.toggle("show");
@@ -209,20 +228,45 @@ function toggleEncuestas() {
 // Toggle listas individuales
 function toggleList(id) {
     const list = document.getElementById(id);
-    const arrow = list.previousElementSibling.querySelector(".toggle-arrow");
+    const header = list.previousElementSibling;
+    const arrow = header.querySelector(".toggle-arrow");
     
     list.classList.toggle("hidden");
     list.classList.toggle("show");
     arrow.classList.toggle("rotate-180");
-    list.parentElement.setAttribute("aria-expanded", list.classList.contains("show"));
+    header.setAttribute("aria-expanded", list.classList.contains("show"));
 }
 
-// Cerrar al hacer click fuera (opcional)
+// Cerrar al hacer click fuera (mejorado)
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('.encuesta-card') && !e.target.closest('.section-header')) {
-        document.getElementById("encuestas-container").classList.add("hidden");
-        document.querySelector(".toggle-icon").classList.remove("rotate-180");
+    const container = document.getElementById("encuestas-container");
+    const header = document.querySelector(".section-header");
+    const icon = header.querySelector(".toggle-icon");
+    
+    if (!e.target.closest('.encuestas-section')) {
+        container.classList.add("hidden");
+        container.classList.remove("show");
+        icon.classList.remove("rotate-180");
+        header.setAttribute("aria-expanded", "false");
+        
+        // Cerrar también todas las listas internas
+        document.querySelectorAll('.card-list').forEach(list => {
+            list.classList.add("hidden");
+            list.classList.remove("show");
+            const cardHeader = list.previousElementSibling;
+            cardHeader.setAttribute("aria-expanded", "false");
+            cardHeader.querySelector('.toggle-arrow').classList.remove("rotate-180");
+        });
     }
+});
+
+// Inicialización (opcional)
+document.addEventListener('DOMContentLoaded', () => {
+    // Cerrar todo al cargar la página
+    document.getElementById("encuestas-container").classList.add("hidden");
+    document.querySelectorAll('.card-list').forEach(list => {
+        list.classList.add("hidden");
+    });
 });
 </script>
 
@@ -230,7 +274,7 @@ document.addEventListener('click', (e) => {
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
-        <section id="contacto" class="contacto-3d">
+<section id="contacto" class="contacto-3d">
   <div class="container">
     <div class="card-3d">
       <!-- Contacto -->
@@ -255,10 +299,17 @@ document.addEventListener('click', (e) => {
     </div>
   </div>
 </section>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+ 
+    <!-- Scripts al final del body -->
+    <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
+    <script src="{{ asset('js/hexocet.js') }}"></script>
+    <script src="{{ asset('js/scroll-efect.js') }}"></script>
+
+
+
 </body>
 </html>

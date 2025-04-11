@@ -1,21 +1,127 @@
-/* CONFIGURACIONES DE PANTALLA*/
+/* === FONDO DE PANTALLA (BACKGROUND) === */
 
-/* 🔹 Elimina el scroll horizontal no deseado */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
+
+
+/* === FONDO DE REDES SOCIALES (BACKGROUND) === */
+
+
+/* === FONDO DE NAVBAR (BACKGROUND) === */
+
+
+/* === FONDO DE SLIDER (BACKGROUND) === */
+
+
+/* === FONDO DE NOTICIAS(BACKGROUND) === */
+
+
+/* === FONDO DE ENCUESTAS (BACKGROUND) === */
+
+
+/* === FONDO DE CONTACTANOS (BACKGROUND) === */
+
+
+
+/* 📱 Responsive para móviles */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll; /* Mejor rendimiento en móviles */
+        background-size: auto 100%;
+    }
+    
+    body::before {
+        background: rgba(255, 255, 255, 0.92); /* Más opaco en móviles */
+    }
 }
 
-/* 🔹 Si hay algún `position: absolute`, asegúrate de que no lo desborde */
+/* 🎨 Fondo decorativo para el slider */
+.slider-background-container {
+    position: relative;
+    width: 100%;
+    padding: 50px 0;
+    margin: 4rem 0;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(59, 131, 189, 0.3);
+    overflow: hidden;
+}
+
+/* Efecto de onda decorativo */
+.slider-background-container::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: white;
+    clip-path: ellipse(75% 100% at center top);
+    opacity: 0.15;
+}
+
+/* Contenedor del slider (ajustado) */
+.slider-background-container .slider-container {
+    width: 85%;
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Ajustes para el carrusel */
+.slider-background-container .carousel {
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* 📱 Responsive */
+@media (max-width: 1200px) {
+    .slider-background-container {
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider-background-container {
+        border-radius: 18px;
+        padding: 35px 0;
+        margin: 3rem 0;
+    }
+    
+    .slider-background-container .slider-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    .slider-background-container {
+        padding: 30px 0;
+        border-radius: 15px;
+    }
+    
+    .slider-background-container::before {
+        clip-path: ellipse(85% 100% at center top);
+    }
+}
+
+/* === CONFIGURACIONES DE PANTALLA === */
+
+/* Centrar navbar o logos si tienen position absolute */
 .navbar-container, .logo-container {
     left: 50%;
     transform: translateX(-50%);
+    position: relative;
 }
 
-/* 🔹 Previene margen extra en el slider */
-.carousel {
-    overflow: hidden;
+.carousel-1350-container {
+    overflow: hidden; /* Previene scroll no deseado */
     width: 100%;
+    position: relative; /* Necesario para posicionar controles */
+}
+
+/* Esto asegura que los controles no se oculten */
+.carousel-control-prev, 
+.carousel-control-next {
+    position: absolute;
+    z-index: 1; /* Por encima del overflow:hidden */
 }
 
 /* 🌟 Barra de Redes Sociales */
@@ -23,7 +129,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 65px; /* 🔥 Espaciado entre iconos reducido */
+    gap: 65px;
     padding: 5px 15px;
     position: fixed;
     top: -14.9px;
@@ -31,7 +137,16 @@ html, body {
     width: 100%;
     background-color: transparent;
     z-index: 900;
-    transform: translateX(8px); /* Mover los iconos 3px a la derecha */
+    transform: translateX(8px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Clase que se añadirá con JavaScript al hacer scroll */
+.social-icons.hidden {
+    transform: translate(8px, -100px); /* Mueve hacia arriba y mantiene el desplazamiento horizontal */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
 }
 
 /* 🔗 Iconos de redes sociales */
@@ -108,31 +223,35 @@ html, body {
     color: #6b32cc;
 }
 
+/* === Navbar === */
 .navbar-container {
     position: fixed;
-    top: 50px;
+    top: 0; /* Ahora controlamos la posición con transform */
     left: 50%;
-    transform: translateX(-50%);
-    width: 70%; /* 🔥 Hace el navbar más ancho */
-    max-width: 1300px; /* 🔥 Evita que sea demasiado ancho en pantallas grandes */
-    height: 70px; /* 🔥 Aumenta la altura */
+    transform: translateX(-50%) translateY(45px); /* 25px desde el top */
+    width: 70%;
+    max-width: 1300px;
+    height: 70px;
     background-color: #3B83BD;
-    border-radius: 20px; /* 🔥 Bordes redondeados */
+    border-radius: 20px;
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 3rem; /* 🔥 Más espacio interno */
+    padding: 0 3rem;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box; /* 🔥 Asegura que el padding no afecte el tamaño total */
+    box-sizing: border-box;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* 📌 Contenedor del logo (Ahora flotante y sobresalido) */
+
+/* 📌 Contenedor del logo (mantiene su posición relativa al navbar) */
 .logo-container {
     position: absolute;
     top: -8px;
     left: 50%;
     transform: translateX(-48%);
     z-index: 1001;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-container img {
@@ -141,6 +260,8 @@ html, body {
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+/* 🎨 Estilo de los elementos del navbar */
 .navbar-menu {
     display: flex;
     align-items: center;
@@ -155,22 +276,22 @@ html, body {
     font-weight: bold;
     text-align: center;
     color: white;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-item:hover {
     color: #000000; /* 🔥 Cambio de color al pasar el mouse */
+    transform: scale(1.1); /* Efecto de agrandado */
 }
 
+/* Personalización de cada item del navbar */
 .nav-item.nav-noticias {
     margin-left: -180px; /* 🔥 Mueve 'Noticias' hacia la derecha */
 }
 
-
 .nav-item.nav-encuestas {
     margin-left: -6px; /* 🔥 Mueve 'Encuestas' hacia la derecha */
 }
-
 
 .nav-item.nav-contactanos {
     margin-left: 10px; /* 🔥 Mueve 'Contáctanos' hacia la derecha */
@@ -230,6 +351,7 @@ html, body {
     flex-grow: 1; /* Asegura que el logo esté en el medio */
     text-align: center;
 }
+
 /* Estilo para el botón de búsqueda */
 .search-button {
     margin-left: 20px; /* Ajusta la distancia al lado izquierdo del ícono */
@@ -311,328 +433,337 @@ html, body {
     box-shadow: none; /* Sin sombra en hover */
 }
 
-
-/* 🔥 Contenedor de la sección del título */
+/* === TÍTULO (se mantiene igual) === */
 .section-container {
     position: relative;
     width: 100%;
-    height: 150px; /* 🔥 Ajusta según el espacio entre navbar y slider */
+    height: 150px;
     display: flex;
     align-items: center;
-    justify-content: center; /* 🔥 Centra el título horizontalmente */
+    justify-content: center;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.05); /* 🔥 Color de fondo opcional */
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
 }
 
-/* 🔥 Estilo para el título */
 .section-title {
-    font-size: 36px;
-    font-weight: bold;
-    color: #000000;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #2d3748;
     text-transform: uppercase;
-    padding: 1px 1px;
     margin: 0 auto;
     position: relative;
-    right: -35px; /* Se movió 20px a la izquierda */
-    bottom: -5px; /* Se movió 5px más abajo */
     max-width: 90%;
+    animation: fadeInSlide 1.2s ease-out forwards;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
     text-align: center;
+    right: 0;
 }
 
-/* 🔥 Animación suave y neutral */
-@keyframes fadeInSmooth {
+@keyframes fadeInSlide {
     0% {
         opacity: 0;
-        transform: translateY(10px); /* Comienza ligeramente desplazado */
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateY(0); /* Mitad del camino hacia la posición original */
+        transform: translateY(15px) scale(0.95);
+        color: #3B83BD;
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Finaliza en su posición original */
+        transform: translateY(0) scale(1);
+        color: #2d3748;
     }
 }
 
-/* 🔥 Aplica la animación suave */
-.section-title {
-    animation: fadeInSmooth 1s ease-out; /* Animación más suave y de mayor duración */
+/* 📌 Contenedor PRINCIPAL (mismo ancho que navbar) */
+.slider-container {
+    width: 90%;                    /* 70% del viewport (igual que navbar) */
+    max-width: 1850px;             /* Máximo 1300px (igual que navbar) */
+    margin: 2rem auto;             /* Centrado */
+    padding: 0 1px;               /* Pequeño padding lateral */
 }
 
-/* Ajuste del tamaño de las imágenes del slider */
-.custom-slider-img {
-    width: 100%; /* Asegura que las imágenes ocupen todo el ancho del contenedor */
-    height: 100%; /* La altura se ajusta al contenedor */
-    object-fit: cover; /* Hace que la imagen se ajuste dentro del contenedor sin recortarse */
-    border-radius: 8px; /* Bordes redondeados para dar un efecto suave */
-    object-position: center; /* Centra la imagen para que el recorte se haga de manera equilibrada */
+/* 🎠 Carrusel (100% del ancho del contenedor) */
+.carousel {
+    width: 100%;                   /* Ocupa todo el ancho del contenedor */
+    height: 350px;                 /* Altura fija (ajustable en móvil) */
+    border-radius: 10px;           /* Igual que el navbar */
+    overflow: hidden;              /* Oculta lo que sobresalga */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra igual al navbar */
 }
 
-/* Ajuste de la altura de cada slide */
-.carousel-item {
-    height: 254px; /* Ajusta la altura del slide */
+/* 🖼️ Imágenes del slider (cubren todo el espacio) */
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;             /* Ajuste sin deformar */
+    object-position: center;       /* Enfoca el centro de la imagen */
 }
 
-/* Asegura que las imágenes no se salgan del contenedor */
-.carousel-inner {
-    overflow: hidden; /* Elimina cualquier parte de la imagen que sobresalga */
-}
-
-/* Asegura que el carousel se vea bien y las imágenes se adapten al tamaño del contenedor */
-.carousel-item img {
-    width:100%; /* Las imágenes ocupan todo el ancho del contenedor */
-    height: 90%; /* Asegura que la altura sea proporcional al contenedor */
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
-    border-radius: 12px; /* Bordes redondeados */
-}
-
-/* Estilo del botón Anterior */
-.carousel-control-prev {
-    position: absolute;
-    top: 37.5%;
-    left: 350px;
-    transform: translateY(-50%);
+/* ◀️ ▶️ Controles de navegación */
+.carousel-control {
+    width: 40px;
+    height: 40px;
     background: rgba(0, 0, 0, 0.5);
-    width: 48px;
-    height: 260px;
-    border-radius: 11%;
-    z-index: 100;
-}
-
-/* Estilo del botón Siguiente */
-.carousel-control-next {
-    position: absolute;
-    top: 37.5%;
-    right: 350px;
+    border-radius: 50%;
+    top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    width: 48px;
-    height: 260px;
-    border-radius: 11%;
-    z-index: 100;
+    transition: all 0.3s;
 }
 
-/* Estilo para el icono dentro del botón */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgb(0, 0, 0.2s); /* Cambia el color del icono */
+.carousel-control:hover {
+    background: rgba(0, 0, 0, 0.8);
 }
 
-
-.search-button:hover {
-    background-color: #2a6da8;
+/* 📱 Responsive: Ajustes para pantallas más pequeñas */
+@media (max-width: 1200px) {
+    .slider-container {
+        width: 90%;                /* Un poco más ancho en pantallas medias */
+    }
 }
 
+@media (max-width: 768px) {
+    .slider-container {
+        width: 90%;                /* Más ancho en tablets */
+    }
+    .carousel {
+        height: 250px;             /* Altura reducida */
+    }
+}
+
+@media (max-width: 576px) {
+    .slider-container {
+        width: 95%;                /* Casi full-width en móviles */
+    }
+    .carousel {
+        height: 200px;             /* Altura más compacta */
+        border-radius: 12px;       /* Bordes menos redondeados */
+    }
+}
+
+/* APARTADO FABIAN FINAL */
+/* Contenedor principal */
+.main-container {
+    display: grid;
+    grid-template-rows: auto auto;
+    background: transparent;
+}
+
+/* Background de Noticias - Degradado rojo grisáceo */
+.noticias-background {
+    background: 
+        linear-gradient(to bottom, #f5d0d0, #e0c0c0), /* Degradado rojo grisáceo */
+        url('../images/noticias-bg.jpg') center/cover no-repeat;
+    padding: 4rem 0;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0;
+}
+
+/* Background de Encuestas - Degradado celeste */
+.encuestas-background {
+    background: 
+        linear-gradient(to top, #e0f0ff, #c0e0ff), /* Degradado celeste */
+        url('../images/encuestas.png') center/cover no-repeat;
+    padding: 6rem 0 4rem;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+}
+
+/* Efecto de unión entre secciones */
+.encuestas-background::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, 
+        rgba(224, 240, 255, 0.8) 0%, 
+        rgba(192, 224, 255, 0.8) 100%);
+    z-index: 3;
+    border-radius: 0 0 15px 15px;
+}
+
+/* Etiquetas de sección (opcional) */
+.noticias-background::after {
+    content: 'SECCIÓN NOTICIAS';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background:#a05050;
+    padding: 5px;
+    font-weight: bold;
+    color: #a05050;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.encuestas-background::after {
+    content: 'SECCIÓN ENCUESTAS';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background:#5078a0;
+    padding: 5px;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 /* Sección de noticias */
-.section-box {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
+/* CONTENEDOR PRINCIPAL CON FONDO AJUSTABLE */
+.noticias-container {
+    --bg-color: #e6f2ff; /* Color celeste por defecto (fácil de cambiar) */
+    background: var(--bg-color);
+    padding: 40px 20px;
+    margin: 40px 0;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* CONTENEDOR INTERNO (CAJA BLANCA) */
+.noticias-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 2;
+}
+
+/* TÍTULO */
+.titulonoticias {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.titulonoticias::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #3498db;
+}
+
+/* GRID DE NOTICIAS */
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
 }
 
 .news-item {
     background: #fff;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añade transiciones */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #eaeaea;
 }
 
 .news-item:hover {
-    transform: translateY(-5px); /* Eleva ligeramente el cuadro */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: #3498db;
 }
 
 .news-item img {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
 }
 
-
-/* --------------------------------------------------------------------------------------------------------------------------------------------------------- */
-
-/* Estilos para la sección de encuestas */
-
-
-
-
-
-
-:root {
-    --primary-color: #2563eb;    /* Azul vibrante */
-    --hover-color: #1d4ed8;      /* Azul oscuro */
-    --bg-color: #f8fafc;         /* Fondo claro */
-    --text-color: #1e293b;       /* Texto oscuro */
-    --transition-speed: 0.3s;    /* Velocidad animaciones */
+.news-item p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 10px;
 }
 
-/* Contenedor Principal */
-.encuestas-section {
-    padding: 2rem 1rem;
-    background: var(--bg-color);
-    max-width: 1200px;
-    margin: 2rem auto;
+/* BOTÓN */
+.view-more-container {
+    margin-top: 40px;
+    text-align: center;
 }
 
-/* Encabezado Sección */
-.section-header {
-    font-size: 1.75rem;
-    color: var(--text-color);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: all var(--transition-speed);
-}
-
-.section-header:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* Icono de Toggle */
-.toggle-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    transition: transform var(--transition-speed);
-}
-
-/* Grid de Tarjetas */
-.encuestas-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin-top: 1.5rem;
-}
-
-/* Tarjeta Individual */
-.encuesta-card {
-    background: white;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    overflow: hidden;
-}
-
-.encuesta-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
-}
-
-/* Cabecera Tarjeta */
-.card-header {
-    padding: 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    background: #ffffff;
-}
-
-.card-title {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--text-color);
-}
-
-/* Flecha de Toggle */
-.toggle-arrow {
-    transition: transform var(--transition-speed);
-    color: var(--primary-color);
-    font-size: 0.9rem;
-}
-
-/* Lista de Enlaces */
-.card-list {
-    padding: 0 1.25rem 1.25rem;
-    list-style: none;
-    display: grid;
-    gap: 0.75rem;
-}
-
-.card-item {
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    background: #f1f5f9;
-    transition: background var(--transition-speed);
-}
-
-.card-item:hover {
-    background: #e2e8f0;
-}
-
-.card-link {
-    color: var(--primary-color);
-    text-decoration: none;
+.view-more-button {
+    background: #3498db;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
     font-weight: 500;
-    display: block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.card-link:hover {
-    color: var(--hover-color);
-    text-decoration: underline;
+.view-more-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
 }
 
-/* Estados */
-.hidden {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all var(--transition-speed);
+/* EFECTO DECORATIVO OPCIONAL */
+.noticias-container::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #d4e6ff 100%);
+    z-index: -1;
+    border-radius: 20px;
+    opacity: 0.7;
+}
+/* Contenedor del botón */
+.view-more-container {
+    display: flex; /* Permite centrar el botón horizontalmente */
+    justify-content: center; /* Centra el botón horizontalmente */
+    align-items: center; /* Alinea verticalmente si es necesario */
+    margin-top: 20px; /* Espacio entre el contenido anterior y el botón */
 }
 
-.show {
-    max-height: 1000px;
-    opacity: 1;
+/* Estilo del botón */
+.view-more-button {
+    background-color: #3498db; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 12px 24px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto */
+    text-decoration: none; /* Elimina subrayado */
+    border: none; /* Sin bordes */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+    text-align: center; /* Asegura que el texto esté centrado */
 }
 
-.rotate-180 {
-    transform: rotate(180deg);
+/* Hover del botón */
+.view-more-button:hover {
+    background-color: #2980b9; /* Cambia el color en hover */
+    transform: scale(1.05); /* Efecto de agrandamiento */
 }
-
-/* Responsividad */
-@media (max-width: 640px) {
-    .encuestas-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .section-header {
-        font-size: 1.5rem;
-        padding: 0.75rem;
-    }
-    
-    .card-title {
-        font-size: 1.1rem;
-    }
-    
-    .card-item {
-        padding: 0.5rem;
-    }
-}
-
-
-
-/* --------------------------------------------------------------------------------------------------------------------------------------------------------- */
-
-
 /* Ajustes específicos para redes sociales */
 .social-media {
     display: flex;
@@ -677,175 +808,275 @@ html, body {
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
+/* APARTADO ENCUESTAS - VERSIÓN MEJORADA */
+:root {
+    --primary-color: #000000;
+    --hover-color: #000000;
+    --bg-color: rgba(255, 253, 253, 0.9);
+    --text-color: #1e293b;
+    --transition-speed: 0.3s;
+    --card-bg: rgba(255, 255, 255, 0.95);
+}
 
-/* APARTADO NOTICIAS */
 
-/* Contenedor centrado de BUSCAR NOTICIAS */
-.search-news-container {
+.encuestas-section {
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 82, 165, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 82, 165, 0.03) 0%, transparent 20%),
+        white;
+    padding: 3rem 2rem;
+    max-width: 1730px;
+    margin: 3rem auto;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.section-header {
+    font-size: 2rem;
+    color: var(--text-color);
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--primary-color);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
 }
 
-/* Estilo del botón */
-.search-button {
-    background-color: #3498db;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    text-decoration: none;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.section-header:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* Hover */
-.search-button:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
+.toggle-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform var(--transition-speed);
 }
 
-
-.section-box {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-}
-
-.news-grid {
+.encuestas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    margin-top: 1.5rem;
 }
 
-.news-item {
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añade transiciones */
+.encuesta-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
-.news-item:hover {
-    transform: translateY(-5px); /* Eleva ligeramente el cuadro */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+.card-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    transition: background-color var(--transition-speed);
 }
 
-.news-item img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.card-header:hover {
+    background-color: rgba(237, 242, 247, 0.5);
 }
 
+.card-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
 
+.toggle-arrow {
+    transition: transform var(--transition-speed);
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
 
-/* APARTADO ENCUESTAS */
+.card-list {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    transition: all var(--transition-speed);
+    list-style: none;
+}
 
+.card-list.show {
+    max-height: 1000px;
+    opacity: 1;
+    padding: 0 1.5rem 1.5rem;
+}
 
+.card-item {
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+}
 
+.card-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    transition: color var(--transition-speed);
+}
 
+.card-link:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
 
+.rotate-180 {
+    transform: rotate(180deg);
+}
 
+.hidden {
+    display: none;
+}
+@media (max-width: 768px) {
+    .encuestas-section {
+        padding: 1rem 0.5rem; /* Padding lateral más reducido */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: 580px; /* Ancho máximo reducido para móvil */
+        margin: 1rem auto; /* Menor margen vertical */
+    }
+    
+    .card-title {
+        font-size: 1.3rem;
+    }
+    
+    .encuestas-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem; /* Espacio entre cards reducido */
+        padding: 0 0.5rem; /* Padding interno adicional */
+    }
 
-
-
-
-
+    .encuesta-card {
+        padding: 1rem 0.8rem; /* Padding interno reducido en cards */
+    }
+}
 /* APARTADO CONTACTANOS */
 .contacto-3d {
-    background: linear-gradient(135deg, #1b1b2f, #16213e);
+    background: 
+        /* Nueva imagen de fondo (ruta relativa desde CSS) */
+        url('../images/svg6.png') center/cover no-repeat;
     padding: 80px 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .container {
+    position: relative;
+    min-height: 60vh; /* Opcional: cubre toda la altura de la pantalla */
+}
+
+/* Fondo oscuro semitransparente (opcional, mejora legibilidad) */
+.contacto-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1200px;
-  }
-  
-  .card-3d {
+    height: 100%;
+    z-index: 0;
+}
+
+/* Contenedor principal (asegura que el contenido esté encima del fondo) */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté sobre el fondo */
+}
+
+/* TARJETA 3D MEJORADA - VERSIÓN AMPLIADA */
+.card-3d {
     display: flex;
-    gap: 40px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    padding: 50px;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-    transition: transform 0.6s ease, box-shadow 0.6s ease;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    animation: float 5s ease-in-out infinite;
-  }
-  
-  .card-3d:hover {
-    transform: rotateY(1deg) rotateX(1deg) scale(1.01);
-    box-shadow: 0 60px 100px rgba(255, 255, 255, 0.1);
-  }
-  
-  .columna {
-    flex: 1 1 400px;
-    color: #ffffff;
-    text-shadow: 0 1px 2px #000;
-  }
-  
-  .columna h3 {
+    gap: 80px;
+    background: linear-gradient(145deg, #f5f5f5 0%, #e0e0e0 100%);
+    border-radius: 16px; /* Aumentado */
+    padding: 90px 8%; /* Aumentado (vertical/horizontal) */
+    width: 100%; /* Control del ancho */
+    min-height: 100px; /* Altura mínima aumentada */
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.1), /* Sombras más pronunciadas */
+        inset 0 2px 1px rgba(255, 255, 255, 0.95);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Borde más visible */
+    margin: 10px auto; /* Margen superior/inferior aumentado */
+    max-width: 1800px; /* Ancho máximo para pantallas grandes */
+}
+
+/* CONTENIDO */
+.columna {
+    flex: 1;
+    color: #333;
+    min-width: 300px;
+}
+
+.columna h3 {
     font-size: 1.8rem;
-    color: #FFD700;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #FFD700;
-    padding-bottom: 10px;
-  }
-  
-  .columna p {
-    margin: 12px 0;
+    color: #222;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.columna p {
+    margin: 18px 0;
     font-size: 1.1rem;
-  }
-  
-  .columna a {
-    color: #fff;
+    color: #555;
+    line-height: 1.6;
+}
+
+.columna a {
+    color: #444;
     text-decoration: none;
-    transition: 0.3s ease;
-  }
-  
-  .columna a:hover {
-    color: #FFD700;
-    text-shadow: 0 0 10px #FFD700;
-  }
-  
-  .redes {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.columna a:hover {
+    color: #000;
+    transform: translateX(3px);
+}
+
+/* REDES SOCIALES */
+.redes {
     display: flex;
     gap: 25px;
-    font-size: 2.2rem;
-    margin-top: 20px;
-  }
-  
-  .redes a {
-    color: #fff;
-    transition: transform 0.4s ease, color 0.4s ease;
-  }
-  
-  .redes a:hover {
-    color: #00fff7;
-    transform: scale(1.3) rotate(5deg);
-  }
-  
-  /* Animación flotante */
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0) rotateX(0deg) rotateY(0deg);
+    margin-top: 30px;
+}
+
+.redes a {
+    color: #666;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.redes a:hover {
+    color: #000;
+    transform: scale(1.15);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .card-3d {
+        flex-direction: column;
+        gap: 40px;
+        padding: 50px 7%;
     }
-    50% {
-      transform: translateY(-10px) rotateX(1deg) rotateY(1deg);
+    
+    .columna {
+        min-width: auto;
     }
-  }
-  
+}
