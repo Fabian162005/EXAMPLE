@@ -33,74 +33,8 @@
     }
 }
 
-/* 🎨 Fondo decorativo para el slider */
-.slider-background-container {
-    position: relative;
-    width: 100%;
-    padding: 50px 0;
-    margin: 4rem 0;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(59, 131, 189, 0.3);
-    overflow: hidden;
-}
 
-/* Efecto de onda decorativo */
-.slider-background-container::before {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 20%;
-    background: white;
-    clip-path: ellipse(75% 100% at center top);
-    opacity: 0.15;
-}
 
-/* Contenedor del slider (ajustado) */
-.slider-background-container .slider-container {
-    width: 85%;
-    max-width: 1500px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
-
-/* Ajustes para el carrusel */
-.slider-background-container .carousel {
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* 📱 Responsive */
-@media (max-width: 1200px) {
-    .slider-background-container {
-        padding: 40px 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .slider-background-container {
-        border-radius: 18px;
-        padding: 35px 0;
-        margin: 3rem 0;
-    }
-    
-    .slider-background-container .slider-container {
-        width: 90%;
-    }
-}
-
-@media (max-width: 576px) {
-    .slider-background-container {
-        padding: 30px 0;
-        border-radius: 15px;
-    }
-    
-    .slider-background-container::before {
-        clip-path: ellipse(85% 100% at center top);
-    }
-}
 
 /* === CONFIGURACIONES DE PANTALLA === */
 
@@ -124,57 +58,51 @@
     z-index: 1; /* Por encima del overflow:hidden */
 }
 
-/* 🌟 Barra de Redes Sociales */
+
 .social-icons {
+    /* Mantén todas tus propiedades existentes de posición y transición */
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 65px;
-    padding: 5px 15px;
     position: fixed;
-    top: -14.9px;
-    left: 0;
-    width: 100%;
     background-color: transparent;
     z-index: 900;
-    transform: translateX(8px);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Estado inicial (arriba) */
+    top: -15px;
+    left: 0;
+    width: auto; /* Cambiado de 10% a auto */
+    transform: translateX(8px);
+    flex-direction: row;
+    justify-content: center;
+    gap: 65px;
+    padding: 5px 15px;
+    
+    /* Nueva propiedad para contener el área de clic */
+    pointer-events: none;
 }
 
-/* Clase que se añadirá con JavaScript al hacer scroll */
-.social-icons.hidden {
-    transform: translate(8px, -100px); /* Mueve hacia arriba y mantiene el desplazamiento horizontal */
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s ease;
-}
-
-/* 🔗 Iconos de redes sociales */
+/* Habilita los eventos de puntero solo en los enlaces */
 .social-icons a {
+    pointer-events: auto;
+    /* Mantén el resto de tus estilos hover/efectos */
     text-decoration: none;
     position: relative;
     display: inline-block;
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
-
-/* 🔥 Efecto de resplandor */
-.social-icons a::before {
-    content: "";
-    position: absolute;
+/* Estado derecho (vertical) - Mantén igual */
+.social-icons.vertical-right {
     top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.3s ease;
+    right: 20px;
+    left: auto;
+    width: auto;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 5px;
 }
 
-/* 🔥 Hover - Efecto de salto y resplandor */
-.social-icons a:hover::before {
-    transform: translate(-50%, -50%) scale(1.5);
-}
 
 /* 🔥 Facebook */
 .facebook {
@@ -272,7 +200,7 @@
 /* 🔹 Agregar padding a los elementos del navbar */
 .nav-item {
     padding: 15px 10px; /* 🔥 Más espacio alrededor de cada elemento */
-    font-size: 22px;
+    font-size: 24.2px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -284,17 +212,31 @@
     transform: scale(1.1); /* Efecto de agrandado */
 }
 
-/* Personalización de cada item del navbar */
+/* Posicionamiento específico para cada elemento */
+
+.nav-item.nav-submenu {
+    position: absolute;
+    left: 5%;
+}
+
+.nav-item.nav-envivo {
+    position: absolute;
+    left: 12%;
+}
+
 .nav-item.nav-noticias {
-    margin-left: -180px; /* 🔥 Mueve 'Noticias' hacia la derecha */
+    position: absolute;
+    left: 24.8%;
 }
 
 .nav-item.nav-encuestas {
-    margin-left: -6px; /* 🔥 Mueve 'Encuestas' hacia la derecha */
+    position: absolute;
+    left: 37.5%;
 }
 
-.nav-item.nav-contactanos {
-    margin-left: 10px; /* 🔥 Mueve 'Contáctanos' hacia la derecha */
+.nav-item.nav-contacto {
+    position: absolute;
+    left: 54.5%; /* Ajusta este valor según necesites */
 }
 
 /* 📱 Ajustes para pantallas pequeñas */
@@ -368,8 +310,8 @@
     color: black; /* Ícono de lupa en negro */
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     padding: 10px;
-    top: 6px;
-    right: 20px;
+    top: 4px;
+    right: 17px;
     box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
 
@@ -388,8 +330,8 @@
 /* 🔍 Contenedor de la barra de búsqueda */
 .search-container {
     position: fixed;
-    top: 55.9px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
-    right: 390px;
+    top: 50px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
+    right: 270px;
     display: none; /* 🔥 Oculto por defecto */
     flex-direction: row;
     align-items: center;
@@ -400,6 +342,14 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 1001;
     width: fit-content; /* 🔥 Ajusta el tamaño al contenido */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform; /* Optimización para animaciones */
+}
+
+/* Ajuste para cuando está en estado "elevado" */
+.search-container.scrolled-up {
+    transform: translateY(-5px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Opcional: sombra para efecto de elevación */
 }
 
 /* 🔍 Campo de entrada de texto */
@@ -407,8 +357,9 @@
     border: none;
     padding: 8px;
     outline: none;
-    width: 300px; /* Limita el ancho del campo de entrada */
-    font-size: 17px;
+    width: 370px; /* Limita el ancho del campo de entrada */
+    height: auto;
+    font-size: 18px;
     color: black;
 }
 
@@ -437,7 +388,7 @@
 .section-container {
     position: relative;
     width: 100%;
-    height: 150px;
+    height: 30px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -445,11 +396,12 @@
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    padding-top: 0;
 }
 
 .section-title {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
     font-weight: 800;
     color: #2d3748;
     text-transform: uppercase;
@@ -462,6 +414,7 @@
     padding: 0 20px;
     text-align: center;
     right: 0;
+    transform: translateY(-5px);
 }
 
 @keyframes fadeInSlide {
@@ -477,168 +430,85 @@
     }
 }
 
-/* 📌 Contenedor PRINCIPAL (mismo ancho que navbar) */
-.slider-container {
-    width: 90%;                    /* 70% del viewport (igual que navbar) */
-    max-width: 1850px;             /* Máximo 1300px (igual que navbar) */
-    margin: 2rem auto;             /* Centrado */
-    padding: 0 1px;               /* Pequeño padding lateral */
+
+.slider-container-3d {
+    max-width: 1200px;
+    margin: 10px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
-/* 🎠 Carrusel (100% del ancho del contenedor) */
-.carousel {
-    width: 100%;                   /* Ocupa todo el ancho del contenedor */
-    height: 350px;                 /* Altura fija (ajustable en móvil) */
-    border-radius: 10px;           /* Igual que el navbar */
-    overflow: hidden;              /* Oculta lo que sobresalga */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra igual al navbar */
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
 }
 
-/* 🖼️ Imágenes del slider (cubren todo el espacio) */
-.carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;             /* Ajuste sin deformar */
-    object-position: center;       /* Enfoca el centro de la imagen */
-}
-
-/* ◀️ ▶️ Controles de navegación */
-.carousel-control {
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.5);
+.carousel-control-prev, .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
-    transition: all 0.3s;
+    opacity: 0.7;
+    transition: var(--transition);
 }
 
-.carousel-control:hover {
-    background: rgba(0, 0, 0, 0.8);
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    opacity: 1;
+    background-color: var(--primary-color);
 }
 
-/* 📱 Responsive: Ajustes para pantallas más pequeñas */
-@media (max-width: 1200px) {
-    .slider-container {
-        width: 90%;                /* Un poco más ancho en pantallas medias */
-    }
-}
-
-@media (max-width: 768px) {
-    .slider-container {
-        width: 90%;                /* Más ancho en tablets */
-    }
-    .carousel {
-        height: 250px;             /* Altura reducida */
-    }
-}
-
-@media (max-width: 576px) {
-    .slider-container {
-        width: 95%;                /* Casi full-width en móviles */
-    }
-    .carousel {
-        height: 200px;             /* Altura más compacta */
-        border-radius: 12px;       /* Bordes menos redondeados */
-    }
-}
-
-/* APARTADO FABIAN FINAL */
-/* Contenedor principal */
-.main-container {
-    display: grid;
-    grid-template-rows: auto auto;
-    background: transparent;
-}
-
-/* Background de Noticias - Degradado rojo grisáceo */
-.noticias-background {
-    background: 
-        linear-gradient(to bottom, #f5d0d0, #e0c0c0), /* Degradado rojo grisáceo */
-        url('../images/noticias-bg.jpg') center/cover no-repeat;
-    padding: 4rem 0;
-    position: relative;
-    z-index: 2;
-    margin-bottom: 0;
-}
-
-/* Background de Encuestas - Degradado celeste */
-.encuestas-background {
-    background: 
-        linear-gradient(to top, #e0f0ff, #c0e0ff), /* Degradado celeste */
-        url('../images/encuestas.png') center/cover no-repeat;
-    padding: 6rem 0 4rem;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 0;
-}
-
-/* Efecto de unión entre secciones */
-.encuestas-background::before {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background: linear-gradient(to bottom, 
-        rgba(224, 240, 255, 0.8) 0%, 
-        rgba(192, 224, 255, 0.8) 100%);
-    z-index: 3;
-    border-radius: 0 0 15px 15px;
-}
-
-/* Etiquetas de sección (opcional) */
-.noticias-background::after {
-    content: 'SECCIÓN NOTICIAS';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background:#a05050;
-    padding: 5px;
-    font-weight: bold;
-    color: #a05050;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.encuestas-background::after {
-    content: 'SECCIÓN ENCUESTAS';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background:#5078a0;
-    padding: 5px;
-    font-weight: bold;
-    color: #ffffff;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-/* Sección de noticias */
-/* CONTENEDOR PRINCIPAL CON FONDO AJUSTABLE */
+/* Sección Noticias - Versión Mejorada */
 .noticias-container {
-    --bg-color: #e6f2ff; /* Color celeste por defecto (fácil de cambiar) */
+    --bg-color: #e6f2ff;
     background: var(--bg-color);
     padding: 40px 20px;
     margin: 40px 0;
     position: relative;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Para contener el pseudo-elemento */
 }
 
-/* CONTENEDOR INTERNO (CAJA BLANCA) */
+/* Nuevo fondo blanco semitransparente */
+.noticias-container::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    background: rgba(255, 255, 255, 1); /* Blanco con 85% de opacidad */
+    backdrop-filter: blur(2px); /* Efecto de difuminado sutil */
+    border-radius: 10px;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
 .noticias-content {
     background: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     position: relative;
-    z-index: 2;
+    z-index: 3; /* Aseguramos que esté sobre el fondo */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
 }
 
-/* TÍTULO */
+/* Ajustamos el z-index del efecto degradado original */
+.noticias-container::before {
+    z-index: 0;
+}
+
+/* El resto de tus estilos se mantienen igual */
 .titulonoticias {
-    color: #2c3e50;
+    color: #000000;
     font-size: 2.2rem;
     margin-bottom: 25px;
     text-align: center;
@@ -654,10 +524,9 @@
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: #3498db;
+    background: #000000;
 }
 
-/* GRID DE NOTICIAS */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -696,7 +565,6 @@
     margin-top: 10px;
 }
 
-/* BOTÓN */
 .view-more-container {
     margin-top: 40px;
     text-align: center;
@@ -716,6 +584,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
 }
 
 .view-more-button:hover {
@@ -723,115 +592,20 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
 }
-
-/* EFECTO DECORATIVO OPCIONAL */
-.noticias-container::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(135deg, var(--bg-color) 0%, #d4e6ff 100%);
-    z-index: -1;
-    border-radius: 20px;
-    opacity: 0.7;
-}
-/* Contenedor del botón */
-.view-more-container {
-    display: flex; /* Permite centrar el botón horizontalmente */
-    justify-content: center; /* Centra el botón horizontalmente */
-    align-items: center; /* Alinea verticalmente si es necesario */
-    margin-top: 20px; /* Espacio entre el contenido anterior y el botón */
-}
-
-/* Estilo del botón */
-.view-more-button {
-    background-color: #3498db; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 12px 24px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño del texto */
-    text-decoration: none; /* Elimina subrayado */
-    border: none; /* Sin bordes */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
-    text-align: center; /* Asegura que el texto esté centrado */
-}
-
-/* Hover del botón */
-.view-more-button:hover {
-    background-color: #2980b9; /* Cambia el color en hover */
-    transform: scale(1.05); /* Efecto de agrandamiento */
-}
-/* Ajustes específicos para redes sociales */
-.social-media {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-media span {
-    background: #3B83BD;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.social-media span:hover {
-    background: #2a6b9e;
-}
-
-/* Ajustes específicos para contacto */
-#contacto .section-box {
-    text-align: center; /
-}
-
-#contacto .section-box p {
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.content-section {
-    margin: 40px auto;
-    max-width: 90%;
-}
-
-.section-box {
-    background: white;
-    padding: 30px;
-    margin: 30px auto;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-/* APARTADO ENCUESTAS - VERSIÓN MEJORADA */
-:root {
-    --primary-color: #000000;
-    --hover-color: #000000;
-    --bg-color: rgba(255, 253, 253, 0.9);
-    --text-color: #1e293b;
-    --transition-speed: 0.3s;
-    --card-bg: rgba(255, 255, 255, 0.95);
-}
-
-
+/* Sección Encuestas */
 .encuestas-section {
     background: 
         radial-gradient(circle at 10% 20%, rgba(0, 82, 165, 0.03) 0%, transparent 20%),
         radial-gradient(circle at 90% 80%, rgba(0, 82, 165, 0.03) 0%, transparent 20%),
         white;
     padding: 3rem 2rem;
-    max-width: 1730px;
     margin: 3rem auto;
     border-radius: 16px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
+
 .section-header {
     font-size: 2rem;
     color: var(--text-color);
@@ -943,28 +717,47 @@
 .hidden {
     display: none;
 }
+
+
+@media (max-width: 992px) {
+    .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .encuestas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
+    .noticias-container {
+        padding: 30px 15px;
+        margin: 30px 0;
+    }
+    
+    .noticias-content {
+        padding: 20px;
+    }
+    
+    .titulonoticias {
+        font-size: 1.8rem;
+    }
+    
     .encuestas-section {
-        padding: 1rem 0.5rem; /* Padding lateral más reducido */
-        width: 100%; /* Ocupa todo el ancho disponible */
-        max-width: 580px; /* Ancho máximo reducido para móvil */
-        margin: 1rem auto; /* Menor margen vertical */
+        padding: 1.5rem 1rem;
+        margin: 1.5rem auto;
+    }
+    
+    .section-header {
+        font-size: 1.6rem;
+        padding: 1rem;
     }
     
     .card-title {
         font-size: 1.3rem;
     }
-    
-    .encuestas-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem; /* Espacio entre cards reducido */
-        padding: 0 0.5rem; /* Padding interno adicional */
-    }
-
-    .encuesta-card {
-        padding: 1rem 0.8rem; /* Padding interno reducido en cards */
-    }
 }
+
 /* APARTADO CONTACTANOS */
 .contacto-3d {
     background: 

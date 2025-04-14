@@ -38,6 +38,8 @@
     <div class="navbar-content">
         <!-- Barra de navegación -->
         <div class="navbar-menu">
+            <div class="nav-item nav-submenu">--</div>
+            <div class="nav-item nav-envivo">En Vivo</div>
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
 
@@ -80,116 +82,101 @@
 <div style="height: 140px;"></div>
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
 
-
-
-<div class="slider-background-container">
-    <div class="slider-container">
-        <div class="carousel">
-            <!-- Slider -->
-            <div id="mainCarousel" class="carousel slide carousel-custom" data-bs-ride="carousel">
+<div class="slider-container-3d">
+            <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <!-- Slide 1 -->
                     <div class="carousel-item active">
-                        <img src="{{ asset('images/1800x3.png') }}" class="d-block w-100" alt="Slide 1" loading="lazy">
+                        <img src="storage/images/485055934_963133949339637_6587303526016761817_n.jpg" class="d-block w-100" alt="Noticia 1">
                     </div>
-                    <!-- Slide 2 -->
                     <div class="carousel-item">
-                        <img src="{{ asset('images/1800x2.png') }}" class="d-block w-100" alt="Slide 2" loading="lazy">
+                        <img src="storage/images/480487921_945020837817615_6087008265131444593_n.jpg" class="d-block w-100" alt="Noticia 2">
                     </div>
-                    <!-- Slide 3 -->
                     <div class="carousel-item">
-                        <img src="{{ asset('images/1800.png') }}" class="d-block w-100" alt="Slide 3" loading="lazy">
+                        <img src="storage/images/487180354_968403768812655_384319847441050549_n.jpg" class="d-block w-100" alt="Noticia 3">
                     </div>
                 </div>
-                
-                <!-- Controles -->
-                <button class="carousel-control-prev carousel-control-custom" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next carousel-control-custom" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
-    </div>
-</div>
-<!-- Sección Noticias -->
-<section class="noticias-background">
-    <div id="noticias" class="content-section">
-        <div class="content-container">
-            <div class="section-box">
-                <h2 class="titulonoticias">Noticias</h2>
-                
-                <div class="news-grid">
-                    <!-- Noticia 1 -->
-                    <div class="news-item">
-                        <img src="{{ asset('images/image1.jpg') }}" alt="Noticia 1">
-                        <p>Descripción de la noticia 1. Aquí puedes una descripción breve de la noticia.</p>
-                    </div>
+<!-- Sección Unificada con Fondo Compartido - Versión Mejorada -->
+<section class="unified-background">
+    <div class="unified-container">
+        <!-- Sección Noticias Mejorada -->
+        <div id="noticias" class="noticias-container">
+            <div class="noticias-content">
+                <div class="section-box">
+                    <h2 class="titulonoticias">Noticias</h2>
                     
-                    <!-- Noticia 2 -->
-                    <div class="news-item">
-                        <img src="{{ asset('images/image2.jpg') }}" alt="Noticia 2">
-                        <p>Descripción de la noticia 2. Este es otro resumen o descripción de la noticia.</p>
+                    <div class="news-grid">
+                        <!-- Noticias (6 items) -->
+                        <div class="news-item">
+                            <img src="{{ asset('images/image1.jpg') }}" alt="Noticia 1" loading="lazy">
+                            <p>Descripción de la noticia 1. Aquí puedes una descripción breve de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image2.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 2. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image3.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 3. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image4.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 4. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image5.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 5. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 6. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 7. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 8. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 9. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 2" loading="lazy">
+                            <p>Descripción de la noticia 10. Este es otro resumen o descripción de la noticia.</p>
+                        </div>
                     </div>
-                    
-                    <!-- Noticia 3 -->
-                    <div class="news-item">
-                        <img src="{{ asset('images/image3.jpg') }}" alt="Noticia 3">
-                        <p>Descripción de la noticia 3. Añade aquí la información relevante sobre la noticia.</p>
+                    <div class="view-more-container">
+                        <a href="{{ route('noticias') }}" class="view-more-button">Buscar noticias 🔍</a>
                     </div>
-                    
-                    <!-- Noticia 4 -->
-                    <div class="news-item">
-                        <img src="{{ asset('images/image4.jpg') }}" alt="Noticia 4">
-                        <p>Descripción de la noticia 4. Proporciona detalles adicionales sobre esta noticia.</p>
-                    </div>
-                    
-                    <!-- Noticia 5 -->
-                    <div class="news-item">
-                        <img src="{{ asset('images/image5.jpg') }}" alt="Noticia 5">
-                        <p>Descripción de la noticia 5. Aquí puedes una descripción breve de la noticia.</p>
-                    </div>
-                    
-                    <!-- Noticia 6 -->
-                    <div class="news-item">
-                        <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 6">
-                        <p>Descripción de la noticia 6. Este es otro resumen o descripción de la noticia.</p>
-                    </div>
-                </div>
-                
-                <!-- Botón "Ver más" -->
-                <div class="view-more-container">
-                    <a href="{{ route('noticias') }}" class="view-more-button">Buscar noticias 🔍</a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
 <!-- Sección Encuestas -->
-<div class="encuestas-background">
 <section id="encuestas" class="encuestas-section">
-    <h2 class="section-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleEncuestas()">
+    <h2 class="section-header" role="button" tabindex="0" aria-expanded="true">
         Encuestas
-        <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="toggle-icon rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
     </h2>
-    
-    <div id="encuestas-container" class="encuestas-grid hidden">
-        
+    <div id="encuestas-container" class="encuestas-grid show">
         <!-- Tarjeta Presidenciales -->
         <article class="encuesta-card">
-            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('presidenciales')">
+            <div class="card-header" role="button" aria-expanded="false">
                 <h3 class="card-title">Encuestas Presidenciales</h3>
                 <span class="toggle-arrow">▼</span>
             </div>
-            <ul id="presidenciales" class="card-list hidden">
+            <ul class="card-list hidden">
                 <li class="card-item"><a href="{{ url('/encuestas/lima') }}" class="card-link">Lima</a></li>
                 <li class="card-item"><a href="{{ url('/encuestas/chiclayo') }}" class="card-link">Chiclayo</a></li>
                 <li class="card-item"><a href="{{ url('/encuestas/piura') }}" class="card-link">Piura</a></li>
@@ -198,80 +185,18 @@
 
         <!-- Tarjeta Piura -->
         <article class="encuesta-card">
-            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('piura')">
+            <div class="card-header" role="button" aria-expanded="false">
                 <h3 class="card-title">Encuestas Piura</h3>
                 <span class="toggle-arrow">▼</span>
             </div>
-            <ul id="piura" class="card-list hidden">
+            <ul class="card-list hidden">
                 <li class="card-item"><a href="{{ url('/encuestas/morropon') }}" class="card-link">Morropón</a></li>
                 <li class="card-item"><a href="{{ url('/encuestas/castilla') }}" class="card-link">Castilla</a></li>
                 <li class="card-item"><a href="{{ url('/encuestas/plura2') }}" class="card-link">Plura2</a></li>
             </ul>
         </article>
     </div>
-    </div>
 </section>
-
-<script>
-// Toggle sección principal
-function toggleEncuestas() {
-    const container = document.getElementById("encuestas-container");
-    const header = document.querySelector(".section-header");
-    const icon = header.querySelector(".toggle-icon");
-    
-    container.classList.toggle("hidden");
-    container.classList.toggle("show");
-    icon.classList.toggle("rotate-180");
-    header.setAttribute("aria-expanded", container.classList.contains("show"));
-}
-
-// Toggle listas individuales
-function toggleList(id) {
-    const list = document.getElementById(id);
-    const header = list.previousElementSibling;
-    const arrow = header.querySelector(".toggle-arrow");
-    
-    list.classList.toggle("hidden");
-    list.classList.toggle("show");
-    arrow.classList.toggle("rotate-180");
-    header.setAttribute("aria-expanded", list.classList.contains("show"));
-}
-
-// Cerrar al hacer click fuera (mejorado)
-document.addEventListener('click', (e) => {
-    const container = document.getElementById("encuestas-container");
-    const header = document.querySelector(".section-header");
-    const icon = header.querySelector(".toggle-icon");
-    
-    if (!e.target.closest('.encuestas-section')) {
-        container.classList.add("hidden");
-        container.classList.remove("show");
-        icon.classList.remove("rotate-180");
-        header.setAttribute("aria-expanded", "false");
-        
-        // Cerrar también todas las listas internas
-        document.querySelectorAll('.card-list').forEach(list => {
-            list.classList.add("hidden");
-            list.classList.remove("show");
-            const cardHeader = list.previousElementSibling;
-            cardHeader.setAttribute("aria-expanded", "false");
-            cardHeader.querySelector('.toggle-arrow').classList.remove("rotate-180");
-        });
-    }
-});
-
-// Inicialización (opcional)
-document.addEventListener('DOMContentLoaded', () => {
-    // Cerrar todo al cargar la página
-    document.getElementById("encuestas-container").classList.add("hidden");
-    document.querySelectorAll('.card-list').forEach(list => {
-        list.classList.add("hidden");
-    });
-});
-</script>
-
-
-
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <section id="contacto" class="contacto-3d">
@@ -308,8 +233,5 @@ document.addEventListener('DOMContentLoaded', () => {
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
     <script src="{{ asset('js/hexocet.js') }}"></script>
     <script src="{{ asset('js/scroll-efect.js') }}"></script>
-
-
-
 </body>
 </html>
