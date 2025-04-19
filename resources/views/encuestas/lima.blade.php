@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuestas - Morropón</title>
+    <title>Encuestas - Lima</title>
     <style>
         :root {
             --primary-color: #2563eb;    /* Azul vibrante */
@@ -445,7 +445,7 @@
 </head>
 <body>
     <div class="encuesta-container">
-        <h1>ELECCIONES MORROPON</h1>
+        <h1>ELECCIONES LIMA</h1>
         
         <form action="/guardar-encuesta" method="POST">
             <!-- Datos demográficos -->
