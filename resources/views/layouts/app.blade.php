@@ -176,10 +176,7 @@
                 </div>
             </div>
         </div>
-        
-        <div class="view-all-container">
-            <button class="btn-3d view-all-btn">Ver más noticias</button>
-        </div>
+
     </section>
 <!-- Sección Encuestas -->
     <section class="polls-section-3d">

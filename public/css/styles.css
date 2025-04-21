@@ -8,6 +8,7 @@
 /* === FONDO DE NAVBAR (BACKGROUND) === */
 
 
+
 /* === FONDO DE SLIDER (BACKGROUND) === */
 
 
@@ -124,11 +125,11 @@
     font-size: 30px;
     color: black;
     transition: color 0.3s ease;
+    --hover-color: black; /* Valor por defecto */
 }
 .facebook:hover {
-    color: #ffffff;
+    color: var(--hover-color);
 }
-
 /* 🟣 Instagram */
 .instagram {
     font-size: 30px;
@@ -457,6 +458,8 @@
     padding: 10px 0 10px -50px; /* Más padding izquierdo */
 }
 
+
+
 /* === ESTILOS DEL TÍTULO === */
 .section-title {
     font-size: 3rem;
@@ -465,43 +468,65 @@
     text-transform: uppercase;
     margin: 0;
     position: relative;
-    left: 240px; /* Movimiento adicional a la derecha */
-    max-width: 90%;
+    left: 10%; /* Mueve el título proporcionalmente */
+    max-width: 80%; /* Ajusta el título de forma más flexible */
     animation: fadeInSlide 1.2s ease-out forwards;
     letter-spacing: 3px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
     padding: 0 25px;
     line-height: 1.2;
-    text-align: left; /* Alineación izquierda */
+    text-align: center; /* Centra el texto para mejor visualización */
 }
 
-/* === ANIMACIÓN === */
+/* Línea decorativa debajo del título */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80%; /* Hacer que la línea sea un porcentaje del ancho */
+    max-width: 1000px; /* Limitar el ancho máximo */
+    height: 5px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    margin: 1rem auto 0;
+    border-radius: 5px;
+    transform-origin: center; /* Asegura que la animación sea centrada */
+    animation: pulseLine 2s ease-in-out infinite; /* Animación de pulsado */
+}
+
+/* Animación de la línea decorativa con scaleX */
+@keyframes pulseLine {
+    0% {
+        transform: scaleX(1); /* Línea normal */
+    }
+    50% {
+        transform: scaleX(1.2); /* Aumenta el tamaño de la línea */
+    }
+    100% {
+        transform: scaleX(1); /* Vuelve al tamaño original */
+    }
+}
+
+/* === ANIMACIÓN DEL TÍTULO === */
 @keyframes fadeInSlide {
     0% {
         opacity: 0;
-        transform: translate(0px, 20px) scale(0.9); /* Inicio más a la derecha */
+        transform: translate(0px, 20px) scale(0.9);
     }
     100% {
         opacity: 1;
-        transform: translate(0px, 0) scale(1); /* Posición final con desplazamiento derecho */
+        transform: translate(0px, 0) scale(1);
     }
 }
 
 /* === VERSIÓN RESPONSIVE === */
 @media (max-width: 768px) {
-    .section-container {
-        width: calc(100% - 30px);
-        padding-left: 20px;
-        height: 50px;
-    }
-    
     .section-title {
-        font-size: 2.2rem;
-        left: 15px; /* Menor desplazamiento en móviles */
-        max-width: 95%;
+        font-size: 2.2rem; /* Reducir el tamaño del texto en móviles */
+        left: 5%; /* Ajuste más pequeño en pantallas pequeñas */
+        max-width: 90%;
         padding: 0 15px;
     }
     
+    /* Animación ajustada para dispositivos móviles */
     @keyframes fadeInSlide {
         0% {
             opacity: 0;
@@ -512,7 +537,12 @@
             transform: translate(15px, 0) scale(1);
         }
     }
-}   
+    
+    .section-title::after {
+        width: 90%; /* Aumenta el ancho de la línea en pantallas pequeñas */
+        max-width: 800px; /* Limita el ancho máximo en pantallas pequeñas */
+    }
+}
 
 .slider-container-3d {
     max-width: 1200px;
@@ -560,8 +590,23 @@
     align-items: center;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 5px solid #000000;
 }
+
+/* Línea decorativa debajo del título */
+.section-header-3d h2::after {
+    content: '';
+    display: block;
+    width: 80%; /* Hacer que la línea sea un porcentaje del ancho */
+    max-width: 1000px; /* Limitar el ancho máximo */
+    height: 5px;
+    background: linear-gradient(90deg, #000000, #000000);
+    margin: 1rem auto 0;
+    border-radius: 5px;
+    transform-origin: center; /* Asegura que la animación sea centrada */
+    animation: pulseLine 2s ease-in-out infinite; /* Animación de pulsado */
+}
+
 
 .section-header-3d h2 {
     font-size: 2.5rem;
@@ -572,23 +617,8 @@
     font-weight: 700;
     letter-spacing: -0.5px;
     text-transform: uppercase;
-    text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.3),
-        0 4px 12px rgba(0, 0, 0, 0.2);
     padding-bottom: 15px;
     animation: textGlow 3s ease-in-out infinite alternate;
-}
-
-.section-header-3d h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
-    border-radius: 100%;
 }
 
 
@@ -811,10 +841,7 @@
 /* Sección Encuestas 3D - Versión Profesional */
 .polls-section-3d {
     padding: 80px 5%;
-    background-color: #f5f7fa; /* Fondo más claro y profesional */
     margin: 60px 0;
-    border-top: 1px solid #e1e5eb;
-    border-bottom: 1px solid #e1e5eb;
 }
 
 .section-title-3d {
@@ -827,17 +854,20 @@
     letter-spacing: -0.5px;
 }
 
+/* Línea decorativa debajo del título */
 .section-title-3d::after {
     content: '';
-    position: absolute;
-    bottom: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: #3498db; /* Azul más vibrante */
-    border-radius: 4px;
+    display: block;
+    width: 10%; /* Hacer que la línea sea un porcentaje del ancho */
+    max-width: 1000px; /* Limitar el ancho máximo */
+    height: 5px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    margin: 1rem auto 0;
+    border-radius: 5px;
+    transform-origin: center; /* Asegura que la animación sea centrada */
+    animation: pulseLine 2s ease-in-out infinite; /* Animación de pulsado */
 }
+
 
 .highlight {
     color: #3498db; /* Azul moderno */

@@ -161,3 +161,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ejecutar al cargar para ver estado inicial
     handleScroll();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const facebookIcon = document.querySelector('.facebook');
+    const sections = {
+        slider: document.querySelector('.slider-container-3d'),
+        news: document.querySelector('.news-section-3d'),
+        polls: document.querySelector('.polls-section-3d')
+    };
+
+    // Observador de intersección para detectar qué sección está visible
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Determinar en qué sección estamos
+                if (entry.target === sections.slider) {
+                    facebookIcon.style.setProperty('--hover-color', 'black');
+                } else if (entry.target === sections.news) {
+                    facebookIcon.style.setProperty('--hover-color', 'white');
+                } else if (entry.target === sections.polls) {
+                    facebookIcon.style.setProperty('--hover-color', 'black');
+                }
+            }
+        });
+    }, { threshold: 0.5 }); // Se activa cuando el 50% de la sección es visible
+
+    // Observar cada sección
+    Object.values(sections).forEach(section => {
+        if (section) observer.observe(section);
+    });
+});
