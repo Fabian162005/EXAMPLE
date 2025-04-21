@@ -1,0 +1,132 @@
+/* General */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Mori', sans-serif;
+  background: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Title */
+.title-container {
+  text-align: center;
+  position: relative;
+  top: 20%; /* Ajusta la posición para que esté un poco más arriba de la mitad de la pantalla */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 0;
+  transform: translateY(-50%); /* Ajusta la posición vertical para estar centrado */
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #000000;
+}
+
+.dynamic-line {
+  width: 8%;
+  margin: 0 auto;
+  height: 4px;
+  background: linear-gradient(to right, #0921ad 0%, #1e63f5 50%, #0921ad 100%);
+  animation: lineAnimation 2s infinite;
+}
+
+/* Galería */
+.gallery {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 5rem;
+  }
+
+/* Contenedor de tarjetas */
+.cards {
+    position: relative;
+    width: 20rem;
+    height: auto;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.cards li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 25rem;
+  height: 12rem;
+  font-size: 1rem;
+  text-align: center;
+  background-color: #0921ad;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Asegura que nada se salga de los bordes */
+}
+
+/* Contenedor de imagen */
+.card-img {
+  width: 1%;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Imagen dentro de la tarjeta */
+.card-img img {
+  object-fit: contain;
+  border-radius: 2rem;
+}
+
+.cards li img {
+  max-width: 80px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Contenedor de botones */
+.actions {
+    position: absolute;
+    bottom: 120px; /* Ajusta esta propiedad para acercar los botones al contenedor de tarjetas */
+    left: 50%; /* Centrado horizontal */
+    transform: translateX(-50%); /* Asegura que esté perfectamente centrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacio entre los botones */
+    z-index: 10; /* Asegura que estén por encima de otros elementos */
+}
+
+.prev, .next {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #0921ad;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.prev:hover, .next:hover {
+    background-color: #1e63f5;
+}

@@ -14,6 +14,10 @@
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- candidatos -->
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css">
+	<link rel="stylesheet" href="{{ asset('css/candidatos.css') }}">
+
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
 </head>
@@ -51,7 +55,7 @@
                     <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo GP Canal" class="navbar-logo">
                 </a>
             </div>
-            
+
             <div class="nav-item nav-contacto">Contáctanos</div>
             <!-- Botón de búsqueda estilizado -->
             <button id="search-icon" class="search-button">
@@ -99,7 +103,7 @@
         <div class="section-header-3d">
             <h2>Noticias</h2>
             <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
-        
+
         <div class="news-grid-3d">
             <!-- Noticia 1 -->
             <div class="news-card-3d">
@@ -113,7 +117,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 2 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -126,7 +130,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 3 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -138,7 +142,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 4 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -150,7 +154,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 5 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -163,7 +167,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 6 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -176,15 +180,16 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="view-all-container">
             <button class="btn-3d view-all-btn">Ver más noticias</button>
         </div>
     </section>
+
 <!-- Sección Encuestas -->
     <section class="polls-section-3d">
         <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
-        
+
         <div class="polls-container-3d">
             <!-- Encuesta 1 -->
             <div class="poll-card-3d">
@@ -194,7 +199,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-                
+
                 <div class="poll-content" id="presidential-polls">
                     <a href="{{ url('encuestas/lima') }}" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-city"></i></div>
@@ -204,7 +209,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/chiclayo.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-umbrella-beach"></i></div>
                         <div class="poll-info">
@@ -213,7 +218,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/piura.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-sun"></i></div>
                         <div class="poll-info">
@@ -224,7 +229,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <!-- Encuesta 2 -->
             <div class="poll-card-3d">
                 <div class="poll-header">
@@ -233,7 +238,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-                
+
                 <div class="poll-content" id="regional-polls">
                     <a href="encuestas/morropon.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-mountain"></i></div>
@@ -243,7 +248,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/castilla.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-archway"></i></div>
                         <div class="poll-info">
@@ -252,7 +257,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/plura2.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-water"></i></div>
                         <div class="poll-info">
@@ -265,42 +270,64 @@
             </div>
         </div>
     </section>
-<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
-<section id="contacto" class="contacto-3d">
-  <div class="container">
-    <div class="card-3d">
-      <!-- Contacto -->
-      <div class="columna">
-        <h3>📩 Contáctanos</h3>
-        <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
-        <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
-        <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
-        <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 9am - 6pm</p>
-      </div>
-      
-      <!-- Redes -->
-      <div class="columna">
-        <h3>🌐 Síguenos</h3>
-        <div class="redes">
-          <a href="#" class="bi bi-facebook" title="Facebook"></a>
-          <a href="#" class="bi bi-youtube" title="Youtube"></a>
-          <a href="#" class="bi bi-instagram" title="Instagram"></a>
-          <a href="#" class="bi bi-twitter" title="Twitter"></a>
-          <a href="#" class="bi bi-twitch" title="Twitch"></a>
+<!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Nueva sección: Partidos Políticos -->
+    <section id="partidos-politicos">
+        <div class="title-container">
+            <h1 class="title">Partidos Políticos</h1>
+            <div class="dynamic-line"></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+
+        <div class="gallery">
+            <ul class="cards">
+                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
+            </ul>
+            <div class="actions">
+                <button class="prev">Anterior</button>
+                <button class="next">Siguiente</button>
+            </div>
+        </div>
+    </section>
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+<!--seccion contacto-->
+    <section id="contacto" class="contacto-3d">
+        <div class="container">
+            <div class="card-3d">
+            <!-- Contacto -->
+            <div class="columna">
+                <h3>📩 Contáctanos</h3>
+                <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
+                <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
+                <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
+                <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 9am - 6pm</p>
+            </div>
+
+            <!-- Redes -->
+            <div class="columna">
+                <h3>🌐 Síguenos</h3>
+                <div class="redes">
+                <a href="#" class="bi bi-facebook" title="Facebook"></a>
+                <a href="#" class="bi bi-youtube" title="Youtube"></a>
+                <a href="#" class="bi bi-instagram" title="Instagram"></a>
+                <a href="#" class="bi bi-twitter" title="Twitter"></a>
+                <a href="#" class="bi bi-twitch" title="Twitch"></a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
- 
+
     <!-- Scripts al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
     <script src="{{ asset('js/hexocet.js') }}"></script>
     <script src="{{ asset('js/scroll-efect.js') }}"></script>
-</body>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
+    <script type="module" src="{{ asset('js/candidatos.js') }}"></script>
 </html>
