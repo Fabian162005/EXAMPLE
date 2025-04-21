@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuestas - Morropón</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Encuestas - Lima</title>
     <style>
         :root {
             --primary-color: #2563eb;    /* Azul vibrante */
@@ -445,12 +444,8 @@
     </style>
 </head>
 <body>
-    <div class="encuesta-container animate__animated animate__fadeIn">
-        <h1 class="animate__animated animate__fadeInDown">ENCUESTA COMUNAL DE LIMA</h1>
-        
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
+    <div class="encuesta-container">
+        <h1>ELECCIONES LIMA</h1>
         
         <form action="/guardar-encuesta" method="POST" id="encuestaForm">
             <!-- Página 1 -->

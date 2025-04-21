@@ -1,880 +1,635 @@
-/* Estilos Base y Reset */
-:root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --light-color: #ecf0f1;
-    --dark-color: #2c3e50;
-    --text-color: #333;
-    --text-light: #fff;
-    --gray-light: #f8f9fa;
-    --gray-medium: #e9ecef;
-    --gray-dark: #6c757d;
-    --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-    --transition: all 0.3s ease;
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: var(--font-main);
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
-  }
-  
-  /* Video de fondo */
-  .video-background-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-  }
-  
-  #video-background {
-    position: absolute;
-    top: 50%;
+/* === FONDO DE PANTALLA (BACKGROUND) === */
+
+
+
+/* === FONDO DE REDES SOCIALES (BACKGROUND) === */
+
+
+/* === FONDO DE NAVBAR (BACKGROUND) === */
+
+
+/* === FONDO DE SLIDER (BACKGROUND) === */
+
+
+/* === FONDO DE NOTICIAS(BACKGROUND) === */
+
+
+/* === FONDO DE ENCUESTAS (BACKGROUND) === */
+
+
+/* === FONDO DE CONTACTANOS (BACKGROUND) === */
+
+
+
+/* 📱 Responsive para móviles */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll; /* Mejor rendimiento en móviles */
+        background-size: auto 100%;
+    }
+    
+    body::before {
+        background: rgba(255, 255, 255, 0.92); /* Más opaco en móviles */
+    }
+}
+
+
+
+
+/* === CONFIGURACIONES DE PANTALLA === */
+
+/* Centrar navbar o logos si tienen position absolute */
+.navbar-container, .logo-container {
     left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .video-overlay {
+    transform: translateX(-50%);
+    position: relative;
+}
+
+.carousel-1350-container {
+    overflow: hidden; /* Previene scroll no deseado */
+    width: 100%;
+    position: relative; /* Necesario para posicionar controles */
+}
+
+/* Esto asegura que los controles no se oculten */
+.carousel-control-prev, 
+.carousel-control-next {
     position: absolute;
+    z-index: 1; /* Por encima del overflow:hidden */
+}
+
+.social-icons {
+    display: flex;
+    position: fixed;
+    background-color: transparent;
+    z-index: 900;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+
+    /* Posición en el lado derecho */
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    /* Estilos para disposición vertical */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px 5px;
+    
+    pointer-events: none;
+
+}
+
+.social-icons a {
+    pointer-events: auto;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover opcional */
+.social-icons a:hover {
+    transform: scale(1.2);
+    opacity: 0.9;
+}
+
+/* Opcional: Efecto al aparecer/desaparecer */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* 🔥 Facebook */
+.facebook {
+    font-size: 30px;
+    color: black;
+    transition: color 0.3s ease;
+}
+.facebook:hover {
+    color: #ffffff;
+}
+
+/* 🟣 Instagram */
+.instagram {
+    font-size: 30px;
+    color: #000; /* Color inicial negro */
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+}
+.instagram:hover {
+    /* Degradado de Instagram completo */
+    background: linear-gradient(
+        45deg,
+        #f09433 0%, 
+        #e6683c 25%, 
+        #dc2743 50%, 
+        #cc2366 75%, 
+        #bc1888 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transform: scale(1.1);
+    animation: instaShine 0.8s forwards;
+}
+
+/* 🔴 YouTube */
+.youtube {
+    font-size: 39px;
+    color: black;
+    transition: color 0.3s ease;
+}
+.youtube:hover {
+    color: #cc0000;
+}
+
+/* ⚫ Twitter */
+.twitter {
+    font-size: 30px;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+/* 🟣 Twitch */
+.twitch {
+    font-size: 30px;
+    color: black;
+    transition: color 0.3s ease;
+}
+.twitch:hover {
+    color: #8946fc;
+}
+
+/* === Navbar === */
+.navbar-container {
+    position: fixed;
+    top: -35px; /* Ahora controlamos la posición con transform */
+    left: 50%;
+    transform: translateX(-50%) translateY(45px); /* 25px desde el top */
+    width: 70%;
+    max-width: 1300px;
+    height: 70px;
+    background-color: #3B83BD;
+    border-radius: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3rem;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-blur-background {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Barra de redes sociales flotante */
-  .social-floating-bar {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-  }
-  
-  .social-icon {
-    width: 40px;
-    height: 40px;
+    height: 100px; /* Altura similar al navbar */
+    background: transparent;
+    backdrop-filter: blur(0px); /* Inicialmente sin blur */
+    -webkit-backdrop-filter: blur(0px);
+    z-index: 999; /* Un nivel por debajo del navbar (1000) */
+    pointer-events: none; /* Para que no interfiera con clicks */
+    transition: backdrop-filter 0.4s ease;
+}
+
+/* 📌 Contenedor del logo (mantiene su posición relativa al navbar) */
+.logo-container {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-48%);
+    z-index: 1001;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-container img {
+    height: 100px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 🎨 Estilo de los elementos del navbar */
+.navbar-menu {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    margin: 5px;
-    border-radius: 50%;
-    transition: var(--transition);
-    font-size: 18px;
-  }
-  
-  .social-icon:hover {
-    transform: translateX(-5px);
-  }
-  
-  .facebook { background-color: #3b5998; }
-  .twitter { background-color: #1da1f2; }
-  .instagram { background-color: #e1306c; }
-  .youtube { background-color: #ff0000; }
-  .twitch { background-color: #9146ff; }
-  
-  /* Navbar */
-  .navbar-spacer {
-    height: 80px;
-  }
-  
-  .navbar {
-    padding: 0.5rem 1rem;
-    transition: var(--transition);
-  }
-  
-  .bg-primary-gradient {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    box-shadow: var(--shadow-md);
-  }
-  
-  .navbar-brand img {
-    max-height: 60px;
-    transition: var(--transition);
-  }
-  
-  .main-logo {
-    height: 70px;
-  }
-  
-  .mobile-logo {
-    height: 40px;
-  }
-  
-  .nav-link {
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    margin: 0 0.25rem;
-    border-radius: 0.25rem;
-    transition: var(--transition);
-  }
-  
-  .nav-link:hover, .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .btn-search {
-    color: white;
-    background: transparent;
-    border: none;
-    font-size: 1.25rem;
-  }
-  
-  .search-expandable {
-    display: none;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 1rem;
-  }
-  
-  .search-input {
-    background-color: rgba(255, 255, 255, 0.9);
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    padding: 6rem 0 4rem;
-    color: white;
+    gap: 100px; /* 🔥 Aumenta la separación entre los elementos */
+}
+
+/* 🔹 Agregar padding a los elementos del navbar */
+.nav-item {
+    padding: 15px 10px; /* 🔥 Más espacio alrededor de cada elemento */
+    font-size: 24.2px;
+    font-weight: bold;
     text-align: center;
+    color: white;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #000000; /* 🔥 Cambio de color al pasar el mouse */
+    transform: scale(1.1); /* Efecto de agrandado */
+}
+
+.nav-submenu {
     position: relative;
-  }
-  
-  .hero-title {
+    padding-left: 30px; /* Espacio generoso */
+    font-weight: 500; /* Texto más legible */
+}
+
+.nav-submenu i {
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px !important; /* Fuerza el tamaño */
+    display: inline-block !important;
+    color: inherit; /* Mismo color que el texto */
+}
+
+.nav-submenu:hover i, .nav-submenu:hover svg {
+    opacity: 1;
+}
+
+/* Posicionamiento específico para cada elemento */
+
+.nav-item.nav-submenu {
+    position: absolute;
+    left: 5%;
+}
+
+.nav-item.nav-envivo {
+    position: absolute;
+    left: 12%;
+}
+
+.nav-item.nav-noticias {
+    position: absolute;
+    left: 24.8%;
+}
+
+.nav-item.nav-encuestas {
+    position: absolute;
+    left: 37.5%;
+}
+
+.nav-item.nav-contacto {
+    position: absolute;
+    left: 54.5%; /* Ajusta este valor según necesites */
+}
+
+/* 📱 Ajustes para pantallas pequeñas */
+@media (max-width: 430px) {
+    .navbar-container {
+        width: 100vw; /* Se mantiene en el 100% del ancho de la ventana */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Evita el estiramiento */
+        align-items: center;
+        background-color: #005FAD; /* Fondo azul para mejor contraste */
+        height: auto; /* Evita que sea más alto de lo necesario */
+        padding: 5px 0; /* Reduce el espacio interno */
+    }
+
+    .nav-item {
+        font-size: 16px; /* Tamaño ajustado para que no se vea enorme */
+        width: 100%;
+        text-align: center;
+        padding: 12px 0; /* Reduce el espacio entre elementos */
+        color: #ffffff; /* Texto blanco para contraste */
+        background-color: transparent; /* Evita bloques de color extraños */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea sutil de separación */
+    }
+
+    .nav-item:last-child {
+        border-bottom: none; /* Elimina la línea del último elemento */
+    }
+
+    .nav-item.nav-encuestas,
+    .nav-item.nav-noticias,
+    .nav-item.nav-contactanos {
+        font-size: 18px;
+        width: 100%;
+    }
+}
+
+/* Ajuste en pantallas grandes */
+@media (min-width: 1600px) {
+    .navbar-container {
+        width: max(1200px, 80vw); /* Mínimo 1200px, pero puede crecer hasta el 80% */
+        max-width: 1600px; /* Evita que crezca demasiado en monitores ultraanchos */
+    }
+}
+
+/* Mantiene el tamaño del navbar fijo en zoom */
+.navbar-container {
+    width: max(80%, 1200px); /* Se achicó al 70% */
+    max-width: 1600px;
+}
+
+/* Estilos para el logo centrado */
+.logo-container {
+    flex-grow: 1; /* Asegura que el logo esté en el medio */
+    text-align: center;
+}
+
+/* Estilo para el botón de búsqueda */
+.search-button {
+    margin-left: 20px; /* Ajusta la distancia al lado izquierdo del ícono */
+}
+
+/* Icono de la lupa*/
+.search-button {
+    position: absolute;
+    background-color: transparent; /* Fondo completamente transparente */
+    border: none; /* Sin bordes */
+    outline: none; /* Evita el borde al hacer clic */
+    cursor: pointer;
+    font-size: 28px;
+    color: black; /* Ícono de lupa en negro */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    padding: 10px;
+    top: 4px;
+    right: 17px;
+    box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
+}
+
+/* 🔍 Efecto hover elegante */
+.search-button:hover {
+    transform: scale(1.1); /* Aumenta ligeramente de tamaño */
+    box-shadow: none; /* Asegura que no haya borde visual */
+}
+
+/* 🔍 Efecto al hacer clic */
+.search-button:active {
+    transform: scale(0.95); /* Efecto de presión */
+    box-shadow: none; /* Sin sombra al hacer clic */
+}
+
+/* 🔍 Contenedor de la barra de búsqueda */
+.search-container {
+    position: fixed;
+    top: 17px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
+    left: 1220px;
+    display: none; /* 🔥 Oculto por defecto */
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffffff;
+    border: none; /* 🔥 Se elimina el borde */
+    border-radius: 25px;
+    padding: 8px 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    width: fit-content; /* 🔥 Ajusta el tamaño al contenido */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform; /* Optimización para animaciones */
+}
+
+/* 🔍 Campo de entrada de texto */
+.search-input {
+    border: none;
+    padding: 8px;
+    outline: none;
+    width: 370px; /* Limita el ancho del campo de entrada */
+    height: auto;
+    font-size: 17px;
+    color: black;
+}
+
+/* 🔍 Botón de búsqueda dentro del contenedor */
+.search-container .search-button {
+    background: none;
+    border: none;
+    outline: none; /* Asegura que no tenga borde al hacer clic */
+    cursor: pointer;
+    font-size: 22px;
+    color: #3B83BD; /* 🔵 Color de la lupa */
+    transition: transform 0.2s ease;
+    position: absolute;
+    top: -0.1px;
+    right: 14px; /* 🔥 Ajusta su posición sin agrandar el contenedor */
+    box-shadow: none; /* Asegura que no tenga borde */
+}
+
+/* Efecto hover para el botón de búsqueda */
+.search-container .search-button:hover {
+    transform: scale(1.2);
+    box-shadow: none; /* Sin sombra en hover */
+}
+/* === CONTENEDOR PRINCIPAL === */
+.section-container {
+    position: relative;
+    width: calc(100% - 40px); /* Compensa el margen derecho */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Cambiado de center a flex-start */
+    text-align: left; /* Alineación izquierda */
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 20px;
+    padding: 10px 0 10px -50px; /* Más padding izquierdo */
+}
+
+/* === ESTILOS DEL TÍTULO === */
+.section-title {
     font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .hero-title span {
-    color: var(--secondary-color);
-  }
-  
-  .hero-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  }
-/* Elimina el margen inferior del hero y margen superior del slider */
-.hero-section {
-  margin-bottom: 0 !important;
-  padding-bottom: 1rem; /* Ajusta según necesites */
+    font-weight: 900;
+    color: #000000 !important;
+    text-transform: uppercase;
+    margin: 0;
+    position: relative;
+    left: 240px; /* Movimiento adicional a la derecha */
+    max-width: 90%;
+    animation: fadeInSlide 1.2s ease-out forwards;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    padding: 0 25px;
+    line-height: 1.2;
+    text-align: left; /* Alineación izquierda */
 }
 
-.featured-slider {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+/* === ANIMACIÓN === */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translate(0px, 20px) scale(0.9); /* Inicio más a la derecha */
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0px, 0) scale(1); /* Posición final con desplazamiento derecho */
+    }
 }
 
-/* Opcional: ajusta el padding del container si es necesario */
-.hero-section .container,
-.featured-slider .container {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-  /* Slider------------------------------------------------------------------------------------------------------------------------------------------------------- */
-.featured-slider {
-  padding: 3rem 0; /* Reduje el padding vertical */
-}
+/* === VERSIÓN RESPONSIVE === */
+@media (max-width: 768px) {
+    .section-container {
+        width: calc(100% - 30px);
+        padding-left: 20px;
+        height: 50px;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+        left: 15px; /* Menor desplazamiento en móviles */
+        max-width: 95%;
+        padding: 0 15px;
+    }
+    
+    @keyframes fadeInSlide {
+        0% {
+            opacity: 0;
+            transform: translate(30px, 15px) scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(15px, 0) scale(1);
+        }
+    }
+}   
 
-.carousel {
-  border: none !important;
+.slider-container-3d {
+    max-width: 1200px;
+    margin: 10px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
-
-.carousel-inner {
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.carousel-item {
-  border: none !important;
-} 
 
 .carousel-item img {
-  height: 400px; /* Reduje la altura de las imágenes */
-  object-fit: cover;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
 }
 
-.carousel-caption {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 1rem; /* Reduje el padding interno */
-  border-radius: 0; /* Elimina bordes redondeados */
-  bottom: 1.5rem; /* Ajusté la posición desde abajo */
-  left: 5%; /* Reduje el margen izquierdo */
-  right: 5%; /* Reduje el margen derecho */
+.carousel-control-prev, .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: var(--transition);
 }
 
-.carousel-indicators {
-  bottom: 0.5rem; /* Ajusté la posición de los indicadores */
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    opacity: 1;
+    background-color: var(--primary-color);
 }
-
-.container {
-  padding-left: 0;
-  padding-right: 0;
-}
-
--------------------------------------------------------------------------------------------------------------------------------------------------------
-  /* Secciones comunes */
-  .section-header {
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+/* Sección Noticias 3D */
+.news-section-3d {
+    padding: 60px 5%;
+    background-color: #4b74fc;
+    margin: 40px 0;
     position: relative;
-    display: inline-block;
-  }
-  
-  .section-title::after {
+}
+
+.section-header-3d {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.section-header-3d h2 {
+    font-size: 2.5rem;
+    color: white !important;
+    position: relative;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.2);
+    padding-bottom: 15px;
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+.section-header-3d h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: var(--secondary-color);
-    border-radius: 2px;
-  }
-  
-  .section-subtitle {
-    font-size: 1.25rem;
-    color: var(--gray-dark);
-  }
-/* Noticias */
-.news-section {
-    padding: 5rem 0;
-    background-color: var(--light-bg);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+    border-radius: 100%;
 }
 
-.section-header {
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 1rem;
+
+.news-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(500px, 50px)); /* Ancho reducido */
+    justify-content: center; /* Centra las columnas */
+    gap: 50px; /* Mantiene la distancia entre tarjetas */
+    padding: 10px 0;
 }
 
-.news-card {
-    height: 100%;
-    border-radius: 0.75rem;
+.news-card-3d {
+    background: white;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    background-color: white;
-    border: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
 }
 
-.news-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary-color);
+.news-card-3d:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.news-image-container {
+.news-img-container {
     position: relative;
     height: 200px;
     overflow: hidden;
 }
 
-.news-image {
+.news-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.news-card:hover .news-image {
-    transform: scale(1.08);
-}
-
-.news-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 0.35rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: white;
-    background-color: var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.news-body {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.news-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: var(--dark-color);
-    line-height: 1.4;
-}
-
-.news-excerpt {
-    color: var(--gray-dark);
-    margin-bottom: 1.25rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    flex: 1;
-}
-
-.news-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    margin-top: auto;
-}
-
-.news-date {
-    color: var(--gray);
-}
-
-.news-link {
-    color: var(--primary-color);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.news-link:hover {
-    color: var(--primary-dark);
-    text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 767.98px) {
-    .news-section {
-        padding: 3rem 0;
-    }
-    
-    .news-image-container {
-        height: 180px;
-    }
-    
-    .news-body {
-        padding: 1.25rem;
-    }
-    
-    .news-title {
-        font-size: 1.15rem;
-    }
-}
-
-/* Responsive */
-@media (max-width: 767.98px) {
-    .news-section {
-        padding: 3rem 0;
-    }
-    
-    .news-image-container {
-        height: 180px;
-    }
-    
-    .news-body {
-        padding: 1.25rem;
-    }
-    
-    .news-title {
-        font-size: 1.15rem;
-    }
-}
-  /* Encuestas */
-  .polls-section {
-    padding: 4rem 0;
-  }
-  
-  .accordion-item {
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 0.5rem !important;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-  
-  .accordion-button {
-    font-weight: 600;
-    color: var(--primary-color);
-  }
-  
-  .accordion-button:not(.collapsed) {
-    background-color: rgba(52, 152, 219, 0.1);
-    color: var(--primary-color);
-  }
-  
-  .poll-list {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .poll-item {
-    border-bottom: 1px solid var(--gray-medium);
-  }
-  
-  .poll-item:last-child {
-    border-bottom: none;
-  }
-  
-  .poll-link {
-    display: block;
-    padding: 0.75rem 1.25rem;
-    color: var(--text-color);
-    text-decoration: none;
     transition: var(--transition);
-  }
-  
-  .poll-link:hover {
-    background-color: var(--gray-light);
-    padding-left: 1.5rem;
-    color: var(--secondary-color);
-  }
-  
-  .featured-poll {
-    border: none;
-    border-radius: 0.5rem;
-  }
-  
-  .poll-chart-container {
-    position: relative;
-    height: 250px;
-  }
-  
-  /* Contacto */
-  .contact-section {
-    padding: 4rem 0;
-    background-color: var(--light-color);
-  }
-  
-  .contact-info, .contact-form {
-    border: none;
-    border-radius: 0.5rem;
-  }
-  
-  .contact-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-  }
-  
-  .contact-list {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .contact-item {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-  }
-  
-  .contact-icon {
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--secondary-color);
-    color: white;
-    border-radius: 50%;
-    margin-right: 1rem;
-  }
-  
-  .social-contact {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  /* Footer */
-  .footer {
-    padding: 3rem 0 0;
-  }
-  
-  .footer-logo img {
-    max-height: 80px;
-    margin-bottom: 1rem;
-  }
-  
-  .footer-title {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
-    color: white;
-    position: relative;
-    padding-bottom: 0.5rem;
-  }
-  
-  .footer-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background-color: var(--secondary-color);
-  }
-  
-  .footer-links {
-    list-style: none;
-  }
-  
-  .footer-links li {
-    margin-bottom: 0.75rem;
-  }
-  
-  .footer-links a {
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    transition: var(--transition);
-  }
-  
-  .footer-links a:hover {
-    color: white;
-    padding-left: 5px;
-  }
-  
-  .subscribe-form .form-control {
-    border: none;
-    border-radius: 0.25rem 0 0 0.25rem;
-  }
-  
-  .subscribe-form .btn {
-    border-radius: 0 0.25rem 0.25rem 0;
-  }
-  
-  .footer-bottom {
-    padding: 1.5rem 0;
-  }
-  
-  .social-footer .social-icon {
-    margin: 0 0.5rem;
-  }
-  
-  /* Botón volver arriba */
-  .back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: none;
-    z-index: 999;
-  }
-  
-  /* Responsive */
-  @media (max-width: 992px) {
-    .hero-title {
-      font-size: 2.5rem;
-    }
-    
-    .hero-subtitle {
-      font-size: 1.25rem;
-    }
-    
-    .carousel-item img {
-      height: 400px;
-    }
-    
-    .section-title {
-      font-size: 2rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .navbar-spacer {
-      height: 70px;
-    }
-    
-    .hero-section {
-      padding: 5rem 0 3rem;
-    }
-    
-    .hero-title {
-      font-size: 2rem;
-    }
-    
-    .carousel-item img {
-      height: 300px;
-    }
-    
-    .carousel-caption {
-      bottom: 1rem;
-      left: 5%;
-      right: 5%;
-      padding: 1rem;
-    }
-    
-    .social-floating-bar {
-      flex-direction: row;
-      top: auto;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      transform: none;
-      background-color: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      padding: 0.5rem;
-    }
-    
-    .social-icon {
-      margin: 0 0.5rem;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .hero-title {
-      font-size: 1.75rem;
-    }
-    
-    .carousel-item img {
-      height: 250px;
-    }
-    
-    .section-title {
-      font-size: 1.75rem;
-    }
-    
-    .news-image-container {
-      height: 150px;
-    }
-  }
-  /* Estilos para el Slider de Noticias Destacadas */
-.featured-slider {
-    padding: 3rem 0;
-    position: relative;
 }
 
-.featured-slider .container {
-    position: relative;
-}
-
-#newsCarousel {
-    border-radius: 15px;
-    overflow: hidden;
-    border: 3px solid #fff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.carousel-inner {
-    border-radius: 12px;
-}
-
-.carousel-item img {
-    height: 500px;
-    object-fit: cover;
-    width: 100%;
-}
-
-.carousel-caption {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 1.5rem;
-    border-radius: 10px;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    max-width: 800px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-}
-
-.carousel-caption h5 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-caption p {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-}
-
-.carousel-caption .btn {
-    font-weight: 600;
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    border: 2px solid #fff;
-    transition: all 0.3s ease;
-}
-
-.carousel-caption .btn:hover {
-    background-color: transparent;
-    color: #fff;
-}
-
-.carousel-indicators {
-    bottom: 20px;
-}
-
-.carousel-indicators button {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin: 0 8px;
-    border: 2px solid #fff;
-    background-color: transparent;
-}
-
-.carousel-indicators .active {
-    background-color: #fff;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.carousel-control-prev {
-    left: 20px;
-}
-
-.carousel-control-next {
-    right: 20px;
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    border-color: #fff;
-}
-
-/* Estilos para la Sección de Noticias */
-.news-section {
-    padding: 4rem 0;
-    background-color: #f8f9fa;
-    position: relative;
-}
-
-.news-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 15px;
-    background: linear-gradient(90deg, #3498db, #2c3e50);
-}
-
-.section-header {
-    margin-bottom: 3rem;
-    text-align: center;
-    position: relative;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-    display: inline-block;
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: #3498db;
-    border-radius: 2px;
-}
-
-.btn-outline-primary {
-    border: 2px solid #3498db;
-    color: #3498db;
-    font-weight: 600;
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-primary:hover {
-    background-color: #3498db;
-    color: #fff;
-}
-
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-.news-card {
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: 1px solid #e9ecef;
-    position: relative;
-}
-
-.news-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    border-color: #3498db;
-}
-
-.news-image-container {
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-    border-bottom: 3px solid #3498db;
-}
-
-.news-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.news-card:hover .news-image {
+.news-card-3d:hover .news-img {
     transform: scale(1.05);
 }
 
@@ -882,156 +637,443 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    padding: 0.35rem 0.75rem;
-    border-radius: 50px;
+    background: var(--accent-color);
+    color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    border-radius: 20px;
     font-size: 0.8rem;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    z-index: 2;
+    font-weight: bold;
 }
 
-.news-badge {
-    background-color: #e74c3c;
-    border: 2px solid #fff;
+.news-badge.trending {
+    background: #FF9F43;
 }
 
-.news-body {
-    padding: 1.5rem;
+.news-badge.hot {
+    background: #FF6B6B;
 }
 
-.news-title {
+.news-content {
+    padding: 20px;
+}
+
+.news-content h3 {
     font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: #2c3e50;
-    line-height: 1.3;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
 }
 
-.news-excerpt {
-    color: #6c757d;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+.news-content p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
 }
 
-.news-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    border-top: 1px solid #e9ecef;
-    padding-top: 1rem;
-}
-
-.news-date {
-    color: #6c757d;
-    display: flex;
-    align-items: center;
-}
-
-.news-link {
-    color: #3498db;
-    font-weight: 600;
+.read-more {
+    color: var(--primary-color);
     text-decoration: none;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-}
-
-.news-link:hover {
-    color: #2c3e50;
-}
-
-.news-link i {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
-}
-
-.news-link:hover i {
-    transform: translateX(3px);
-}
-
-.btn-primary {
-    background-color: #3498db;
-    border: none;
-    padding: 0.75rem 2rem;
     font-weight: 600;
-    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.read-more i {
+    margin-left: 5px;
+    transition: var(--transition);
+}
+
+.read-more:hover {
+    color: var(--secondary-color);
+}
+
+.read-more:hover i {
+    transform: translateX(5px);
+}
+
+.btn-3d {
+    display: inline-block;
+    padding: 10px 20px;
+    background: white;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer; 
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(59, 131, 189, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-3d.news-btn {
+    background-color: white;
+    color: #000000; 
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-    border: 2px solid transparent;
+    box-shadow: 
+        0 4px 0 #d1d1d1, /* Sombra base 3D */
+        0 5px 10px rgba(0, 0, 0, 0.1); /* Sombra difuminada */
 }
 
-.btn-primary:hover {
-    background-color: #2c3e50;
+/* Efecto 3D al presionar */
+.btn-3d.news-btn:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 1px 0 #d1d1d1, 
+        0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto hover elegante */
+.btn-3d.news-btn:hover {
+    background-color: #f8f8f8;
+    box-shadow: 
+        0 4px 0 #c1c1c1, 
+        0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Borde sutil para mejor definición */
+.btn-3d.news-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 7px;
+    pointer-events: none;
+}
+
+.btn-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-3d:hover::before {
+    left: 100%;
+}
+
+.btn-3d:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
-    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(59, 131, 189, 0.6);
 }
 
-/* Responsive Design */
+.btn-3d:active {
+    transform: translateY(1px);
+}
+
+.news-btn {
+    background: var(--secondary-color);
+    box-shadow: 0 5px 15px rgba(44, 62, 80, 0.4);
+}
+
+.news-btn:hover {
+    box-shadow: 0 8px 20px rgba(44, 62, 80, 0.6);
+}
+
+.view-all-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.view-all-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+}
+
+/* Versión responsive (2 columnas en tablets, 1 en móviles) */
 @media (max-width: 992px) {
-    .carousel-item img {
-        height: 400px;
-    }
-    
-    .carousel-caption {
-        width: 90%;
-        padding: 1rem;
-    }
-    
-    .carousel-caption h5 {
-        font-size: 1.5rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .carousel-item img {
-        height: 350px;
-    }
-    
-    .carousel-caption {
-        bottom: 15px;
-    }
-    
-    .carousel-caption h5 {
-        font-size: 1.3rem;
-    }
-    
-    .carousel-caption p {
-        font-size: 1rem;
-        display: none; /* Ocultar descripción en móviles */
-    }
-    
-    .news-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    .news-grid-3d {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 576px) {
-    .carousel-item img {
-        height: 300px;
+    .news-grid-3d {
+        grid-template-columns: 1fr;
+    }
+}
+/* Sección Encuestas 3D - Versión Profesional */
+.polls-section-3d {
+    padding: 80px 5%;
+    background-color: #f5f7fa; /* Fondo más claro y profesional */
+    margin: 60px 0;
+    border-top: 1px solid #e1e5eb;
+    border-bottom: 1px solid #e1e5eb;
+}
+
+.section-title-3d {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #2c3e50; /* Azul oscuro profesional */
+    position: relative;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.section-title-3d::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: #3498db; /* Azul más vibrante */
+    border-radius: 4px;
+}
+
+.highlight {
+    color: #3498db; /* Azul moderno */
+    font-weight: 600;
+}
+
+.polls-container-3d {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 35px;
+}
+
+.poll-card-3d {
+    background: #ffffff; /* Fondo blanco para tarjetas */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid #eaeef2;
+}
+
+.poll-card-3d:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.poll-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    background: #3498db; /* Azul principal */
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.poll-header:hover {
+    background: #2980b9; /* Azul más oscuro al hover */
+}
+
+.poll-header h3 {
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.poll-toggle {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.poll-toggle i {
+    transition: all 0.3s ease;
+    margin-left: 12px;
+    font-size: 1.1rem;
+}
+
+.poll-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
+}
+
+.poll-content.active {
+    max-height: 1000px;
+}
+
+.poll-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 25px;
+    border-bottom: 1px solid #f0f3f7;
+    transition: all 0.2s ease;
+    background: #ffffff;
+}
+
+.poll-item:hover {
+    background-color: #f8fafc;
+    transform: translateX(3px);
+}
+
+.poll-icon {
+    width: 44px;
+    height: 44px;
+    background: #e8f4fd; /* Fondo azul claro */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+    color: #3498db; /* Azul principal */
+    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.poll-info h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #2c3e50; /* Texto oscuro */
+    font-weight: 500;
+}
+
+.poll-info p {
+    margin: 6px 0 0;
+    font-size: 0.85rem;
+    color: #7f8c8d; /* Texto gris */
+}
+
+.poll-arrow {
+    margin-left: auto;
+    color: #bdc3c7;
+    transition: all 0.3s ease;
+}
+
+.poll-item:hover .poll-arrow {
+    color: #3498db;
+    transform: translateX(7px);
+}
+
+/* APARTADO CONTACTANOS */
+.contacto-3d {
+    background: 
+        /* Nueva imagen de fondo (ruta relativa desde CSS) */
+        url('../images/svg6.png') center/cover no-repeat;
+    padding: 80px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 60vh; /* Opcional: cubre toda la altura de la pantalla */
+}
+
+/* Fondo oscuro semitransparente (opcional, mejora legibilidad) */
+.contacto-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Contenedor principal (asegura que el contenido esté encima del fondo) */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté sobre el fondo */
+}
+
+/* TARJETA 3D MEJORADA - VERSIÓN AMPLIADA */
+.card-3d {
+    display: flex;
+    gap: 80px;
+    background: linear-gradient(145deg, #f5f5f5 0%, #e0e0e0 100%);
+    border-radius: 16px; /* Aumentado */
+    padding: 90px 8%; /* Aumentado (vertical/horizontal) */
+    width: 100%; /* Control del ancho */
+    min-height: 100px; /* Altura mínima aumentada */
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.1), /* Sombras más pronunciadas */
+        inset 0 2px 1px rgba(255, 255, 255, 0.95);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Borde más visible */
+    margin: 10px auto; /* Margen superior/inferior aumentado */
+    max-width: 1800px; /* Ancho máximo para pantallas grandes */
+}
+
+/* CONTENIDO */
+.columna {
+    flex: 1;
+    color: #333;
+    min-width: 300px;
+}
+
+.columna h3 {
+    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.columna p {
+    margin: 18px 0;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.columna a {
+    color: #444;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.columna a:hover {
+    color: #000;
+    transform: translateX(3px);
+}
+
+/* REDES SOCIALES */
+.redes {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.redes a {
+    color: #666;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.redes a:hover {
+    color: #000;
+    transform: scale(1.15);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .card-3d {
+        flex-direction: column;
+        gap: 40px;
+        padding: 50px 7%;
     }
     
-    .carousel-caption {
-        width: 95%;
-        bottom: 10px;
-    }
-    
-    .carousel-caption h5 {
-        font-size: 1.1rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .news-image-container {
-        height: 180px;
+    .columna {
+        min-width: auto;
     }
 }
