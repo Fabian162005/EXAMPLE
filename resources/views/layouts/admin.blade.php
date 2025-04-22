@@ -112,7 +112,10 @@
 <div class="main-content-spacer" style="height: 140px;"></div>
 
 <!-- Contenido principal -->
-<h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
+<h2 class="section-title">El Mejor Lugar para Mantenerte Informado </h2>
+<button class="btn btn-warning btn-sm">Editar</button>
+
+
 
 <div class="slider-container-3d">
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -140,7 +143,7 @@
         <div class="section-header-3d">
             <h2>Noticias</h2>
             <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
-        
+            <button class="btn btn-warning btn-sm">Editar</button>
         <div class="news-grid-3d">
             <!-- Noticia 1 -->
             <div class="news-card-3d">
@@ -222,7 +225,7 @@
 <!-- Sección Encuestas -->
     <section class="polls-section-3d">
         <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
-        
+        <button class="btn btn-warning btn-sm">Editar</button>
         <div class="polls-container-3d">
             <!-- Encuesta 1 -->
             <div class="poll-card-3d">
@@ -307,6 +310,7 @@
 
 <section id="contacto" class="contacto-3d">
   <div class="container">
+  <button class="btn btn-warning btn-sm">Editar</button>
     <div class="card-3d">
       <!-- Contacto -->
       <div class="columna">

@@ -191,3 +191,88 @@ document.addEventListener('DOMContentLoaded', function() {
         if (section) observer.observe(section);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleccionar los elementos del navbar
+    const videosLink = document.querySelector('.nav-envivo');
+    const noticiasLink = document.querySelector('.nav-noticias');
+    const encuestasLink = document.querySelector('.nav-encuestas');
+
+    // Configuración de offsets (ajusta estos valores según necesites)
+    const scrollOffsets = {
+        noticias: 120,    // 120px desde el top para noticias
+        encuestas: 100,   // 100px desde el top para encuestas
+        contacto: 80      // 80px desde el top para contacto
+    };
+
+    // Función para redirigir a videos.php
+    if(videosLink) {
+        videosLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'videos.php';
+        });
+    }
+
+    // Función para scroll suave con offset controlado
+    function smoothScrollTo(element, offset = 0) {
+        if(element) {
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // Función para scroll suave a noticias con offset
+    if(noticiasLink) {
+        noticiasLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const noticiasSection = document.querySelector('.news-section-3d');
+            smoothScrollTo(noticiasSection, scrollOffsets.noticias);
+        });
+    }
+
+    // Función para scroll suave a encuestas con offset
+    if(encuestasLink) {
+        encuestasLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const encuestasSection = document.querySelector('.polls-section-3d');
+            smoothScrollTo(encuestasSection, scrollOffsets.encuestas);
+        });
+    }
+
+    // Función para scroll suave a contacto con offset
+    if(contactoLink) {
+        contactoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const contactoSection = document.querySelector('.contacto-3d');
+            smoothScrollTo(contactoSection, scrollOffsets.contacto);
+        });
+    }
+
+    // Opcional: Ajustar offset dinámicamente según el tamaño del navbar
+    function calculateNavbarHeight() {
+        const navbar = document.querySelector('.navbar-container');
+        if(navbar) {
+            return navbar.offsetHeight;
+        }
+        return 0;
+    }
+
+    // Versión alternativa que calcula el offset basado en el navbar
+    function smoothScrollToDynamic(element) {
+        if(element) {
+            const navbarHeight = calculateNavbarHeight();
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - (navbarHeight + 20); // 20px extra
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+});

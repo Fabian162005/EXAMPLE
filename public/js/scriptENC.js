@@ -134,3 +134,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar barra de progreso
     updateProgressBar();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleccionar los elementos del navbar
+    const videosLink = document.querySelector('.nav-envivo');
+    const noticiasLink = document.querySelector('.nav-noticias');
+    const encuestasLink = document.querySelector('.nav-encuestas');
+    const contactoLink = document.querySelector('.nav-contacto');
+
+    // Función para redirigir a videos.php
+    if(videosLink) {
+        videosLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'videos.php';
+        });
+    }
+
+    // Función para scroll suave a noticias
+    if(noticiasLink) {
+        noticiasLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const noticiasSection = document.querySelector('.news-section-3d');
+            if(noticiasSection) {
+                noticiasSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+
+    // Función para scroll suave a encuestas
+    if(encuestasLink) {
+        encuestasLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const encuestasSection = document.querySelector('.polls-section-3d');
+            if(encuestasSection) {
+                encuestasSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+
+    // Función para scroll suave a contacto (si existe)
+    if(contactoLink) {
+        contactoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const contactoSection = document.querySelector('.contacto-3d');
+            if(contactoSection) {
+                contactoSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+});
