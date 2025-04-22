@@ -279,6 +279,14 @@
             <div class="dynamic-line"></div>
         </div>
 
+        <div class="buscador">
+        <label for="party-select">Buscar partido:</label>
+            <select id="party-select">
+                <option value="" disabled selected>Selecciona un partido</option>
+                <!-- Opciones generadas dinámicamente -->
+            </select>
+        </div>
+
         <div class="gallery">
             <ul class="cards">
                 <!-- Las tarjetas se insertarán aquí mediante JavaScript -->

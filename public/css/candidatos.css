@@ -30,31 +30,63 @@ body {
 }
 
 .dynamic-line {
-  width: 8%;
-  margin: 0 auto;
-  height: 4px;
-  background: linear-gradient(to right, #0921ad 0%, #1e63f5 50%, #0921ad 100%);
-  animation: lineAnimation 2s infinite;
+    content: '';
+    display: block;
+    width:10%; /* Hacer que la línea sea un porcentaje del ancho */
+    max-width: 1000px; /* Limitar el ancho máximo */
+    height: 5px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    margin: 1rem auto 0;
+    border-radius: 5px;
+    transform-origin: center; /* Asegura que la animación sea centrada */
+    animation: pulseLine 2s ease-in-out infinite; /* Animación de pulsado */
 }
+
+/* Estilos para el buscador */
+.buscador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px auto 10px auto; /* Margen reducido para acercarlo al título */
+    max-width: 500px; /* Ancho máximo del buscador */
+  }
+
+  #party-select {
+    padding: 12px 12px;
+    width: 150%;
+    border: 2px solid #0921ad;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  #party-select:focus {
+    border-color: #1e63f5;
+    box-shadow: 0 0 5px rgba(30, 99, 245, 0.5);
+  }
+
+
 
 /* Galería */
 .gallery {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     overflow: hidden;
-    padding-top: 5rem;
   }
 
 /* Contenedor de tarjetas */
 .cards {
     position: relative;
-    width: 20rem;
+    width: 25rem;
     height: auto;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    margin: 2rem auto 2rem auto; /* Centrado con un margen superior */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .cards li {
   list-style: none;
@@ -69,13 +101,24 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  gap: 1rem;
   border-radius: 0.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden; /* Asegura que nada se salga de los bordes */
+  transition:  opacity 1s, scale 1s;
+  opacity: 0.6; /* Opacidad reducida para tarjetas no centradas */
+  scale: 0.8; /* Escala reducida para tarjetas no centradas */
 }
+
+/* Tarjeta centrada */
+.cards li.active {
+    opacity: 1; /* Opacidad completa para la tarjeta centrada */
+    scale: 1; /* Escala normal para la tarjeta centrada */
+    transform: translateX(0); /* Posición central */
+  }
 
 /* Contenedor de imagen */
 .card-img {
@@ -104,29 +147,30 @@ body {
 /* Contenedor de botones */
 .actions {
     position: absolute;
-    bottom: 120px; /* Ajusta esta propiedad para acercar los botones al contenedor de tarjetas */
-    left: 50%; /* Centrado horizontal */
-    transform: translateX(-50%); /* Asegura que esté perfectamente centrado */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Espacio entre los botones */
-    z-index: 10; /* Asegura que estén por encima de otros elementos */
+    bottom: 50px; /* Más cerca del carrusel */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex; /* Para alinear los botones horizontalmente */
+    gap: 20px; /* Espacio entre botones */
+    z-index: 10;
 }
 
 .prev, .next {
-    display: inline-block;
-    margin: 0 10px;
-    padding: 10px 20px;
+    padding: 10px 25px;
     background-color: #0921ad;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .prev:hover, .next:hover {
     background-color: #1e63f5;
+    transform: translateY(-2px);
+}
+
+.prev:active, .next:active {
+    transform: translateY(0);
 }
