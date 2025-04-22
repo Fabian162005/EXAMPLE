@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const teams = [
-  {name: "Acción Popular", logo: "../imagenes/image1.png"},
+  {name: "Acción Popular", logo: "../imagenes/image1.png", infoPage: "accion-popular.html"},
   {name: "Fuerza Popular", logo: "../imagenes/image2.png"},
   {name: "Partido de los Trabajadores y Emprendedores (PTE-Perú)", logo: "../imagenes/image3.png"},
   {name: "Ahora Nación - AN", logo: "../imagenes/image4.png"},
@@ -49,29 +49,42 @@ const teams = [
 // Contenedor donde se insertarán las tarjetas
 const cardsContainer = document.querySelector(".cards");
 
-// Crear tarjetas dinámicamente
+// Crear tarjetas con redirección
 teams.forEach((team, index) => {
   const li = document.createElement("li");
-  li.id = `card-${index}`; // Asignar un ID único
+  li.id = `card-${index}`;
   li.innerHTML = `<img src="${team.logo}" alt="${team.name}" /><p>${team.name}</p>`;
+  li.style.cursor = "pointer";
+
+  li.addEventListener("click", () => {
+    if (team.infoPage) {
+      window.location.href = team.infoPage;
+    }
+  });
+
   cardsContainer.appendChild(li);
 });
 
-// Variables globales
 let currentIndex = 0;
-const totalCards = teams.length * 2;
+const totalCards = teams.length;
 const cards = gsap.utils.toArray(".cards li");
 
-// Función para actualizar la tarjeta centrada
 function updateActiveCard() {
   gsap.to(cards, {
-    x: (i) => ((i - currentIndex) % totalCards) * 300,
+    x: (i) => {
+      let diff = (i - currentIndex + totalCards) % totalCards;
+      if (diff > totalCards / 2) diff -= totalCards;
+      return diff * 300;
+    },
     duration: 0.5,
     ease: "power1.inOut",
   });
 
   cards.forEach((card, i) => {
-    const distance = Math.abs(i - currentIndex);
+    const distance = Math.min(
+      Math.abs(i - currentIndex),
+      totalCards - Math.abs(i - currentIndex)
+    );
     gsap.set(card, {
       opacity: 1 - distance * 0.3,
       scale: 1 - distance * 0.2,
@@ -79,41 +92,35 @@ function updateActiveCard() {
   });
 }
 
-// Función para navegar
 function navigate(direction) {
-  currentIndex += direction;
-
-  if (currentIndex >= totalCards) {
-    currentIndex = 0;
-  } else if (currentIndex < 0) {
-    currentIndex = totalCards - 1;
-  }
-
+  currentIndex = (currentIndex + direction + totalCards) % totalCards;
   updateActiveCard();
 }
 
-// Event listeners para los botones "Anterior" y "Siguiente"
-document.querySelector(".next").addEventListener("click", () => navigate(1));
-document.querySelector(".prev").addEventListener("click", () => navigate(-1));
+document.querySelector(".next").addEventListener("click", (e) => {
+  e.stopPropagation();
+  navigate(1);
+});
+document.querySelector(".prev").addEventListener("click", (e) => {
+  e.stopPropagation();
+  navigate(-1);
+});
 
-// Crear opciones del menú desplegable
+// Menú desplegable
 const partySelect = document.getElementById("party-select");
-
 teams.forEach((team, index) => {
   const option = document.createElement("option");
-  option.value = index; // Valor único para cada opción
-  option.textContent = team.name; // Nombre del partido
+  option.value = index;
+  option.textContent = team.name;
   partySelect.appendChild(option);
 });
 
-// Agregar un evento para manejar la selección
 partySelect.addEventListener("change", (event) => {
-  const selectedIndex = event.target.value; // Índice seleccionado
-  if (selectedIndex !== "") {
-    currentIndex = parseInt(selectedIndex); // Actualizar el índice actual
-    updateActiveCard(); // Centrar la tarjeta correspondiente
+  const selectedIndex = parseInt(event.target.value);
+  if (!isNaN(selectedIndex)) {
+    currentIndex = selectedIndex;
+    updateActiveCard();
   }
 });
 
-// Inicializar la tarjeta activa al cargar la página
 updateActiveCard();
