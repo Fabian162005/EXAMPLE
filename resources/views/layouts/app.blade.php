@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias</title>
+    <title>GP CANAL</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,6 +13,10 @@
 
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- candidatos -->
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
+	<link rel="stylesheet" href="{{ asset('css/candidatos.css') }}"> <!--candidatos-->
 
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
@@ -38,9 +42,48 @@
     <div class="navbar-content">
         <!-- Barra de navegación -->
         <div class="navbar-menu">
+
+            <!-- Acceso Admin para invitados -->
+            @guest
             <div class="nav-item nav-submenu">
                 <i class="fas fa-lock" style="font-size: 14px; margin-right: 8px; vertical-align: middle;"></i>
+                <div class="admin-submenu">
+                    <div class="login-form">
+                        <h4>Acceso Admin</h4>
+                        <input type="text" id="admin-user" placeholder="Usuario">
+                        <input type="password" id="admin-pass" placeholder="Contraseña">
+                        <button id="admin-login">Ingresar</button>
+                        <div class="login-message"></div>
+                    </div>
+                </div>
             </div>
+            @endguest
+
+            <!-- Acceso Admin para usuarios autenticados y con rol de admin -->
+            @auth
+                @if(auth()->user()->is_admin)
+                    <div class="nav-item nav-submenu" id="admin-toggle">
+                        <i class="fas fa-lock" style="font-size: 14px; margin-right: 8px;"></i>
+                        <div class="admin-submenu">
+                            <div class="admin-actions">
+                                <a href="{{ route('admin.news.index') }}" class="admin-link">
+                                    <i class="fas fa-newspaper"></i> Noticias
+                                </a>
+                                <a href="{{ route('admin.videos.index') }}" class="admin-link">
+                                    <i class="fas fa-video"></i> Videos
+                                </a>
+                                <form action="{{ route('admin.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="admin-logout">
+                                        <i class="fas fa-sign-out-alt"></i> Salir
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endauth
+
             <div class="nav-item nav-envivo">Videos</div>
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
@@ -52,14 +95,16 @@
                 </a>
             </div>
             
-            <div class="nav-item nav-contacto">Contáctanos</div>
+            <div class="nav-item nav-contacto">Partidos Politicos</div>
+
             <!-- Botón de búsqueda estilizado -->
             <button id="search-icon" class="search-button">
-                <i class="fas fa-search"></i> <!-- Ícono de lupa -->
+                <i class="fas fa-search"></i>
             </button>
         </div>
     </div>
 </div>
+
 
 <!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
 <div id="search-container" class="search-container">
@@ -104,7 +149,7 @@
             <!-- Noticia 1 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image1.jpg" alt="Noticia 1" class="news-img">
+                    <img src="images/noticia1.jpg" alt="Noticia 1" class="news-img">
                     <div class="news-badge">Nuevo</div>
                 </div>
                 <div class="news-content">
@@ -117,7 +162,7 @@
             <!-- Noticia 2 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image2.jpg" alt="Noticia 2" class="news-img">
+                    <img src="images/noticia2.jpg" alt="Noticia 2" class="news-img">
                     <div class="news-badge trending">Trending</div>
                 </div>
                 <div class="news-content">
@@ -130,7 +175,7 @@
             <!-- Noticia 3 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image3.jpg" alt="Noticia 3" class="news-img">
+                    <img src="images/noticia3.jpg" alt="Noticia 3" class="news-img">
                 </div>
                 <div class="news-content">
                     <h3>Título de Noticia 3</h3>
@@ -142,7 +187,7 @@
             <!-- Noticia 4 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image4.jpg" alt="Noticia 4" class="news-img">
+                    <img src="images/noticia4.jpg" alt="Noticia 4" class="news-img">
                 </div>
                 <div class="news-content">
                     <h3>Título de Noticia 4</h3>
@@ -154,7 +199,7 @@
             <!-- Noticia 5 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image5.jpg" alt="Noticia 5" class="news-img">
+                    <img src="images/noticia5.jpg" alt="Noticia 5" class="news-img">
                     <div class="news-badge hot">Hot</div>
                 </div>
                 <div class="news-content">
@@ -167,7 +212,7 @@
             <!-- Noticia 6 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image6.jpg" alt="Noticia 6" class="news-img">
+                    <img src="images/noticia6.jpg" alt="Noticia 6" class="news-img">
                 </div>
                 <div class="news-content">
                     <h3>Título de Noticia 6</h3>
@@ -176,10 +221,7 @@
                 </div>
             </div>
         </div>
-        
-        <div class="view-all-container">
-            <button class="btn-3d view-all-btn">Ver más noticias</button>
-        </div>
+
     </section>
 <!-- Sección Encuestas -->
     <section class="polls-section-3d">
@@ -265,6 +307,33 @@
             </div>
         </div>
     </section>
+
+<!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Nueva sección: Partidos Políticos -->
+<section id="partidos-politicos">
+        <div class="title-container">
+            <h1 class="title">Partidos Políticos</h1>
+            <div class="dynamic-line"></div>
+        </div>
+
+        <div class="buscador">
+        <label for="party-select">Buscar partido:</label>
+            <select id="party-select">
+                <option value="" disabled selected>Selecciona un partido</option>
+                <!-- Opciones generadas dinámicamente -->
+            </select>
+        </div>
+
+        <div class="gallery">
+            <ul class="cards">
+                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
+            </ul>
+            <div class="actions">
+                <button class="prev">Anterior</button>
+                <button class="next">Siguiente</button>
+            </div>
+        </div>
+    </section>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 
@@ -300,10 +369,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
- 
+
     <!-- Scripts al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
     <script src="{{ asset('js/hexocet.js') }}"></script>
     <script src="{{ asset('js/scroll-efect.js') }}"></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/candidatos.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/functions.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/noticias.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/admin.js') }}"></script> <!--candidatos-->
+
+
 </body>
 </html>
