@@ -1,3 +1,4 @@
+//candidatos
 gsap.registerPlugin(ScrollTrigger);
 
 const teams = [

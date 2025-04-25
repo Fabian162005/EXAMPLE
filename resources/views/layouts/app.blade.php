@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- candidatos -->
-    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css">
-	<link rel="stylesheet" href="{{ asset('css/candidatos.css') }}">
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
+	<link rel="stylesheet" href="{{ asset('css/candidatos.css') }}"> <!--candidatos-->
 
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
@@ -331,7 +331,7 @@
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
     <script src="{{ asset('js/hexocet.js') }}"></script>
     <script src="{{ asset('js/scroll-efect.js') }}"></script>
-    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
-    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
-    <script type="module" src="{{ asset('js/candidatos.js') }}"></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/candidatos.js') }}"></script> <!--candidatos-->
 </html>
