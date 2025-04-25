@@ -226,6 +226,54 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/*APARTADO LOGINADMIN NAVBAR*/
+.admin-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 15px;
+    width: 250px;
+    z-index: 1100;
+    display: none;
+}
+
+.nav-submenu:hover .admin-submenu {
+    display: block;
+}
+
+.login-form, .admin-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-form input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.login-form button, .admin-link, #admin-logout {
+    padding: 8px 12px;
+    background: #3B83BD;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.login-message {
+    font-size: 12px;
+    color: #ff0000;
+    min-height: 16px;
+}
+
+
 /* 🎨 Estilo de los elementos del navbar */
 .navbar-menu {
     display: flex;
@@ -280,21 +328,26 @@
 .nav-item.nav-envivo {
     position: absolute;
     left: 12%;
+    top: 1px;
 }
 
 .nav-item.nav-noticias {
     position: absolute;
     left: 24.8%;
+    top: 1px;
+
 }
 
 .nav-item.nav-encuestas {
     position: absolute;
     left: 37.5%;
+    top: 1px;
 }
 
 .nav-item.nav-contacto {
     position: absolute;
     left: 54.5%; /* Ajusta este valor según necesites */
+    top: 1px;
 }
 
 /* 📱 Ajustes para pantallas pequeñas */
