@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias</title>
+    <title>GP CANAL</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <script src="{{ asset('resources\js\app.js') }}"></script>
-    <!-- Agrega FontAwesome para iconos -->
+
+    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-</head>
+    <!-- candidatos -->
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
+	<link rel="stylesheet" href="{{ asset('css/candidatos.css') }}"> <!--candidatos-->
 
+    <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
+    <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
 </head>
 <body>
+<!-- En tu HTML (justo después de <body>) -->
+<div class="fullpage-background"></div>
+
+    <div id="particles-js"></div>
+
 <!-- Redes sociales arriba del navbar -->
 <div class="social-icons">
     <a href="https://www.facebook.com/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
@@ -23,25 +36,70 @@
     <a href="https://www.twitch.tv/" target="_blank" class="twitch"><i class="fab fa-twitch"></i></a>
 </div>
 
-
 <!-- Navbar Fijo -->
+<div class="navbar-blur-background"></div>
 <div class="navbar-container">
     <div class="navbar-content">
         <!-- Barra de navegación -->
         <div class="navbar-menu">
+
+            <!-- Acceso Admin para invitados -->
+            @guest
+            <div class="nav-item nav-submenu">
+                <i class="fas fa-lock" style="font-size: 14px; margin-right: 8px; vertical-align: middle;"></i>
+                <div class="admin-submenu">
+                    <div class="login-form">
+                        <h4>Acceso Admin</h4>
+                        <input type="text" id="admin-user" placeholder="Usuario">
+                        <input type="password" id="admin-pass" placeholder="Contraseña">
+                        <button id="admin-login">Ingresar</button>
+                        <div class="login-message"></div>
+                    </div>
+                </div>
+            </div>
+            @endguest
+
+            <!-- Acceso Admin para usuarios autenticados y con rol de admin -->
+            @auth
+                @if(auth()->user()->is_admin)
+                    <div class="nav-item nav-submenu" id="admin-toggle">
+                        <i class="fas fa-lock" style="font-size: 14px; margin-right: 8px;"></i>
+                        <div class="admin-submenu">
+                            <div class="admin-actions">
+                                <a href="{{ route('admin.news.index') }}" class="admin-link">
+                                    <i class="fas fa-newspaper"></i> Noticias
+                                </a>
+                                <a href="{{ route('admin.videos.index') }}" class="admin-link">
+                                    <i class="fas fa-video"></i> Videos
+                                </a>
+                                <form action="{{ route('admin.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="admin-logout">
+                                        <i class="fas fa-sign-out-alt"></i> Salir
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endauth
+
+            <div class="nav-item nav-envivo">Videos</div>
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
 
-            <!-- 🔥 Logo en medio -->
+            <!-- Logo en medio -->
             <div class="logo-container">
                 <a href="/">
-                    <img src="{{ asset('storage/images/logogpcanal.jpg') }}" alt="Logo">
+                    <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo GP Canal" class="navbar-logo">
                 </a>
             </div>
-            <div class="nav-item nav-contacto">Contáctanos</div>
+            
+            <div class="nav-item nav-contacto">Partidos Politicos</div>
+
             <!-- Botón de búsqueda estilizado -->
             <button id="search-icon" class="search-button">
-                <i class="fas fa-search"></i> <!-- Ícono de lupa -->
+                <i class="fas fa-search"></i>
             </button>
         </div>
     </div>
@@ -53,184 +111,232 @@
     <input type="text" class="search-input" placeholder="Buscar...">
     <button class="search-button">🔍</button>
 </div>
-<script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("search-icon").addEventListener("click", function () {
-                let searchContainer = document.getElementById("search-container");
-                if (searchContainer.style.display === "flex") {
-                    searchContainer.style.display = "none";
-                } else {
-                    searchContainer.style.display = "flex";
-                }
-            });
-        });
-    </script>
 
+<!-- Espaciado fijo para el contenido principal -->
+<div class="main-content-spacer" style="height: 140px;"></div>
 
-<!-- Espaciado para que el contenido no quede oculto debajo del navbar -->
-<div style="height: 140px;"></div>
-
+<!-- Contenido principal -->
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
-            <!-- Contenedor del Slider con Fondo -->
-            <div style="width: 100%; height: 250px; display: flex; justify-content: center; margin-top: 5px; position: relative;">
-                <div style="width: 90%; max-width: 1200px; padding: 15px; background: rgba(84, 84, 84, 0.2); border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); position: relative;">
-                        <!-- Slider -->
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="{{ asset('storage/images/485055934_963133949339637_6587303526016761817_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 1">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('storage/images/480487921_945020837817615_6087008265131444593_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 2">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="{{ asset('storage/images/487180354_968403768812655_384319847441050549_n.jpg') }}" class="d-block w-100 custom-slider-img" alt="Slide 3">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100 custom-slider-img" alt="Slide 4">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://via.placeholder.com/1200x400" class="d-block w-100 custom-slider-img" alt="Slide 5">
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-                <!-- Botón Anterior -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
 
-                <!-- Botón Siguiente -->
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
+<div class="slider-container-3d">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="storage/images/485055934_963133949339637_6587303526016761817_n.jpg" class="d-block w-100" alt="Noticia 1">
             </div>
+            <div class="carousel-item">
+                <img src="storage/images/480487921_945020837817615_6087008265131444593_n.jpg" class="d-block w-100" alt="Noticia 2">
+            </div>
+            <div class="carousel-item">
+                <img src="storage/images/487180354_968403768812655_384319847441050549_n.jpg" class="d-block w-100" alt="Noticia 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
     </div>
 </div>
-       <!-- Sección Noticias -->
-            <section id="noticias" class="content-section">
-                <div class="section-box">
-                    <h2 class="titulonoticias">Noticias</h2>
-
-                <!-- Botón para buscar noticias -->
-                <div class="search-news-container">
-                    <a href="{{ route('noticias') }}" class="search-button">Buscar noticias 🔍</a>
+<!-- Sección Noticias -->
+<section class="news-section-3d">
+        <div class="section-header-3d">
+            <h2>Noticias</h2>
+            <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
+        
+        <div class="news-grid-3d">
+            <!-- Noticia 1 -->
+            <div class="news-card-3d">
+                <div class="news-img-container">
+                    <img src="images/noticia1.jpg" alt="Noticia 1" class="news-img">
+                    <div class="news-badge">Nuevo</div>
                 </div>
-
-                <div class="news-grid">
-                    <div class="news-item">
-                    <img src="{{ asset('images/image1.jpg') }}" alt="Noticia 1">
-                        <p>Descripción de la noticia 1. Aquí puedes una descripción breve de la noticia.</p>
-                    </div>
-                    <div class="news-item">
-                        <img src="{{ asset('images/image2.jpg') }}" alt="Noticia 2">
-                        <p>Descripción de la noticia 2. Este es otro resumen o descripción de la noticia.</p>
-                    </div>
-                    <div class="news-item">
-                        <img src="{{ asset('images/image3.jpg') }}" alt="Noticia 3">
-                        <p>Descripción de la noticia 3. Añade aquí la información relevante sobre la noticia.</p>
-                    </div>
-                    <div class="news-item">
-                        <img src="{{ asset('images/image4.jpg') }}" alt="Noticia 4">
-                        <p>Descripción de la noticia 4. Proporciona detalles adicionales sobre esta noticia.</p>
-                    </div>
-                    <div class="news-item">
-                        <img src="{{ asset('images/image5.jpg') }}" alt="Noticia 5">
-                        <p>Descripción de la noticia 5. Aquí puedes una descripción breve de la noticia.</p>
-                    </div>
-                    <div class="news-item">
-                        <img src="{{ asset('images/image6.jpg') }}" alt="Noticia 6">
-                        <p>Descripción de la noticia 6. Este es otro resumen o descripción de la noticia.</p>
-                    </div>
-                </div>
-                <!-- Botón para ver más noticias -->
-                <div class="view-more-container" style="display: flex; justify-content: center; margin-top: 15px;">
-                    <button class="view-more-button">Ver más</button>
+                <div class="news-content">
+                    <h3>Título de Noticia 1</h3>
+                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-        </section>
+            
+            <!-- Noticia 2 -->
+            <div class="news-card-3d">
+                <div class="news-img-container">
+                    <img src="images/noticia2.jpg" alt="Noticia 2" class="news-img">
+                    <div class="news-badge trending">Trending</div>
+                </div>
+                <div class="news-content">
+                    <h3>Título de Noticia 2</h3>
+                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Noticia 3 -->
+            <div class="news-card-3d">
+                <div class="news-img-container">
+                    <img src="images/noticia3.jpg" alt="Noticia 3" class="news-img">
+                </div>
+                <div class="news-content">
+                    <h3>Título de Noticia 3</h3>
+                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Noticia 4 -->
+            <div class="news-card-3d">
+                <div class="news-img-container">
+                    <img src="images/noticia4.jpg" alt="Noticia 4" class="news-img">
+                </div>
+                <div class="news-content">
+                    <h3>Título de Noticia 4</h3>
+                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Noticia 5 -->
+            <div class="news-card-3d">
+                <div class="news-img-container">
+                    <img src="images/noticia5.jpg" alt="Noticia 5" class="news-img">
+                    <div class="news-badge hot">Hot</div>
+                </div>
+                <div class="news-content">
+                    <h3>Título de Noticia 5</h3>
+                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Noticia 6 -->
+            <div class="news-card-3d">
+                <div class="news-img-container">
+                    <img src="images/noticia6.jpg" alt="Noticia 6" class="news-img">
+                </div>
+                <div class="news-content">
+                    <h3>Título de Noticia 6</h3>
+                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
 
-    
-<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
+    </section>
 <!-- Sección Encuestas -->
-<section id="encuestas" class="encuestas-section">
-    <h2 class="section-header" role="button" tabindex="0" aria-expanded="false" onclick="toggleEncuestas()">
-        Encuestas
-        <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-        </svg>
-    </h2>
-    
-    <div id="encuestas-container" class="encuestas-grid hidden">
-        <!-- Tarjeta Presidenciales -->
-        <article class="encuesta-card">
-            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('presidenciales')">
-                <h3 class="card-title">Encuestas Presidenciales</h3>
-                <span class="toggle-arrow">▼</span>
+    <section class="polls-section-3d">
+        <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
+        
+        <div class="polls-container-3d">
+            <!-- Encuesta 1 -->
+            <div class="poll-card-3d">
+                <div class="poll-header">
+                    <h3>Encuestas Presidenciales</h3>
+                    <div class="poll-toggle" data-target="presidential-polls">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
+                <div class="poll-content" id="presidential-polls">
+                    <a href="{{ url('encuestas/lima') }}" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-city"></i></div>
+                        <div class="poll-info">
+                            <h4>Lima</h4>
+                            <p>Última encuesta: 15 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/chiclayo.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-umbrella-beach"></i></div>
+                        <div class="poll-info">
+                            <h4>Chiclayo</h4>
+                            <p>Última encuesta: 12 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/piura.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-sun"></i></div>
+                        <div class="poll-info">
+                            <h4>Piura</h4>
+                            <p>Última encuesta: 10 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
             </div>
-            <ul id="presidenciales" class="card-list hidden">
-                <li class="card-item"><a href="{{ url('/encuestas/lima') }}" class="card-link">Lima</a></li>
-                <li class="card-item"><a href="{{ url('/encuestas/chiclayo') }}" class="card-link">Chiclayo</a></li>
-                <li class="card-item"><a href="{{ url('/encuestas/piura') }}" class="card-link">Piura</a></li>
-            </ul>
-        </article>
-
-        <!-- Tarjeta Piura -->
-        <article class="encuesta-card">
-            <div class="card-header" role="button" aria-expanded="false" onclick="toggleList('piura')">
-                <h3 class="card-title">Encuestas Piura</h3>
-                <span class="toggle-arrow">▼</span>
+            
+            <!-- Encuesta 2 -->
+            <div class="poll-card-3d">
+                <div class="poll-header">
+                    <h3>Encuestas Regionales</h3>
+                    <div class="poll-toggle" data-target="regional-polls">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
+                <div class="poll-content" id="regional-polls">
+                    <a href="encuestas/morropon.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-mountain"></i></div>
+                        <div class="poll-info">
+                            <h4>Piura</h4>
+                            <p>Última encuesta: 8 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/castilla.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-archway"></i></div>
+                        <div class="poll-info">
+                            <h4>Castilla</h4>
+                            <p>Última encuesta: 5 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/plura2.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-water"></i></div>
+                        <div class="poll-info">
+                            <h4>Morropon</h4>
+                            <p>Última encuesta: 3 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
             </div>
-            <ul id="piura" class="card-list hidden">
-                <li class="card-item"><a href="{{ url('/encuestas/morropon') }}" class="card-link">Morropón</a></li>
-                <li class="card-item"><a href="{{ url('/encuestas/castilla') }}" class="card-link">Castilla</a></li>
-                <li class="card-item"><a href="{{ url('/encuestas/plura2') }}" class="card-link">Plura2</a></li>
+        </div>
+    </section>
+
+<!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Nueva sección: Partidos Políticos -->
+<section id="partidos-politicos">
+        <div class="title-container">
+            <h1 class="title">Partidos Políticos</h1>
+            <div class="dynamic-line"></div>
+        </div>
+
+        <div class="buscador">
+        <label for="party-select">Buscar partido:</label>
+            <select id="party-select">
+                <option value="" disabled selected>Selecciona un partido</option>
+                <!-- Opciones generadas dinámicamente -->
+            </select>
+        </div>
+
+        <div class="gallery">
+            <ul class="cards">
+                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
             </ul>
-        </article>
-    </div>
-</section>
-
-<script>
-// Toggle sección principal
-function toggleEncuestas() {
-    const container = document.getElementById("encuestas-container");
-    const header = document.querySelector(".section-header");
-    const icon = document.querySelector(".toggle-icon");
-    
-    container.classList.toggle("hidden");
-    container.classList.toggle("show");
-    icon.classList.toggle("rotate-180");
-    header.setAttribute("aria-expanded", container.classList.contains("show"));
-}
-
-// Toggle listas individuales
-function toggleList(id) {
-    const list = document.getElementById(id);
-    const arrow = list.previousElementSibling.querySelector(".toggle-arrow");
-    
-    list.classList.toggle("hidden");
-    list.classList.toggle("show");
-    arrow.classList.toggle("rotate-180");
-    list.parentElement.setAttribute("aria-expanded", list.classList.contains("show"));
-}
-
-// Cerrar al hacer click fuera (opcional)
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.encuesta-card') && !e.target.closest('.section-header')) {
-        document.getElementById("encuestas-container").classList.add("hidden");
-        document.querySelector(".toggle-icon").classList.remove("rotate-180");
-    }
-});
-</script>
-
-
-
+            <div class="actions">
+                <button class="prev">Anterior</button>
+                <button class="next">Siguiente</button>
+            </div>
+        </div>
+    </section>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
-        <section id="contacto" class="contacto-3d">
+<section id="contacto" class="contacto-3d">
   <div class="container">
     <div class="card-3d">
       <!-- Contacto -->
@@ -247,18 +353,32 @@ document.addEventListener('click', (e) => {
         <h3>🌐 Síguenos</h3>
         <div class="redes">
           <a href="#" class="bi bi-facebook" title="Facebook"></a>
+          <a href="#" class="bi bi-youtube" title="Youtube"></a>
           <a href="#" class="bi bi-instagram" title="Instagram"></a>
           <a href="#" class="bi bi-twitter" title="Twitter"></a>
-          <a href="#" class="bi bi-linkedin" title="LinkedIn"></a>
+          <a href="#" class="bi bi-twitch" title="Twitch"></a>
         </div>
       </div>
     </div>
   </div>
 </section>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Scripts al final del body -->
+    <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
+    <script src="{{ asset('js/hexocet.js') }}"></script>
+    <script src="{{ asset('js/scroll-efect.js') }}"></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/candidatos.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/functions.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/noticias.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/admin.js') }}"></script> <!--candidatos-->
+
+
 </body>
 </html>
