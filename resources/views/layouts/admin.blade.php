@@ -308,6 +308,32 @@
     </section>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
+<!-- Nueva sección: Partidos Políticos -->
+<section id="partidos-politicos">
+        <div class="title-container">
+            <h1 class="title">Partidos Políticos</h1>
+            <div class="dynamic-line"></div>
+        </div>
+
+        <div class="buscador">
+        <label for="party-select">Buscar partido:</label>
+            <select id="party-select">
+                <option value="" disabled selected>Selecciona un partido</option>
+                <!-- Opciones generadas dinámicamente -->
+            </select>
+        </div>
+
+        <div class="gallery">
+            <ul class="cards">
+                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
+            </ul>
+            <div class="actions">
+                <button class="prev">Anterior</button>
+                <button class="next">Siguiente</button>
+            </div>
+        </div>
+    </section>
+
 <section id="contacto" class="contacto-3d">
   <div class="container">
   <button class="btn btn-warning btn-sm">Editar</button>
