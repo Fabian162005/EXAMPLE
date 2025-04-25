@@ -10,11 +10,13 @@
 
     <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/candidatos.css') }}">
-
 
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- candidatos -->
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
+	<link rel="stylesheet" href="{{ asset('css/candidatos.css') }}"> <!--candidatos-->
 
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
@@ -307,7 +309,31 @@
     </section>
 
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Nueva sección: Partidos Políticos -->
+<section id="partidos-politicos">
+        <div class="title-container">
+            <h1 class="title">Partidos Políticos</h1>
+            <div class="dynamic-line"></div>
+        </div>
 
+        <div class="buscador">
+        <label for="party-select">Buscar partido:</label>
+            <select id="party-select">
+                <option value="" disabled selected>Selecciona un partido</option>
+                <!-- Opciones generadas dinámicamente -->
+            </select>
+        </div>
+
+        <div class="gallery">
+            <ul class="cards">
+                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
+            </ul>
+            <div class="actions">
+                <button class="prev">Anterior</button>
+                <button class="next">Siguiente</button>
+            </div>
+        </div>
+    </section>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <section id="contacto" class="contacto-3d">
@@ -340,13 +366,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
- 
+
     <!-- Scripts al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
     <script src="{{ asset('js/hexocet.js') }}"></script>
-    <script src="{{ asset('js/functions.js') }}"></script>
-    <script src="{{ asset('js/admin.js') }}"></script>
-    <script src="{{ asset('js/candidatos.js') }}"></script>
+    <script src="{{ asset('js/scroll-efect.js') }}"></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/candidatos.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/functions.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/noticias.js') }}"></script> <!--candidatos-->
+    <script type="module" src="{{ asset('js/admin.js') }}"></script> <!--candidatos-->
 
 
 </body>
