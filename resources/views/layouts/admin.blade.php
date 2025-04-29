@@ -14,6 +14,11 @@
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- candidatos -->
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
+	<link rel="stylesheet" href="{{ asset('css/candidatos.css') }}"> <!--candidatos-->
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
 </head>
@@ -90,7 +95,7 @@
                     <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo GP Canal" class="navbar-logo">
                 </a>
             </div>
-            
+
             <div class="nav-item nav-contacto">Partidos Politicos</div>
 
             <!-- Botón de búsqueda estilizado -->
@@ -157,7 +162,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 2 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -170,7 +175,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 3 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -182,7 +187,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 4 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -194,7 +199,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 5 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -207,7 +212,7 @@
                     <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            
+
             <!-- Noticia 6 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
@@ -235,7 +240,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-                
+
                 <div class="poll-content" id="presidential-polls">
                     <a href="{{ url('encuestas/lima') }}" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-city"></i></div>
@@ -245,7 +250,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/chiclayo.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-umbrella-beach"></i></div>
                         <div class="poll-info">
@@ -254,7 +259,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/piura.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-sun"></i></div>
                         <div class="poll-info">
@@ -265,7 +270,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <!-- Encuesta 2 -->
             <div class="poll-card-3d">
                 <div class="poll-header">
@@ -274,7 +279,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-                
+
                 <div class="poll-content" id="regional-polls">
                     <a href="encuestas/morropon.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-mountain"></i></div>
@@ -284,7 +289,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/castilla.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-archway"></i></div>
                         <div class="poll-info">
@@ -293,7 +298,7 @@
                         </div>
                         <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                     </a>
-                    
+
                     <a href="encuestas/plura2.html" class="poll-item">
                         <div class="poll-icon"><i class="fas fa-water"></i></div>
                         <div class="poll-info">
@@ -307,32 +312,68 @@
         </div>
     </section>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
-
-<!-- Nueva sección: Partidos Políticos -->
 <section id="partidos-politicos">
-        <div class="title-container">
-            <h1 class="title">Partidos Políticos</h1>
-            <div class="dynamic-line"></div>
-        </div>
+    <div class="title-container">
+        <h1 class="title">Partidos Políticos</h1>
+        <div class="dynamic-line"></div>
+    </div>
 
-        <div class="buscador">
+    <div class="buscador">
+        <button class="btn btn-warning btn-sm" id="edit-button">Editar</button>
+        <button class="btn btn-danger btn-sm" id="delete-button">Eliminar</button>
+        <button class="btn btn-success btn-sm" id="create-button">Crear Partido</button>
         <label for="party-select">Buscar partido:</label>
-            <select id="party-select">
-                <option value="" disabled selected>Selecciona un partido</option>
-                <!-- Opciones generadas dinámicamente -->
-            </select>
-        </div>
+        <select id="party-select">
+            <option value="" disabled selected>Selecciona un partido</option>
+            <!-- Opciones generadas dinámicamente -->
+        </select>
+    </div>
 
-        <div class="gallery">
-            <ul class="cards">
-                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
-            </ul>
-            <div class="actions">
-                <button class="prev">Anterior</button>
-                <button class="next">Siguiente</button>
-            </div>
+    <div class="gallery">
+        <ul class="cards">
+            <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
+        </ul>
+        <div class="actions">
+            <button class="prev">Anterior</button>
+            <button class="next">Siguiente</button>
         </div>
-    </section>
+    </div>
+
+    <!-- Modal para editar -->
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Partido</h2>
+            <form id="edit-form">
+                <label for="edit-name">Nombre del Partido:</label>
+                <input type="text" id="edit-name" name="edit-name" required />
+
+                <label for="edit-logo">Nuevo Logo:</label>
+                <input type="file" id="edit-logo" name="edit-logo" accept="image/*" />
+
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para crear -->
+    <div id="create-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Crear Partido</h2>
+            <form id="create-form">
+                <label for="create-name">Nombre del Partido:</label>
+                <input type="text" id="create-name" name="create-name" required />
+
+                <label for="create-logo">Logo:</label>
+                <input type="file" id="create-logo" name="create-logo" accept="image/*" required />
+
+                <button type="submit" class="btn btn-primary">Crear Partido</button>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <section id="contacto" class="contacto-3d">
   <div class="container">
@@ -346,7 +387,7 @@
         <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
         <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 9am - 6pm</p>
       </div>
-      
+
       <!-- Redes -->
       <div class="columna">
         <h3>🌐 Síguenos</h3>
@@ -365,12 +406,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
- 
+
     <!-- Scripts al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
     <script src="{{ asset('js/hexocet.js') }}"></script>
     <script src="{{ asset('js/functions.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="{{ asset('js/admin-partidos.js') }}"></script>
 
 </body>
 </html>
