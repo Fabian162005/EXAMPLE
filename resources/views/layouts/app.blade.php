@@ -310,31 +310,165 @@
 
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
+<!-- Nueva sección: Partidos Políticos -->
 <section id="partidos-politicos">
-        <div class="title-container">
-            <h1 class="title">Partidos Políticos</h1>
-            <div class="dynamic-line"></div>
-        </div>
+    <div class="title-container">
+        <h1 class="title">Partidos Políticos</h1>
+        <div class="dynamic-line"></div>
+    </div>
 
-        <div class="buscador">
+    <div class="buscador">
         <label for="party-select">Buscar partido:</label>
-            <select id="party-select">
-                <option value="" disabled selected>Selecciona un partido</option>
+        <div class="custom-select">
+            <input type="text" id="party-input" placeholder="Escribe para buscar..." autocomplete="off">
+            <select id="party-select" size="5" style="display:none;">
                 <!-- Opciones generadas dinámicamente -->
             </select>
         </div>
+    </div>
 
-        <div class="gallery">
-            <ul class="cards">
-                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
-            </ul>
-            <div class="actions">
-                <button class="prev">Anterior</button>
-                <button class="next">Siguiente</button>
-            </div>
+    <div class="gallery">
+        <ul class="cards">
+            <!-- Las tarjetas de los partidos se insertarán aquí mediante JavaScript -->
+        </ul>
+        <div class="actions">
+            <button class="prev">Anterior</button>
+            <button class="next">Siguiente</button>
         </div>
-    </section>
-<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+    </div>
+</section>
+
+<script>
+    // Lista completa de partidos
+    const partidos = [
+        'Acción Popular',
+        'Fuerza Popular', 
+        'PTE Perú',
+        'Ahora Nación AN',
+        'Juntos por el Perú',
+        'Partido del Buen Gobierno',
+        'Alianza para el Progreso',
+        'Libertad Popular',
+        'Partido Demócrata Unido Perú',
+        'Avanza País - Partido de Integración Social',
+        'Nuevo Perú por el Buen Vivir',
+        'Partido Demócrata Verde',
+        'Batalla Perú',
+        'Partido Aprista Peruano',
+        'Partido Democrático Federal',
+        'Fe en el Perú',
+        'Partido Ciudadanos por el Perú',
+        'Partido Democrático Somos Perú',
+        'Frente Popular Agrícola FIA del Perú',
+        'Partido Cívico Obras',
+        'Partido Frente de la Esperanza 2021',
+        'Partido Morado',
+        'Partido Político Perú Acción',
+        'Perú Moderno',
+        'Partido País para Todos',
+        'Partido Político Perú Primero',
+        'Podemos Perú',
+        'Partido Patriótico del Perú',
+        'Partido Político Peruanos Unidos Somos Libres',
+        'Primero la Gente - Comunidad, Ecología, Libertad y Progreso',
+        'Partido Político Cooperación Popular',
+        'Partido Político Popular Voces del Pueblo',
+        'Partido Político PRIN',
+        'Progresemos',
+        'Partido Político Fuerza Moderna',
+        'Partido Popular Cristiano - PPC',
+        'Renovación Popular',
+        'Partido Político Integridad Democrática',
+        'Partido SICREO',
+        'Salvemos al Perú',
+        'Partido Político Nacional Perú Libre',
+        'Partido Unidad y Paz',
+        'Un Camino Diferente'
+    ];
+
+    // Mapeo de nombres a slugs (para las URLs)
+    const partidosSlugs = {
+        'Acción Popular': 'accion-popular',
+        'Fuerza Popular': 'fuerza-popular',
+        'PTE Perú': 'pte-peru',
+        // ... completar con todos los demás
+    };
+
+    // Elementos del DOM
+    const input = document.getElementById('party-input');
+    const select = document.getElementById('party-select');
+    
+    // Función para normalizar texto (búsqueda insensible)
+    function normalizeText(text) {
+        return text.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    // Función para filtrar partidos según el texto
+    function filtrarPartidos(texto) {
+        const normalized = normalizeText(texto);
+        return partidos.filter(partido => 
+            normalizeText(partido).includes(normalized)
+        );
+    }
+
+    // Función para mostrar opciones en el select
+    function mostrarOpciones(partidosFiltrados) {
+        select.innerHTML = '';
+        
+        if (partidosFiltrados.length === 0) {
+            select.style.display = 'none';
+            return;
+        }
+        
+        partidosFiltrados.forEach(partido => {
+            const option = document.createElement('option');
+            option.value = partidosSlugs[partido];
+            option.textContent = partido;
+            select.appendChild(option);
+        });
+        
+        select.style.display = 'block';
+        select.size = Math.min(5, partidosFiltrados.length);
+    }
+
+    // Evento al escribir en el input
+    input.addEventListener('input', function(e) {
+        const texto = e.target.value.trim();
+        const resultados = filtrarPartidos(texto);
+        mostrarOpciones(resultados);
+    });
+
+    // Evento al seleccionar una opción
+    select.addEventListener('change', function(e) {
+        input.value = select.options[select.selectedIndex].text;
+        select.style.display = 'none';
+        
+        // Redirigir a la página del partido seleccionado
+        const slug = e.target.value;
+        window.location.href = `/partidos/${slug}`;
+    });
+
+    // Ocultar el select al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        if (e.target !== input && e.target !== select) {
+            select.style.display = 'none';
+        }
+    });
+
+    // Mostrar todas las opciones al hacer focus
+    input.addEventListener('focus', function() {
+        mostrarOpciones(partidos);
+    });
+</script>
+
+
+//<!-- Fin de la sección de candidatos -->
+//<!--NOTA: Cree los archivos de "Partido1.blade.app",modifique el archivo de candidato.js y 
+//  cree el archivo candidatoControllers.php  -->
+
+//----------------------------------------------------------------------------------------------------------------------------------------->
 
 
 

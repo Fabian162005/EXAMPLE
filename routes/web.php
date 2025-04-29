@@ -6,13 +6,19 @@ use App\Http\Controllers\Admin\VideosController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
 
+//parte editada
+use App\Http\Controllers\PartidoController;
 
+Route::get('/partidos/{nombre}', [PartidoController::class, 'show'])
+    ->where('nombre', '[a-z\-]+')  // Permite letras minúsculas y guiones
+    ->name('partidos.detalle');
 Route::get('/', function () {
     return view('layouts.home');
 
 
-//RUTA DE LAS ENCUESTAS-----------------------------------------------------------------------------------------------------------------
 });
+//RUTA DE LAS ENCUESTAS-----------------------------------------------------------------------------------------------------------------
+
 Route::get('/encuestas/lima', function () {
     return view('encuestas.lima');
 });

@@ -2,9 +2,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const teams = [
-  {name: "Acción Popular", logo: "../imagenes/image1.png", infoPage: "accion-popular.html"},
-  {name: "Fuerza Popular", logo: "../imagenes/image2.png"},
-  {name: "Partido de los Trabajadores y Emprendedores (PTE-Perú)", logo: "../imagenes/image3.png"},
+  {name: "Acción Popular", filename: "accion-popular", logo: "../imagenes/image1.png"},
+  {name: "Fuerza Popular", filename: "fuerza-popular", logo: "../imagenes/image2.png"},
+  {name: "Partido de los Trabajadores y Emprendedores (PTE-Perú)", filename: "pte-peru", logo: "../imagenes/image3.png"},
   {name: "Ahora Nación - AN", logo: "../imagenes/image4.png"},
   {name: "Juntos por el Perú", logo: "../imagenes/image5.png"},
   {name: "Partido del buen Gobierno", logo: "../imagenes/image6.png"},
@@ -50,21 +50,36 @@ const teams = [
 // Contenedor donde se insertarán las tarjetas
 const cardsContainer = document.querySelector(".cards");
 
+// Modifica la función mostrarOpciones así:
+function mostrarOpciones(partidosFiltrados) {
+  select.innerHTML = '';
+  
+  if (partidosFiltrados.length === 0) {
+      select.style.display = 'none';
+      document.querySelector('.custom-select').classList.remove('has-results');
+      return;
+  }
+  
+  document.querySelector('.custom-select').classList.add('has-results');
+}
+
 // Crear tarjetas con redirección
 teams.forEach((team, index) => {
-  const li = document.createElement("li");
-  li.id = `card-${index}`;
-  li.innerHTML = `<img src="${team.logo}" alt="${team.name}" /><p>${team.name}</p>`;
-  li.style.cursor = "pointer";
+    const li = document.createElement("li");
+    li.id = `card-${index}`;
+    li.innerHTML = `<img src="${team.logo}" alt="${team.name}" /><p>${team.name}</p>`;
+    li.style.cursor = "pointer";
 
-  li.addEventListener("click", () => {
-    if (team.infoPage) {
-      window.location.href = team.infoPage;
-    }
-  });
-
-  cardsContainer.appendChild(li);
+// Evento click para redirección
+li.addEventListener("click", () => {
+  if (team.filename) {
+      window.location.href = `/partidos/${team.filename}`;
+  }
 });
+
+    cardsContainer.appendChild(li);
+});
+
 
 let currentIndex = 0;
 const totalCards = teams.length;
