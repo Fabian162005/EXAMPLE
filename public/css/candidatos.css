@@ -12,6 +12,20 @@ body {
   overflow-x: hidden;
 }
 
+.section-title-3dPP {
+  font-size: 45px;
+  font-weight: bold;
+  color: #000000; /* Negro para "Partidos" */
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.highlightPP {
+  color: #3498db; /* Azul para "Políticos" */
+}
+
+
 /* Title */
 .title-container {
   text-align: center;

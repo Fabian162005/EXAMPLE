@@ -69,7 +69,7 @@
                                 <a href="{{ route('admin.news.index') }}" class="admin-link">
                                     <i class="fas fa-newspaper"></i> Noticias
                                 </a>
-                                <a href="{{ route('admin.videos.index') }}" class="admin-link">
+                                <a href="{{ route('videos.index') }}" class="admin-link">
                                     <i class="fas fa-video"></i> Videos
                                 </a>
                                 <form action="{{ route('admin.logout') }}" method="POST">
@@ -84,7 +84,7 @@
                 @endif
             @endauth
 
-            <div class="nav-item nav-envivo">Videos</div>
+            <a href="{{ route('videos.index') }}" class="nav-item nav-videos">Videos</a>
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
 
@@ -95,7 +95,13 @@
                 </a>
             </div>
             
-            <div class="nav-item nav-contacto">Partidos Politicos</div>
+            <div class="nav-item nav-politicos">Partidos Politicos</div>
+            
+            <!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
+            <div id="search-container" class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar...">
+                <button class="search-button">🔍</button>
+            </div>
 
             <!-- Botón de búsqueda estilizado -->
             <button id="search-icon" class="search-button">
@@ -106,11 +112,7 @@
 </div>
 
 
-<!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
-<div id="search-container" class="search-container">
-    <input type="text" class="search-input" placeholder="Buscar...">
-    <button class="search-button">🔍</button>
-</div>
+
 
 <!-- Espaciado fijo para el contenido principal -->
 <div class="main-content-spacer" style="height: 140px;"></div>
@@ -143,8 +145,9 @@
 <section class="news-section-3d">
         <div class="section-header-3d">
             <h2>Noticias</h2>
-            <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
-        
+            <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Ver mas noticias <i class="fas fa-arrow-right"></i></a></div>
+            <a href="{{ url('noticias') }}" class="btn-3d search-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
+        </div>
         <div class="news-grid-3d">
             <!-- Noticia 1 -->
             <div class="news-card-3d">
@@ -310,9 +313,9 @@
 
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
-<section id="partidos-politicos">
+<section id="poll-partidos-politicos">
         <div class="title-container">
-            <h1 class="title">Partidos Políticos</h1>
+        <h2 class="section-title-3dPP">Partidos <span class="highlightPP">Politicos</span></h2>
             <div class="dynamic-line"></div>
         </div>
 
@@ -369,16 +372,16 @@
 
     <!-- Scripts al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
-    <script src="{{ asset('js/hexocet.js') }}"></script>
     <script src="{{ asset('js/scroll-efect.js') }}"></script>
-    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
-    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
-    <script type="module" src="{{ asset('js/candidatos.js') }}"></script> <!--candidatos-->
-    <script type="module" src="{{ asset('js/functions.js') }}"></script> <!--candidatos-->
-    <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> <!--candidatos-->
-    <script type="module" src="{{ asset('js/noticias.js') }}"></script> <!--candidatos-->
-    <script type="module" src="{{ asset('js/admin.js') }}"></script> <!--candidatos-->
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
+    <script type="module" src="{{ asset('js/candidatos.js') }}"></script> 
+    <script type="module" src="{{ asset('js/functions.js') }}"></script> 
+    <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
+    <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
+    <script type="module" src="{{ asset('js/admin.js') }}"></script> 
 
+    
 
 </body>
 </html>

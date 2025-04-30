@@ -8,11 +8,20 @@ use App\Http\Controllers\Admin\AdminController;
 
 
 Route::get('/', function () {
-    return view('layouts.home');
+    return view('layouts.app');  
+
+});
+
+
+//RUTA DE LOS VIDEOS-----------------------------------------------------------------------------------------------------------------
+
+Route::get('/videos', function () {
+    return view('videos.index');
+})->name('videos.index');
 
 
 //RUTA DE LAS ENCUESTAS-----------------------------------------------------------------------------------------------------------------
-});
+
 Route::get('/encuestas/lima', function () {
     return view('encuestas.lima');
 });
@@ -52,14 +61,26 @@ Route::get('/menunoticias', function () {
 //RUTAS CREADAS PARA ADMIN //
 // Rutas para autenticación y admin
 Route::prefix('admin')->group(function () {
-    // Esta ruta es para el dashboard, solo mostrará la vista
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    // Esta ruta es para la página principal del admin, cargará el archivo admin.blade.php
+    Route::get('/', function () {
+        return view('layouts.admin'); // Aquí se carga la vista admin.blade.php
+    })->name('admin.index'); // Ruta principal de admin
 
-    // Esta es la ruta para el login, sin autenticación real
+    // Ruta para el dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.a');
+
+    // Ruta para los videos del admin
+    Route::get('/videos', function () {
+        return view('admin.videos.index');
+    })->name('admin.videos.index');
+
+    // Ruta para el login
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
 });
+
 
 // Rutas de login y logout
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 Auth::routes();
+

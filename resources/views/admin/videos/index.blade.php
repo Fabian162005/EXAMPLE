@@ -12,7 +12,7 @@
     <!-- Sección Videos -->
     <section class="videos-section-3d">
         <div class="section-header-3d">
-        <a href="{{ route('layouts.app') }}" class="btn-back-home">Volver al Inicio</a>
+        <a href="{{ route('app') }}" class="btn-back-home">Volver al Inicio</a>
         <h2 class="section-title-3d">
                 <span class="highlight-blue">Videos</span> 
                 <span class="highlight-black">Destacados</span>

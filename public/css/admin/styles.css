@@ -1,20 +1,25 @@
+
 /* 📱 Responsive para móviles */
 @media (max-width: 768px) {
-    .search-container {
-        top: 12px;
-        right: 12px;
-        width: 90%;
-        flex-direction: column;
-        align-items: stretch;
+    body {
+        background-attachment: scroll; /* Mejor rendimiento en móviles */
+        background-size: auto 100%;
+    }
+    
+    body::before {
+        background: rgba(255, 255, 255, 0.92); /* Más opaco en móviles */
+    }
+}
+
+/* 📱 Responsive para móviles */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll; /* Mejor rendimiento en móviles */
+        background-size: auto 80%; /* Reducido un 20% */
     }
 
-    .search-input {
-        width: 100%;
-        font-size: 16px;
-    }
-
-    .search-button {
-        align-self: flex-end;
+    body::before {
+        background: rgba(255, 255, 255, 0.92); /* Más opaco en móviles */
     }
 }
 
@@ -106,6 +111,31 @@
         transform: translateY(-20px);
     }
 }
+
+.btn-volver-usuario {
+    display: block; /* Para que ocupe toda la línea */
+    width: 300px; /* Ancho grande para que lo veas fácil */
+    margin: 30px auto; /* Centrado horizontal y separación arriba/abajo */
+    padding: 20px 30px; /* Más grande en padding */
+    background-color: #3490dc; /* Color azul */
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 22px; /* Letra más grande */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Sombra para que resalte */
+}
+
+.btn-volver-usuario:hover {
+    background-color: #2779bd;
+    transform: scale(1.08);
+}
+
+
 
 /* 🔥 Facebook */
 .facebook {
@@ -279,7 +309,7 @@
 
 /* 🔹 Agregar padding a los elementos del navbar */
 .nav-item {
-    padding: 13px 5px; /* Reducido un 20% */
+    padding: 12px 8px; /* Reducido un 20% */
     font-size: 19.36px; /* Reducido un 20% */
     font-weight: bold;
     text-align: center;
@@ -320,9 +350,9 @@
     left: 5%;
 }
 
-.nav-item.nav-videos {
+.nav-item.nav-envivo {
     position: absolute;
-    left: 14%;
+    left: 12%;
     top: 1px;
 }
 
@@ -339,7 +369,7 @@
     top: 1px;
 }
 
-.nav-item.nav-politicos {
+.nav-item.nav-contacto {
     position: absolute;
     left: 54.5%; /* Ajusta este valor según necesites */
     top: 1px;
@@ -416,7 +446,7 @@
     color: black; /* Ícono de lupa en negro */
     transition: transform 0.16s ease, box-shadow 0.24s ease; /* Reducido un 20% */
     padding: 8px; /* Reducido un 20% */
-    top: 8.2px; /* Ajustado 2px más abajo */
+    top: 3.2px; /* Reducido un 20% */
     right: 13.6px; /* Reducido un 20% */
     box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
@@ -432,52 +462,57 @@
     transform: scale(0.76); /* Reducido un 20% */
     box-shadow: none; /* Sin sombra al hacer clic */
 }
+
 /* 🔍 Contenedor de la barra de búsqueda */
 .search-container {
     position: fixed;
-    top: 3px;
-    right: 55px; /* Usa píxeles, NO % o vw */
-    display: none; /* Oculta por defecto */
+    top: 13.6px; /* Reducido un 20% */
+    left: 976px; /* Reducido un 20% */
+    display: none; /* Oculto por defecto */
     flex-direction: row;
     align-items: center;
     background-color: #ffffff;
-    border-radius: 20px;
-    padding: 8px 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none; /* Se elimina el borde */
+    border-radius: 20px; /* Reducido un 20% */
+    padding: 6.4px 9.6px; /* Reducido un 20% */
+    box-shadow: 0px 3.2px 6.4px rgba(0, 0, 0, 0.3); /* Reducido un 20% */
     z-index: 1001;
-    width: 300px; /* Fijo y claro para evitar distorsión */
-    max-width: calc(100vw - 80px); /* Para evitar desbordes */
-
+    width: fit-content; /* Ajusta el tamaño al contenido */
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1); /* Reducido un 20% */
+    will-change: transform; /* Optimización para animaciones */
 }
 
-/* Input de búsqueda */
+/* 🔍 Campo de entrada de texto */
 .search-input {
-    flex: 1;
     border: none;
-    padding: 8px 12px;
+    padding: 6.4px; /* Reducido un 20% */
     outline: none;
-    font-size: 14px;
+    width: 296px; /* Reducido un 20% */
+    height: auto;
+    font-size: 13.6px; /* Reducido un 20% */
     color: black;
-    background: transparent;
-    min-width: 0;
 }
 
 /* 🔍 Botón de búsqueda dentro del contenedor */
 .search-container .search-button {
     background: none;
     border: none;
+    outline: none; /* Asegura que no tenga borde al hacer clic */
     cursor: pointer;
-    font-size: 18px;
-    color: #3B83BD;
-    margin-left: 8px;
-    transition: transform 0.2s ease;
+    font-size: 17.6px; /* Reducido un 20% */
+    color: #3B83BD; /* 🔵 Color de la lupa */
+    transition: transform 0.16s ease; /* Reducido un 20% */
+    position: absolute;
+    top: -0.08px; /* Reducido un 20% */
+    right: 11.2px; /* Reducido un 20% */
+    box-shadow: none; /* Asegura que no tenga borde */
 }
 
-/* Hover para botón */
+/* Efecto hover para el botón de búsqueda */
 .search-container .search-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.12); /* Reducido un 20% */
+    box-shadow: none; /* Sin sombra en hover */
 }
-
 
 /* === CONTENEDOR PRINCIPAL === */
 .section-container {
@@ -627,8 +662,6 @@
     margin-bottom: 24px; /* Reducido un 20% */
     padding-bottom: 12px; /* Reducido un 20% */
     border-bottom: 4px solid #000000; /* Reducido un 20% */
-    position: relative;
-
 }
 
 /* Línea decorativa debajo del título */
@@ -644,18 +677,18 @@
     transform-origin: center; /* Asegura que la animación sea centrada */
     animation: pulseLine 1.6s ease-in-out infinite; /* Reducido un 20% */
 }
+
 .section-header-3d h2 {
-    font-size: 3.5rem; /* Más grande para destacar */
-    color: #ffffff !important;
+    font-size: 2rem; /* Reducido un 20% */
+    color: white !important;
     position: relative;
-    margin: 0 0 1.2rem 0;
+    margin: 0 0 1.2rem 0; /* Reducido un 20% */
     text-align: center;
-    font-weight: 900; /* Más grueso para impacto */
-    letter-spacing: 1px;
+    font-weight: 700;
+    letter-spacing: -0.4px; /* Reducido un 20% */
     text-transform: uppercase;
-    padding-bottom: 16px;
-    animation: textGlow 2.4s ease-in-out infinite alternate;
-    text-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 20px rgba(0,95,173,0.2); /* Efecto brillante */
+    padding-bottom: 12px; /* Reducido un 20% */
+    animation: textGlow 2.4s ease-in-out infinite alternate; /* Reducido un 20% */
 }
 
 .news-grid-3d {
@@ -724,9 +757,9 @@
 }
 
 .news-content h3 {
-    font-size: 1.6rem; /* Reducido un 20% */
+    font-size: 1.04rem; /* Reducido un 20% */
     margin-bottom: 8px; /* Reducido un 20% */
-    color: black;
+    color: var(--secondary-color);
 }
 
 .news-content p {
@@ -736,7 +769,7 @@
 }
 
 .read-more {
-    color: black;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
     display: inline-flex;
@@ -750,7 +783,7 @@
 }
 
 .read-more:hover {
-    color: black;
+    color: var(--secondary-color);
 }
 
 .read-more:hover i {
@@ -789,35 +822,6 @@
         0 3.2px 0 #d1d1d1, /* Reducido un 20% */
         0 4px 8px rgba(0, 0, 0, 0.1); /* Reducido un 20% */
 }
-.btn-3d.search-btn {
-    position: absolute; /* Fijo en pantalla */
-    top: 85px;
-    right: 360px; /* O usa `left` si lo prefieres */
-    background-color: white;
-    color: #000000;
-    border: none;
-    padding: 10px 14px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 2;
-    transition: all 0.3s ease;
-    box-shadow:
-        0 4px 0 #d1d1d1,
-        0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .btn-3d.search-btn {
-        top: 12px;
-        right: 12px;
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-}
-
 
 /* Efecto 3D al presionar */
 .btn-3d.news-btn:active {
@@ -901,7 +905,7 @@
 }
 
 .section-title-3d {
-    font-size: 2.8rem; /* Reducido un 20% */
+    font-size: 2.5rem; /* Reducido un 20% */
     text-align: center;
     margin-bottom: 40px; /* Reducido un 20% */
     color: #2c3e50; /* Azul oscuro profesional */

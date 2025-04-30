@@ -9,10 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Tu CSS personalizado -->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
 
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- candidatos -->
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
+	<link rel="stylesheet" href="{{ asset('css/admin/candidatos.css') }}"> <!--candidatos-->
 
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
@@ -21,9 +25,14 @@
 <!-- En tu HTML (justo después de <body>) -->
 <div class="fullpage-background"></div>
 
-    <div id="particles-js"></div>
+<!-- Botón para volver al modo Usuario -->
+<div style="text-align: center; margin-bottom: 20px;">
+    <a href="{{ route('app') }}" class="btn-volver-usuario">
+        Volver al modo Usuario
+    </a>
+</div>
 
-<!-- Redes sociales arriba del navbar -->
+<!-- Redes sociales -->
 <div class="social-icons">
     <a href="https://www.facebook.com/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.instagram.com/" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
@@ -65,7 +74,7 @@
                                 <a href="{{ route('admin.news.index') }}" class="admin-link">
                                     <i class="fas fa-newspaper"></i> Noticias
                                 </a>
-                                <a href="{{ route('admin.videos.index') }}" class="admin-link">
+                                <a href="{{ route('videos.index') }}" class="admin-link">
                                     <i class="fas fa-video"></i> Videos
                                 </a>
                                 <form action="{{ route('admin.logout') }}" method="POST">
@@ -80,7 +89,7 @@
                 @endif
             @endauth
 
-            <div class="nav-item nav-envivo">Videos</div>
+            <a href="{{ route('videos.index') }}" class="nav-item nav-videos">Videos</a>
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
 
@@ -91,7 +100,7 @@
                 </a>
             </div>
             
-            <div class="nav-item nav-contacto">Partidos Politicos</div>
+            <div class="nav-item nav-politicos">Partidos Politicos</div>
 
             <!-- Botón de búsqueda estilizado -->
             <button id="search-icon" class="search-button">
@@ -112,10 +121,7 @@
 <div class="main-content-spacer" style="height: 140px;"></div>
 
 <!-- Contenido principal -->
-<h2 class="section-title">El Mejor Lugar para Mantenerte Informado </h2>
-<button class="btn btn-warning btn-sm">Editar</button>
-
-
+<h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
 
 <div class="slider-container-3d">
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -143,12 +149,12 @@
         <div class="section-header-3d">
             <h2>Noticias</h2>
             <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
-            <button class="btn btn-warning btn-sm">Editar</button>
+        
         <div class="news-grid-3d">
             <!-- Noticia 1 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image1.jpg" alt="Noticia 1" class="news-img">
+                    <img src="images/noticia1.jpg" alt="Noticia 1" class="news-img">
                     <div class="news-badge">Nuevo</div>
                 </div>
                 <div class="news-content">
@@ -161,7 +167,7 @@
             <!-- Noticia 2 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image2.jpg" alt="Noticia 2" class="news-img">
+                    <img src="images/noticia2.jpg" alt="Noticia 2" class="news-img">
                     <div class="news-badge trending">Trending</div>
                 </div>
                 <div class="news-content">
@@ -174,7 +180,7 @@
             <!-- Noticia 3 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image3.jpg" alt="Noticia 3" class="news-img">
+                    <img src="images/noticia3.jpg" alt="Noticia 3" class="news-img">
                 </div>
                 <div class="news-content">
                     <h3>Título de Noticia 3</h3>
@@ -186,7 +192,7 @@
             <!-- Noticia 4 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image4.jpg" alt="Noticia 4" class="news-img">
+                    <img src="images/noticia4.jpg" alt="Noticia 4" class="news-img">
                 </div>
                 <div class="news-content">
                     <h3>Título de Noticia 4</h3>
@@ -198,7 +204,7 @@
             <!-- Noticia 5 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image5.jpg" alt="Noticia 5" class="news-img">
+                    <img src="images/noticia5.jpg" alt="Noticia 5" class="news-img">
                     <div class="news-badge hot">Hot</div>
                 </div>
                 <div class="news-content">
@@ -211,7 +217,7 @@
             <!-- Noticia 6 -->
             <div class="news-card-3d">
                 <div class="news-img-container">
-                    <img src="images/image6.jpg" alt="Noticia 6" class="news-img">
+                    <img src="images/noticia6.jpg" alt="Noticia 6" class="news-img">
                 </div>
                 <div class="news-content">
                     <h3>Título de Noticia 6</h3>
@@ -225,7 +231,7 @@
 <!-- Sección Encuestas -->
     <section class="polls-section-3d">
         <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
-        <button class="btn btn-warning btn-sm">Editar</button>
+        
         <div class="polls-container-3d">
             <!-- Encuesta 1 -->
             <div class="poll-card-3d">
@@ -306,12 +312,12 @@
             </div>
         </div>
     </section>
-<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
+<!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
-<section id="partidos-politicos">
+<section id="poll-partidos-politicos">
         <div class="title-container">
-            <h1 class="title">Partidos Políticos</h1>
+        <h2 class="section-title-3dPP">Partidos <span class="highlightPP">Politicos</span></h2>
             <div class="dynamic-line"></div>
         </div>
 
@@ -333,10 +339,10 @@
             </div>
         </div>
     </section>
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <section id="contacto" class="contacto-3d">
   <div class="container">
-  <button class="btn btn-warning btn-sm">Editar</button>
     <div class="card-3d">
       <!-- Contacto -->
       <div class="columna">
@@ -365,12 +371,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
- 
+
     <!-- Scripts al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
-    <script src="{{ asset('js/hexocet.js') }}"></script>
-    <script src="{{ asset('js/functions.js') }}"></script>
-    <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="{{ asset('js/scroll-efect.js') }}"></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
+    <script type="module" src="{{ asset('js/candidatos.js') }}"></script> 
+    <script type="module" src="{{ asset('js/functions.js') }}"></script> 
+    <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
+    <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
+    <script type="module" src="{{ asset('js/admin.js') }}"></script> 
+
+    
 
 </body>
 </html>

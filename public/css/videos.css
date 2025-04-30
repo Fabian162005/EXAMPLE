@@ -1,0 +1,475 @@
+/* Reset y configuraciones globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 20px;
+}
+
+.section-header-3d {
+    position: relative;
+    text-align: center;
+    padding-top: 10px; /* le damos espacio arriba para que el botón no tape */
+}
+
+.back-home-container {
+    text-align: left;
+    margin: 40px;
+}
+
+/* Estilo del botón */
+.btn-back-home {
+    position: absolute;
+    top: -20px;
+    right: 120%;
+    transform: none;   /* No necesitamos right 130% */
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #3f8efc, #1c6dd0);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+    white-space: nowrap; /* 👈 Esto hace que el texto no se corte en varias líneas */
+}
+
+/* Hover del botón */
+.btn-back-home:hover {
+    background: linear-gradient(145deg, #1c6dd0, #3f8efc);
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .btn-back-home {
+        top: -25px;
+        left: 80px;
+        right: auto; /* eliminamos right para que no interfiera */
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+/* Estilos principales para la sección de videos */
+.videos-section-3d {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Título de la sección */
+.section-title-3d {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Colores de palabras */
+.highlight-blue {
+    color: #3B83BD;
+}
+
+.highlight-black {
+    color: black;
+}
+
+/* Línea decorativa debajo del título */
+.section-title-3d::after {
+    content: '';
+    display: block;
+    width: 50%;
+    max-width: 800px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    margin: 0.2rem auto 0;
+    border-radius: 4px;
+    transform-origin: center;
+    animation: pulseLine 2.5s ease-in-out infinite, moveLine 3s linear infinite;
+}
+
+/* Animaciones de la línea decorativa */
+@keyframes pulseLine {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(1.5); }
+    100% { transform: scaleX(1); }
+}
+
+@keyframes moveLine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Estilos para la barra de búsqueda */
+.search-bar-3d {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    max-width: 90%;
+    width: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #3b83bd;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.search-bar-3d:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.search-bar-3d input[type="text"],
+.search-bar-3d input[type="date"] {
+    padding: 10px 14px;
+    border: 2px solid #3b83bd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    background-color: transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar-3d input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+.search-bar-3d input[type="text"]:focus,
+.search-bar-3d input[type="date"]:focus {
+    outline: none;
+    border-color: #2a5e8c;
+    box-shadow: 0 0 5px rgba(59, 131, 189, 0.3);
+}
+
+.search-bar-3d input[type="text"] {
+    width: 180px;
+    min-width: 150px;
+}
+
+.search-bar-3d input[type="date"] {
+    min-width: 100px;
+}
+
+.search-bar-3d button {
+    padding: 10px 16px;
+    background-color: #3b83bd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 0 0 auto;
+}
+
+.search-bar-3d button:hover {
+    background-color: #2a5e8c;
+}
+
+.search-bar-3d i {
+    color: #3b83bd;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.search-bar-3d i:hover {
+    color: #2a5e8c;
+    transform: scale(1.1);
+}
+
+/* Grilla de videos */
+.videos-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(auto, auto);
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Tarjetas de video */
+.video-card-3d {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border: 3.5px solid #3B83BD; /* ✅ Borde agregado */
+
+}
+
+.video-card-3d:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen del video */
+.video-img-container {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.video-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.video-card-3d:hover .video-img {
+    transform: scale(1.05);
+}
+
+/* Icono de play para miniaturas tipo Facebook */
+.video-img-container.facebook-thumb {
+    position: relative;
+}
+
+.video-img-container.facebook-thumb .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+}
+
+/* Badges de videos */
+.video-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background: #e74c3c;
+    z-index: 1;
+}
+
+.video-badge.trending {
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+}
+
+.video-badge.hot {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.video-badge.new {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+/* Contenido de la tarjeta */
+.video-content {
+    padding: 20px;
+}
+
+.video-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.video-content p {
+    color: #7f8c8d;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.watch-more {
+    display: inline-flex;
+    align-items: center;
+    color: #3498db;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    gap: 5px;
+}
+
+.watch-more:hover {
+    color: #2980b9;
+}
+
+/* Duración de los videos */
+.video-duration {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Botón estilo 3D */
+.btn-3d {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-3d:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Contenedor del video emergente */
+#video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Reproductor de video */
+#video-player {
+    width: 85%;
+    height: 85%;
+    border: 10px solid #000;
+    position: relative;
+    top: -20px;
+}
+
+/* Botón de cerrar video */
+#close-video-btn {
+    position: absolute;
+    top: 670px;
+    left: 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 20px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+}
+
+#close-video-btn:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: scale(1.1);
+}
+
+#close-video-btn:active {
+    background-color: #1c6ea4;
+    transform: scale(1);
+}
+
+/* Responsivo */
+@media (max-width: 1200px) {
+    .videos-grid-3d {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .videos-grid-3d {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .search-bar-3d {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%;
+        padding: 10px;
+        margin: 5px 10px 10px 10px;
+    }
+    .search-bar-3d input[type="text"],
+    .search-bar-3d input[type="date"],
+    .search-bar-3d button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .videos-grid-3d {
+        grid-template-columns: 1fr;
+    }
+    .search-bar-3d {
+        padding: 8px;
+    }
+    .search-bar-3d input[type="text"],
+    .search-bar-3d input[type="date"],
+    .search-bar-3d button {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    #close-video-btn {
+        top: 50px; /* Ajustamos la distancia desde el top para que no quede tan abajo */
+        left: 15px; /* Dejamos algo de margen desde la izquierda */
+        font-size: 16px; /* Reducimos el tamaño del texto */
+        padding: 10px 15px; /* Ajustamos el padding */
+    }
+}
+
+@media (max-width: 480px) {
+    #close-video-btn {
+        top: 760px; /* Aumentamos el espacio superior para más visibilidad */
+        left: 180px; /* Ajustamos el margen izquierdo */
+        font-size: 14px; /* Reducimos aún más el tamaño del texto */
+        padding: 8px 12px; /* Reducimos el padding */
+    }
+}
+
+/* Responsivo para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    #video-player {
+        width: 95%; /* Hacemos el reproductor más pequeño para pantallas medianas */
+        height: 80%; /* Reducimos la altura del video */
+        top: 0; /* Eliminamos el desplazamiento hacia arriba */
+        border: 5px solid #000; /* Reducimos el grosor del borde */
+    }
+}
+
+/* Responsivo para pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+    #video-player {
+        width: 98%; /* El video ocupa casi todo el ancho de la pantalla */
+        height: 70%; /* Reducimos más la altura */
+        border: 3px solid #000; /* Reducimos aún más el grosor del borde */
+    }
+}
