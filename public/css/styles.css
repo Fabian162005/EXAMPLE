@@ -1141,3 +1141,180 @@
         min-width: auto;
     }
 }
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+    display: none; /* Inicialmente oculto */
+}
+
+/* Estilos para el fondo oscuro */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Fondo negro */
+    z-index: 999; /* Fondo encima de todo */
+    display: none;
+}
+
+/* Estilos para el formulario */
+#form-noticia {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; /* Ancho más pequeño */
+    max-width: 500px; /* Maximo ancho */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    border: 2px solid #000000; /* Borde negro */
+    display: none; /* Inicia oculto */
+}
+
+/* Estilo para el botón de cerrar dentro del formulario (opcional) */
+#form-noticia .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#form-noticia .close-btn:hover {
+    color: #ff0000;
+}
+
+
+
+/* Estilo para las fotos del slider) */
+/* Estilos generales para el overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+    display: none; /* Oculto por defecto */
+    z-index: 9999; /* Asegura que esté encima de otros elementos */
+}
+
+/* Estilos para el formulario de subir foto */
+#form-subir-foto {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 100%;
+    display: none; /* Oculto por defecto */
+    z-index: 10000; /* Asegura que el formulario esté encima del overlay */
+}
+
+/* Títulos y textos dentro del formulario */
+#form-subir-foto h3 {
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Estilo de los campos de entrada */
+#form-subir-foto input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+    transition: border-color 0.3s ease;
+}
+
+#form-subir-foto input[type="file"]:focus {
+    border-color: #007bff; /* Resalta el borde cuando el campo está enfocado */
+}
+
+/* Botones de acción - editar, eliminar, subir foto */
+.botones-acciones button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Botón Editar */
+.botones-acciones .btn-warning {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.botones-acciones .btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Botón Eliminar */
+.botones-acciones .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.botones-acciones .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Botón Subir Foto */
+.botones-acciones .btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.botones-acciones .btn-info:hover {
+    background-color: #138496;
+}
+
+/* Botón para subir la foto */
+#form-subir-foto button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+#form-subir-foto button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el overlay y el formulario cuando se activa */
+#form-subir-foto,
+#overlay {
+    display: none;
+}
+
+#overlay.show,
+#form-subir-foto.show {
+    display: block;
+}
+
