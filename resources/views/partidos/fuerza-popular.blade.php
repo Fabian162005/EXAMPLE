@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acción Popular</title>
+    <title>Fuerza Popular</title>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,49 +11,10 @@
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    <!-- Tailwind CSS (CDN) con configuración personalizada -->
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            light: 'rgb(255, 167, 38)',
-                            DEFAULT: 'rgb(238, 143, 0)',
-                            dark: 'rgb(198, 119, 0)',
-                        },
-                        secondary: {
-                            light: 'rgb(255, 82, 82)',
-                            DEFAULT: 'rgb(239, 68, 68)',
-                            dark: 'rgb(220, 38, 38)',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     
     <style>
-        :root {
-            /* Colores principales */
-            --color-primary: rgb(238, 143, 0);
-            --color-primary-light: rgb(255, 167, 38);
-            --color-primary-dark: rgb(198, 119, 0);
-            
-            --color-secondary: rgb(242, 121, 0);
-            --color-secondary-light: rgb(242, 146, 1);
-            --color-secondary-dark: rgb(255, 119, 0);
-            
-            /* Colores de texto */
-            --color-text-primary: #1F2937; /* gray-800 */
-            --color-text-secondary: #6B7280; /* gray-500 */
-            
-            /* Fondos */
-            --color-bg-light: #F9FAFB; /* gray-50 */
-            --color-bg-dark: #111827; /* gray-900 */
-        }
-        
         /* Animaciones personalizadas */
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -94,370 +55,340 @@
         
         /* Estilo para el menú activo */
         .nav-link.active {
-            color: var(--color-primary);
+            color:rgb(247, 119, 0);
             font-weight: 600;
-            border-bottom: 2px solid var(--color-primary);
-        }
-        
-        /* Estilos para iconos */
-        .icon-primary {
-            color: var(--color-primary);
-        }
-        
-        .icon-secondary {
-            color: var(--color-secondary);
-        }
-        
-        .icon-white {
-            color: white;
-        }
-        
-        /* Fondos */
-        .bg-primary {
-            background-color: var(--color-primary);
-        }
-        
-        .bg-primary-gradient {
-            background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
-        }
-        
-        .bg-secondary-gradient {
-            background: linear-gradient(to right, var(--color-secondary), var(--color-secondary-dark));
-        }
-        
-        /* Textos */
-        .text-primary {
-            color: var(--color-primary);
-        }
-        
-        .text-secondary {
-            color: var(--color-secondary);
-        }
-        
-        /* Bordes */
-        .border-primary {
-            border-color: var(--color-primary);
-        }
-        
-        /* Hovers */
-        .hover\:text-primary:hover {
-            color: var(--color-primary);
-        }
-        
-        .hover\:bg-primary:hover {
-            background-color: var(--color-primary);
+            border-bottom: 2px solid rgb(255, 122, 14);
         }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Botón de regreso a la izquierda -->
-            <a href="/" class="flex items-center text-primary hover:text-primary-dark transition-colors animate__animated animate__fadeIn">
-                <i class="fas fa-arrow-left mr-2 text-xl"></i>
-                <span class="font-medium">Inicio</span>
-            </a>
-            
-            <!-- Logo movido a la derecha -->
-            <div class="logo-container animate__animated animate__fadeIn">
-                <img src="{{ asset('imagenes/image2.png') }}" alt="Logo Acción Popular" class="logo-img">
-            </div>
-            
-            <!-- Menú de navegación (oculto en móviles) -->
-            <nav class="hidden md:flex space-x-8">
-                <a href="#" class="nav-link active text-gray-700 hover:text-primary transition-colors font-medium py-2">Inicio</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Historia</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Ideología</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Logros</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Contacto</a>
-            </nav>
-            
-            <!-- Botón móvil -->
-            <button class="md:hidden text-gray-700 ml-auto mr-4" id="mobile-menu-button">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
+<header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Botón de regreso a la izquierda -->
+        <a href="/" class="flex items-center text-red-600 hover:text-red-800 transition-colors animate__animated animate__fadeIn">
+            <i class="fas fa-arrow-left mr-2 text-xl"></i>
+            <span class="font-medium">Inicio</span>
+        </a>
+        
+        <!-- Logo movido a la derecha -->
+        <div class="logo-container animate__animated animate__fadeIn">
+            <img src="{{ asset('imagenes/image2.png') }}" alt="Logo Acción Popular" class="logo-img">
         </div>
         
-        <!-- Menú móvil -->
-        <div class="md:hidden hidden bg-white py-4 px-4 border-t" id="mobile-menu">
-            <div class="flex flex-col space-y-3">
-                <a href="#" class="nav-link active text-gray-700 hover:text-primary transition-colors font-medium py-2">Inicio</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Historia</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Ideología</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Logros</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-primary transition-colors font-medium py-2">Contacto</a>
-            </div>
+        <!-- Menú de navegación -->
+        <nav class="hidden md:flex space-x-8">
+            <a href="#" class="nav-link active text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Inicio</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Historia</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Ideología</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Logros</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contacto</a>
+        </nav>
+        
+        <!-- Botón móvil -->
+        <button class="md:hidden text-gray-700 ml-auto mr-4" id="mobile-menu-button">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </div>
+    
+    <!-- Menú móvil -->
+    <div class="md:hidden hidden bg-white py-4 px-4 border-t" id="mobile-menu">
+        <div class="flex flex-col space-y-3">
+            <a href="#" class="nav-link active text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Inicio</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Historia</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Ideología</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Logros</a>
+            <a href="#" class="nav-link text-gray-700 hover:text-red-600 transition-colors font-medium py-2">Contacto</a>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Contenido principal -->
-    <main>
-        <!-- Hero Section -->
-        <section class="py-20 bg-secondary-gradient text-white">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">Acción Popular</h1>
-                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
-                    Un partido político peruano comprometido con la democracia, la justicia social y el desarrollo sostenible desde 1956.
+<!-- Contenido principal -->
+<!-- Contenido principal -->
+<main>
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-r from-orange-600 to-orange-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">Fuerza Popular</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                Partido político peruano de derecha fundado en 2010 por Keiko Fujimori. Defiende el modelo económico liberal, la seguridad ciudadana y el orden constitucional.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Historia del Partido -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Historia de Fuerza Popular</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Trayectoria política en el Perú contemporáneo</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Fundación -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale">
+                    <div class="text-orange-500 mb-4 text-4xl floating">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Fundación en 2010</h3>
+                    <p class="text-gray-600">Fundado como "Fuerza 2011" por Keiko Fujimori para su primera campaña presidencial. Adoptó el nombre actual en 2014. Surgió como continuador del fujimorismo tras la caída de Alberto Fujimori.</p>
+                </div>
+                
+                <!-- Liderazgo -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
+                    <div class="text-orange-500 mb-4 text-4xl floating">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Liderazgo de Keiko Fujimori</h3>
+                    <p class="text-gray-600">Keiko Fujimori ha liderado el partido desde su fundación, llevándolo a ser primera fuerza política en tres elecciones consecutivas (2011, 2016, 2021) aunque sin ganar la presidencia.</p>
+                </div>
+                
+                <!-- Elecciones -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
+                    <div class="text-orange-500 mb-4 text-4xl floating">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Participación Electoral</h3>
+                    <p class="text-gray-600">Fuerza Popular mantiene importante presencia en el Congreso y gobiernos locales. En 2021 obtuvo 24 escaños parlamentarios, siendo la segunda fuerza política.</p> 
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Liderazgo Actual -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Liderazgo Actual (2024)</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Dirigentes que guían el partido hoy</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Presidente Actual -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                    <div class="text-orange-500 mb-4 text-4xl floating">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Keiko Fujimori Higuchi</h3>
+                    <p class="text-gray-600 mb-2 font-medium">Presidenta Nacional</p>
+                    <p class="text-gray-600">Líder histórica del partido, ex congresista y candidata presidencial en tres elecciones (2011, 2016, 2021). Actualmente enfrenta procesos judiciales.</p>
+                </div>
+                
+                <!-- Vicepresidente Actual -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
+                    <div class="text-orange-500 mb-4 text-4xl floating">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Vicepresidencia</h3>
+                    <p class="text-gray-600 mb-2 font-medium">Liderazgo ejecutivo</p>
+                    <p class="text-gray-600">Hernando Guerra García Campos (Secretario General) y Luis Galarreta Velarde (ex presidente del Congreso) son figuras clave en la estructura partidaria.</p>
+                </div>
+            </div>
+
+            <!-- Nota histórica -->
+            <div class="mt-12 text-center text-gray-500">
+                <p>Fundador histórico: <span class="font-medium">Keiko Fujimori Higuchi</span> (2010-actualidad)</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Ideología y Principios -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Ideología y Principios</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Bases filosóficas del partido</p>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Democracia -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                    <h3 class="text-xl font-semibold mb-1">Orden Constitucional</h3>
+                    <p class="text-gray-600 text-sm mb-4">Defensa del Estado de Derecho, separación de poderes y estabilidad institucional.</p>
+                </div>
+                
+                <!-- Seguridad -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.1s;">
+                    <h3 class="text-xl font-semibold mb-1">Seguridad Ciudadana</h3>
+                    <p class="text-gray-600 text-sm mb-4">Políticas de mano dura contra la delincuencia y fortalecimiento de las fuerzas del orden.</p>
+                </div>
+                
+                <!-- Economía -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
+                    <h3 class="text-xl font-semibold mb-1">Liberalismo Económico</h3>
+                    <p class="text-gray-600 text-sm mb-4">Promoción de la inversión privada, reducción de impuestos y mínima intervención estatal.</p>
+                </div>
+                
+                <!-- Social -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.3s;">
+                    <h3 class="text-xl font-semibold mb-1">Programas Sociales</h3>
+                    <p class="text-gray-600 text-sm mb-4">Implementación de ayudas sociales focalizadas en población vulnerable.</p>
+                </div>
+                
+                <!-- Educación -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
+                    <h3 class="text-xl font-semibold mb-1">Educación y Valores</h3>
+                    <p class="text-gray-600 text-sm mb-4">Promoción de educación basada en mérito y valores tradicionales.</p>
+                </div>
+                
+                <!-- Relaciones -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.5s;">
+                    <h3 class="text-xl font-semibold mb-1">Relaciones Internacionales</h3>
+                    <p class="text-gray-600 text-sm mb-4">Política exterior pragmática con enfoque en comercio y seguridad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Posición Actual -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Posición Actual y Objetivos</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Visión y propuestas para el Perú actual</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Democracia -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                    <div class="text-orange-500 mb-4 text-4xl floating">
+                        <i class="fas fa-vote-yea"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Reforma Judicial</h3>
+                    <p class="text-gray-600">Propuesta de reforma integral del sistema de justicia para combatir la corrupción y mejorar eficiencia, manteniendo independencia de poderes.</p>
+                </div>
+                
+                <!-- Desarrollo -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
+                    <div class="text-orange-500 mb-4 text-4xl floating">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Reactivar la Economía</h3>
+                    <p class="text-gray-600">Plan de reactivación basado en incentivos a la inversión privada, simplificación administrativa y generación de empleo formal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Logros y Contribuciones -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Logros y Contribuciones</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Aportes significativos al desarrollo del Perú</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Congreso -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                    <div class="h-48 bg-orange-100 flex items-center justify-center">
+                        <i class="fas fa-university text-5xl text-orange-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <i class="far fa-calendar-alt mr-2"></i> 2016-2019
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Mayoría Parlamentaria</h3>
+                        <p class="text-gray-600 mb-4">Obtuvo 73 congresistas en 2016, la mayor bancada en la historia reciente del Perú, impulsando reformas económicas y de seguridad.</p>
+                    </div>
+                </div>
+                
+                <!-- Seguridad -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
+                    <div class="h-48 bg-orange-100 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-5xl text-orange-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <i class="far fa-calendar-alt mr-2"></i> 2011-2016
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Políticas de Seguridad</h3>
+                        <p class="text-gray-600 mb-4">Como oposición, promovió leyes para fortalecer a la policía y endurecer penas contra delitos graves durante gobiernos de Humala y PPK.</p>
+                    </div>
+                </div>
+                
+                <!-- Social -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
+                    <div class="h-48 bg-orange-100 flex items-center justify-center">
+                        <i class="fas fa-hand-holding-heart text-5xl text-orange-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <i class="far fa-calendar-alt mr-2"></i> 2016-2019
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Programas Sociales</h3>
+                        <p class="text-gray-600 mb-4">Impulsó ampliación de programas como Pensión 65 y Juntos durante su periodo de mayoría en el Congreso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+    
+<!-- Footer con Redes Sociales Destacadas -->
+<footer class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            
+            <!-- Columna 1: Logo y descripción -->
+            <div class="text-center md:text-left">
+                <div class="flex justify-center md:justify-start mb-4">
+                    <img src="{{ asset('imagenes/image2.png') }}" alt="Logo Grupo Paladines" class="h-20">
+                </div>
+                <p class="text-gray-300 text-sm mb-4">
+                    Líderes en desarrollo social y transparencia política en el Perú.
                 </p>
             </div>
-        </section>
-        
-        <!-- Historia del Partido -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Historia de Acción Popular</h2>
-                <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Un legado de compromiso con el Perú</p>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Fundación -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-landmark icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Fundación en 1956</h3>
-                        <p class="text-gray-600">Acción Popular fue fundado el 7 de julio de 1956 por Fernando Belaúnde Terry, emergiendo del Frente Nacional de Juventudes Democráticas. Su creación marcó un hito con el "Ultimátum de la Merced", consolidándose como un movimiento popular que abogaba por la democracia y la justicia social.</p>
-                    </div>
-                    
-                    <!-- Gobiernos de Belaúnde -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-gavel icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Gobiernos de Fernando Belaúnde</h3>
-                        <p class="text-gray-600">Acción Popular lideró el Perú bajo la presidencia de Belaúnde en dos períodos (1963-1968 y 1980-1985). Durante su primer gobierno, instauró elecciones municipales democráticas y creó el Sistema Nacional de Cooperación Popular.</p>
-                    </div>
-                    
-                    <!-- Transición Democrática -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-balance-scale icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Transición Democrática 2000-2001</h3>
-                        <p class="text-gray-600">Bajo el liderazgo de Valentín Paniagua, Acción Popular encabezó un gobierno de transición tras la caída del régimen de Fujimori. Este período estabilizó la economía y convocó elecciones transparentes en 2001.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Figuras Clave -->
-        <section class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Figuras Clave</h2>
-                <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Líderes que han marcado la historia del partido</p>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Fernando Belaúnde -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-user-tie icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Fernando Belaúnde Terry</h3>
-                        <p class="text-gray-600">Fundador y líder histórico, presidente del Perú en dos períodos. Su visión de un Perú integrado y democrático sentó las bases del acciopopulismo.</p>
-                    </div>
-                    
-                    <!-- Valentín Paniagua -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-user-tie icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Valentín Paniagua</h3>
-                        <p class="text-gray-600">Presidente de transición (2000-2001), restauró la democracia y la transparencia tras la crisis de Fujimori, consolidando la confianza en las instituciones.</p>
-                    </div>
-                    
-                    <!-- Javier Alva Orlandini -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-user-tie icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Javier Alva Orlandini</h3>
-                        <p class="text-gray-600">Destacado jurista y líder partidario, fue clave en la organización del partido y en la defensa de los principios democráticos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Ideología y Principios -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Ideología y Principios</h2>
-                <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">El Perú como Doctrina</p>
-                
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Humanismo Situacional -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                        <h3 class="text-xl font-semibold mb-1">Humanismo Situacional</h3>
-                        <p class="text-gray-600 text-sm mb-4">Inspirado en la historia y geografía del Perú, promueve valores de veracidad, honestidad, laboriosidad y solidaridad dentro de un marco democrático.</p>
-                    </div>
-                    
-                    <!-- Cooperación Popular -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.1s;">
-                        <h3 class="text-xl font-semibold mb-1">Cooperación Popular</h3>
-                        <p class="text-gray-600 text-sm mb-4">Fomenta la colaboración entre Estado y ciudadanos, inspirándose en tradiciones incaicas de trabajo colectivo para superar desafíos nacionales.</p>
-                    </div>
-                    
-                    <!-- Nacionalismo Democrático -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                        <h3 class="text-xl font-semibold mb-1">Nacionalismo Democrático</h3>
-                        <p class="text-gray-600 text-sm mb-4">Defiende un nacionalismo inclusivo que valora la diversidad cultural, promoviendo oportunidades equitativas y desarrollo sostenible.</p>
-                    </div>
-                    
-                    <!-- Desarrollo Regional -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.3s;">
-                        <h3 class="text-xl font-semibold mb-1">Desarrollo Regional</h3>
-                        <p class="text-gray-600 text-sm mb-4">Prioriza la descentralización y el desarrollo equilibrado de todas las regiones del Perú, combatiendo la centralización limeña.</p>
-                    </div>
-                    
-                    <!-- Justicia Social -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
-                        <h3 class="text-xl font-semibold mb-1">Justicia Social</h3>
-                        <p class="text-gray-600 text-sm mb-4">Busca reducir las desigualdades sociales mediante políticas inclusivas que garanticen acceso a educación, salud y empleo.</p>
-                    </div>
-                    
-                    <!-- Rol del Estado -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.5s;">
-                        <h3 class="text-xl font-semibold mb-1">Rol del Estado</h3>
-                        <p class="text-gray-600 text-sm mb-4">Aboga por un Estado regulador que fomente la iniciativa privada mientras garantiza servicios públicos y desarrollo sostenible.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Posición Actual -->
-        <section class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Posición Actual y Objetivos</h2>
-                <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Compromiso con el futuro del Perú</p>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Fortalecimiento Democrático -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-vote-yea icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Fortalecimiento Democrático</h3>
-                        <p class="text-gray-600">Acción Popular trabaja por consolidar instituciones democráticas transparentes, promoviendo la participación ciudadana y combatiendo la corrupción.</p>
-                    </div>
-                    
-                    <!-- Desarrollo Sostenible -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                        <div class="text-primary mb-4 text-4xl floating">
-                            <i class="fas fa-leaf icon-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Desarrollo Sostenible</h3>
-                        <p class="text-gray-600">Busca un modelo de crecimiento económico que respete el medio ambiente y promueva el bienestar de las comunidades locales.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Logros y Contribuciones -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Logros y Contribuciones</h2>
-                <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Un impacto duradero en la política peruana</p>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Elecciones Municipales -->
-                    <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                        <div class="h-48 bg-red-100 flex items-center justify-center">
-                            <i class="fas fa-vote-yea text-5xl text-primary"></i>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i> 1963-1966
-                            </div>
-                            <h3 class="text-xl font-semibold mb-3">Elecciones Municipales Democráticas</h3>
-                            <p class="text-gray-600 mb-4">En 1963, Acción Popular instauró elecciones municipales democráticas, fortaleciendo la descentralización.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Infraestructura -->
-                    <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                        <div class="h-48 bg-red-100 flex items-center justify-center">
-                            <i class="fas fa-road text-5xl text-primary"></i>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i> 1963-1985
-                            </div>
-                            <h3 class="text-xl font-semibold mb-3">Obras de Infraestructura</h3>
-                            <p class="text-gray-600 mb-4">Impulsó proyectos como carreteras y programas de vivienda, conectando regiones y promoviendo el desarrollo.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Gestión Local -->
-                    <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
-                        <div class="h-48 bg-red-100 flex items-center justify-center">
-                            <i class="fas fa-city text-5xl text-primary"></i>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center text-sm text-gray-500 mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i> 2023
-                            </div>
-                            <h3 class="text-xl font-semibold mb-3">Gestión Local</h3>
-                            <p class="text-gray-600 mb-4">Administra alcaldías provinciales como Datem del Marañón, El Dorado y Chepén, enfocándose en desarrollo regional.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="mb-6 md:mb-0">
-                    <div class="logo-container mb-4">
-                        <img src="{{ asset('imagenes/image2.png') }}" alt="Logo Acción Popular" class="logo-img">
-                    </div>
-                    <p class="text-gray-400">Trabajando por el desarrollo y progreso de nuestro país desde 1956.</p>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Enlaces</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Inicio</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Historia</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Ideología</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Logros</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Estatutos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Transparencia</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacidad</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contacto</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
-                            <span class="text-gray-400">Av. 9 de Diciembre 218, Lima, Perú</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone-alt mr-3 text-gray-400"></i>
-                            <span class="text-gray-400">(01) 123-4567</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-3 text-gray-400"></i>
-                            <span class="text-gray-400">contacto@accionpopular.pe</span>
-                        </li>
-                    </ul>
+            
+            <!-- Columna 2: Redes Sociales como Enlaces Rápidos -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Nuestras Redes</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="https://facebook.com/grupopaladines" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-facebook-f mr-2"></i> Facebook
+                    </a>
+                    <a href="https://x.com/grupopaladines" target="_blank" class="bg-black hover:bg-gray-800 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-x-twitter mr-2"></i> X/Twitter
+                    </a>
+                    <a href="https://instagram.com/grupopaladines" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:to-purple-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    </a>
+                    <a href="https://youtube.com/grupopaladines" target="_blank" class="bg-red-600 hover:bg-red-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-youtube mr-2"></i> YouTube
+                    </a>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>© 2023 Acción Popular. Todos los derechos reservados.</p>
+            <!-- Columna 3: Contacto -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Contacto Directo</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-envelope mr-3 text-orange-400 mt-1"></i>
+                        <div>
+                            <p class="text-gray-300 text-sm font-medium">Escríbenos</p>
+                            <a href="mailto:contacto@grupopaladines.pe" class="text-white hover:text-orange-300 text-sm">contacto@grupopaladines.pe</a>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-phone-alt mr-3 text-orange-400 mt-1"></i>
+                        <div>
+                            <p class="text-gray-300 text-sm font-medium">Llama gratis</p>
+                            <a href="tel:+51987654321" class="text-white hover:text-orange-300 text-sm">(01) 987-6543</a>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mr-3 text-orange-400 mt-1"></i>
+                        <div>
+                            <p class="text-gray-300 text-sm font-medium">Visítanos</p>
+                            <span class="text-white text-sm">Av. Progreso 123, Lima</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-    </footer>
+        
+        <!-- Copyright -->
+        <div class="border-t border-gray-800 pt-6 text-center">
+            <p class="text-gray-400 text-xs">
+                © 2024 Grupo Paladines. Todos los derechos reservados. 
+                <a href="#" class="hover:text-white">Políticas de Privacidad</a> | 
+                <a href="#" class="hover:text-white">Términos de Servicio</a>
+            </p>
+        </div>
+    </div>
+</footer>
     
     <script>
         // Animaciones al aparecer en el viewport

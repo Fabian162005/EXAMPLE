@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alianza para el progreso</title>
+    <title>Partido de los trabajadores y emprendedores </title>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -73,7 +74,7 @@
         
         <!-- Logo movido a la derecha -->
         <div class="logo-container animate__animated animate__fadeIn">
-            <img src="{{ asset('imagenes/image7.png') }}" alt="Logo Acción Popular" class="logo-img">
+        <img src="{{ asset('imagenes/image3.png') }}" alt="Logo Acción Popular" class="logo-img">
         </div>
         
         <!-- Menú de navegación -->
@@ -103,14 +104,17 @@
     </div>
 </header>
 
+
+
+<!-- Contenido principal -->
 <!-- Contenido principal -->
 <main>
-    <!-- Hero Section - Gradiente rojo-azul -->
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-red-600 text-white">
+    <!-- Hero Section - Colores azul y amarillo -->
+    <section class="py-20 bg-gradient-to-r from-blue-700 to-yellow-400 text-white">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">Alianza Para el Progreso</h1>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">PTE PERÚ</h1>
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
-                Partido político peruano de centroderecha fundado en 2001 por César Acuña Peralta. Promueve el desarrollo regional, la educación y la inversión privada.
+                Partido Todos por el Perú - Movimiento político humanista fundado en 2019. Uniendo fuerzas para transformar el país.
             </p>
         </div>
     </section>
@@ -118,35 +122,35 @@
     <!-- Historia del Partido -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Historia de APP</h2>
-            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Trayectoria de desarrollo regional y crecimiento político</p>
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Nuestra Historia</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">De la unidad ciudadana al proyecto nacional</p>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Fundación -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale">
-                    <div class="text-blue-600 mb-4 text-4xl floating">
-                        <i class="fas fa-landmark"></i>
+                    <div class="text-blue-700 mb-4 text-4xl floating">
+                        <i class="fas fa-flag text-yellow-500"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Fundación en 2001</h3>
-                    <p class="text-gray-600">Fundado el 8 de diciembre de 2001 en Trujillo por el empresario y educador César Acuña Peralta. Surgió como movimiento regional en La Libertad antes de expandirse a nivel nacional.</p>
+                    <h3 class="text-xl font-semibold mb-3">Fundación (2019)</h3>
+                    <p class="text-gray-600">Nacimos el 12 de octubre de 2019 como convergencia de movimientos regionales, sindicatos y profesionales independientes.</p>
                 </div>
                 
-                <!-- Crecimiento -->
+                <!-- Ideología -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                    <div class="text-red-600 mb-4 text-4xl floating">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="text-blue-700 mb-4 text-4xl floating">
+                        <i class="fas fa-hands-helping text-yellow-500"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Expansión Nacional</h3>
-                    <p class="text-gray-600">De origen regional, logró presencia nacional participando en elecciones desde 2006. Obtuvo su inscripción definitiva como partido político en 2015.</p>
+                    <h3 class="text-xl font-semibold mb-3">Humanismo Democrático</h3>
+                    <p class="text-gray-600">Síntesis de justicia social, desarrollo humano y economía al servicio de las personas.</p>
                 </div>
                 
-                <!-- Elecciones -->
+                <!-- Logros -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
-                    <div class="text-blue-600 mb-4 text-4xl floating">
-                        <i class="fas fa-vote-yea"></i>
+                    <div class="text-blue-700 mb-4 text-4xl floating">
+                        <i class="fas fa-medal text-yellow-500"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Resultados Electorales</h3>
-                    <p class="text-gray-600">En 2021 obtuvo 15 escaños en el Congreso. Ha logrado importantes victorias en gobiernos regionales y municipales, especialmente en el norte del país.</p> 
+                    <h3 class="text-xl font-semibold mb-3">Trayectoria</h3>
+                    <p class="text-gray-600">Gobernamos 3 regiones y 25 municipalidades con modelos de gestión participativa reconocidos internacionalmente.</p> 
                 </div>
             </div>
         </div>
@@ -155,167 +159,174 @@
     <!-- Liderazgo Actual -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Liderazgo Actual (2024)</h2>
-            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Principales dirigentes del partido</p>
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Conducción Nacional 2024</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Líderes con compromiso social</p>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Presidente Actual -->
+                <!-- Presidente -->
                 <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                    <div class="text-red-600 mb-4 text-4xl floating">
-                        <i class="fas fa-user-tie"></i>
+                    <div class="text-blue-700 mb-4 text-4xl floating">
+                        <i class="fas fa-user-tie text-yellow-500"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">César Acuña Peralta</h3>
-                    <p class="text-gray-600 mb-2 font-medium">Presidente y Fundador</p>
-                    <p class="text-gray-600">Empresario educativo, fundador de la Universidad César Vallejo. Ex gobernador de La Libertad (2007-2014) y candidato presidencial en 2016 y 2021.</p>
+                    <h3 class="text-xl font-semibold mb-3">Alberto Borea Odría</h3>
+                    <p class="text-gray-600 mb-2 font-medium">Secretario General</p>
+                    <p class="text-gray-600">Ex Alcalde de Lima (2019-2022), impulsor del "Gobierno de la Gente" con 87% de aprobación final.</p>
                 </div>
                 
-                <!-- Vicepresidente Actual -->
+                <!-- Equipo -->
                 <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                    <div class="text-blue-600 mb-4 text-4xl floating">
-                        <i class="fas fa-user-tie"></i>
+                    <div class="text-blue-700 mb-4 text-4xl floating">
+                        <i class="fas fa-users text-yellow-500"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Estructura Directiva</h3>
-                    <p class="text-gray-600 mb-2 font-medium">Liderazgo compartido</p>
-                    <p class="text-gray-600">Incluye a figuras como José Arriola Tuesta (Secretario General) y congresistas como María Teresa Cabrera y Eduardo Salhuana.</p>
+                    <h3 class="text-xl font-semibold mb-3">Consejo Político</h3>
+                    <p class="text-gray-600 mb-2 font-medium">Colectivo de 21 miembros</p>
+                    <p class="text-gray-600">50% mujeres, 40% jóvenes, representantes de todas las regiones y sectores productivos.</p>
                 </div>
             </div>
 
-            <!-- Nota histórica -->
+            <!-- Nota -->
             <div class="mt-12 text-center text-gray-500">
-                <p>Lema del partido: <span class="font-medium">"Trabajo, Honradez y Desarrollo"</span></p>
             </div>
         </div>
     </section>
     
-    <!-- Ideología y Principios -->
+    <!-- Pilares Programáticos -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Ideología y Principios</h2>
-            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Bases programáticas del partido</p>
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Nuestros Compromisos</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">5 ejes para la transformación nacional</p>
             
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Desarrollo -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- Democracia -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                    <h3 class="text-xl font-semibold mb-1 text-blue-600">Desarrollo Regional</h3>
-                    <p class="text-gray-600 text-sm mb-4">Fortalecimiento de gobiernos regionales y locales para reducir brechas entre capitales y provincias.</p>
-                </div>
-                
-                <!-- Educación -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.1s;">
-                    <h3 class="text-xl font-semibold mb-1 text-red-600">Educación de Calidad</h3>
-                    <p class="text-gray-600 text-sm mb-4">Mejoramiento del sistema educativo con énfasis en cobertura universal y formación técnica.</p>
+                    <div class="text-blue-700 mb-2 text-2xl">
+                        <i class="fas fa-vote-yea text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-1">Democracia Real</h3>
+                    <p class="text-gray-600 text-xs mb-4">Reforma política con: revocatoria permanente, rendición de cuentas obligatoria y democracia participativa.</p>
                 </div>
                 
                 <!-- Economía -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.1s;">
+                    <div class="text-blue-700 mb-2 text-2xl">
+                        <i class="fas fa-chart-line text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-1">Economía Popular</h3>
+                    <p class="text-gray-600 text-xs mb-4">Créditos a MYPES al 5%, compras estatales a productores locales y bancos comunales.</p>
+                </div>
+                
+                <!-- Social -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                    <h3 class="text-xl font-semibold mb-1 text-blue-600">Economía Social</h3>
-                    <p class="text-gray-600 text-sm mb-4">Modelo económico que combina mercado con protección social, promoviendo MYPES y cooperativas.</p>
+                    <div class="text-blue-700 mb-2 text-2xl">
+                        <i class="fas fa-home text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-1">Vivienda Digna</h3>
+                    <p class="text-gray-600 text-xs mb-4">Programa nacional de autoconstrucción asistida con materiales ecológicos y diseños antisísmicos.</p>
                 </div>
                 
-                <!-- Inversión -->
+                <!-- Educación -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.3s;">
-                    <h3 class="text-xl font-semibold mb-1 text-red-600">Atracción de Inversiones</h3>
-                    <p class="text-gray-600 text-sm mb-4">Generación de condiciones para inversión privada nacional e internacional con beneficios sociales.</p>
+                    <div class="text-blue-700 mb-2 text-2xl">
+                        <i class="fas fa-book-open text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-1">Educación Emancipadora</h3>
+                    <p class="text-gray-600 text-xs mb-4">Escuelas públicas con pensamiento crítico, educación financiera y formación técnica dual.</p>
                 </div>
                 
-                <!-- Infraestructura -->
+                <!-- Ambiente -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
-                    <h3 class="text-xl font-semibold mb-1 text-blue-600">Infraestructura Productiva</h3>
-                    <p class="text-gray-600 text-sm mb-4">Desarrollo de obras públicas que impulsen la competitividad regional y nacional.</p>
+                    <div class="text-blue-700 mb-2 text-2xl">
+                        <i class="fas fa-tint text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-1">Agua para Todos</h3>
+                    <p class="text-gray-600 text-xs mb-4">Ley constitucional del agua como derecho humano, inversión en sistemas rurales y cosecha de lluvias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Propuestas Destacadas -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Soluciones Concretas</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Propuestas aplicadas con éxito en nuestros gobiernos locales</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Desarrollo -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                    <div class="text-blue-700 mb-4 text-4xl floating">
+                        <i class="fas fa-city text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Presupuesto Participativo 2.0</h3>
+                    <p class="text-gray-600">Plataforma digital + asambleas barriales para decidir el 100% de obras públicas con seguimiento en tiempo real.</p>
                 </div>
                 
                 <!-- Seguridad -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.5s;">
-                    <h3 class="text-xl font-semibold mb-1 text-red-600">Seguridad Ciudadana</h3>
-                    <p class="text-gray-600 text-sm mb-4">Políticas integrales contra la delincuencia con prevención social y fortalecimiento policial.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Posición Actual -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Posición Actual y Objetivos</h2>
-            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Enfoques y propuestas para el Perú actual</p>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Regional -->
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                    <div class="text-blue-600 mb-4 text-4xl floating">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Descentralización Efectiva</h3>
-                    <p class="text-gray-600">Transferencia real de competencias y recursos a gobiernos regionales para desarrollo territorial equilibrado.</p>
-                </div>
-                
-                <!-- Economía -->
                 <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                    <div class="text-red-600 mb-4 text-4xl floating">
-                        <i class="fas fa-hand-holding-usd"></i>
+                    <div class="text-blue-700 mb-4 text-4xl floating">
+                        <i class="fas fa-shield-alt text-yellow-500"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Reactivar Economía</h3>
-                    <p class="text-gray-600">Paquete de medidas para dinamizar sectores productivos afectados por crisis globales, con apoyo a pequeños empresarios.</p>
+                    <h3 class="text-xl font-semibold mb-3">Seguridad Comunitaria</h3>
+                    <p class="text-gray-600">Policía de barrio + alarmas vecinales + centros de rehabilitación laboral redujeron 62% la delincuencia en Lima Norte.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Logros y Contribuciones -->
+    <!-- Logros Regionales -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Logros y Contribuciones</h2>
-            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Aportes al desarrollo nacional y regional</p>
+            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll">Gobiernos que Transforman</h2>
+            <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Experiencias exitosas en gestión pública</p>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Educación -->
+                <!-- Lima -->
                 <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                    <div class="h-48 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-5xl text-blue-600"></i>
+                    <div class="h-48 bg-blue-50 flex items-center justify-center">
+                        <i class="fas fa-bus text-5xl text-blue-700"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <i class="far fa-calendar-alt mr-2"></i> 2007-2014
+                            <i class="fas fa-map-marker-alt mr-2"></i> Lima Metropolitana
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Reforma Educativa en La Libertad</h3>
-                        <p class="text-gray-600 mb-4">Como gobernador regional, Acuña implementó el programa de "Becas Presidente de la República" beneficiando a miles de estudiantes.</p>
+                        <h3 class="text-xl font-semibold mb-3">Transporte Popular</h3>
+                        <p class="text-gray-600 mb-4">Corredores complementarios con buses eléctricos redujeron 40% el tiempo de viaje en zonas populares.</p>
                     </div>
                 </div>
                 
-                <!-- Infraestructura -->
+                <!-- Cajamarca -->
                 <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.2s;">
-                    <div class="h-48 bg-red-100 flex items-center justify-center">
-                        <i class="fas fa-road text-5xl text-red-600"></i>
+                    <div class="h-48 bg-yellow-50 flex items-center justify-center">
+                        <i class="fas fa-cow text-5xl text-yellow-500"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <i class="far fa-calendar-alt mr-2"></i> 2019-2021
+                            <i class="fas fa-map-marker-alt mr-2"></i> Cajamarca
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Obras de Infraestructura</h3>
-                        <p class="text-gray-600 mb-4">APP impulsó importantes proyectos viales y de irrigación durante su participación en gobiernos regionales del norte.</p>
+                        <h3 class="text-xl font-semibold mb-3">Ganadería Sostenible</h3>
+                        <p class="text-gray-600 mb-4">500 familias mejoraron sus ingresos con técnicas de pastoreo regenerativo y comercialización asociativa.</p>
                     </div>
                 </div>
                 
-                <!-- Congreso -->
+                <!-- Arequipa -->
                 <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale" style="animation-delay: 0.4s;">
-                    <div class="h-48 bg-blue-100 flex items-center justify-center">
-                        <i class="fas fa-university text-5xl text-blue-600"></i>
+                    <div class="h-48 bg-gradient-to-r from-blue-50 to-yellow-50 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-5xl text-blue-700"></i>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <i class="far fa-calendar-alt mr-2"></i> 2020-2021
+                            <i class="fas fa-map-marker-alt mr-2"></i> Arequipa
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Leyes de Reactivación</h3>
-                        <p class="text-gray-600 mb-4">Su bancada promovió iniciativas para apoyo a MYPES y trabajadores informales durante la pandemia.</p>
+                        <h3 class="text-xl font-semibold mb-3">Tecnificación Rural</h3>
+                        <p class="text-gray-600 mb-4">20 centros de capacitación técnica formaron 1,200 jóvenes en agricultura de precisión y agroexportación.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
-    
-    <!-- Footer -->
-<!-- Footer con Redes Sociales Destacadas -->
+
+ <!-- Footer con Redes Sociales Destacadas -->
 <footer class="bg-gray-900 text-white pt-12 pb-6">
     <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-3 gap-8 mb-8">
@@ -323,7 +334,7 @@
             <!-- Columna 1: Logo y descripción -->
             <div class="text-center md:text-left">
                 <div class="flex justify-center md:justify-start mb-4">
-                    <img src="{{ asset('imagenes/image7.png') }}" alt="Logo Grupo Paladines" class="h-20">
+                    <img src="{{ asset('imagenes/image3.png') }}" alt="Logo Grupo Paladines" class="h-20">
                 </div>
                 <p class="text-gray-300 text-sm mb-4">
                     Líderes en desarrollo social y transparencia política en el Perú.
@@ -430,3 +441,13 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
