@@ -6,31 +6,25 @@
     <title>GP CANAL</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
 
     <!-- FontAwesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- candidatos -->
     <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
 	<link rel="stylesheet" href="{{ asset('css/admin/candidatos.css') }}"> <!--candidatos-->
-
+    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
 </head>
 <body>
 <!-- En tu HTML (justo después de <body>) -->
 <div class="fullpage-background"></div>
-
-<!-- Botón para volver al modo Usuario -->
-<div style="text-align: center; margin-bottom: 20px;">
-    <a href="{{ route('app') }}" class="btn-volver-usuario">
-        Volver al modo Usuario
-    </a>
-</div>
 
 <!-- Redes sociales -->
 <div class="social-icons">
@@ -74,7 +68,7 @@
                                 <a href="{{ route('admin.news.index') }}" class="admin-link">
                                     <i class="fas fa-newspaper"></i> Noticias
                                 </a>
-                                <a href="{{ route('videos.index') }}" class="admin-link">
+                                <a href="{{ route('admin.videos.index') }}" class="admin-link">
                                     <i class="fas fa-video"></i> Videos
                                 </a>
                                 <form action="{{ route('admin.logout') }}" method="POST">
@@ -110,6 +104,12 @@
     </div>
 </div>
 
+<!-- Botón para volver al modo Usuario -->
+<div style="margin-top: 10px;">
+    <a href="{{ route('app') }}" class="btn-volver-usuario">
+        <i class="fas fa-arrow-left"></i> Volver al modo Usuario
+    </a>
+</div>
 
 <!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
 <div id="search-container" class="search-container">
@@ -120,17 +120,48 @@
 <!-- Espaciado fijo para el contenido principal -->
 <div class="main-content-spacer" style="height: 140px;"></div>
 
+
+
 <!-- Contenido principal -->
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
+<!-- Botón fuera del slider -->
+<div class="mb-3">
+  <button class="btn btn-success btn-sm" id="create-buttonS">Agregar Imagen</button>
+</div>
+
+<!-- Modal de creación -->
+<div id="create-modalS" class="modal" style="display: none;">
+  <div class="modal-content p-3 border rounded shadow">
+    <span class="close" style="cursor:pointer;">&times;</span>
+    <form id="create-formS">
+      <label for="create-logoS" class="mt-2">Imagen:</label>
+      <input type="file" id="create-logoS" accept="image/*" class="form-control" required>
+      <button type="submit" class="btn btn-primary mt-3">Agregar</button>
+    </form>
+    <p id="image-limit-warning" style="color: red; display: none;">¡Solo puedes subir hasta 5 imágenes!</p>
+  </div>
+</div>
+
+<!-- Modal de eliminación -->
+<div id="delete-modalS" class="modal" style="display: none;">
+  <div class="modal-content p-3 border rounded shadow">
+    <span class="close" style="cursor:pointer;">&times;</span>
+    <h4>¿Estás seguro de que quieres eliminar esta imagen?</h4>
+    <button id="confirm-delete" class="btn btn-danger">Eliminar</button>
+    <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
+  </div>
+</div>
+
+
 
 <div class="slider-container-3d">
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="storage/images/485055934_963133949339637_6587303526016761817_n.jpg" class="d-block w-100" alt="Noticia 1">
+            <img src="{{ asset('storage/images/485055934_963133949339637_6587303526016761817_n.jpg') }}" alt="Noticia 1">
             </div>
             <div class="carousel-item">
-                <img src="storage/images/480487921_945020837817615_6087008265131444593_n.jpg" class="d-block w-100" alt="Noticia 2">
+                <img src="{{ asset('storage/images/480487921_945020837817615_6087008265131444593_n.jpg') }}" alt="Noticia 1">
             </div>
             <div class="carousel-item">
                 <img src="storage/images/487180354_968403768812655_384319847441050549_n.jpg" class="d-block w-100" alt="Noticia 3">
@@ -316,18 +347,66 @@
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
 <section id="poll-partidos-politicos">
-        <div class="title-container">
-        <h2 class="section-title-3dPP">Partidos <span class="highlightPP">Politicos</span></h2>
+        <div class="section-title-container">
+            <h1 class="section-title-3dPP">
+            Partidos <span class="highlightPP">Políticos</span>
+            </h1>
             <div class="dynamic-line"></div>
         </div>
 
         <div class="buscador">
+        <button class="btn btn-warning btn-sm" id="edit-button">Editar</button>
+        <button class="btn btn-danger btn-sm" id="delete-button">Eliminar</button>
+        <button class="btn btn-success btn-sm" id="create-button">Crear Partido</button>
         <label for="party-select">Buscar partido:</label>
-            <select id="party-select">
-                <option value="" disabled selected>Selecciona un partido</option>
-                <!-- Opciones generadas dinámicamente -->
-            </select>
-        </div>
+        <select id="party-select">
+            <option value="" disabled selected>Selecciona un partido</option>
+            <!-- Opciones generadas dinámicamente -->
+        </select>
+    </div>
+      <!-- Modal de Edición -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="edit-form">
+        <label for="edit-name">Nombre del partido:</label>
+        <input type="text" id="edit-name" class="form-control" required>
+        <label for="edit-logo">Logo del partido:</label>
+        <input type="file" id="edit-logo" accept="image/*" class="form-control">
+        <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Creación -->
+  <div id="create-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="create-form">
+        <label for="create-name">Nombre del partido:</label>
+        <input type="text" id="create-name" class="form-control" required>
+        <label for="create-logo">Logo del partido:</label>
+        <input type="file" id="create-logo" accept="image/*" class="form-control" required>
+        <button type="submit" class="btn btn-success mt-3">Crear Partido</button>
+      </form>
+    </div>
+  </div>
+
+
+<!-- Modal de Eliminación -->
+<div id="delete-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>¿Estás seguro de que quieres eliminar este partido?</h3>
+    <p>Esta acción no se puede deshacer.</p>
+    <div class="modal-buttons text-center">
+      <button id="confirm-delete" class="btn btn-danger">Eliminar</button>
+      <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
 
         <div class="gallery">
             <ul class="cards">
@@ -368,7 +447,9 @@
   </div>
 </section>
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
     <!--Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
@@ -382,6 +463,7 @@
     <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
     <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
     <script type="module" src="{{ asset('js/admin.js') }}"></script> 
+    <script type="module" src="{{ asset('js/adminpartidos.js') }}"></script> 
 
     
 

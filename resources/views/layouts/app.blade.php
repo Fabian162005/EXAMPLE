@@ -314,9 +314,8 @@
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
 <section id="poll-partidos-politicos">
-        <div class="title-container">
-        <h2 class="section-title-3dPP">Partidos <span class="highlightPP">Politicos</span></h2>
-            <div class="dynamic-line"></div>
+        <div class="section-title-container">
+        <h1 class="section-title-3dPP">Partidos <span class="highlightPP">Políticos</span></h1>
         </div>
 
         <div class="buscador">
@@ -382,6 +381,29 @@
     <script type="module" src="{{ asset('js/admin.js') }}"></script> 
 
     
+    <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyCjrkHZOYNbGIwJ_zlZY87JAP_Ag2lnkj4",
+        authDomain: "gp-paladines.firebaseapp.com",
+        projectId: "gp-paladines",
+        storageBucket: "gp-paladines.firebasestorage.app",
+        messagingSenderId: "880092904048",
+        appId: "1:880092904048:web:61502c98ee5088e1a1d2b5",
+        measurementId: "G-5XQ5F7KF3P"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    </script>    
 
 </body>
 </html>

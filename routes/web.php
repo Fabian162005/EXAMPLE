@@ -15,9 +15,19 @@ Route::get('/', function () {
 
 //RUTA DE LOS VIDEOS-----------------------------------------------------------------------------------------------------------------
 
+// Ruta pública
 Route::get('/videos', function () {
-    return view('videos.index');
+    return view('videos.index'); // Vista para la ruta normal
 })->name('videos.index');
+
+// Ruta para el administrador
+Route::get('/admin/videos', function () {
+    return view('admin.videos.index'); // Vista para la administración de videos
+})->name('admin.videos.index');
+
+
+// Ruta para volver al modo Admin
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
 
 //RUTA DE LAS ENCUESTAS-----------------------------------------------------------------------------------------------------------------
@@ -59,7 +69,6 @@ Route::get('/menunoticias', function () {
 })->name('menunoticias');
 
 //RUTAS CREADAS PARA ADMIN //
-// Rutas para autenticación y admin
 Route::prefix('admin')->group(function () {
     // Esta ruta es para la página principal del admin, cargará el archivo admin.blade.php
     Route::get('/', function () {
@@ -80,7 +89,6 @@ Route::prefix('admin')->group(function () {
 
 
 // Rutas de login y logout
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 Auth::routes();
 

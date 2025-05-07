@@ -17,6 +17,14 @@
                 <span class="highlight-blue">Videos</span> 
                 <span class="highlight-black">Destacados</span>
             </h2>
+
+            <!-- Botón para volver al modo Admin -->
+            <div style="margin-top: 10px;">
+                <a href="{{ route('admin.dashboard') }}" class="btn-volver-admin">
+                    <i class="fas fa-arrow-left"></i> Volver al modo Admin
+                </a>
+            </div>
+
             
             <!-- Buscador combinado (por texto y fecha) -->
             <div class="search-bar-3d">

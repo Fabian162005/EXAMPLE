@@ -11,4 +11,6 @@ class AdminController extends Controller
         // Retorna la vista del dashboard
         return view('admin.dashboard');
     }
+
+
 }
