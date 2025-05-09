@@ -10,6 +10,9 @@
 
     <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <!-- candidatos -->
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -19,6 +22,8 @@
 	<link rel="stylesheet" href="{{ asset('css/admin/candidatos.css') }}"> <!--candidatos-->
     <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+    
+
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
 </head>
@@ -175,12 +180,43 @@
         </button>
     </div>
 </div>
+
 <!-- Sección Noticias -->
 <section class="news-section-3d">
-        <div class="section-header-3d">
-            <h2>Noticias</h2>
-            <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
-        
+    <div class="section-header-3d">
+        <h2>Noticias</h2>
+        <a href="{{ url('noticias') }}" class="btn-3d news-btn">Buscar noticias <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="botones-acciones">
+        <button class="btn btn-warning btn-edi">Editar</button>
+        <button class="btn btn-success btn-cre">Crear Noticia</button>
+        <button class="btn btn-danger btn-eli">Eliminar</button>
+    </div>
+
+    <!-- Formulario para crear noticia -->
+    <div id="form-noticia" style="display: none; margin-top: 30px;">
+        <form action="subir_noticia.php" method="POST" enctype="multipart/form-data" class="form-noticia">
+            <h3>Crear Noticia</h3>
+            
+            <label for="titulo">Título de la noticia:</label>
+            <input type="text" id="titulo" name="titulo" required placeholder="Escribe el título...">
+
+            <label for="foto">Foto de la noticia:</label>
+            <input type="file" id="foto" name="foto" accept="image/*" required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="5" placeholder="Escribe una descripción clara..." required></textarea>
+
+            <label for="archivo">Seleccionar documento adicional (opcional):</label>
+            <input type="file" id="archivo" name="archivo">
+
+            <button type="submit" class="btn btn-primary btn-publicar">Publicar Noticia</button>
+        </form>
+    </div>
+</section>
+<div id="overlay" style="display:none;"></div>
+
         <div class="news-grid-3d">
             <!-- Noticia 1 -->
             <div class="news-card-3d">
@@ -466,6 +502,16 @@
     <script type="module" src="{{ asset('js/adminpartidos.js') }}"></script> 
 
     
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
+    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
+    <script src="{{ asset('js/hexocet.js') }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
+    <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="{{ asset('js/admin-partidos.js') }}"></script>
+    <!-- Script JS para controlar el formulario -->
+    <<script src="{{ asset('js/noticiasAD.js') }}"></script>
+    <<script src="{{ asset('js/slider.js') }}"></script>
+
 
 </body>
 </html>
