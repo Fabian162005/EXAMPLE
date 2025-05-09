@@ -313,29 +313,31 @@
 
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
-<section id="poll-partidos-politicos">
-        <div class="section-title-container">
-        <h1 class="section-title-3dPP">Partidos <span class="highlightPP">Políticos</span></h1>
-        </div>
+    <div class="title-container">
+        <h1 class="title">Partidos Políticos</h1>
+        <div class="dynamic-line"></div>
+    </div>
 
-        <div class="buscador">
+    <div class="buscador">
         <label for="party-select">Buscar partido:</label>
-            <select id="party-select">
-                <option value="" disabled selected>Selecciona un partido</option>
-                <!-- Opciones generadas dinámicamente -->
-            </select>
+        <select id="party-select">
+            <option value="" disabled selected>Selecciona un partido</option>
+            <!-- Opciones generadas dinámicamente -->
+        </select>
+    </div>
+    <div class="gallery">
+        <ul class="cards">
+            <!-- Las tarjetas de los partidos se insertarán aquí mediante JavaScript -->
+        </ul>
+        <div class="actions">
+            <button class="prev">Anterior</button>
+            <button class="next">Siguiente</button>
         </div>
+    </div>
+</section>
 
-        <div class="gallery">
-            <ul class="cards">
-                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
-            </ul>
-            <div class="actions">
-                <button class="prev">Anterior</button>
-                <button class="next">Siguiente</button>
-            </div>
-        </div>
-    </section>
+
+<!-- Fin de la sección de candidatos -->
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <section id="contacto" class="contacto-3d">
@@ -379,31 +381,5 @@
     <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
     <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
     <script type="module" src="{{ asset('js/admin.js') }}"></script> 
-
-    
-    <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-        apiKey: "AIzaSyCjrkHZOYNbGIwJ_zlZY87JAP_Ag2lnkj4",
-        authDomain: "gp-paladines.firebaseapp.com",
-        projectId: "gp-paladines",
-        storageBucket: "gp-paladines.firebasestorage.app",
-        messagingSenderId: "880092904048",
-        appId: "1:880092904048:web:61502c98ee5088e1a1d2b5",
-        measurementId: "G-5XQ5F7KF3P"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    </script>    
-
 </body>
 </html>

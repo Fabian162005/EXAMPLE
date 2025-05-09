@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\VideosController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\PartidoController;
+
+Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
 
 
 Route::get('/', function () {
