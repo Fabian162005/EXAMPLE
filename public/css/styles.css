@@ -1,64 +1,64 @@
-/* CONFIGURACIONES DE PANTALLA*/
 
-/* 🔹 Elimina el scroll horizontal no deseado */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-/* 🔹 Si hay algún `position: absolute`, asegúrate de que no lo desborde */
-.navbar-container, .logo-container {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* 🔹 Previene margen extra en el slider */
-.carousel {
-    overflow: hidden;
-    width: 100%;
-}
-
-/* 🌟 Barra de Redes Sociales */
+/* === Iconos de redes sociales === */
 .social-icons {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 65px; /* 🔥 Espaciado entre iconos reducido */
-    padding: 5px 15px;
     position: fixed;
-    top: -14.9px;
-    left: 0;
-    width: 100%;
     background-color: transparent;
     z-index: 900;
-    transform: translateX(8px); /* Mover los iconos 3px a la derecha */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+
+    /* Posición en el lado derecho */
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* Estilos para disposición vertical */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px 5px;
+
+    pointer-events: none;
+
 }
 
-/* 🔗 Iconos de redes sociales */
 .social-icons a {
+    pointer-events: auto;
     text-decoration: none;
     position: relative;
     display: inline-block;
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 🔥 Efecto de resplandor */
-.social-icons a::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.3s ease;
+/* Efecto hover opcional */
+.social-icons a:hover {
+    transform: scale(1.2);
+    opacity: 0.9;
 }
 
-/* 🔥 Hover - Efecto de salto y resplandor */
-.social-icons a:hover::before {
-    transform: translate(-50%, -50%) scale(1.5);
+/* Opcional: Efecto al aparecer/desaparecer */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }
 
 /* 🔥 Facebook */
@@ -66,19 +66,34 @@ html, body {
     font-size: 30px;
     color: black;
     transition: color 0.3s ease;
+    --hover-color: black; /* Valor por defecto */
 }
 .facebook:hover {
-    color: #0d5be1;
+    color: var(--hover-color);
 }
-
 /* 🟣 Instagram */
 .instagram {
     font-size: 30px;
-    color: black;
-    transition: color 0.3s ease;
+    color: #000; /* Color inicial negro */
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
 }
 .instagram:hover {
-    color: #c7225e;
+    /* Degradado de Instagram completo */
+    background: linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transform: scale(1.1);
+    animation: instaShine 0.8s forwards;
 }
 
 /* 🔴 YouTube */
@@ -105,124 +120,187 @@ html, body {
     transition: color 0.3s ease;
 }
 .twitch:hover {
-    color: #6b32cc;
+    color: #8946fc;
 }
 
+/* === Navbar === */
 .navbar-container {
     position: fixed;
-    top: 50px;
+    top: -22px;
     left: 50%;
-    transform: translateX(-50%);
-    width: 70%; /* 🔥 Hace el navbar más ancho */
-    max-width: 1300px; /* 🔥 Evita que sea demasiado ancho en pantallas grandes */
-    height: 70px; /* 🔥 Aumenta la altura */
+    transform: translateX(-50%) translateY(29px);
+    width: 56%; /* Reducido un 20% (70% -> 56%) */
+    max-width: 1040px; /* Reducido un 20% (1300px -> 1040px) */
+    height: 56px; /* Reducido un 20% (70px -> 56px) */
     background-color: #3B83BD;
-    border-radius: 20px; /* 🔥 Bordes redondeados */
+    border-radius: 16px; /* Reducido un 20% (20px -> 16px) */
     z-index: 1000;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Distribuir elementos equitativamente */
     align-items: center;
-    padding: 0 3rem; /* 🔥 Más espacio interno */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box; /* 🔥 Asegura que el padding no afecte el tamaño total */
+    padding: 0 1.6rem; /* Reducido un 20% (2rem -> 1.6rem) */
+    box-shadow: 0px 2.56px 9.6px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* 📌 Contenedor del logo (Ahora flotante y sobresalido) */
+
+.navbar-blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: transparent;
+    backdrop-filter: blur(0px); /* Inicialmente sin blur */
+    -webkit-backdrop-filter: blur(0px);
+    z-index: 999; /* Un nivel por debajo del navbar (1000) */
+    pointer-events: none; /* Para que no interfiera con clicks */
+    transition: backdrop-filter 0.32s ease;
+}
+
+/* 📌 Contenedor del logo (mantiene su posición relativa al navbar) */
 .logo-container {
     position: absolute;
     top: -8px;
     left: 50%;
     transform: translateX(-48%);
     z-index: 1001;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-container img {
-    height: 100px;
+    height: 80px;
     width: auto;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+/*APARTADO LOGINADMIN NAVBAR*/
+.admin-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 15px;
+    width: 250px;
+    z-index: 1100;
+    display: none;
+}
+
+.nav-submenu:hover .admin-submenu {
+    display: block;
+}
+
+.login-form, .admin-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-form input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.login-form button, .admin-link, #admin-logout {
+    padding: 8px 12px;
+    background: #3B83BD;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.login-message {
+    font-size: 12px;
+    color: #ff0000;
+    min-height: 16px;
+}
+
+
+/* 🎨 Estilo de los elementos del navbar */
 .navbar-menu {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 100px; /* 🔥 Aumenta la separación entre los elementos */
+    gap: 80px;
 }
 
 /* 🔹 Agregar padding a los elementos del navbar */
 .nav-item {
-    padding: 15px 10px; /* 🔥 Más espacio alrededor de cada elemento */
-    font-size: 22px;
+    padding: 12px 8px;
     font-weight: bold;
     text-align: center;
     color: white;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-item:hover {
-    color: #000000; /* 🔥 Cambio de color al pasar el mouse */
+    color: #000000; /* Cambio de color al pasar el mouse */
+    transform: scale(1.08); /* Efecto de agrandado ligeramente reducido */
+}
+
+.nav-submenu {
+    position: relative;
+    padding-left: 24px;
+    font-weight: 500; /* Texto más legible */
+}
+
+.nav-submenu i {
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 19.2px !important;
+    display: inline-block !important;
+    color: inherit; /* Mismo color que el texto */
+}
+
+.nav-submenu:hover i,
+.nav-submenu:hover svg {
+    opacity: 1;
+}
+
+/* Posicionamiento específico para cada elemento */
+
+.nav-item.nav-submenu {
+    position: absolute;
+    left: 2%;
+}
+
+.nav-item.nav-envivo {
+    position: absolute;
+    left: 12%;
+
 }
 
 .nav-item.nav-noticias {
-    margin-left: -180px; /* 🔥 Mueve 'Noticias' hacia la derecha */
-}
+    position: absolute;
+    left: 22%;
 
+
+}
 
 .nav-item.nav-encuestas {
-    margin-left: -6px; /* 🔥 Mueve 'Encuestas' hacia la derecha */
+    position: absolute;
+    left: 34%;
+
 }
 
+.nav-item.nav-contacto {
+    position: absolute;
+    left: 54.5%; /* Ajusta este valor según necesites */
 
-.nav-item.nav-contactanos {
-    margin-left: 10px; /* 🔥 Mueve 'Contáctanos' hacia la derecha */
-}
-
-/* 📱 Ajustes para pantallas pequeñas */
-@media (max-width: 430px) {
-    .navbar-container {
-        width: 100vw; /* Se mantiene en el 100% del ancho de la ventana */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Evita el estiramiento */
-        align-items: center;
-        background-color: #005FAD; /* Fondo azul para mejor contraste */
-        height: auto; /* Evita que sea más alto de lo necesario */
-        padding: 5px 0; /* Reduce el espacio interno */
-    }
-
-    .nav-item {
-        font-size: 16px; /* Tamaño ajustado para que no se vea enorme */
-        width: 100%;
-        text-align: center;
-        padding: 12px 0; /* Reduce el espacio entre elementos */
-        color: #ffffff; /* Texto blanco para contraste */
-        background-color: transparent; /* Evita bloques de color extraños */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea sutil de separación */
-    }
-
-    .nav-item:last-child {
-        border-bottom: none; /* Elimina la línea del último elemento */
-    }
-
-    .nav-item.nav-encuestas,
-    .nav-item.nav-noticias,
-    .nav-item.nav-contactanos {
-        font-size: 18px;
-        width: 100%;
-    }
-}
-
-/* Ajuste en pantallas grandes */
-@media (min-width: 1600px) {
-    .navbar-container {
-        width: max(1200px, 80vw); /* Mínimo 1200px, pero puede crecer hasta el 80% */
-        max-width: 1600px; /* Evita que crezca demasiado en monitores ultraanchos */
-    }
 }
 
 /* Mantiene el tamaño del navbar fijo en zoom */
 .navbar-container {
-    width: max(80%, 1200px); /* Se achicó al 70% */
-    max-width: 1600px;
+    width: max(60%, 1280px);
 }
 
 /* Estilos para el logo centrado */
@@ -230,9 +308,10 @@ html, body {
     flex-grow: 1; /* Asegura que el logo esté en el medio */
     text-align: center;
 }
+
 /* Estilo para el botón de búsqueda */
 .search-button {
-    margin-left: 20px; /* Ajusta la distancia al lado izquierdo del ícono */
+    margin-left: 16px;
 }
 
 /* Icono de la lupa*/
@@ -242,51 +321,52 @@ html, body {
     border: none; /* Sin bordes */
     outline: none; /* Evita el borde al hacer clic */
     cursor: pointer;
-    font-size: 28px;
-    color: black; /* Ícono de lupa en negro */
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    padding: 10px;
-    top: 6px;
-    right: 20px;
+    font-size: 22.4px;
+    color: rgb(255, 255, 255); /* Ícono de lupa en negro */
+    transition: transform 0.16s ease, box-shadow 0.24s ease;
+    padding: 8px;
+    right: 1px;
     box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
 
 /* 🔍 Efecto hover elegante */
 .search-button:hover {
-    transform: scale(1.1); /* Aumenta ligeramente de tamaño */
+    transform: scale(1.08);
     box-shadow: none; /* Asegura que no haya borde visual */
 }
 
 /* 🔍 Efecto al hacer clic */
 .search-button:active {
-    transform: scale(0.95); /* Efecto de presión */
+    transform: scale(0.76);
     box-shadow: none; /* Sin sombra al hacer clic */
 }
 
 /* 🔍 Contenedor de la barra de búsqueda */
 .search-container {
     position: fixed;
-    top: 55.9px; /* 🔥 Ajuste para bajar la barra 10px más abajo */
-    right: 390px;
-    display: none; /* 🔥 Oculto por defecto */
+    top: 13.6px;
+    left: 1000px;
+    display: none; /* Oculto por defecto */
     flex-direction: row;
     align-items: center;
     background-color: #ffffff;
-    border: none; /* 🔥 Se elimina el borde */
-    border-radius: 25px;
-    padding: 8px 12px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border: none; /* Se elimina el borde */
+    border-radius: 20px;
+    padding: 6.4px 30px;
+    box-shadow: 0px 3.2px 6.4px rgba(0, 0, 0, 0.3);
     z-index: 1001;
-    width: fit-content; /* 🔥 Ajusta el tamaño al contenido */
+    width: fit-content; /* Ajusta el tamaño al contenido */
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform; /* Optimización para animaciones */
 }
 
 /* 🔍 Campo de entrada de texto */
 .search-input {
     border: none;
-    padding: 8px;
+    padding: 5px;
     outline: none;
-    width: 300px; /* Limita el ancho del campo de entrada */
-    font-size: 17px;
+    height: auto;
+    font-size: 13px;
     color: black;
 }
 
@@ -296,386 +376,951 @@ html, body {
     border: none;
     outline: none; /* Asegura que no tenga borde al hacer clic */
     cursor: pointer;
-    font-size: 22px;
+    font-size: 17.6px;
     color: #3B83BD; /* 🔵 Color de la lupa */
-    transition: transform 0.2s ease;
+    transition: transform 0.16s ease;
     position: absolute;
-    top: -0.1px;
-    right: 14px; /* 🔥 Ajusta su posición sin agrandar el contenedor */
+    right: 1px;
     box-shadow: none; /* Asegura que no tenga borde */
 }
 
 /* Efecto hover para el botón de búsqueda */
 .search-container .search-button:hover {
-    transform: scale(1.2);
+    transform: scale(1.12);
     box-shadow: none; /* Sin sombra en hover */
 }
 
 
-/* 🔥 Contenedor de la sección del título */
+/* === TITULO CON EL CARRUSEL DE IMAGENES === */
 .section-container {
     position: relative;
-    width: 100%;
-    height: 150px; /* 🔥 Ajusta según el espacio entre navbar y slider */
+    width: calc(80% - 32px);
+    height: 48px;
     display: flex;
     align-items: center;
-    justify-content: center; /* 🔥 Centra el título horizontalmente */
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.05); /* 🔥 Color de fondo opcional */
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    
+    justify-content: flex-start; /* Cambiado de center a flex-start */
+    text-align: left; /* Alineación izquierda */
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    border-bottom: 1.6px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    margin: 0 auto 16px;
+    padding: 8px 0 8px -40px;
 }
 
-/* 🔥 Estilo para el título */
+/* Pantallas grandes (hasta 1280px) */
+@media (max-width: 1280px) {
+  .navbar-container {
+    width: 80%;
+    padding: 0 1rem;
+  }
+
+  .navbar-menu {
+    gap: 30px;
+    font-size: 0.8rem;
+  }
+
+  .nav-item.nav-submenu {
+    left: 2%;
+
+  }
+
+  .nav-item.nav-envivo {
+    left: 10%;
+  }
+
+  .nav-item.nav-noticias {
+    left: 20%;
+  }
+
+  .nav-item.nav-encuestas {
+    left: 32%;
+  }
+
+  .nav-item.nav-contacto {
+    left: 55%;
+  }
+
+  .search-container {
+    left: 550px;
+    top: 70px;
+  }
+
+  .logo-container img {
+    height: 60px;
+     margin-top: 7px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    left: 16px;
+    right: 16px;
+    top: 70px;
+    width: calc(100% - 32px);
+  }
+
+  .logo-container {
+    top: -4px;
+  }
+
+  .logo-container img {
+    height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    height: 48px;
+    padding: 0 0.6rem;
+    width: calc(100% - 32px);
+  }
+
+  .logo-container img {
+    height: 48px;
+  }
+
+  .search-button {
+    font-size: 20px;
+    right: 16px;
+  }
+
+  .search-container {
+    top: 60px;
+  }
+}
+
+
+
+/* === ESTILOS DEL TÍTULO === */
 .section-title {
-    font-size: 36px;
-    font-weight: bold;
-    color: #000000;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #000000 !important;
     text-transform: uppercase;
-    padding: 1px 1px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centra horizontalmente */
     position: relative;
-    right: -35px; /* Se movió 20px a la izquierda */
-    bottom: -5px; /* Se movió 5px más abajo */
-    max-width: 90%;
-    text-align: center;
+    left: 0; /* Elimina cualquier desplazamiento lateral */
+    max-width: 100%; /* Ajusta el ancho máximo para evitar desbordamientos */
+    animation: fadeInSlide 1.2s ease-out forwards;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    padding: 0 25px;
+    line-height: 1.2;
+    text-align: center; /* Centra el texto */
 }
 
-/* 🔥 Animación suave y neutral */
-@keyframes fadeInSmooth {
+/* Línea decorativa debajo del título */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80%; /* Hacer que la línea sea un porcentaje del ancho */
+    max-width: 1000px; /* Limitar el ancho máximo */
+    height: 5px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    margin: 1rem auto 0; /* Centra la línea */
+    border-radius: 5px;
+    transform-origin: center; /* Asegura que la animación sea centrada */
+    animation: pulseLine 2s ease-in-out infinite; /* Animación de pulsado */
+}
+
+/* Animación de la línea decorativa con scaleX */
+@keyframes pulseLine {
     0% {
-        opacity: 0;
-        transform: translateY(10px); /* Comienza ligeramente desplazado */
+        transform: scaleX(1); /* Línea normal */
     }
     50% {
-        opacity: 0.5;
-        transform: translateY(0); /* Mitad del camino hacia la posición original */
+        transform: scaleX(1.2); /* Aumenta el tamaño de la línea */
+    }
+    100% {
+        transform: scaleX(1); /* Vuelve al tamaño original */
+    }
+}
+
+/* === ANIMACIÓN DEL TÍTULO === */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translate(0px, 16px) scale(0.9);
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Finaliza en su posición original */
+        transform: translate(0px, 0) scale(1);
     }
 }
 
-/* 🔥 Aplica la animación suave */
-.section-title {
-    animation: fadeInSmooth 1s ease-out; /* Animación más suave y de mayor duración */
-}
-
-/* Ajuste del tamaño de las imágenes del slider */
-.custom-slider-img {
-    width: 100%; /* Asegura que las imágenes ocupen todo el ancho del contenedor */
-    height: 100%; /* La altura se ajusta al contenedor */
-    object-fit: cover; /* Hace que la imagen se ajuste dentro del contenedor sin recortarse */
-    border-radius: 8px; /* Bordes redondeados para dar un efecto suave */
-    object-position: center; /* Centra la imagen para que el recorte se haga de manera equilibrada */
-}
-
-/* Ajuste de la altura de cada slide */
-.carousel-item {
-    height: 254px; /* Ajusta la altura del slide */
-}
-
-/* Asegura que las imágenes no se salgan del contenedor */
-.carousel-inner {
-    overflow: hidden; /* Elimina cualquier parte de la imagen que sobresalga */
-}
-
-/* Asegura que el carousel se vea bien y las imágenes se adapten al tamaño del contenedor */
-.carousel-item img {
-    width:100%; /* Las imágenes ocupan todo el ancho del contenedor */
-    height: 90%; /* Asegura que la altura sea proporcional al contenedor */
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
-    border-radius: 12px; /* Bordes redondeados */
-}
-
-/* Estilo del botón Anterior */
-.carousel-control-prev {
-    position: absolute;
-    top: 37.5%;
-    left: 350px;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    width: 48px;
-    height: 260px;
-    border-radius: 11%;
-    z-index: 100;
-}
-
-/* Estilo del botón Siguiente */
-.carousel-control-next {
-    position: absolute;
-    top: 37.5%;
-    right: 350px;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    width: 48px;
-    height: 260px;
-    border-radius: 11%;
-    z-index: 100;
-}
-
-/* Estilo para el icono dentro del botón */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgb(0, 0, 0.2s); /* Cambia el color del icono */
-}
-
-
-.search-button:hover {
-    background-color: #2a6da8;
-}
-
-/* Sección de noticias */
-.section-box {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-}
-
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.news-item {
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añade transiciones */
-}
-
-.news-item:hover {
-    transform: translateY(-5px); /* Eleva ligeramente el cuadro */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
-}
-
-.news-item img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-
-/* --------------------------------------------------------------------------------------------------------------------------------------------------------- */
-
-/* Estilos para la sección de encuestas */
-
-
-
-
-
-
-:root {
-    --primary-color: #2563eb;    /* Azul vibrante */
-    --hover-color: #1d4ed8;      /* Azul oscuro */
-    --bg-color: #f8fafc;         /* Fondo claro */
-    --text-color: #1e293b;       /* Texto oscuro */
-    --transition-speed: 0.3s;    /* Velocidad animaciones */
-}
-
-/* Contenedor Principal */
-.encuestas-section {
-    padding: 2rem 1rem;
-    background: var(--bg-color);
-    max-width: 1200px;
-    margin: 2rem auto;
-}
-
-/* Encabezado Sección */
-.section-header {
-    font-size: 1.75rem;
-    color: var(--text-color);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: all var(--transition-speed);
-}
-
-.section-header:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* Icono de Toggle */
-.toggle-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    transition: transform var(--transition-speed);
-}
-
-/* Grid de Tarjetas */
-.encuestas-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin-top: 1.5rem;
-}
-
-/* Tarjeta Individual */
-.encuesta-card {
-    background: white;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+/* === ESTILOS DEL CARRUSEL === */
+.slider-container-3d {
+    max-width: 960px;
+    margin: 8px auto;
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 800px;
 }
 
-.encuesta-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+.carousel-item img {
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
 }
 
-/* Cabecera Tarjeta */
-.card-header {
-    padding: 1.25rem;
+.carousel-control-prev, .carousel-control-next {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    opacity: 1;
+    background-color: var(--primary-color);
+}
+
+/* Pantallas grandes (desktops) */
+@media (min-width: 1200px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .carousel-item img {
+        height: 380px; /* Imagen más grande en pantallas grandes */
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem; /* Reducir el tamaño del texto */
+        padding: 0 15px; /* Menos padding */
+    }
+
+    .slider-container-3d {
+        max-width: 80%;
+        margin: 12px auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+    }
+
+    .carousel-item img {
+        height: 260px; /* Más alto que en móvil pero menor que en desktop */
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        background-color: rgba(0, 0, 0, 0.45);
+    }
+}
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .carousel-item img {
+        height: 300px; /* Ajustar la altura de las imágenes */
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 35px;
+        height: 35px;
+    }
+
+    .slider-container-3d {
+        max-width: 80%; /* Hacer que el carrusel ocupe todo el ancho disponible */
+    }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .section-title {
+        font-size: 1.6rem; /* Reducir el tamaño del texto */
+        padding: 0 15px; /* Menos padding */
+    }
+
+    .carousel-item img {
+        height: 200px; /* Ajustar la altura de las imágenes para móviles */
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 30px;
+        height: 30px;
+    }
+
+    .slider-container-3d {
+        max-width: 80%; /* Hacer que el carrusel ocupe todo el ancho disponible */
+    }
+}
+
+
+
+/* Sección Noticias 3D */
+.news-section-3d {
+    padding: 48px 4%;
+    background-color: #4b74fc;
+    margin: 32px 0;
+    position: relative;
+}
+
+.section-header-3d {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    background: #ffffff;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 4px solid #000000;
 }
 
-.card-title {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--text-color);
-}
-
-/* Flecha de Toggle */
-.toggle-arrow {
-    transition: transform var(--transition-speed);
-    color: var(--primary-color);
-    font-size: 0.9rem;
-}
-
-/* Lista de Enlaces */
-.card-list {
-    padding: 0 1.25rem 1.25rem;
-    list-style: none;
-    display: grid;
-    gap: 0.75rem;
-}
-
-.card-item {
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    background: #f1f5f9;
-    transition: background var(--transition-speed);
-}
-
-.card-item:hover {
-    background: #e2e8f0;
-}
-
-.card-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
+/* Línea decorativa debajo del título */
+.section-header-3d h2::after {
+    content: '';
     display: block;
+    width: 64%;
+    max-width: 800px;
+    height: 4px;
+    background: linear-gradient(90deg, #000000, #000000);
+    margin: 0.8rem auto 0;
+    border-radius: 4px;
+    transform-origin: center; /* Asegura que la animación sea centrada */
+    animation: pulseLine 1.6s ease-in-out infinite;
 }
 
-.card-link:hover {
-    color: var(--hover-color);
+.section-header-3d h2 {
+    font-size: 2rem;
+    color: white !important;
+    position: relative;
+    margin: 0 0 1.2rem 0;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    animation: textGlow 2.4s ease-in-out infinite alternate;
+}
+
+.news-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(400px, 40px));
+    justify-content: center; /* Centra las columnas */
+    gap: 40px;
+    padding: 8px 0;
+}
+
+.news-card-3d {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    transform-style: preserve-3d;
+    perspective: 800px;
+    position: relative;
+}
+
+.news-card-3d:hover {
+    transform: translateY(-8px) rotateX(4deg);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.news-img-container {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+}
+
+.news-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.news-card-3d:hover .news-img {
+    transform: scale(1.04);
+}
+
+.news-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--accent-color);
+    color: rgb(0, 0, 0);
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: 0.64rem;
+    font-weight: bold;
+}
+
+.news-badge.trending {
+    background: #FF9F43;
+}
+
+.news-badge.hot {
+    background: #FF6B6B;
+}
+
+.news-content {
+    padding: 16px;
+}
+
+.news-content h3 {
+    font-size: 1.04rem;
+    margin-bottom: 8px;
+    color: #102cca;
+}
+
+.news-content a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.news-content a:hover {
+    color: blue;
     text-decoration: underline;
 }
 
-/* Estados */
-.hidden {
+.news-content p {
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.2; /* Reducido un 25% */
+}
+
+.read-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.read-more i {
+    margin-left: 4px;
+    transition: var(--transition);
+}
+
+.read-more:hover {
+    color: var(--secondary-color);
+}
+
+.read-more:hover i {
+    transform: translateX(4px);
+}
+
+.btn-3d {
+    display: inline-block;
+    padding: 8px 16px;
+    background: white;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(59, 131, 189, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-3d.news-btn {
+    background-color: white;
+    color: #000000;
+    border: none;
+    padding: 9.6px 20px;
+    font-weight: bold;
+    border-radius: 6.4px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.24s ease;
+    box-shadow:
+        0 3.2px 0 #d1d1d1,
+        0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto 3D al presionar */
+.btn-3d.news-btn:active {
+    transform: translateY(3.2px);
+    box-shadow:
+        0 0.8px 0 #d1d1d1,
+        0 1.6px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto hover elegante */
+.btn-3d.news-btn:hover {
+    background-color: #f8f8f8;
+    box-shadow:
+        0 3.2px 0 #c1c1c1,
+        0 4.8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Borde sutil para mejor definición */
+.btn-3d.news-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 0.8px solid rgba(0, 0, 0, 0.05);
+    border-radius: 5.6px;
+    pointer-events: none;
+}
+
+.btn-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
+    transition: 0.4s;
+}
+
+.btn-3d:hover::before {
+    left: 100%;
+}
+
+.btn-3d:hover {
+    transform: translateY(-2.4px);
+    box-shadow: 0 6.4px 16px rgba(59, 131, 189, 0.6);
+}
+
+.btn-3d:active {
+    transform: translateY(0.8px);
+}
+
+.news-btn {
+    background: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
+}
+
+.news-btn:hover {
+    box-shadow: 0 6.4px 16px rgba(44, 62, 80, 0.6);
+}
+
+@media (max-width: 1199px) {
+    .news-grid-3d {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+}
+
+/* Para tablets (menores a 768px) */
+@media (max-width: 768px) {
+    .news-grid-3d {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .section-header-3d {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section-header-3d h2::after {
+        width: 80%;
+    }
+}
+
+/* Para móviles pequeños (menores a 480px) */
+@media (max-width: 480px) {
+    .news-section-3d {
+        padding: 32px 5%;
+    }
+
+    .section-header-3d h2 {
+        font-size: 1.6rem;
+    }
+
+    .news-content h3 {
+        font-size: 0.96rem;
+    }
+
+    .news-content p {
+        font-size: 0.88rem;
+    }
+
+    .btn-3d.news-btn {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Sección Encuestas 3D - Versión Profesional */
+.polls-section-3d {
+    padding: 64px 4%;
+    margin: 48px 0;
+}
+
+.section-title-3d {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c3e50; /* Azul oscuro profesional */
+    position: relative;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+}
+
+/* Línea decorativa debajo del título */
+.section-title-3d::after {
+    content: '';
+    display: block;
+    width: 8%;
+    max-width: 800px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    margin: 0.8rem auto 0;
+    border-radius: 4px;
+    transform-origin: center; /* Asegura que la animación sea centrada */
+    animation: pulseLine 1.6s ease-in-out infinite;
+}
+
+.highlight {
+    color: #3498db; /* Azul moderno */
+    font-weight: 600;
+}
+
+.polls-container-3d {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(384px, 1fr));
+    gap: 28px;
+}
+
+.poll-card-3d {
+    background: #ffffff; /* Fondo blanco para tarjetas */
+    border-radius: 9.6px;
+    overflow: hidden;
+    box-shadow: 0 3.2px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.24s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 0.8px solid #eaeef2;
+}
+
+.poll-card-3d:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6.4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.poll-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14.4px 20px;
+    background: #3498db; /* Azul principal */
+    color: white;
+    transition: all 0.24s ease;
+}
+
+.poll-header:hover {
+    background: #2980b9; /* Azul más oscuro al hover */
+}
+
+.poll-header h3 {
+    font-size: 1.04rem;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.24px;
+}
+
+.poll-toggle {
+    cursor: pointer;
+    transition: all 0.24s ease;
+}
+
+.poll-toggle i {
+    transition: all 0.24s ease;
+    margin-left: 9.6px;
+    font-size: 0.88rem;
+}
+
+.poll-content {
     max-height: 0;
     overflow: hidden;
-    opacity: 0;
-    transition: all var(--transition-speed);
+    transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
 }
 
-.show {
-    max-height: 1000px;
-    opacity: 1;
+.poll-content.active {
+    max-height: 800px;
 }
 
-.rotate-180 {
-    transform: rotate(180deg);
-}
-
-/* Responsividad */
-@media (max-width: 640px) {
-    .encuestas-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .section-header {
-        font-size: 1.5rem;
-        padding: 0.75rem;
-    }
-    
-    .card-title {
-        font-size: 1.1rem;
-    }
-    
-    .card-item {
-        padding: 0.5rem;
-    }
-}
-
-
-
-/* --------------------------------------------------------------------------------------------------------------------------------------------------------- */
-
-
-/* Ajustes específicos para redes sociales */
-.social-media {
+.poll-item {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    padding: 12.8px 20px;
+    border-bottom: 0.8px solid #f0f3f7;
+    transition: all 0.16s ease;
+    background: #ffffff;
+}
+
+.poll-item:hover {
+    background-color: #f8fafc;
+    transform: translateX(2.4px);
+}
+
+.poll-icon {
+    width: 35.2px;
+    height: 35.2px;
+    background: #e8f4fd; /* Fondo azul claro */
+    border-radius: 40px; /* Mantener forma circular */
+    display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    margin-right: 14.4px;
+    color: #3498db; /* Azul principal */
+    font-size: 0.96rem;
+    box-shadow: 0 1.6px 4px rgba(0, 0, 0, 0.05);
 }
 
-.social-media span {
-    background: #3B83BD;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+.poll-info h4 {
+    margin: 0;
+    font-size: 0.84rem;
+    color: #2c3e50; /* Texto oscuro */
+    font-weight: 500;
 }
 
-.social-media span:hover {
-    background: #2a6b9e;
+.poll-info p {
+    margin: 4.8px 0 0;
+    font-size: 0.68rem;
+    color: #7f8c8d; /* Texto gris */
 }
 
-/* Ajustes específicos para contacto */
-#contacto .section-box {
-    text-align: center; /
+.poll-arrow {
+    margin-left: auto;
+    color: #bdc3c7;
+    transition: all 0.24s ease;
 }
 
-#contacto .section-box p {
-    margin-bottom: 10px;
-    font-size: 16px;
+.poll-item:hover .poll-arrow {
+    color: #3498db;
+    transform: translateX(5.6px);
 }
 
-.content-section {
-    margin: 40px auto;
-    max-width: 90%;
+@media (max-width: 768px) {
+    .polls-container-3d {
+        grid-template-columns: repeat(2, 1fr); /* Fuerza 2 columnas */
+        gap: 16px;
+    }
+
+    .polls-section-3d {
+        padding: 32px 3%;
+        margin: 24px 0;
+    }
+
+    .section-title-3d {
+        font-size: 2rem;
+        margin-bottom: 24px;
+    }
+
+    .poll-header h3 {
+        font-size: 1rem;
+    }
+
+    .poll-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
+
+    .poll-info h4 {
+        font-size: 0.8rem;
+    }
+
+    .poll-info p {
+        font-size: 0.65rem;
+    }
 }
 
-.section-box {
-    background: white;
-    padding: 30px;
-    margin: 30px auto;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+@media (max-width: 480px) {
+    .polls-container-3d {
+        grid-template-columns: repeat(2, 1fr); /* Sigue en 2 columnas */
+        gap: 12px;
+    }
+
+    .poll-header {
+        padding: 10px 12px;
+    }
+
+    .poll-item {
+        padding: 10px 12px;
+    }
+
+    .section-title-3d {
+        font-size: 1.6rem;
+    }
+
+    .poll-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 0.75rem;
+    }
+
+    .poll-info h4 {
+        font-size: 0.75rem;
+    }
+
+    .poll-info p {
+        font-size: 0.6rem;
+    }
 }
 
+/* APARTADO CONTACTANOS */
+.contacto-3d {
+    background: url('../images/svg6.png') center/cover no-repeat;
+    padding: 64px 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 48vh;
+}
+
+.contacto-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1120px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ✅ Cambio aquí: mantener horizontal en pantallas pequeñas */
+.card-3d {
+    display: flex;
+    flex-wrap: nowrap; /* No permite que se apilen en pantallas pequeñas */
+    gap: 64px;
+    background: linear-gradient(145deg, #f5f5f5 0%, #e0e0e0 100%);
+    border-radius: 12px;
+    padding: 72px 6.4%;
+    width: 100%;
+    min-height: 80px;
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.1),
+        inset 0 1.6px 0.8px rgba(255, 255, 255, 0.95);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    margin: 8px auto;
+    max-width: 1440px;
+    overflow-x: auto; /* Permite scroll horizontal si es necesario */
+}
+
+/* Cambios para hacer el contenido más pequeño en pantallas pequeñas */
+.columna {
+    flex: 1;
+    color: #333;
+    min-width: 240px; /* Reducido para que se acomode mejor en pantallas pequeñas */
+}
+
+.columna h3 {
+    color: #222;
+    margin-bottom: 16px; /* Reducido */
+    padding-bottom: 8px; /* Reducido */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.columna p {
+    margin: 12px 0; /* Reducido */
+    font-size: 0.8rem; /* Reducido */
+    color: #555;
+    line-height: 1.3;
+}
+
+.columna a {
+    color: #444;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.columna a:hover {
+    color: #000;
+    transform: translateX(2.4px);
+}
+
+/* REDES SOCIALES */
+.redes {
+    display: flex;
+    gap: 12px; /* Reducido */
+    margin-top: 16px; /* Reducido */
+}
+
+.redes a {
+    color: #666;
+    font-size: 1.2rem; /* Reducido */
+    transition: all 0.3s ease;
+}
+
+.redes a:hover {
+    color: #000;
+    transform: scale(0.92);
+}
+
+/* ✅ Ajuste fino para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .columna {
+        min-width: 200px; /* Aún más pequeño en pantallas muy pequeñas */
+    }
+
+    .card-3d {
+        gap: 24px; /* Reducido */
+        padding: 48px 4%;
+    }
+
+    .columna h3 {
+        font-size: 1.1rem; /* Reducido */
+    }
+
+    .columna p {
+        font-size: 0.75rem; /* Reducido */
+    }
+
+    .redes a {
+        font-size: 1rem; /* Reducido */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Pantallas de móviles muy pequeños */
+    .card-3d {
+        gap: 16px; /* Reducido aún más */
+        padding: 32px 3%;
+    }
+
+    .columna h3 {
+        font-size: 1rem; /* Muy pequeño en pantallas de móviles pequeños */
+    }
+
+    .columna p {
+        font-size: 0.7rem; /* Muy pequeño */
+    }
+
+    .redes a {
+        font-size: 0.9rem; /* Muy pequeño */
+    }
+}
 
