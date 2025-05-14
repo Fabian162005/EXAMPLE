@@ -325,23 +325,9 @@
     color: rgb(255, 255, 255); /* Ícono de lupa en negro */
     transition: transform 0.16s ease, box-shadow 0.24s ease;
     padding: 8px;
-    right: 60px;
+    right: 1px;
     box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
-
-.hamburger {
-    position: absolute;
-    background-color: transparent; /* Fondo completamente transparente */
-    border: none; /* Sin bordes */
-    outline: none; /* Evita el borde al hacer clic */
-    cursor: pointer;
-    font-size: 22.4px;
-    color: rgb(255, 255, 255); /* Ícono de lupa en negro */
-    transition: transform 0.16s ease, box-shadow 0.24s ease;
-    right: 0px;
-    box-shadow: none;
-}
-
 
 /* 🔍 Efecto hover elegante */
 .search-button:hover {
@@ -359,14 +345,14 @@
 .search-container {
     position: fixed;
     top: 13.6px;
-    left: 980px;
+    left: 1000px;
     display: none; /* Oculto por defecto */
     flex-direction: row;
     align-items: center;
     background-color: #ffffff;
     border: none; /* Se elimina el borde */
     border-radius: 20px;
-    padding: 6.4px 9.6px;
+    padding: 6.4px 30px;
     box-shadow: 0px 3.2px 6.4px rgba(0, 0, 0, 0.3);
     z-index: 1001;
     width: fit-content; /* Ajusta el tamaño al contenido */
@@ -451,11 +437,12 @@
   }
 
   .nav-item.nav-contacto {
-    left: 50%;
+    left: 55%;
   }
 
   .search-container {
-    left: 800px;
+    left: 550px;
+    top: 70px;
   }
 
   .logo-container img {
@@ -463,6 +450,46 @@
      margin-top: 7px;
   }
 }
+
+@media (max-width: 768px) {
+  .search-container {
+    left: 16px;
+    right: 16px;
+    top: 70px;
+    width: calc(100% - 32px);
+  }
+
+  .logo-container {
+    top: -4px;
+  }
+
+  .logo-container img {
+    height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    height: 48px;
+    padding: 0 0.6rem;
+    width: calc(100% - 32px);
+  }
+
+  .logo-container img {
+    height: 48px;
+  }
+
+  .search-button {
+    font-size: 20px;
+    right: 16px;
+  }
+
+  .search-container {
+    top: 60px;
+  }
+}
+
+
 
 /* === ESTILOS DEL TÍTULO === */
 .section-title {

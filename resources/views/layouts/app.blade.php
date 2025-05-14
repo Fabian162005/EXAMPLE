@@ -99,9 +99,6 @@
             <button id="search-icon" class="search-button">
                 <i class="fas fa-search"></i>
             </button>
-            <button class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </div>
 </div>
