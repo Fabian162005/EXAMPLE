@@ -75,7 +75,7 @@ function updateActiveCard() {
     x: (i) => {
       let diff = (i - currentIndex + totalCards) % totalCards;
       if (diff > totalCards / 2) diff -= totalCards;
-      return diff * 300;
+      return diff * 350;
     },
     duration: 0.5,
     ease: "power1.inOut",

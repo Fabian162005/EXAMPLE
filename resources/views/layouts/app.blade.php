@@ -87,7 +87,7 @@
             <div class="nav-item nav-envivo">Videos</div>
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
-
+            <div class="nav-item nav-contacto">Partidos Politicos</div>
             <!-- Logo en medio -->
             <div class="logo-container">
                 <a href="/">
@@ -95,11 +95,12 @@
                 </a>
             </div>
 
-            <div class="nav-item nav-contacto">Partidos Politicos</div>
-
             <!-- Botón de búsqueda estilizado -->
             <button id="search-icon" class="search-button">
                 <i class="fas fa-search"></i>
+            </button>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </div>

@@ -14,7 +14,7 @@ body {
 
 label {
     display: block;
-    margin-top: 15px;
+    margin-top: -20px;
     margin-bottom: 5px;
     font-weight: bold;
     color: #2c10ab;
@@ -24,7 +24,7 @@ label {
 .title-container {
   text-align: center;
   position: relative;
-  top: 20%; /* Ajusta la posición para que esté un poco más arriba de la mitad de la pantalla */
+  top: 50%; /* Ajusta la posición para que esté un poco más arriba de la mitad de la pantalla */
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -61,6 +61,7 @@ label {
 
   #party-select {
     padding: 12px 12px;
+    margin-top: -20px;
     width: 150%;
     border: 2px solid #0921ad;
     border-radius: 5px;
@@ -181,4 +182,59 @@ label {
 
 .prev:active, .next:active {
     transform: translateY(0);
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .dynamic-line {
+    width: 30%;
+    height: 4px;
+  }
+
+  .buscador {
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+  }
+
+  #party-select {
+    width: 80%;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .cards li {
+    width: 100%;
+    height: 10rem;
+    font-size: 0.9rem;
+  }
+
+  .cards li img {
+    max-width: 60px;
+  }
+
+  .actions {
+    gap: 10px;
+    bottom: 30px;
+  }
+
+  .prev, .next {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+
+  .card-img {
+    height: 1.5rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
 }
