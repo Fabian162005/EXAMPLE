@@ -88,7 +88,7 @@
                 @endif
             @endauth
 
-            <a href="{{ route('videos.index') }}" class="nav-item nav-videos">Videos</a>
+            <a href="{{ route('admin.videos.index') }}" class="nav-item nav-videos">Videos</a>
             <div class="nav-item nav-noticias">Noticias</div>
             <div class="nav-item nav-encuestas">Encuestas</div>
 

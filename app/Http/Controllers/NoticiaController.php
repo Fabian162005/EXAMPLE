@@ -85,11 +85,16 @@ public function update(Request $request, $id)
 
     return redirect()->back()->with('success', 'Noticia actualizada correctamente.');
 }
+
 public function show($id)
 {
     $noticia = Noticia::findOrFail($id);
-    return view('noticias.show', compact('noticia'));
+    $noticias = Noticia::latest()->take(6)->get(); // Opcional para sidebar u otras secciones
+    return view('layouts.noticiasmas.Nuevasnoticias', compact('noticia', 'noticias'));
 }
+
+
+
 
 
 }

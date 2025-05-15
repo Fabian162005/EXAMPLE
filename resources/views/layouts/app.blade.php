@@ -184,10 +184,13 @@
               Tu navegador no soporta el elemento <code>video</code>.
             </video>
           @endif
-
-          <a href="{{ route('noticias.show', $noticia->id) }}" class="read-more">
-            Leer más <i class="fas fa-angle-double-right"></i>
+          <a href="{{ route('noticias.show', ['id' => $noticia->id]) }}" class="read-more">
+              Leer más <i class="fas fa-angle-double-right"></i>
           </a>
+
+              @yield('content')
+
+
         </div>
       </div>
     @empty

@@ -51,7 +51,7 @@ label {
 /* Title */
 .title-container {
   text-align: center;
-  position: relative;
+  position:static;
   top: 20%; /* Ajusta la posición para que esté un poco más arriba de la mitad de la pantalla */
   left: 0;
   width: 100%;

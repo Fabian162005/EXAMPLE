@@ -20,4 +20,8 @@
         </div>
     </div>
 </div>
+<!-- Así quedará tu enlace (ya lo tienes correcto) -->
+<a href="{{ route('noticias.nuevas') }}" class="read-more">
+    Leer más <i class="fas fa-angle-double-right"></i>
+</a>
 @endsection

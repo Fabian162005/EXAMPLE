@@ -15,5 +15,7 @@ class AdminController extends Controller
 
         // Retornar la vista con la variable noticias
         return view('admin.dashboard', compact('noticias'));
+
+        
     }
 }

@@ -9,8 +9,10 @@ use App\Http\Controllers\PartidoController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\NoticiaController;
 use App\Models\Noticia;
+//----------------------------------------------------
+Route::post('/admin/videos', [VideosController::class, 'store'])->name('admin.videos.store');
 
-
+//-----------------------------------------------------
 
 Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
 
@@ -23,7 +25,12 @@ Route::get('/', function () {
 
     return view('layouts.app', compact('noticias'));
 });
+//------------------------------------------------------------------------
 
+
+
+
+//-----------------------------------------------------------------
 
 //RUTA DE LOS VIDEOS-----------------------------------------------------------------------------------------------------------------
 
@@ -32,14 +39,21 @@ Route::get('/videos', function () {
     return view('videos.index'); // Vista para la ruta normal
 })->name('videos.index');
 
-// Ruta para el administrador
-Route::get('/admin/videos', function () {
-    return view('admin.videos.index'); // Vista para la administración de videos
-})->name('admin.videos.index');
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/videos', [VideosController::class, 'index'])->name('admin.videos.index');
+    Route::post('/videos', [VideosController::class, 'store'])->name('admin.videos.store');
+    Route::put('/videos/{id}', [VideosController::class, 'update'])->name('admin.videos.update');
+    Route::delete('/videos/{id}', [VideosController::class, 'destroy'])->name('admin.videos.destroy');
+});
+
 
 
 // Ruta para volver al modo Admin
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
 
 
 //RUTA DE LAS ENCUESTAS-----------------------------------------------------------------------------------------------------------------
@@ -72,8 +86,10 @@ Route::get('/noticias', function () {
     return view('layouts.noticias');
 })->name('noticias');
 
+
 Route::get('/volver', function () {
-    return view('layouts.app');
+    $noticias = Noticia::latest()->get();
+    return view('layouts.app', compact('noticias'));
 })->name('app');
 
 Route::get('/menunoticias', function () {
@@ -85,15 +101,10 @@ Route::prefix('admin')->group(function () {
     // Esta ruta es para la página principal del admin, cargará el archivo admin.blade.php
     Route::get('/', function () {
         return view('layouts.admin'); // Aquí se carga la vista admin.blade.php
-    })->name('admin.index'); // Ruta principal de admin
+    })->name(   'admin.index'); // Ruta principal de admin
 
     // Ruta para el dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.a');
-
-    // Ruta para los videos del admin
-    Route::get('/videos', function () {
-        return view('admin.videos.index');
-    })->name('admin.videos.index');
 
     // Ruta para el login
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
@@ -112,3 +123,4 @@ Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.st
 Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
 Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
 Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
+Route::put('/admin/videos/{id}', [VideosController::class, 'update'])->name('admin.videos.update');
