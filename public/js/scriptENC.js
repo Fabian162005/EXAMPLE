@@ -1,194 +1,177 @@
 // Variables globales
-const totalPages = 3;
 let currentPage = 1;
+const totalPages = 3;
 
-// Animación al seleccionar opciones
-function animateOption(element) {
-    element.classList.add('animate_animated', 'animate_pulse');
-    setTimeout(() => {
-        element.classList.remove('animate_animated', 'animate_pulse');
-    }, 1000);
-    updateProgressBar();
-}
+// Mostrar la página actual y actualizar barra de progreso
+function showPage(pageNumber) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
 
-// Navegación entre páginas
-function nextPage() {
-    if(validateCurrentPage()) {
-        if(currentPage < totalPages) {
-            document.getElementById(`page${currentPage}`).classList.remove('active');
-            currentPage++;
-            document.getElementById(`page${currentPage}`).classList.add('active');
-            updateProgressBar();
-            window.scrollTo(0, 0);
-        }
-    }
-}
+    const current = document.getElementById('page' + pageNumber);
+    if (current) current.classList.add('active');
 
-function prevPage() {
-    if(currentPage > 1) {
-        document.getElementById(`page${currentPage}`).classList.remove('active');
-        currentPage--;
-        document.getElementById(`page${currentPage}`).classList.add('active');
-        updateProgressBar();
-        window.scrollTo(0, 0);
-    }
-}
-
-// Validar campos requeridos en la página actual
-function validateCurrentPage() {
-    let isValid = true;
-    
-    // Validación específica para la página 1 (edad y sexo)
-    if(currentPage === 1) {
-        const sexo = document.getElementById('sexo');
-        const edad = document.getElementById('edad');
-        
-        if(!sexo.value) {
-            markAsInvalid(sexo);
-            isValid = false;
-        }
-        
-        if(!edad.value || edad.value < 18 || edad.value > 100) {
-            markAsInvalid(edad);
-            isValid = false;
-        }
-    }
-    
-    // Validación para preguntas requeridas en cualquier página
-    const requiredInputs = document.querySelectorAll(`#page${currentPage} [required]`);
-    
-    requiredInputs.forEach(input => {
-        if(input.type === 'radio' || input.type === 'checkbox') {
-            const name = input.name;
-            if(!document.querySelector(`input[name="${name}"]:checked`)) {
-                isValid = false;
-                const group = input.closest('.opciones') || input.closest('.escala');
-                if(group) markAsInvalid(group);
-            }
-        }
-    });
-    
-    if(!isValid) {
-        alert('Por favor complete todos los campos requeridos antes de continuar.');
-    }
-    
-    return isValid;
-}
-
-// Marcar elemento como inválido temporalmente
-function markAsInvalid(element) {
-    element.style.borderColor = 'var(--error-color)';
-    element.style.boxShadow = '0 0 0 2px var(--error-color)';
-    setTimeout(() => {
-        element.style.borderColor = '';
-        element.style.boxShadow = '';
-    }, 2000);
-}
-
-// Actualizar barra de progreso
-function updateProgressBar() {
-    let completed = 0;
-    const totalRequired = 2; // Solo edad y sexo son obligatorios
-    
-    // Validar sexo
-    if(document.getElementById('sexo').value) completed++;
-    
-    // Validar edad
-    const edad = document.getElementById('edad');
-    if(edad.value && edad.value >= 18 && edad.value <= 100) completed++;
-    
-    const percentage = Math.min(Math.floor((completed / totalRequired) * 100), 100);    
+    // Actualizar barra de progreso
     const progressBar = document.getElementById('progressBar');
-    
-    progressBar.style.width = percentage + '%';
-    
-    // Cambiar color según progreso
-    if(percentage < 50) {
-        progressBar.style.background = 'linear-gradient(90deg, var(--error-color), var(--warning-color))';
-    } else {
-        progressBar.style.background = 'linear-gradient(90deg, var(--accent-color), var(--success-color))';
+    if (progressBar) {
+        const percent = (pageNumber / totalPages) * 100;
+        progressBar.style.width = percent + '%';
+    }
+
+    currentPage = pageNumber;
+}
+
+// Validar los campos requeridos en la página actual
+function validatePage(pageElement) {
+    if (!pageElement) return false;
+
+    // Para inputs required, verificar si están completos
+    const requiredFields = pageElement.querySelectorAll('[required]');
+    for (const field of requiredFields) {
+        if (field.type === 'radio' || field.type === 'checkbox') {
+            // Validar que al menos uno del grupo esté seleccionado
+            const groupName = field.name;
+            // Solo validar el primer input de cada grupo
+            if (field === pageElement.querySelector(`input[name="${groupName}"]`)) {
+                const checkedGroup = pageElement.querySelectorAll(`input[name="${groupName}"]:checked`);
+                if (checkedGroup.length === 0) return false;
+            }
+        } else {
+            if (!field.value.trim()) return false;
+        }
+    }
+
+    return true;
+}
+
+// Botón siguiente: validar y avanzar página
+function nextPage(pageNumber) {
+    const page = document.getElementById('page' + pageNumber);
+    if (!validatePage(page)) {
+        alert('Por favor, complete los campos requeridos antes de continuar.');
+        return;
+    }
+    if (pageNumber < totalPages) {
+        showPage(pageNumber + 1);
     }
 }
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-    // Configurar event listeners para los botones
-    document.querySelectorAll('.btn-next').forEach(btn => {
-        btn.addEventListener('click', nextPage);
+// Botón anterior: retroceder página
+function prevPage(pageNumber) {
+    if (pageNumber > 1) {
+        showPage(pageNumber - 1);
+    }
+}
+
+// Animación en opciones seleccionadas (checkbox o radio)
+function animateOption(element) {
+    if (!element) return;
+    element.classList.add('animate__animated', 'animate__pulse');
+    setTimeout(() => {
+        element.classList.remove('animate__animated', 'animate__pulse');
+    }, 600);
+}
+
+// Evento submit del formulario
+document.getElementById('encuestaForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Validar última página antes de enviar
+    const currentPageElement = document.getElementById('page' + currentPage);
+    if (!validatePage(currentPageElement)) {
+        alert('Por favor, complete los campos requeridos antes de enviar.');
+        return;
+    }
+
+    // Recopilar respuestas en objeto
+    const respuestas = {
+        sexo: document.getElementById('sexo').value,
+        edad: document.getElementById('edad').value,
+
+        satisfaccion: document.querySelector('input[name="satisfaccion"]:checked')?.value || null,
+        sugerencias: document.getElementById('sugerencias').value.trim(),
+        problemas: Array.from(document.querySelectorAll('input[name="problemas[]"]:checked')).map(el => el.value),
+        frecuencia: document.querySelector('input[name="frecuencia"]:checked')?.value || null,
+        ultima_participacion: document.getElementById('ultima-participacion').value,
+        actividad_deseada: document.getElementById('actividad-deseada').value.trim(),
+        calificacion: document.querySelector('input[name="calificacion"]:checked')?.value || null,
+        comentarios: document.getElementById('comentarios').value.trim(),
+    };
+
+    // Guardar JSON string en input hidden
+    document.getElementById('respuestasInput').value = JSON.stringify(respuestas);
+
+    // Preparar formData
+    const formData = new FormData(this);
+
+    // Token CSRF
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Enviar formulario con fetch
+    fetch(rutaEncuestasStore, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token,
+            'Accept': 'application/json',
+        },
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Error en la respuesta del servidor');
+        return response.json();
+    })
+    .then(data => {
+        mostrarResultadosSimulados();
+        this.style.display = 'none';
+    })
+    .catch(error => {
+        alert('Hubo un error al enviar la encuesta. Por favor, intente nuevamente.');
+        console.error(error);
     });
-    
-    document.querySelectorAll('.btn-prev').forEach(btn => {
-        btn.addEventListener('click', prevPage);
-    });
-    
-    // Validar edad en tiempo real
-    document.getElementById('edad').addEventListener('input', function() {
-        if(this.value < 18) this.value = 18;
-        if(this.value > 100) this.value = 100;
-        updateProgressBar();
-    });
-    
-    // Validar sexo en tiempo real
-    document.getElementById('sexo').addEventListener('change', updateProgressBar);
-    
-    // Inicializar barra de progreso
-    updateProgressBar();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Seleccionar los elementos del navbar
-    const videosLink = document.querySelector('.nav-envivo');
-    const noticiasLink = document.querySelector('.nav-noticias');
-    const encuestasLink = document.querySelector('.nav-encuestas');
-    const contactoLink = document.querySelector('.nav-contacto');
+// Mostrar resultados con Chart.js (datos simulados)
+function mostrarResultadosSimulados() {
+    const resultadosDiv = document.getElementById('resultados');
+    resultadosDiv.style.display = 'block';
 
-    // Función para redirigir a videos.php
-    if(videosLink) {
-        videosLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = 'videos.php';
-        });
-    }
+    const ctx = document.getElementById('chartResultados').getContext('2d');
 
-    // Función para scroll suave a noticias
-    if(noticiasLink) {
-        noticiasLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const noticiasSection = document.querySelector('.news-section-3d');
-            if(noticiasSection) {
-                noticiasSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+    const data = {
+        labels: ['Muy insatisfecho', 'Insatisfecho', 'Neutral', 'Satisfecho', 'Muy satisfecho'],
+        datasets: [{
+            label: 'Satisfacción con servicios municipales',
+            data: [5, 10, 15, 40, 30], // Datos simulados
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 205, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(54, 162, 235, 0.6)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 205, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
             }
-        });
-    }
+        }
+    });
+}
 
-    // Función para scroll suave a encuestas
-    if(encuestasLink) {
-        encuestasLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const encuestasSection = document.querySelector('.polls-section-3d');
-            if(encuestasSection) {
-                encuestasSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    }
-
-    // Función para scroll suave a contacto (si existe)
-    if(contactoLink) {
-        contactoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const contactoSection = document.querySelector('.contacto-3d');
-            if(contactoSection) {
-                contactoSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    }
+// Iniciar la encuesta en la primera página
+document.addEventListener('DOMContentLoaded', () => {
+    showPage(1);
 });

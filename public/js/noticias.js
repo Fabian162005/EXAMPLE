@@ -52,3 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Resto de las funciones (animateOption, nextPage, prevPage, etc.) permanecen iguales
 // ... [el resto de tu código JavaScript existente]
+  document.addEventListener('DOMContentLoaded', () => {
+    const newsCards = document.querySelectorAll('.news-card-3d');
+
+    newsCards.forEach(card => {
+      const video = card.querySelector('video');
+
+      if (video) {
+        card.classList.add('con-video');
+        card.classList.remove('sin-video');
+      } else {
+        card.classList.add('sin-video');
+        card.classList.remove('con-video');
+      }
+    });
+  });
+

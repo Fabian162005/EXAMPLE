@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\VideosController;
@@ -8,39 +7,60 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PartidoController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\EncuestaController;
 use App\Models\Noticia;
-//----------------------------------------------------
-Route::post('/admin/videos', [VideosController::class, 'store'])->name('admin.videos.store');
 
-//-----------------------------------------------------
-
-Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
-
+/*
+|--------------------------------------------------------------------------
+| RUTAS PRINCIPALES
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
-    // Traer noticias (las 6 más recientes, por ejemplo)
-    $noticias = Noticia::orderBy('created_at', 'desc')
-                       ->take(6)
-                       ->get();
-
+    $noticias = Noticia::orderBy('created_at', 'desc')->take(6)->get();
     return view('layouts.app', compact('noticias'));
 });
-//------------------------------------------------------------------------
 
+Route::get('/noticias', function () {
+    return view('layouts.noticias');
+})->name('noticias');
 
+Route::get('/volver', function () {
+    $noticias = Noticia::latest()->get();
+    return view('layouts.app', compact('noticias'));
+})->name('app');
 
+Route::get('/menunoticias', function () {
+    return view('layouts.menunoticias');
+})->name('menunoticias');
 
-//-----------------------------------------------------------------
+/*
+|--------------------------------------------------------------------------
+| ENCUESTAS (VISTAS)
+|--------------------------------------------------------------------------
+*/
 
-//RUTA DE LOS VIDEOS-----------------------------------------------------------------------------------------------------------------
+Route::view('/encuestas/lima', 'encuestas.lima')->name('encuestas.lima');
+Route::view('/encuestas/chiclayo', 'encuestas.chiclayo')->name('encuestas.chiclayo');
+Route::view('/encuestas/piura', 'encuestas.piura')->name('encuestas.piura');
+Route::view('/encuestas/morropon', 'encuestas.morropon')->name('encuestas.morropon');
+Route::view('/encuestas/castilla', 'encuestas.castilla')->name('encuestas.castilla');
+Route::view('/encuestas/plura2', 'encuestas.plura2')->name('encuestas.plura2');
 
-// Ruta pública
-Route::get('/videos', function () {
-    return view('videos.index'); // Vista para la ruta normal
-})->name('videos.index');
+/*
+|--------------------------------------------------------------------------
+| ENCUESTAS (CONTROLADOR)
+|--------------------------------------------------------------------------
+*/
+Route::post('/encuestas', [EncuestaController::class, 'store'])->name('encuestas.store');
+ 
+/*
+|--------------------------------------------------------------------------
+| VIDEOS
+|--------------------------------------------------------------------------
+*/
 
-
-
+Route::get('/videos', [VideosController::class, 'publicos'])->name('videos.index');
 
 Route::prefix('admin')->group(function () {
     Route::get('/videos', [VideosController::class, 'index'])->name('admin.videos.index');
@@ -49,78 +69,52 @@ Route::prefix('admin')->group(function () {
     Route::delete('/videos/{id}', [VideosController::class, 'destroy'])->name('admin.videos.destroy');
 });
 
-
-
-// Ruta para volver al modo Admin
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
-
-
-//RUTA DE LAS ENCUESTAS-----------------------------------------------------------------------------------------------------------------
-
-Route::get('/encuestas/lima', function () {
-    return view('encuestas.lima');
-});
-
-
-Route::get('/encuestas/chiclayo', function () {
-    return view('encuestas.chiclayo');
-});
-
-Route::get('/encuestas/piura', function () {
-    return view('encuestas.piura');
-});
-Route::get('/encuestas/morropon', function () {
-    return view('encuestas.morropon');
-});
-
-Route::get('/encuestas/castilla', function () {
-    return view('encuestas.castilla');
-});
-
-Route::get('/encuestas/plura2', function () {
-    return view('encuestas.plura2');
-});
-//----------------------------------------------------------------------------------------------------------------------------------------
-Route::get('/noticias', function () {
-    return view('layouts.noticias');
-})->name('noticias');
-
-
-Route::get('/volver', function () {
-    $noticias = Noticia::latest()->get();
-    return view('layouts.app', compact('noticias'));
-})->name('app');
-
-Route::get('/menunoticias', function () {
-    return view('layouts.menunoticias'); // Aquí se carga el archivo menunoticias.blade.php
-})->name('menunoticias');
-
-//RUTAS CREADAS PARA ADMIN //
-Route::prefix('admin')->group(function () {
-    // Esta ruta es para la página principal del admin, cargará el archivo admin.blade.php
-    Route::get('/', function () {
-        return view('layouts.admin'); // Aquí se carga la vista admin.blade.php
-    })->name(   'admin.index'); // Ruta principal de admin
-
-    // Ruta para el dashboard
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.a');
-
-    // Ruta para el login
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
-});
-
-
-// Rutas de login y logout
-Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-Auth::routes();
-
-// Rutas POST (SOLICITUDES A BASE)
+/*
+|--------------------------------------------------------------------------
+| SLIDER
+|--------------------------------------------------------------------------
+*/
 
 Route::post('/admin/slider/upload', [SliderController::class, 'upload'])->name('slider.upload');
 Route::delete('/admin/slider/{id}/delete', [SliderController::class, 'delete']);
+
+/*
+|--------------------------------------------------------------------------
+| NOTICIAS
+|--------------------------------------------------------------------------
+*/
+
 Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.store');
 Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
 Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
 Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
-Route::put('/admin/videos/{id}', [VideosController::class, 'update'])->name('admin.videos.update');
+
+/*
+|--------------------------------------------------------------------------
+| PARTIDOS
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', fn() => view('layouts.admin'))->name('admin.index');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.a');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
+});
+
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+/*
+|--------------------------------------------------------------------------
+| AUTENTICACIÓN
+|--------------------------------------------------------------------------
+*/
+
+Auth::routes();

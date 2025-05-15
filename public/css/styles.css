@@ -687,32 +687,48 @@
 }
 
 .news-card-3d {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: var(--transition);
-    transform-style: preserve-3d;
-    perspective: 800px;
-    position: relative;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 2px;
 }
 
-.news-card-3d:hover {
-    transform: translateY(-8px) rotateX(4deg);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+/* Altura por defecto sin video */
+.news-card-3d.sin-video {
+  height: 420px;
 }
+
+/* Altura ampliada si contiene video */
+.news-card-3d.con-video {
+  height: 550px;
+}
+
 
 .news-img-container {
-    position: relative;
-    height: 160px;
-    overflow: hidden;
+  flex: 0 0 auto;
+  width: 100%;
+  max-height: 180px; /* Limita alto de imagen */
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+  position: relative;
 }
 
-.news-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
+.news-img-container img.news-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Que la imagen no se deforme */
+  display: block;
+}
+
+.news-video {
+  width: 100%;
+  max-height: 180px; /* Igual que la imagen para que no crezca */
+  object-fit: cover;
+  display: block;
+  margin: 1rem 0;
 }
 
 .news-card-3d:hover .news-img {
@@ -740,7 +756,21 @@
 }
 
 .news-content {
-    padding: 16px;
+  flex: 1 1 auto; /* Que tome espacio restante */
+  padding: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.news-content p {
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.2; /* Reducido un 25% */
+  flex-grow: 1; /* Para que el texto no agrande el card */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .news-content h3 {
@@ -760,11 +790,7 @@
     text-decoration: underline;
 }
 
-.news-content p {
-    color: #666;
-    margin-bottom: 12px;
-    line-height: 1.2; /* Reducido un 25% */
-}
+
 
 .read-more {
     color: var(--primary-color);
