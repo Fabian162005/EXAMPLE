@@ -6,13 +6,22 @@ use App\Http\Controllers\Admin\VideosController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PartidoController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\NoticiaController;
+use App\Models\Noticia;
+
+
 
 Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
 
 
 Route::get('/', function () {
-    return view('layouts.app');  
+    // Traer noticias (las 6 más recientes, por ejemplo)
+    $noticias = Noticia::orderBy('created_at', 'desc')
+                       ->take(6)
+                       ->get();
 
+    return view('layouts.app', compact('noticias'));
 });
 
 
@@ -95,3 +104,11 @@ Route::prefix('admin')->group(function () {
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 Auth::routes();
 
+// Rutas POST (SOLICITUDES A BASE)
+
+Route::post('/admin/slider/upload', [SliderController::class, 'upload'])->name('slider.upload');
+Route::delete('/admin/slider/{id}/delete', [SliderController::class, 'delete']);
+Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.store');
+Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
+Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
+Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');

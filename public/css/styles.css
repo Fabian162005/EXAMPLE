@@ -1,51 +1,4 @@
-/* 📱 Responsive para móviles */
-@media (max-width: 768px) {
-    .search-container {
-        top: 12px;
-        right: 12px;
-        width: 90%;
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .search-input {
-        width: 100%;
-        font-size: 16px;
-    }
-
-    .search-button {
-        align-self: flex-end;
-    }
-}
-
-/* === CONFIGURACIONES DE PANTALLA === */
-
-/* Centrar navbar o logos si tienen position absolute */
-.navbar-container,
-.logo-container {
-    left: 50%;
-    transform: translateX(-50%);
-    position: relative;
-}
-
-.carousel-1350-container {
-    overflow: hidden; /* Previene scroll no deseado */
-    width: 80%; /* Reducido un 20% */
-    position: relative; /* Necesario para posicionar controles */
-    margin: 0 auto; /* Asegura que esté centrado */
-}
-
-/* Esto asegura que los controles no se oculten */
-.carousel-control-prev, 
-.carousel-control-next {
-    position: absolute;
-    z-index: 1; /* Por encima del overflow:hidden */
-    width: 40px; /* Reducido un 20% (asumiendo originalmente 50px) */
-    height: 40px; /* Reducido un 20% (asumiendo originalmente 50px) */
-    top: 50%;
-    transform: translateY(-50%);
-}
-
+/* === Iconos de redes sociales === */
 .social-icons {
     display: flex;
     position: fixed;
@@ -58,14 +11,14 @@
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    
+
     /* Estilos para disposición vertical */
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 25px;
     padding: 15px 5px;
-    
+
     pointer-events: none;
 
 }
@@ -129,10 +82,10 @@
     /* Degradado de Instagram completo */
     background: linear-gradient(
         45deg,
-        #f09433 0%, 
-        #e6683c 25%, 
-        #dc2743 50%, 
-        #cc2366 75%, 
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
         #bc1888 100%
     );
     -webkit-background-clip: text;
@@ -172,9 +125,9 @@
 /* === Navbar === */
 .navbar-container {
     position: fixed;
-    top: -22px; /* Reducido un 20% */
+    top: -22px;
     left: 50%;
-    transform: translateX(-50%) translateY(29px); /* Reducido un 20% */
+    transform: translateX(-50%) translateY(29px);
     width: 56%; /* Reducido un 20% (70% -> 56%) */
     max-width: 1040px; /* Reducido un 20% (1300px -> 1040px) */
     height: 56px; /* Reducido un 20% (70px -> 56px) */
@@ -185,9 +138,9 @@
     justify-content: space-between; /* Distribuir elementos equitativamente */
     align-items: center;
     padding: 0 1.6rem; /* Reducido un 20% (2rem -> 1.6rem) */
-    box-shadow: 0px 2.56px 9.6px rgba(0, 0, 0, 0.2); /* Reducido un 20% */
+    box-shadow: 0px 2.56px 9.6px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1); /* Reducido un 20% */
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-blur-background {
@@ -195,13 +148,13 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px; /* Reducido un 20% */
+    height: 80px;
     background: transparent;
     backdrop-filter: blur(0px); /* Inicialmente sin blur */
     -webkit-backdrop-filter: blur(0px);
     z-index: 999; /* Un nivel por debajo del navbar (1000) */
     pointer-events: none; /* Para que no interfiera con clicks */
-    transition: backdrop-filter 0.32s ease; /* Reducido un 20% */
+    transition: backdrop-filter 0.32s ease;
 }
 
 /* 📌 Contenedor del logo (mantiene su posición relativa al navbar) */
@@ -274,13 +227,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 80px; /* Reducido un 20% */
+    gap: 80px;
 }
 
 /* 🔹 Agregar padding a los elementos del navbar */
 .nav-item {
-    padding: 13px 5px; /* Reducido un 20% */
-    font-size: 19.36px; /* Reducido un 20% */
+    padding: 12px 8px;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -294,7 +246,7 @@
 
 .nav-submenu {
     position: relative;
-    padding-left: 24px; /* Reducido un 20% */
+    padding-left: 24px;
     font-weight: 500; /* Texto más legible */
 }
 
@@ -303,7 +255,7 @@
     left: 2px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 19.2px !important; /* Reducido un 20% */
+    font-size: 19.2px !important;
     display: inline-block !important;
     color: inherit; /* Mismo color que el texto */
 }
@@ -317,81 +269,37 @@
 
 .nav-item.nav-submenu {
     position: absolute;
-    left: 5%;
+    left: 2%;
 }
 
 .nav-item.nav-videos {
     position: absolute;
-    left: 14%;
-    top: 1px;
+    left: 12%;
+
 }
 
 .nav-item.nav-noticias {
     position: absolute;
-    left: 24.8%;
-    top: 1px;
+    left: 22%;
+
 
 }
 
 .nav-item.nav-encuestas {
     position: absolute;
-    left: 37.5%;
-    top: 1px;
+    left: 34%;
+
 }
 
 .nav-item.nav-politicos {
     position: absolute;
     left: 54.5%; /* Ajusta este valor según necesites */
-    top: 1px;
-}
 
-/* 📱 Ajustes para pantallas pequeñas */
-@media (max-width: 430px) {
-    .navbar-container {
-        width: 100vw; /* Se mantiene en el 100% del ancho de la ventana */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Evita el estiramiento */
-        align-items: center;
-        background-color: #005FAD; /* Fondo azul para mejor contraste */
-        height: auto; /* Evita que sea más alto de lo necesario */
-        padding: 4px 0; /* Reducido un 20% */
-    }
-
-    .nav-item {
-        font-size: 12.8px; /* Reducido un 20% */
-        width: 100%;
-        text-align: center;
-        padding: 9.6px 0; /* Reducido un 20% */
-        color: #ffffff; /* Texto blanco para contraste */
-        background-color: transparent; /* Evita bloques de color extraños */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea sutil de separación */
-    }
-
-    .nav-item:last-child {
-        border-bottom: none; /* Elimina la línea del último elemento */
-    }
-
-    .nav-item.nav-encuestas,
-    .nav-item.nav-noticias,
-    .nav-item.nav-contactanos {
-        font-size: 14.4px; /* Reducido un 20% */
-        width: 100%;
-    }
-}
-
-/* Ajuste en pantallas grandes */
-@media (min-width: 1600px) {
-    .navbar-container {
-        width: max(960px, 64vw); /* Reducido un 20% */
-        max-width: 1280px; /* Reducido un 20% */
-    }
 }
 
 /* Mantiene el tamaño del navbar fijo en zoom */
 .navbar-container {
-    width: max(60%, 1280px); /* Reducido un 20% */
-    max-width: 1200px; /* Reducido un 20% */
+    width: max(60%, 1280px);
 }
 
 /* Estilos para el logo centrado */
@@ -402,7 +310,7 @@
 
 /* Estilo para el botón de búsqueda */
 .search-button {
-    margin-left: 16px; /* Reducido un 20% */
+    margin-left: 16px;
 }
 
 /* Icono de la lupa*/
@@ -412,87 +320,147 @@
     border: none; /* Sin bordes */
     outline: none; /* Evita el borde al hacer clic */
     cursor: pointer;
-    font-size: 22.4px; /* Reducido un 20% */
-    color: black; /* Ícono de lupa en negro */
-    transition: transform 0.16s ease, box-shadow 0.24s ease; /* Reducido un 20% */
-    padding: 8px; /* Reducido un 20% */
-    top: 8.2px; /* Ajustado 2px más abajo */
-    right: 13.6px; /* Reducido un 20% */
+    font-size: 22.4px;
+    color: rgb(255, 255, 255); /* Ícono de lupa en negro */
+    transition: transform 0.16s ease, box-shadow 0.24s ease;
+    padding: 8px;
+    right: 60px;
     box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
 
+.hamburger {
+    position: absolute;
+    background-color: transparent; /* Fondo completamente transparente */
+    border: none; /* Sin bordes */
+    outline: none; /* Evita el borde al hacer clic */
+    cursor: pointer;
+    font-size: 22.4px;
+    color: rgb(255, 255, 255); /* Ícono de lupa en negro */
+    transition: transform 0.16s ease, box-shadow 0.24s ease;
+    right: 0px;
+    box-shadow: none;
+}
+
+
 /* 🔍 Efecto hover elegante */
 .search-button:hover {
-    transform: scale(1.08); /* Reducido un 20% */
+    transform: scale(1.08);
     box-shadow: none; /* Asegura que no haya borde visual */
 }
 
 /* 🔍 Efecto al hacer clic */
 .search-button:active {
-    transform: scale(0.76); /* Reducido un 20% */
+    transform: scale(0.76);
     box-shadow: none; /* Sin sombra al hacer clic */
 }
+
 /* 🔍 Contenedor de la barra de búsqueda */
 .search-container {
     position: fixed;
-    top: 3px;
-    right: 55px; /* Usa píxeles, NO % o vw */
-    display: none; /* Oculta por defecto */
+    top: 13.6px;
+    left: 980px;
+    display: none; /* Oculto por defecto */
     flex-direction: row;
     align-items: center;
     background-color: #ffffff;
+    border: none; /* Se elimina el borde */
     border-radius: 20px;
-    padding: 8px 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 6.4px 9.6px;
+    box-shadow: 0px 3.2px 6.4px rgba(0, 0, 0, 0.3);
     z-index: 1001;
-    width: 300px; /* Fijo y claro para evitar distorsión */
-    max-width: calc(100vw - 80px); /* Para evitar desbordes */
-
+    width: fit-content; /* Ajusta el tamaño al contenido */
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform; /* Optimización para animaciones */
 }
 
-/* Input de búsqueda */
+/* 🔍 Campo de entrada de texto */
 .search-input {
-    flex: 1;
     border: none;
-    padding: 8px 12px;
+    padding: 5px;
     outline: none;
-    font-size: 14px;
+    height: auto;
+    font-size: 13px;
     color: black;
-    background: transparent;
-    min-width: 0;
 }
 
 /* 🔍 Botón de búsqueda dentro del contenedor */
 .search-container .search-button {
     background: none;
     border: none;
+    outline: none; /* Asegura que no tenga borde al hacer clic */
     cursor: pointer;
-    font-size: 18px;
-    color: #3B83BD;
-    margin-left: 8px;
-    transition: transform 0.2s ease;
+    font-size: 17.6px;
+    color: #3B83BD; /* 🔵 Color de la lupa */
+    transition: transform 0.16s ease;
+    position: absolute;
+    right: 1px;
+    box-shadow: none; /* Asegura que no tenga borde */
 }
 
-/* Hover para botón */
+/* Efecto hover para el botón de búsqueda */
 .search-container .search-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.12);
+    box-shadow: none; /* Sin sombra en hover */
 }
 
 
-/* === CONTENEDOR PRINCIPAL === */
+/* === TITULO CON EL CARRUSEL DE IMAGENES === */
 .section-container {
     position: relative;
-    width: calc(80% - 32px); /* Reducido un 20% */
-    height: 48px; /* Reducido un 20% */
+    width: calc(80% - 32px);
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Cambiado de center a flex-start */
     text-align: left; /* Alineación izquierda */
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-    border-bottom: 1.6px solid rgba(0, 0, 0, 0.1); /* Reducido un 20% */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); /* Reducido un 20% */
-    margin: 0 auto 16px; /* Reducido un 20% */
-    padding: 8px 0 8px -40px; /* Reducido un 20% */
+    border-bottom: 1.6px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    margin: 0 auto 16px;
+    padding: 8px 0 8px -40px;
+}
+
+/* Pantallas grandes (hasta 1280px) */
+@media (max-width: 1280px) {
+  .navbar-container {
+    width: 80%;
+    padding: 0 1rem;
+  }
+
+  .navbar-menu {
+    gap: 30px;
+    font-size: 0.8rem;
+  }
+
+  .nav-item.nav-submenu {
+    left: 2%;
+
+  }
+
+  .nav-item.nav-envivo {
+    left: 10%;
+  }
+
+  .nav-item.nav-noticias {
+    left: 20%;
+  }
+
+  .nav-item.nav-encuestas {
+    left: 32%;
+  }
+
+  .nav-item.nav-contacto {
+    left: 50%;
+  }
+
+  .search-container {
+    left: 800px;
+  }
+
+  .logo-container img {
+    height: 60px;
+     margin-top: 7px;
+  }
 }
 
 /* === ESTILOS DEL TÍTULO === */
@@ -544,7 +512,7 @@
 @keyframes fadeInSlide {
     0% {
         opacity: 0;
-        transform: translate(0px, 16px) scale(0.9); /* Reducido un 20% */
+        transform: translate(0px, 16px) scale(0.9);
     }
     100% {
         opacity: 1;
@@ -552,53 +520,27 @@
     }
 }
 
-/* === VERSIÓN RESPONSIVE === */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 1.76rem; /* Reducido un 20% */
-        left: 4%; /* Reducido un 20% */
-        max-width: 72%; /* Reducido un 20% */
-        padding: 0 12px; /* Reducido un 20% */
-    }
-    
-    /* Animación ajustada para dispositivos móviles */
-    @keyframes fadeInSlide {
-        0% {
-            opacity: 0;
-            transform: translate(24px, 12px) scale(0.9); /* Reducido un 20% */
-        }
-        100% {
-            opacity: 1;
-            transform: translate(12px, 0) scale(1); /* Reducido un 20% */
-        }
-    }
-    
-    .section-title::after {
-        width: 72%; /* Reducido un 20% */
-        max-width: 640px; /* Reducido un 20% */
-    }
-}
-
+/* === ESTILOS DEL CARRUSEL === */
 .slider-container-3d {
-    max-width: 960px; /* Reducido un 20% */
-    margin: 8px auto; /* Reducido un 20% */
-    border-radius: 12px; /* Reducido un 20% */
+    max-width: 960px;
+    margin: 8px auto;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16); /* Reducido un 20% */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
     position: relative;
     transform-style: preserve-3d;
-    perspective: 800px; /* Reducido un 20% */
+    perspective: 800px;
 }
 
 .carousel-item img {
-    height: 320px; /* Reducido un 20% */
+    height: 320px;
     object-fit: cover;
     object-position: center;
 }
 
 .carousel-control-prev, .carousel-control-next {
-    width: 40px; /* Reducido un 20% */
-    height: 40px; /* Reducido un 20% */
+    width: 40px;
+    height: 40px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     top: 50%;
@@ -612,11 +554,91 @@
     background-color: var(--primary-color);
 }
 
+/* Pantallas grandes (desktops) */
+@media (min-width: 1200px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .carousel-item img {
+        height: 380px; /* Imagen más grande en pantallas grandes */
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem; /* Reducir el tamaño del texto */
+        padding: 0 15px; /* Menos padding */
+    }
+
+    .slider-container-3d {
+        max-width: 80%;
+        margin: 12px auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+    }
+
+    .carousel-item img {
+        height: 260px; /* Más alto que en móvil pero menor que en desktop */
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        background-color: rgba(0, 0, 0, 0.45);
+    }
+}
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .carousel-item img {
+        height: 300px; /* Ajustar la altura de las imágenes */
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 35px;
+        height: 35px;
+    }
+
+    .slider-container-3d {
+        max-width: 80%; /* Hacer que el carrusel ocupe todo el ancho disponible */
+    }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .section-title {
+        font-size: 1.6rem; /* Reducir el tamaño del texto */
+        padding: 0 15px; /* Menos padding */
+    }
+
+    .carousel-item img {
+        height: 200px; /* Ajustar la altura de las imágenes para móviles */
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 30px;
+        height: 30px;
+    }
+
+    .slider-container-3d {
+        max-width: 80%; /* Hacer que el carrusel ocupe todo el ancho disponible */
+    }
+}
+
+
+
 /* Sección Noticias 3D */
 .news-section-3d {
-    padding: 48px 4%; /* Reducido un 20% */
+    padding: 48px 4%;
     background-color: #4b74fc;
-    margin: 32px 0; /* Reducido un 20% */
+    margin: 32px 0;
     position: relative;
 }
 
@@ -624,67 +646,65 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px; /* Reducido un 20% */
-    padding-bottom: 12px; /* Reducido un 20% */
-    border-bottom: 4px solid #000000; /* Reducido un 20% */
-    position: relative;
-
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 4px solid #000000;
 }
 
 /* Línea decorativa debajo del título */
 .section-header-3d h2::after {
     content: '';
     display: block;
-    width: 64%; /* Reducido un 20% */
-    max-width: 800px; /* Reducido un 20% */
-    height: 4px; /* Reducido un 20% */
+    width: 64%;
+    max-width: 800px;
+    height: 4px;
     background: linear-gradient(90deg, #000000, #000000);
-    margin: 0.8rem auto 0; /* Reducido un 20% */
-    border-radius: 4px; /* Reducido un 20% */
+    margin: 0.8rem auto 0;
+    border-radius: 4px;
     transform-origin: center; /* Asegura que la animación sea centrada */
-    animation: pulseLine 1.6s ease-in-out infinite; /* Reducido un 20% */
+    animation: pulseLine 1.6s ease-in-out infinite;
 }
+
 .section-header-3d h2 {
-    font-size: 3.5rem; /* Más grande para destacar */
-    color: #ffffff !important;
+    font-size: 2rem;
+    color: white !important;
     position: relative;
     margin: 0 0 1.2rem 0;
     text-align: center;
-    font-weight: 900; /* Más grueso para impacto */
-    letter-spacing: 1px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
     text-transform: uppercase;
-    padding-bottom: 16px;
+    padding-bottom: 12px;
     animation: textGlow 2.4s ease-in-out infinite alternate;
-    text-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 20px rgba(0,95,173,0.2); /* Efecto brillante */
 }
 
 .news-grid-3d {
     display: grid;
-    grid-template-columns: repeat(3, minmax(400px, 40px)); /* Reducido un 20% */
+    grid-template-columns: repeat(3, minmax(400px, 40px));
     justify-content: center; /* Centra las columnas */
-    gap: 40px; /* Reducido un 20% */
-    padding: 8px 0; /* Reducido un 20% */
+    gap: 40px;
+    padding: 8px 0;
 }
 
 .news-card-3d {
     background: white;
-    border-radius: 8px; /* Reducido un 20% */
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Reducido un 20% */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     transform-style: preserve-3d;
-    perspective: 800px; /* Reducido un 20% */
+    perspective: 800px;
     position: relative;
 }
 
 .news-card-3d:hover {
-    transform: translateY(-8px) rotateX(4deg); /* Reducido un 20% */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Reducido un 20% */
+    transform: translateY(-8px) rotateX(4deg);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .news-img-container {
     position: relative;
-    height: 160px; /* Reducido un 20% */
+    height: 160px;
     overflow: hidden;
 }
 
@@ -696,18 +716,18 @@
 }
 
 .news-card-3d:hover .news-img {
-    transform: scale(1.04); /* Reducido un 20% */
+    transform: scale(1.04);
 }
 
 .news-badge {
     position: absolute;
-    top: 12px; /* Reducido un 20% */
-    right: 12px; /* Reducido un 20% */
+    top: 12px;
+    right: 12px;
     background: var(--accent-color);
     color: rgb(0, 0, 0);
-    padding: 4px 8px; /* Reducido un 20% */
-    border-radius: 16px; /* Reducido un 20% */
-    font-size: 0.64rem; /* Reducido un 20% */
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: 0.64rem;
     font-weight: bold;
 }
 
@@ -720,23 +740,34 @@
 }
 
 .news-content {
-    padding: 16px; /* Reducido un 20% */
+    padding: 16px;
 }
 
 .news-content h3 {
-    font-size: 1.6rem; /* Reducido un 20% */
-    margin-bottom: 8px; /* Reducido un 20% */
-    color: black;
+    font-size: 1.04rem;
+    margin-bottom: 8px;
+    color: #102cca;
+}
+
+.news-content a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.news-content a:hover {
+    color: blue;
+    text-decoration: underline;
 }
 
 .news-content p {
     color: #666;
-    margin-bottom: 12px; /* Reducido un 20% */
+    margin-bottom: 12px;
     line-height: 1.2; /* Reducido un 25% */
 }
 
 .read-more {
-    color: black;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
     display: inline-flex;
@@ -745,86 +776,57 @@
 }
 
 .read-more i {
-    margin-left: 4px; /* Reducido un 20% */
+    margin-left: 4px;
     transition: var(--transition);
 }
 
 .read-more:hover {
-    color: black;
+    color: var(--secondary-color);
 }
 
 .read-more:hover i {
-    transform: translateX(4px); /* Reducido un 20% */
+    transform: translateX(4px);
 }
 
 .btn-3d {
     display: inline-block;
-    padding: 8px 16px; /* Reducido un 20% */
+    padding: 8px 16px;
     background: white;
     color: rgb(0, 0, 0);
     border: none;
-    border-radius: 4px; /* Reducido un 20% */
+    border-radius: 4px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.8px; /* Reducido un 20% */
+    letter-spacing: 0.8px;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(59, 131, 189, 0.4); /* Reducido un 20% */
+    box-shadow: 0 4px 12px rgba(59, 131, 189, 0.4);
     position: relative;
     overflow: hidden;
 }
 
 .btn-3d.news-btn {
     background-color: white;
-    color: #000000; 
+    color: #000000;
     border: none;
-    padding: 9.6px 20px; /* Reducido un 20% */
+    padding: 9.6px 20px;
     font-weight: bold;
-    border-radius: 6.4px; /* Reducido un 20% */
+    border-radius: 6.4px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: all 0.24s ease; /* Reducido un 20% */
+    transition: all 0.24s ease;
     box-shadow:
-        0 3.2px 0 #d1d1d1, /* Reducido un 20% */
-        0 4px 8px rgba(0, 0, 0, 0.1); /* Reducido un 20% */
+        0 3.2px 0 #d1d1d1,
+        0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.btn-3d.search-btn {
-    position: absolute; /* Fijo en pantalla */
-    top: 85px;
-    right: 360px; /* O usa `left` si lo prefieres */
-    background-color: white;
-    color: #000000;
-    border: none;
-    padding: 10px 14px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 2;
-    transition: all 0.3s ease;
-    box-shadow:
-        0 4px 0 #d1d1d1,
-        0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .btn-3d.search-btn {
-        top: 12px;
-        right: 12px;
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-}
-
 
 /* Efecto 3D al presionar */
 .btn-3d.news-btn:active {
-    transform: translateY(3.2px); /* Reducido un 20% */
+    transform: translateY(3.2px);
     box-shadow:
         0 0.8px 0 #d1d1d1,
-        0 1.6px 4px rgba(0, 0, 0, 0.1); /* Reducido un 20% */
+        0 1.6px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Efecto hover elegante */
@@ -832,7 +834,7 @@
     background-color: #f8f8f8;
     box-shadow:
         0 3.2px 0 #c1c1c1,
-        0 4.8px 12px rgba(0, 0, 0, 0.15); /* Reducido un 20% */
+        0 4.8px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Borde sutil para mejor definición */
@@ -843,8 +845,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border: 0.8px solid rgba(0, 0, 0, 0.05); /* Reducido un 20% */
-    border-radius: 5.6px; /* Reducido un 20% */
+    border: 0.8px solid rgba(0, 0, 0, 0.05);
+    border-radius: 5.6px;
     pointer-events: none;
 }
 
@@ -856,7 +858,7 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
-    transition: 0.4s; /* Reducido un 20% */
+    transition: 0.4s;
 }
 
 .btn-3d:hover::before {
@@ -864,64 +866,99 @@
 }
 
 .btn-3d:hover {
-    transform: translateY(-2.4px); /* Reducido un 20% */
-    box-shadow: 0 6.4px 16px rgba(59, 131, 189, 0.6); /* Reducido un 20% */
+    transform: translateY(-2.4px);
+    box-shadow: 0 6.4px 16px rgba(59, 131, 189, 0.6);
 }
 
 .btn-3d:active {
-    transform: translateY(0.8px); /* Reducido un 20% */
+    transform: translateY(0.8px);
 }
 
 .news-btn {
     background: var(--secondary-color);
-    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4); /* Reducido un 20% */
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
 }
 
 .news-btn:hover {
-    box-shadow: 0 6.4px 16px rgba(44, 62, 80, 0.6); /* Reducido un 20% */
+    box-shadow: 0 6.4px 16px rgba(44, 62, 80, 0.6);
 }
 
-/* Versión responsive (2 columnas en tablets, 1 en móviles) */
-@media (max-width: 992px) {
+@media (max-width: 1199px) {
+    .news-grid-3d {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+}
+
+/* Para tablets (menores a 768px) */
+@media (max-width: 768px) {
     .news-grid-3d {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .section-header-3d {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section-header-3d h2::after {
+        width: 80%;
     }
 }
 
-@media (max-width: 576px) {
-    .news-grid-3d {
-        grid-template-columns: 1fr;
+/* Para móviles pequeños (menores a 480px) */
+@media (max-width: 480px) {
+    .news-section-3d {
+        padding: 32px 5%;
+    }
+
+    .section-header-3d h2 {
+        font-size: 1.6rem;
+    }
+
+    .news-content h3 {
+        font-size: 0.96rem;
+    }
+
+    .news-content p {
+        font-size: 0.88rem;
+    }
+
+    .btn-3d.news-btn {
+        padding: 8px 14px;
+        font-size: 0.9rem;
     }
 }
+
 
 /* Sección Encuestas 3D - Versión Profesional */
 .polls-section-3d {
-    padding: 64px 4%; /* Reducido un 20% */
-    margin: 48px 0; /* Reducido un 20% */
+    padding: 64px 4%;
+    margin: 48px 0;
 }
 
 .section-title-3d {
-    font-size: 2.8rem; /* Reducido un 20% */
+    font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 40px; /* Reducido un 20% */
+    margin-bottom: 40px;
     color: #2c3e50; /* Azul oscuro profesional */
     position: relative;
     font-weight: 600;
-    letter-spacing: -0.4px; /* Reducido un 20% */
+    letter-spacing: -0.4px;
 }
 
 /* Línea decorativa debajo del título */
 .section-title-3d::after {
     content: '';
     display: block;
-    width: 8%; /* Reducido un 20% */
-    max-width: 800px; /* Reducido un 20% */
-    height: 4px; /* Reducido un 20% */
+    width: 8%;
+    max-width: 800px;
+    height: 4px;
     background: linear-gradient(90deg, #3498db, #2980b9);
-    margin: 0.8rem auto 0; /* Reducido un 20% */
-    border-radius: 4px; /* Reducido un 20% */
+    margin: 0.8rem auto 0;
+    border-radius: 4px;
     transform-origin: center; /* Asegura que la animación sea centrada */
-    animation: pulseLine 1.6s ease-in-out infinite; /* Reducido un 20% */
+    animation: pulseLine 1.6s ease-in-out infinite;
 }
 
 .highlight {
@@ -930,25 +967,25 @@
 }
 
 .polls-container-3d {
-    max-width: 960px; /* Reducido un 20% */
+    max-width: 960px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(384px, 1fr)); /* Reducido un 20% */
-    gap: 28px; /* Reducido un 20% */
+    grid-template-columns: repeat(auto-fill, minmax(384px, 1fr));
+    gap: 28px;
 }
 
 .poll-card-3d {
     background: #ffffff; /* Fondo blanco para tarjetas */
-    border-radius: 9.6px; /* Reducido un 20% */
+    border-radius: 9.6px;
     overflow: hidden;
-    box-shadow: 0 3.2px 16px rgba(0, 0, 0, 0.08); /* Reducido un 20% */
-    transition: all 0.24s cubic-bezier(0.25, 0.8, 0.25, 1); /* Reducido un 20% */
-    border: 0.8px solid #eaeef2; /* Reducido un 20% */
+    box-shadow: 0 3.2px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.24s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 0.8px solid #eaeef2;
 }
 
 .poll-card-3d:hover {
-    transform: translateY(-4px); /* Reducido un 20% */
-    box-shadow: 0 6.4px 20px rgba(0, 0, 0, 0.12); /* Reducido un 20% */
+    transform: translateY(-4px);
+    box-shadow: 0 6.4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .poll-header {
@@ -956,10 +993,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14.4px 20px; /* Reducido un 20% */
+    padding: 14.4px 20px;
     background: #3498db; /* Azul principal */
     color: white;
-    transition: all 0.24s ease; /* Reducido un 20% */
+    transition: all 0.24s ease;
 }
 
 .poll-header:hover {
@@ -967,100 +1004,165 @@
 }
 
 .poll-header h3 {
-    font-size: 1.04rem; /* Reducido un 20% */
+    font-size: 1.04rem;
     margin: 0;
     font-weight: 500;
-    letter-spacing: 0.24px; /* Reducido un 20% */
+    letter-spacing: 0.24px;
 }
 
 .poll-toggle {
     cursor: pointer;
-    transition: all 0.24s ease; /* Reducido un 20% */
+    transition: all 0.24s ease;
 }
 
 .poll-toggle i {
-    transition: all 0.24s ease; /* Reducido un 20% */
-    margin-left: 9.6px; /* Reducido un 20% */
-    font-size: 0.88rem; /* Reducido un 20% */
+    transition: all 0.24s ease;
+    margin-left: 9.6px;
+    font-size: 0.88rem;
 }
 
 .poll-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1); /* Reducido un 20% */
+    transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1);
     background: #ffffff;
 }
 
 .poll-content.active {
-    max-height: 800px; /* Reducido un 20% */
+    max-height: 800px;
 }
 
 .poll-item {
     display: flex;
     align-items: center;
-    padding: 12.8px 20px; /* Reducido un 20% */
-    border-bottom: 0.8px solid #f0f3f7; /* Reducido un 20% */
-    transition: all 0.16s ease; /* Reducido un 20% */
+    padding: 12.8px 20px;
+    border-bottom: 0.8px solid #f0f3f7;
+    transition: all 0.16s ease;
     background: #ffffff;
 }
 
 .poll-item:hover {
     background-color: #f8fafc;
-    transform: translateX(2.4px); /* Reducido un 20% */
+    transform: translateX(2.4px);
 }
 
 .poll-icon {
-    width: 35.2px; /* Reducido un 20% */
-    height: 35.2px; /* Reducido un 20% */
+    width: 35.2px;
+    height: 35.2px;
     background: #e8f4fd; /* Fondo azul claro */
     border-radius: 40px; /* Mantener forma circular */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 14.4px; /* Reducido un 20% */
+    margin-right: 14.4px;
     color: #3498db; /* Azul principal */
-    font-size: 0.96rem; /* Reducido un 20% */
-    box-shadow: 0 1.6px 4px rgba(0, 0, 0, 0.05); /* Reducido un 20% */
+    font-size: 0.96rem;
+    box-shadow: 0 1.6px 4px rgba(0, 0, 0, 0.05);
 }
 
 .poll-info h4 {
     margin: 0;
-    font-size: 0.84rem; /* Reducido un 20% */
+    font-size: 0.84rem;
     color: #2c3e50; /* Texto oscuro */
     font-weight: 500;
 }
 
 .poll-info p {
-    margin: 4.8px 0 0; /* Reducido un 20% */
-    font-size: 0.68rem; /* Reducido un 20% */
+    margin: 4.8px 0 0;
+    font-size: 0.68rem;
     color: #7f8c8d; /* Texto gris */
 }
 
 .poll-arrow {
     margin-left: auto;
     color: #bdc3c7;
-    transition: all 0.24s ease; /* Reducido un 20% */
+    transition: all 0.24s ease;
 }
 
 .poll-item:hover .poll-arrow {
     color: #3498db;
-    transform: translateX(5.6px); /* Reducido un 20% */
+    transform: translateX(5.6px);
+}
+
+@media (max-width: 768px) {
+    .polls-container-3d {
+        grid-template-columns: repeat(2, 1fr); /* Fuerza 2 columnas */
+        gap: 16px;
+    }
+
+    .polls-section-3d {
+        padding: 32px 3%;
+        margin: 24px 0;
+    }
+
+    .section-title-3d {
+        font-size: 2rem;
+        margin-bottom: 24px;
+    }
+
+    .poll-header h3 {
+        font-size: 1rem;
+    }
+
+    .poll-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
+
+    .poll-info h4 {
+        font-size: 0.8rem;
+    }
+
+    .poll-info p {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .polls-container-3d {
+        grid-template-columns: repeat(2, 1fr); /* Sigue en 2 columnas */
+        gap: 12px;
+    }
+
+    .poll-header {
+        padding: 10px 12px;
+    }
+
+    .poll-item {
+        padding: 10px 12px;
+    }
+
+    .section-title-3d {
+        font-size: 1.6rem;
+    }
+
+    .poll-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 0.75rem;
+    }
+
+    .poll-info h4 {
+        font-size: 0.75rem;
+    }
+
+    .poll-info p {
+        font-size: 0.6rem;
+    }
 }
 
 /* APARTADO CONTACTANOS */
 .contacto-3d {
-    background: 
-        /* Nueva imagen de fondo (ruta relativa desde CSS) */
-        url('../images/svg6.png') center/cover no-repeat;
-    padding: 64px 4%; /* Reducido un 20% */
+    background: url('../images/svg6.png') center/cover no-repeat;
+    padding: 64px 4%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    min-height: 48vh; /* Reducido un 20% */
+    min-height: 48vh;
 }
 
-/* Fondo oscuro semitransparente (opcional, mejora legibilidad) */
 .contacto-3d::before {
     content: '';
     position: absolute;
@@ -1071,53 +1173,53 @@
     z-index: 0;
 }
 
-/* Contenedor principal (asegura que el contenido esté encima del fondo) */
 .container {
     width: 100%;
-    max-width: 1120px; /* Reducido un 20% */
+    max-width: 1120px;
     position: relative;
-    z-index: 1; /* Asegura que el contenido esté sobre el fondo */
+    z-index: 1;
 }
 
-/* TARJETA 3D MEJORADA - VERSIÓN AMPLIADA */
+/* ✅ Cambio aquí: mantener horizontal en pantallas pequeñas */
 .card-3d {
     display: flex;
-    gap: 64px; /* Reducido un 20% */
+    flex-wrap: nowrap; /* No permite que se apilen en pantallas pequeñas */
+    gap: 64px;
     background: linear-gradient(145deg, #f5f5f5 0%, #e0e0e0 100%);
-    border-radius: 12px; /* Reducido un 25% */
-    padding: 72px 6.4%; /* Reducido un 20% */
-    width: 100%; /* Control del ancho */
-    min-height: 80px; /* Reducido un 20% */
+    border-radius: 12px;
+    padding: 72px 6.4%;
+    width: 100%;
+    min-height: 80px;
     box-shadow:
-        0 16px 40px rgba(0, 0, 0, 0.1), /* Reducido un 20% */
-        inset 0 1.6px 0.8px rgba(255, 255, 255, 0.95); /* Reducido un 20% */
+        0 16px 40px rgba(0, 0, 0, 0.1),
+        inset 0 1.6px 0.8px rgba(255, 255, 255, 0.95);
     transition: all 0.4s ease;
-    border: 1px solid rgba(0, 0, 0, 0.08); /* Borde más visible */
-    margin: 8px auto; /* Reducido un 20% */
-    max-width: 1440px; /* Reducido un 20% */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    margin: 8px auto;
+    max-width: 1440px;
+    overflow-x: auto; /* Permite scroll horizontal si es necesario */
 }
 
-/* CONTENIDO */
+/* Cambios para hacer el contenido más pequeño en pantallas pequeñas */
 .columna {
     flex: 1;
     color: #333;
-    min-width: 240px; /* Reducido un 20% */
+    min-width: 240px; /* Reducido para que se acomode mejor en pantallas pequeñas */
 }
 
 .columna h3 {
-    font-size: 1.44rem; /* Reducido un 20% */
     color: #222;
-    margin-bottom: 24px; /* Reducido un 20% */
-    padding-bottom: 12px; /* Reducido un 20% */
+    margin-bottom: 16px; /* Reducido */
+    padding-bottom: 8px; /* Reducido */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-weight: 600;
 }
 
 .columna p {
-    margin: 14.4px 0; /* Reducido un 20% */
-    font-size: 0.88rem; /* Reducido un 20% */
+    margin: 12px 0; /* Reducido */
+    font-size: 0.8rem; /* Reducido */
     color: #555;
-    line-height: 1.3; /* Ajustado para mejor proporción */
+    line-height: 1.3;
 }
 
 .columna a {
@@ -1129,213 +1231,108 @@
 
 .columna a:hover {
     color: #000;
-    transform: translateX(2.4px); /* Reducido un 20% */
+    transform: translateX(2.4px);
 }
 
 /* REDES SOCIALES */
 .redes {
     display: flex;
-    gap: 20px; /* Reducido un 20% */
-    margin-top: 24px; /* Reducido un 20% */
+    gap: 12px; /* Reducido */
+    margin-top: 16px; /* Reducido */
 }
 
 .redes a {
     color: #666;
-    font-size: 1.44rem; /* Reducido un 20% */
+    font-size: 1.2rem; /* Reducido */
     transition: all 0.3s ease;
 }
 
 .redes a:hover {
     color: #000;
-    transform: scale(0.92); /* Reducido un 20% */
+    transform: scale(0.92);
 }
 
-/* RESPONSIVE */
+/* ✅ Ajuste fino para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
-    .card-3d {
-        flex-direction: column;
-        gap: 32px; /* Reducido un 20% */
-        padding: 40px 5.6%; /* Reducido un 20% */
-    }
-    
     .columna {
-        min-width: auto;
+        min-width: 200px; /* Aún más pequeño en pantallas muy pequeñas */
+    }
+
+    .card-3d {
+        gap: 24px; /* Reducido */
+        padding: 48px 4%;
+    }
+
+    .columna h3 {
+        font-size: 1.1rem; /* Reducido */
+    }
+
+    .columna p {
+        font-size: 0.75rem; /* Reducido */
+    }
+
+    .redes a {
+        font-size: 1rem; /* Reducido */
     }
 }
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
-    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
-    display: none; /* Inicialmente oculto */
+
+@media (max-width: 480px) {
+    /* Pantallas de móviles muy pequeños */
+    .card-3d {
+        gap: 16px; /* Reducido aún más */
+        padding: 32px 3%;
+    }
+
+    .columna h3 {
+        font-size: 1rem; /* Muy pequeño en pantallas de móviles pequeños */
+    }
+
+    .columna p {
+        font-size: 0.7rem; /* Muy pequeño */
+    }
+
+    .redes a {
+        font-size: 0.9rem; /* Muy pequeño */
+    }
 }
 
-/* Estilos para el fondo oscuro */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75); /* Fondo negro */
-    z-index: 999; /* Fondo encima de todo */
+
+.modal-noticia {
     display: none;
-}
-
-/* Estilos para el formulario */
-#form-noticia {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #ffffff;
-    z-index: 1000;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%; /* Ancho más pequeño */
-    max-width: 500px; /* Maximo ancho */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-    border: 2px solid #000000; /* Borde negro */
-    display: none; /* Inicia oculto */
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* fondo oscuro transparente */
+    justify-content: center;
+    align-items: center;
 }
 
-/* Estilo para el botón de cerrar dentro del formulario (opcional) */
-#form-noticia .close-btn {
+.modal-content-noticia {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+/* Botón de cerrar arriba a la derecha */
+.cerrar-noticia {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
+    font-size: 18px;
 }
 
-#form-noticia .close-btn:hover {
-    color: #ff0000;
-}
-
-
-
-/* Estilo para las fotos del slider) */
-/* Estilos generales para el overlay */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
-    display: none; /* Oculto por defecto */
-    z-index: 9999; /* Asegura que esté encima de otros elementos */
-}
-
-/* Estilos para el formulario de subir foto */
-#form-subir-foto {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    max-width: 100%;
-    display: none; /* Oculto por defecto */
-    z-index: 10000; /* Asegura que el formulario esté encima del overlay */
-}
-
-/* Títulos y textos dentro del formulario */
-#form-subir-foto h3 {
+.modal-content-noticia h3 {
+    font-weight: bold;
+    color: #000; /* negro */
+    font-size: 24px;
     margin-bottom: 20px;
-    font-size: 1.6em;
-    color: #333;
-    text-align: center;
-    font-weight: 600;
 }
 
-/* Estilo de los campos de entrada */
-#form-subir-foto input[type="file"] {
-    width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #f7f7f7;
-    transition: border-color 0.3s ease;
-}
-
-#form-subir-foto input[type="file"]:focus {
-    border-color: #007bff; /* Resalta el borde cuando el campo está enfocado */
-}
-
-/* Botones de acción - editar, eliminar, subir foto */
-.botones-acciones button {
-    padding: 10px 20px;
-    margin: 10px 5px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-/* Botón Editar */
-.botones-acciones .btn-warning {
-    background-color: #ffc107;
-    color: #fff;
-}
-
-.botones-acciones .btn-warning:hover {
-    background-color: #e0a800;
-}
-
-/* Botón Eliminar */
-.botones-acciones .btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-.botones-acciones .btn-danger:hover {
-    background-color: #c82333;
-}
-
-/* Botón Subir Foto */
-.botones-acciones .btn-info {
-    background-color: #17a2b8;
-    color: #fff;
-}
-
-.botones-acciones .btn-info:hover {
-    background-color: #138496;
-}
-
-/* Botón para subir la foto */
-#form-subir-foto button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-#form-subir-foto button:hover {
-    background-color: #0056b3;
-}
-
-/* Estilo para el overlay y el formulario cuando se activa */
-#form-subir-foto,
-#overlay {
-    display: none;
-}
-
-#overlay.show,
-#form-subir-foto.show {
-    display: block;
-}
 

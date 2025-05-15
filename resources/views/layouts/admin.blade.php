@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GP CANAL</title>
 
@@ -10,8 +11,7 @@
 
     <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <!-- candidatos -->
+        <!-- candidatos -->
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 
     <!-- FontAwesome para iconos -->
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css"> <!--candidatos-->
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
     
-
+    
     <!-- Si usas Laravel Mix u otro bundler, este no es necesario directamente -->
     <!-- <script src="{{ asset('resources/js/app.js') }}"></script> -->
 </head>
@@ -126,175 +126,311 @@
 <div class="main-content-spacer" style="height: 140px;"></div>
 
 
+<div class="container my-4">
+  <!-- Contenido principal -->
+  <h2 class="section-title mb-3">El Mejor Lugar para Mantenerte Informado</h2>
 
-<!-- Contenido principal -->
-<h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
-<!-- Botón fuera del slider -->
-<div class="mb-3">
-  <button class="btn btn-success btn-sm" id="create-buttonS">Agregar Imagen</button>
-</div>
-
-<!-- Modal de creación -->
-<div id="create-modalS" class="modal" style="display: none;">
-  <div class="modal-content p-3 border rounded shadow">
-    <span class="close" style="cursor:pointer;">&times;</span>
-    <form id="create-formS">
-      <label for="create-logoS" class="mt-2">Imagen:</label>
-      <input type="file" id="create-logoS" accept="image/*" class="form-control" required>
-      <button type="submit" class="btn btn-primary mt-3">Agregar</button>
-    </form>
-    <p id="image-limit-warning" style="color: red; display: none;">¡Solo puedes subir hasta 5 imágenes!</p>
+  <!-- Botones fuera del slider -->
+  <div class="d-flex mb-4">
+    <button class="btn btn-success btn-sm me-2" id="create-buttonS">
+      Agregar Imagen
+    </button>
+    <button 
+      class="btn btn-danger btn-sm" 
+      id="open-delete-buttonS"
+      onclick="
+        (function(){
+          const active = document.querySelector('.carousel-item.active');
+          if (active) {
+            openDeleteModal(active.getAttribute('data-id'));
+          }
+        })();
+      ">
+      Eliminar Imagen
+    </button>
   </div>
-</div>
 
-<!-- Modal de eliminación -->
-<div id="delete-modalS" class="modal" style="display: none;">
-  <div class="modal-content p-3 border rounded shadow">
-    <span class="close" style="cursor:pointer;">&times;</span>
-    <h4>¿Estás seguro de que quieres eliminar esta imagen?</h4>
-    <button id="confirm-delete" class="btn btn-danger">Eliminar</button>
-    <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
-  </div>
-</div>
-
-
-
-<div class="slider-container-3d">
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img src="{{ asset('storage/images/485055934_963133949339637_6587303526016761817_n.jpg') }}" alt="Noticia 1">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('storage/images/480487921_945020837817615_6087008265131444593_n.jpg') }}" alt="Noticia 1">
-            </div>
-            <div class="carousel-item">
-                <img src="storage/images/487180354_968403768812655_384319847441050549_n.jpg" class="d-block w-100" alt="Noticia 3">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
+  <!-- Modal de creación -->
+  <div id="create-modalS" class="modal" style="display: none;">
+    <div class="modal-content p-3 border rounded shadow">
+      <span class="close" style="cursor:pointer;">&times;</span>
+      <form id="create-formS" enctype="multipart/form-data">
+        @csrf
+        <label for="create-logoS" class="mt-2">Imagen:</label>
+        <input 
+          type="file"
+          id="create-logoS"
+          name="image"
+          accept="image/*"
+          class="form-control"
+          required>
+        <button type="submit" class="btn btn-primary mt-3">Agregar</button>
+      </form>
+      <p id="image-limit-warning" style="color: red; display: none;">
+        ¡Solo puedes subir hasta 5 imágenes!
+      </p>
     </div>
-</div>
+  </div>
 
+  <!-- Modal de eliminación -->
+  <div id="delete-modalS" class="modal" style="display: none;">
+    <div class="modal-content p-3 border rounded shadow">
+      <span class="close" style="cursor:pointer;">&times;</span>
+      <h4>¿Estás seguro de que quieres eliminar la imagen activa?</h4>
+      <button id="confirm-delete" class="btn btn-danger">Eliminar</button>
+      <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Slider de imágenes -->
+  <div class="slider-container-3d">
+    <div 
+      id="mainCarousel" 
+      class="carousel slide position-relative" 
+      data-bs-ride="carousel">
+      <div class="carousel-inner">
+        @foreach(App\Models\SliderImagen::all() as $index => $imagen)
+          <div 
+            class="carousel-item {{ $index == 0 ? 'active' : '' }}"
+            data-id="{{ $imagen->id }}"
+            id="image-{{ $imagen->id }}">
+            <img 
+              src="{{ asset($imagen->filename) }}" 
+              class="d-block w-100" 
+              alt="Noticia {{ $index + 1 }}">
+          </div>
+        @endforeach
+      </div>
+      <button 
+        class="carousel-control-prev" 
+        type="button" 
+        data-bs-target="#mainCarousel" 
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button 
+        class="carousel-control-next" 
+        type="button" 
+        data-bs-target="#mainCarousel" 
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</div>
 <!-- Sección Noticias -->
 <section class="news-section-3d">
-    <div class="section-header-3d">
-        <h2>Noticias</h2>
-        <a href="{{ url('noticias') }}" class="btn-3d news-btn">Buscar noticias <i class="fas fa-arrow-right"></i></a>
+  <div class="section-header-3d">
+    <h2>Noticias</h2>
+    <a href="{{ url('noticias') }}" class="btn-3d news-btn">
+      Buscar noticias <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <div class="botones-acciones">
+    <button class="btn btn-warning btn-edi">Editar</button>
+    <button class="btn btn-success btn-cre">Crear Noticia</button>
+    <button class="btn btn-danger btn-eli">Eliminar</button>
+  </div>
+
+  <!-- Modal Crear Noticia -->
+  <div id="form-noticia" class="modal-noticia">
+    <div class="modal-content-noticia">
+      <!-- Botón cerrar -->
+      <button type="button" id="btn-cerrar-noticia" class="btn btn-secondary cerrar-noticia">
+        ✖
+      </button>
+
+      <form action="{{ route('noticias.store') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="form-noticia">
+        @csrf
+
+        <h3 style="font-weight: bold; color: #000; font-size: 24px;">
+          Crear Noticia
+        </h3>
+
+        <label for="titulo">Título de la noticia:</label>
+        <input type="text"
+               id="titulo"
+               name="titulo"
+               required
+               placeholder="Escribe el título...">
+
+        <label for="foto">Foto de la noticia:</label>
+        <input type="file"
+               id="foto"
+               name="foto"
+               accept="image/*"
+               required>
+
+        <label for="video">Video de la noticia (opcional):</label>
+        <input type="file"
+               id="video"
+               name="video"
+               accept="video/*">
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion"
+                  name="descripcion"
+                  rows="8"
+                  placeholder="Escribe una descripción clara..."
+                  required></textarea>
+
+        <button type="submit"
+                class="btn btn-primary btn-publicar">
+          Publicar Noticia
+        </button>
+      </form>
     </div>
+  </div>
+  <!-- /Modal Crear Noticia -->
 
-    <div class="botones-acciones">
-        <button class="btn btn-warning btn-edi">Editar</button>
-        <button class="btn btn-success btn-cre">Crear Noticia</button>
-        <button class="btn btn-danger btn-eli">Eliminar</button>
+  <!-- Modal Eliminar Noticia -->
+  <div id="modal-eliminar-noticia" class="modal-noticia">
+    <div class="modal-content-noticia">
+      <!-- Botón cerrar -->
+      <button type="button" id="btn-cerrar-eliminar" class="btn btn-secondary cerrar-noticia">
+        ✖
+      </button>
+
+      <form id="form-eliminar-noticia" method="POST">
+        @csrf
+        @method('DELETE')
+
+        <h3 style="font-weight: bold; color: #000; font-size: 24px;">
+          Eliminar Noticia
+        </h3>
+
+        <label for="noticia_id">Selecciona la noticia a eliminar:</label>
+        <select name="noticia_id"
+                id="noticia_id"
+                class="form-control"
+                required>
+          <option value="" disabled selected>
+            -- Elige una noticia --
+          </option>
+          @foreach ($noticias as $noticia)
+            <option value="{{ $noticia->id }}">{{ $noticia->titulo }}</option>
+          @endforeach
+        </select>
+
+        <button type="submit" class="btn btn-danger mt-3">
+          Eliminar Noticia
+        </button>
+      </form>
     </div>
+  </div>
+  <!-- /Modal Eliminar Noticia -->
 
-    <!-- Formulario para crear noticia -->
-    <div id="form-noticia" style="display: none; margin-top: 30px;">
-        <form action="subir_noticia.php" method="POST" enctype="multipart/form-data" class="form-noticia">
-            <h3>Crear Noticia</h3>
-            
-            <label for="titulo">Título de la noticia:</label>
-            <input type="text" id="titulo" name="titulo" required placeholder="Escribe el título...">
+    <!-- Modal Editar Noticia -->
+    <div id="modal-editar-noticia" class="modal-noticia">
+    <div class="modal-content-noticia">
+        <!-- Botón cerrar -->
+        <button type="button" id="btn-cerrar-editar" class="btn btn-secondary cerrar-noticia">✖</button>
 
-            <label for="foto">Foto de la noticia:</label>
-            <input type="file" id="foto" name="foto" accept="image/*" required>
+        <form id="form-editar-noticia" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
 
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" rows="5" placeholder="Escribe una descripción clara..." required></textarea>
+        <h3 style="font-weight: bold; color: #000; font-size: 24px;">Editar Noticia</h3>
 
-            <label for="archivo">Seleccionar documento adicional (opcional):</label>
-            <input type="file" id="archivo" name="archivo">
+        <label for="editar_noticia_id">Selecciona la noticia a editar:</label>
+        <select name="editar_noticia_id" id="editar_noticia_id" class="form-control" required>
+            <option value="" disabled selected>-- Elige una noticia --</option>
+            @foreach($noticias as $noticia)
+            <option 
+                value="{{ $noticia->id }}"
+                data-titulo="{{ htmlspecialchars($noticia->titulo, ENT_QUOTES) }}"
+                data-descripcion="{{ htmlspecialchars($noticia->descripcion, ENT_QUOTES) }}"
+                data-foto-url="{{ asset('storage/' . $noticia->foto) }}"
+                @if($noticia->video)
+                data-video-url="{{ asset('storage/' . $noticia->video) }}"
+                @endif
+            >
+                {{ $noticia->titulo }}
+            </option>
+            @endforeach
+        </select>
 
-            <button type="submit" class="btn btn-primary btn-publicar">Publicar Noticia</button>
-        </form>
-    </div>
-</section>
-<div id="overlay" style="display:none;"></div>
+        <label for="editar_titulo">Título:</label>
+        <input type="text" id="editar_titulo" name="titulo" class="form-control" required>
 
-        <div class="news-grid-3d">
-            <!-- Noticia 1 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia1.jpg" alt="Noticia 1" class="news-img">
-                    <div class="news-badge">Nuevo</div>
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 1</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 2 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia2.jpg" alt="Noticia 2" class="news-img">
-                    <div class="news-badge trending">Trending</div>
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 2</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 3 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia3.jpg" alt="Noticia 3" class="news-img">
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 3</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 4 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia4.jpg" alt="Noticia 4" class="news-img">
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 4</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 5 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia5.jpg" alt="Noticia 5" class="news-img">
-                    <div class="news-badge hot">Hot</div>
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 5</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 6 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia6.jpg" alt="Noticia 6" class="news-img">
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 6</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
+        <label for="editar_descripcion">Descripción:</label>
+        <textarea id="editar_descripcion" name="descripcion" rows="4" class="form-control" required></textarea>
+
+        <div id="preview-contenido" style="margin: 1rem 0;">
+            <p><strong>Foto actual:</strong></p>
+            <img id="preview-foto" src="" alt="Foto noticia" style="max-width:100%; border:1px solid #ccc; border-radius:4px;">
+            <p style="margin-top:0.5rem;"><strong>Video actual:</strong></p>
+            <video id="preview-video" src="" controls style="max-width:100%; border:1px solid #ccc; border-radius:4px;"></video>
         </div>
 
-    </section>
+        <label for="editar_foto">Cambiar foto (opcional):</label>
+        <input type="file" id="editar_foto" name="foto" accept="image/*" class="form-control">
+
+        <label for="editar_video">Cambiar video (opcional):</label>
+        <input type="file" id="editar_video" name="video" accept="video/*" class="form-control">
+
+        <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+        </form>
+    </div>
+    </div>
+  <!-- /Modal Editar Noticia -->
+
+
+  <!-- Overlay opcional (si lo necesitas) -->
+  <div id="overlay" style="display:none;"></div>
+
+<!-- Grid de Noticias Dinámico -->
+<div class="news-grid-3d">
+  @foreach($noticias as $noticia)
+    <div class="news-card-3d">
+      <div class="news-img-container">
+        {{-- Imagen --}}
+        <img src="{{ asset('storage/' . $noticia->foto) }}" 
+             alt="{{ $noticia->titulo }}" 
+             class="news-img">
+
+        {{-- Badge “Nuevo” si fue creada en las últimas 24 h --}}
+        @if($noticia->created_at->gt(now()->subDay()))
+          <div class="news-badge">Nuevo</div>
+        @endif
+      </div>
+
+      <div class="news-content">
+        {{-- Título --}}
+        <h3>{{ $noticia->titulo }}</h3>
+
+        {{-- Descripción (resumida a 100 caracteres) --}}
+        <p>{{ \Illuminate\Support\Str::limit($noticia->descripcion, 100) }}</p>
+
+        {{-- Vídeo incrustado si existe --}}
+        @if($noticia->video)
+          <video controls class="news-video" style="width:100%; margin:1rem 0;">
+            <source src="{{ asset('storage/' . $noticia->video) }}" type="video/mp4">
+            Tu navegador no soporta el elemento <code>video</code>.
+          </video>
+        @endif
+
+        {{-- Leer más: puedes redirigir a una ruta show --}}
+        <a href="{{ route('noticias.show', $noticia->id) }}" class="read-more">
+          Leer más <i class="fas fa-angle-double-right"></i>
+        </a>
+      </div>
+    </div>
+  @endforeach
+
+  {{-- Mensaje si no hay noticias --}}
+  @if($noticias->isEmpty())
+    <p>No hay noticias publicadas aún.</p>
+  @endif
+</div>
+
+
+</section>
+
 <!-- Sección Encuestas -->
     <section class="polls-section-3d">
         <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
@@ -382,78 +518,31 @@
 
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
-<section id="poll-partidos-politicos">
-        <div class="section-title-container">
-            <h1 class="section-title-3dPP">
-            Partidos <span class="highlightPP">Políticos</span>
-            </h1>
-            <div class="dynamic-line"></div>
-        </div>
+    <div class="title-container">
+        <h1 class="title">Partidos Políticos</h1>
+        <div class="dynamic-line"></div>
+    </div>
 
-        <div class="buscador">
-        <button class="btn btn-warning btn-sm" id="edit-button">Editar</button>
-        <button class="btn btn-danger btn-sm" id="delete-button">Eliminar</button>
-        <button class="btn btn-success btn-sm" id="create-button">Crear Partido</button>
+    <div class="buscador">
         <label for="party-select">Buscar partido:</label>
         <select id="party-select">
             <option value="" disabled selected>Selecciona un partido</option>
             <!-- Opciones generadas dinámicamente -->
         </select>
     </div>
-      <!-- Modal de Edición -->
-  <div id="edit-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <form id="edit-form">
-        <label for="edit-name">Nombre del partido:</label>
-        <input type="text" id="edit-name" class="form-control" required>
-        <label for="edit-logo">Logo del partido:</label>
-        <input type="file" id="edit-logo" accept="image/*" class="form-control">
-        <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Modal de Creación -->
-  <div id="create-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <form id="create-form">
-        <label for="create-name">Nombre del partido:</label>
-        <input type="text" id="create-name" class="form-control" required>
-        <label for="create-logo">Logo del partido:</label>
-        <input type="file" id="create-logo" accept="image/*" class="form-control" required>
-        <button type="submit" class="btn btn-success mt-3">Crear Partido</button>
-      </form>
-    </div>
-  </div>
-
-
-<!-- Modal de Eliminación -->
-<div id="delete-modal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h3>¿Estás seguro de que quieres eliminar este partido?</h3>
-    <p>Esta acción no se puede deshacer.</p>
-    <div class="modal-buttons text-center">
-      <button id="confirm-delete" class="btn btn-danger">Eliminar</button>
-      <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
-    </div>
-  </div>
-</div>
-
-
-
-        <div class="gallery">
-            <ul class="cards">
-                <!-- Las tarjetas se insertarán aquí mediante JavaScript -->
-            </ul>
-            <div class="actions">
-                <button class="prev">Anterior</button>
-                <button class="next">Siguiente</button>
-            </div>
+    <div class="gallery">
+        <ul class="cards">
+            <!-- Las tarjetas de los partidos se insertarán aquí mediante JavaScript -->
+        </ul>
+        <div class="actions">
+            <button class="prev">Anterior</button>
+            <button class="next">Siguiente</button>
         </div>
-    </section>
+    </div>
+</section>
+
+
+<!-- Fin de la sección de candidatos -->
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <section id="contacto" class="contacto-3d">
@@ -500,17 +589,9 @@
     <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
     <script type="module" src="{{ asset('js/admin.js') }}"></script> 
     <script type="module" src="{{ asset('js/adminpartidos.js') }}"></script> 
-
-    
-    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script> <!--candidatos-->
-    <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script> <!--candidatos-->
-    <script src="{{ asset('js/hexocet.js') }}"></script>
-    <script src="{{ asset('js/functions.js') }}"></script>
-    <script src="{{ asset('js/admin.js') }}"></script>
-    <script src="{{ asset('js/admin-partidos.js') }}"></script>
-    <!-- Script JS para controlar el formulario -->
-    <<script src="{{ asset('js/noticiasAD.js') }}"></script>
-    <<script src="{{ asset('js/slider.js') }}"></script>
+    <script type="module" src="{{ asset('js/noticiasAD.js') }}"></script> 
+    <script type="module" src="{{ asset('js/admin-slider.js') }}"></script> 
+    <script src="{{ asset('js/noticias-admin.js') }}"></script>
 
 
 </body>

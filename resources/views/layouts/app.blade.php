@@ -119,113 +119,83 @@
 
 <!-- Contenido principal -->
 <h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
-
 <div class="slider-container-3d">
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="storage/images/485055934_963133949339637_6587303526016761817_n.jpg" class="d-block w-100" alt="Noticia 1">
-            </div>
-            <div class="carousel-item">
-                <img src="storage/images/480487921_945020837817615_6087008265131444593_n.jpg" class="d-block w-100" alt="Noticia 2">
-            </div>
-            <div class="carousel-item">
-                <img src="storage/images/487180354_968403768812655_384319847441050549_n.jpg" class="d-block w-100" alt="Noticia 3">
-            </div>
+  <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      @foreach(App\Models\SliderImagen::all() as $index => $imagen)
+        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+          <img 
+            src="{{ asset($imagen->filename) }}" 
+            class="d-block w-100" 
+            alt="Noticia {{ $index + 1 }}">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
+      @endforeach
     </div>
+
+    <button 
+      class="carousel-control-prev" 
+      type="button" 
+      data-bs-target="#mainCarousel" 
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button 
+      class="carousel-control-next" 
+      type="button" 
+      data-bs-target="#mainCarousel" 
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
 </div>
 <!-- Sección Noticias -->
 <section class="news-section-3d">
-        <div class="section-header-3d">
-            <h2>Noticias</h2>
-            <a href="{{ url('noticias') }}" class="btn-3d news-btn"> Ver mas noticias <i class="fas fa-arrow-right"></i></a></div>
-            <a href="{{ url('noticias') }}" class="btn-3d search-btn"> Buscar noticias <i class="fas fa-arrow-right"></i></a></div>
-        </div>
-        <div class="news-grid-3d">
-            <!-- Noticia 1 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia1.jpg" alt="Noticia 1" class="news-img">
-                    <div class="news-badge">Nuevo</div>
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 1</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 2 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia2.jpg" alt="Noticia 2" class="news-img">
-                    <div class="news-badge trending">Trending</div>
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 2</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 3 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia3.jpg" alt="Noticia 3" class="news-img">
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 3</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 4 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia4.jpg" alt="Noticia 4" class="news-img">
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 4</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 5 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia5.jpg" alt="Noticia 5" class="news-img">
-                    <div class="news-badge hot">Hot</div>
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 5</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Noticia 6 -->
-            <div class="news-card-3d">
-                <div class="news-img-container">
-                    <img src="images/noticia6.jpg" alt="Noticia 6" class="news-img">
-                </div>
-                <div class="news-content">
-                    <h3>Título de Noticia 6</h3>
-                    <p>Descripción breve de la noticia con información relevante para captar la atención del lector.</p>
-                    <a href="#" class="read-more">Leer más <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
+  <div class="section-header-3d">
+    <h2>Noticias</h2>
+    <a href="{{ url('noticias') }}" class="btn-3d news-btn">
+      Ver más noticias <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <div class="news-grid-3d">
+    @forelse($noticias as $noticia)
+      <div class="news-card-3d">
+        <div class="news-img-container">
+          <img src="{{ asset('storage/' . $noticia->foto) }}"
+               alt="{{ $noticia->titulo }}"
+               class="news-img">
+
+          @if($noticia->created_at->gt(now()->subDay()))
+            <div class="news-badge">Nuevo</div>
+          @elseif($noticia->badge ?? false === 'Trending')
+            <div class="news-badge trending">Trending</div>
+          @elseif($noticia->badge ?? false === 'Hot')
+            <div class="news-badge hot">Hot</div>
+          @endif
         </div>
 
-    </section>
+        <div class="news-content">
+          <h3>{{ $noticia->titulo }}</h3>
+          <p>{{ \Illuminate\Support\Str::limit($noticia->descripcion, 100) }}</p>
+
+          @if($noticia->video)
+            <video controls class="news-video" style="width:100%; margin:1rem 0;">
+              <source src="{{ asset('storage/' . $noticia->video) }}" type="video/mp4">
+              Tu navegador no soporta el elemento <code>video</code>.
+            </video>
+          @endif
+
+          <a href="{{ route('noticias.show', $noticia->id) }}" class="read-more">
+            Leer más <i class="fas fa-angle-double-right"></i>
+          </a>
+        </div>
+      </div>
+    @empty
+      <p class="no-news">No hay noticias publicadas aún.</p>
+    @endforelse
+  </div>
+</section>
+
 <!-- Sección Encuestas -->
     <section class="polls-section-3d">
         <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
