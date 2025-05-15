@@ -13,13 +13,13 @@ class Respuesta extends Model
         'encuesta_id',
         'pregunta',
         'respuesta',
+        // 'sexo',
+        // 'edad',
     ];
 
-    /**
-     * Cada respuesta pertenece a una encuesta.
-     */
+
     public function encuesta()
     {
         return $this->belongsTo(Encuesta::class);
     }
-}
+}   

@@ -82,23 +82,23 @@ document.getElementById('encuestaForm').addEventListener('submit', function (e) 
         return;
     }
 
-    // Recopilar respuestas en objeto
-    const respuestas = {
-        sexo: document.getElementById('sexo').value,
-        edad: document.getElementById('edad').value,
+    // Construir array de respuestas con formato { pregunta, respuesta }
+    const respuestasArray = [
+        { pregunta: 'sexo', respuesta: document.getElementById('sexo').value },
+        { pregunta: 'edad', respuesta: document.getElementById('edad').value },
 
-        satisfaccion: document.querySelector('input[name="satisfaccion"]:checked')?.value || null,
-        sugerencias: document.getElementById('sugerencias').value.trim(),
-        problemas: Array.from(document.querySelectorAll('input[name="problemas[]"]:checked')).map(el => el.value),
-        frecuencia: document.querySelector('input[name="frecuencia"]:checked')?.value || null,
-        ultima_participacion: document.getElementById('ultima-participacion').value,
-        actividad_deseada: document.getElementById('actividad-deseada').value.trim(),
-        calificacion: document.querySelector('input[name="calificacion"]:checked')?.value || null,
-        comentarios: document.getElementById('comentarios').value.trim(),
-    };
+        { pregunta: 'satisfaccion', respuesta: document.querySelector('input[name="satisfaccion"]:checked')?.value || null },
+        { pregunta: 'sugerencias', respuesta: document.getElementById('sugerencias').value.trim() },
+        { pregunta: 'problemas', respuesta: Array.from(document.querySelectorAll('input[name="problemas[]"]:checked')).map(el => el.value).join(', ') },
+        { pregunta: 'frecuencia', respuesta: document.querySelector('input[name="frecuencia"]:checked')?.value || null },
+        { pregunta: 'ultima_participacion', respuesta: document.getElementById('ultima-participacion').value },
+        { pregunta: 'actividad_deseada', respuesta: document.getElementById('actividad-deseada').value.trim() },
+        { pregunta: 'calificacion', respuesta: document.querySelector('input[name="calificacion"]:checked')?.value || null },
+        { pregunta: 'comentarios', respuesta: document.getElementById('comentarios').value.trim() },
+    ];
 
-    // Guardar JSON string en input hidden
-    document.getElementById('respuestasInput').value = JSON.stringify(respuestas);
+    // Guardar JSON string en input hidden para enviar al backend
+    document.getElementById('respuestasInput').value = JSON.stringify(respuestasArray);
 
     // Preparar formData
     const formData = new FormData(this);
