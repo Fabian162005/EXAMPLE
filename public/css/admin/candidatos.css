@@ -73,20 +73,33 @@ label {
 
 
 /* Title */
+/* Contenedor del título */
 .title-container {
   text-align: center;
-  position: static;
-  top: 20%; /* Ajusta la posición para que esté un poco más arriba de la mitad de la pantalla */
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  padding: 10px 0;
-  transform: translateY(-50%); /* Ajusta la posición vertical para estar centrado */
+  margin-top: -10px; /* Subir el contenedor 10px */
 }
 
+/* Estilo para el título */
 .title {
-  font-size: 2.5rem;
-  color: #000000;
+  font-size: 32px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Línea dinámica debajo del título */
+.dynamic-line {
+  width: 50%;
+  height: 2px;
+  background-color: #2980b9;
+  margin: 0 auto;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Cambio de la línea cuando se hace hover */
+.title-container:hover .dynamic-line {
+  width: 100%; /* Aumenta el ancho al hacer hover */
 }
 
 

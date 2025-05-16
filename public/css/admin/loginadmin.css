@@ -1,0 +1,90 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor del login */
+.login-container {
+  background: #ffffff;
+  color: #2c3e50;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Título */
+.login-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 24px;
+  color: #2980b9;
+}
+
+/* Etiquetas */
+.login-container label {
+  display: block;
+  text-align: left;
+  margin: 0.5rem 0 0.25rem;
+  font-weight: 600;
+}
+
+/* Inputs */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+.login-container input:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+/* Botón */
+.login-container button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-container button:hover {
+  background-color: #1c5980;
+}
+
+/* Mensaje de error */
+.alert {
+  padding: 0.75rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

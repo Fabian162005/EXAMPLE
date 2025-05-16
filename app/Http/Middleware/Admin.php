@@ -4,16 +4,16 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class Admin
 {
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->is_admin) {
-            return $next($request);
+        if (!session('admin_logged_in')) {
+            return redirect()->route('admin.login.form')
+                ->with('error', 'Acceso restringido: debes iniciar sesión como administrador.');
         }
 
-        return redirect('/')->with('error', 'No tienes permisos de administrador.');
+        return $next($request);
     }
 }

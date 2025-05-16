@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\VideosController;
@@ -53,30 +54,55 @@ Route::view('/encuestas/plura2', 'encuestas.plura2')->name('encuestas.plura2');
 |--------------------------------------------------------------------------
 */
 Route::post('/encuestas', [EncuestaController::class, 'store'])->name('encuestas.store');
- 
+
 /*
 |--------------------------------------------------------------------------
-| VIDEOS
+| VIDEOS PÚBLICOS
 |--------------------------------------------------------------------------
 */
 
 Route::get('/videos', [VideosController::class, 'publicos'])->name('videos.index');
 
-Route::prefix('admin')->group(function () {
-    Route::get('/videos', [VideosController::class, 'index'])->name('admin.videos.index');
-    Route::post('/videos', [VideosController::class, 'store'])->name('admin.videos.store');
-    Route::put('/videos/{id}', [VideosController::class, 'update'])->name('admin.videos.update');
-    Route::delete('/videos/{id}', [VideosController::class, 'destroy'])->name('admin.videos.destroy');
-});
+/*
+|--------------------------------------------------------------------------
+| MINI-LOGIN AJAX (desde el navbar)
+|--------------------------------------------------------------------------
+*/
+Route::post('/admin/mini-login', [AdminAuthController::class,'miniLogin'])->name('admin.mini.login');
+
+
 
 /*
 |--------------------------------------------------------------------------
-| SLIDER
+| RUTAS PROTEGIDAS ADMIN
+|--------------------------------------------------------------------------
+*/
+Route::prefix('admin')->middleware(['admin'])->group(function () {
+    Route::get('/', fn() => view('layouts.admin'))->name('admin.index');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        // Dashboard oculto
+        Route::get('/dashboard', [AdminController::class,'dashboard'])->name('admin.dashboard');
+        // ... demás rutas admin ...
+        Route::post('/slider/upload',[SliderController::class,'upload'])->name('slider.upload');
+        Route::delete('/slider/{id}',[SliderController::class,'delete'])->name('slider.delete');
+        Route::resource('noticias',NoticiaController::class,['as'=>'admin']);
+        Route::resource('videos',VideosController::class,['as'=>'admin']);
+        Route::post('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| LOGIN ADMIN - PÚBLICO
 |--------------------------------------------------------------------------
 */
 
-Route::post('/admin/slider/upload', [SliderController::class, 'upload'])->name('slider.upload');
-Route::delete('/admin/slider/{id}/delete', [SliderController::class, 'delete']);
+// Mostrar formulario login admin (GET)
+Route::get('/admin/login', function () {
+    return view('admin.login'); // Aquí crea la vista resources/views/admin/login.blade.php
+})->name('admin.login.form');
+
+// Procesar login admin (POST)
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 
 /*
 |--------------------------------------------------------------------------
@@ -99,21 +125,7 @@ Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN
-|--------------------------------------------------------------------------
-*/
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', fn() => view('layouts.admin'))->name('admin.index');
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.a');
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
-});
-
-Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-
-/*
-|--------------------------------------------------------------------------
-| AUTENTICACIÓN
+| AUTENTICACIÓN GENERAL (Laravel default)
 |--------------------------------------------------------------------------
 */
 

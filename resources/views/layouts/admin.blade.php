@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Tu CSS personalizado -->
-    <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
         <!-- candidatos -->
       <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 
