@@ -7,18 +7,20 @@ use App\Models\SliderImagen;
 
 class SliderController extends Controller
 {
-
 public function upload(Request $request)
 {
     try {
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
+            $relativePath = 'storage/images/' . $filename;
+
             $file->move(public_path('storage/images'), $filename);
 
-            // Guarda en base de datos sin usar timestamps
+            // Guarda tanto filename como imagen_url
             SliderImagen::create([
-                'filename' => 'storage/images/' . $filename
+                'filename' => $filename,
+                'imagen_url' => $relativePath,
             ]);
 
             return response()->json(['success' => true, 'filename' => $filename]);
@@ -26,10 +28,10 @@ public function upload(Request $request)
 
         return response()->json(['success' => false, 'message' => 'No se envió ninguna imagen']);
     } catch (\Exception $e) {
-        // Captura cualquier error y lo muestra
         return response()->json(['success' => false, 'message' => $e->getMessage()]);
     }
 }
+
 
 public function delete($id)
 {

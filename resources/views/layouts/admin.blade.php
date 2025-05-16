@@ -12,7 +12,7 @@
     <!-- Tu CSS personalizado -->
     <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
         <!-- candidatos -->
-    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">

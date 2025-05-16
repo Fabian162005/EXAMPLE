@@ -11,15 +11,13 @@ class Respuesta extends Model
 
     protected $fillable = [
         'encuesta_id',
+        'grupo_id', // ✅ AGREGA ESTO
         'pregunta',
         'respuesta',
-        // 'sexo',
-        // 'edad',
     ];
-
 
     public function encuesta()
     {
         return $this->belongsTo(Encuesta::class);
     }
-}   
+}

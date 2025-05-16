@@ -117,15 +117,14 @@
 <!-- Espaciado fijo para el contenido principal -->
 <div class="main-content-spacer" style="height: 140px;"></div>
 
-<!-- Contenido principal -->
-<h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
+<!-- Contenido principal --><h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
 <div class="slider-container-3d">
   <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       @foreach(App\Models\SliderImagen::all() as $index => $imagen)
         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
           <img 
-            src="{{ asset($imagen->filename) }}" 
+            src="{{ asset($imagen->imagen_url) }}" 
             class="d-block w-100" 
             alt="Noticia {{ $index + 1 }}">
         </div>
@@ -148,6 +147,7 @@
     </button>
   </div>
 </div>
+
 <!-- Sección Noticias -->
 <section class="news-section-3d">
   <div class="section-header-3d">
