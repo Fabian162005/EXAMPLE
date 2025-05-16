@@ -93,6 +93,11 @@ public function show($id)
     return view('layouts.noticiasmas.Nuevasnoticias', compact('noticia', 'noticias'));
 }
 
+public function index()
+{
+    $noticias = Noticia::all(); // O puedes usar paginate() si deseas
+    return view('layouts.noticias', compact('noticias'));
+}
 
 
 

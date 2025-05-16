@@ -3,167 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        header {
-            background: #2A5E90;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 24px;
-        }
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 15px;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        .filters input, .filters select {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .filters button {
-            background: #007bff; /* Azul llamativo */
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .filters button:hover {
-            background: #0056b3; /* Azul más oscuro al pasar el mouse */
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .news-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: 0.3s;
-        }
-        .news-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-        .news-item img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        h3 {
-            text-align: center;
-            margin-top: 30px;
-            color: #333;
-        }
-        .no-results {
-            text-align: center;
-            font-size: 18px;
-            color: #777;
-            margin-top: 20px;
-        }
-        .back-button {
-            display: block;
-            margin: 20px auto; /* Centrar el botón */
-            padding: 10px 20px;
-            background-color: #6c757d; /* Color gris */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none; /* Sin subrayado */
-            transition: background-color 0.3s ease;
-        }
-        .back-button:hover {
-            background-color: #5a6268; /* Color gris más oscuro al pasar el mouse */
-        }
-    </style>
+    <title>Portal de Noticias | Últimas Actualizaciones</title>
+    <link rel="stylesheet" href="css/noticias.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Noticias</h1>
+    <header class="main-header">
+        <a href="{{ route('app') }}" class="back-button">
+            <i class="fas fa-arrow-left"></i> Volver al inicio
+        </a>
+        
+        <div class="header-content">
+            <h1 class="site-title">Portal de Noticias</h1>
+            <p class="site-subtitle">Información actualizada al momento</p>
+        </div>
     </header>
 
-    <main>
-        <div class="filters">
-            <!-- Formulario de búsqueda -->
-            <form action="" method="GET" style="display: flex; align-items: center; gap: 10px;">
-                <input type="text" name="query" placeholder="Buscar noticias..." required>
-                <button type="submit">Buscar 🔍</button>
-            </form>
+    <main class="main-content">
+        <section class="news-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Últimas Noticias</h2>
+                    <div class="results-count">Mostrando <span id="results-count">6</span> resultados</div>
+                </div>
 
-            <!-- Filtros adicionales -->
-            <select class="province-filter">
-                <option value="piura">Piura</option>
-                <option value="lima">Ayabaca</option>
-                <option value="arequipa">Huancabamba</option>
-                <option value="cusco">Chulucanas</option>
-            </select>
-            <input type="date" class="date-filter">
-            <input type="time" class="time-filter">
+                {{-- Formulario de búsqueda --}}
+                <form method="GET" action="" class="news-filter-form" style="margin-bottom: 1rem;">
+                    <input type="text" name="search" placeholder="Buscar por ID, título o descripción" value="{{ request('search') }}">
+                    <input type="date" name="created_at" value="{{ request('created_at') }}">
+                    <input type="date" name="updated_at" value="{{ request('updated_at') }}">
+                    <button type="submit">Buscar</button>
+                    <a href="{{ url()->current() }}" class="clear-btn">Limpiar filtros</a>
+                </form>
+
+  <div class="news-grid-3d">
+    @php
+      $filteredNoticias = $noticias->filter(function($noticia) {
+          $search = strtolower(request('search'));
+          $created = request('created_at');
+          $updated = request('updated_at');
+
+          $matchSearch = empty($search) || 
+                         str_contains(strtolower($noticia->id), $search) ||
+                         str_contains(strtolower($noticia->titulo), $search) ||
+                         str_contains(strtolower($noticia->descripcion), $search);
+
+          $matchCreated = empty($created) || $noticia->created_at->format('Y-m-d') === $created;
+          $matchUpdated = empty($updated) || $noticia->updated_at->format('Y-m-d') === $updated;
+
+          return $matchSearch && $matchCreated && $matchUpdated;
+      });
+    @endphp
+
+    @forelse($filteredNoticias as $noticia)
+      <div class="news-card-3d">
+        <div class="news-img-container">
+          <img src="{{ asset('storage/' . $noticia->foto) }}"
+               alt="{{ $noticia->titulo }}"
+               class="news-img">
+
+          @if($noticia->created_at->gt(now()->subDay()))
+            <div class="news-badge">Nuevo</div>
+          @elseif($noticia->badge === 'Trending')
+            <div class="news-badge trending">Trending</div>
+          @elseif($noticia->badge === 'Hot')
+            <div class="news-badge hot">Hot</div>
+          @endif
         </div>
 
-        <div class="news-grid">
-            <?php
-            // Array de noticias
-            $noticias = [
-                ["titulo" => "Noticia 1", "descripcion" => "Descripción de la noticia 1", "imagen" => "images/image1.jpg"],
-                ["titulo" => "Noticia 2", "descripcion" => "Descripción de la noticia 2", "imagen" => "images/image2.jpg"],
-                ["titulo" => "Noticia 3", "descripcion" => "Descripción de la noticia 3", "imagen" => "images/image3.jpg"],
-                ["titulo" => "Noticia 4", "descripcion" => "Descripción de la noticia 4", "imagen" => "images/image4.jpg"],
-                ["titulo" => "Noticia 5", "descripcion" => "Descripción de la noticia 5", "imagen" => "images/image5.jpg"],
-                ["titulo" => "Noticia 6", "descripcion" => "Descripción de la noticia 6", "imagen" => "images/image6.jpg"],
-            ];
+        <div class="news-content">
+          <h3>{{ $noticia->titulo }}</h3>
+          <p>{{ \Illuminate\Support\Str::limit($noticia->descripcion, 100) }}</p>
 
-            // Filtrar noticias según la consulta
-            $query = isset($_GET['query']) ? strtolower($_GET['query']) : '';
-            $noticiasFiltradas = array_filter($noticias, function ($noticia) use ($query) {
-                return strpos(strtolower($noticia["titulo"]), $query) !== false ||
-                       strpos(strtolower($noticia["descripcion"]), $query) !== false;
-            });
+          @if($noticia->video)
+            <video controls class="news-video" style="width:100%; margin:1rem 0;">
+              <source src="{{ asset('storage/' . $noticia->video) }}" type="video/mp4">
+              Tu navegador no soporta el elemento <code>video</code>.
+            </video>
+          @endif
 
-            // Mostrar noticias filtradas
-            if (empty($noticiasFiltradas)): ?>
-                <p class="no-results">No se encontraron noticias para: "<?php echo htmlspecialchars($query); ?>"</p>
-            <?php else: ?>
-                <?php foreach ($noticiasFiltradas as $noticia): ?>
-                    <div class="news-item">
-                        <img src="<?php echo $noticia['imagen']; ?>" alt="<?php echo $noticia['titulo']; ?>">
-                        <p><?php echo $noticia['descripcion']; ?></p>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
+          <a href="{{ route('noticias.show', ['id' => $noticia->id]) }}" class="read-more">
+            Leer más <i class="fas fa-angle-double-right"></i>
+          </a>
         </div>
+      </div>
+    @empty
+      <p class="no-news">No hay noticias publicadas que coincidan con la búsqueda.</p>
+    @endforelse
+  </div>
+</section>  
 
-        <!-- Botón Volver -->
-        <a href="{{ route('app') }}" class="back-button">Volver</a> <!-- Cambia 'noticias' por la ruta correcta -->
-    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-copyright">
+                &copy; <?php echo date('Y'); ?> Portal de Noticias. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/noticias.js"></script>
 </body>
 </html>

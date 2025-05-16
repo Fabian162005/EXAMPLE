@@ -114,6 +114,8 @@ Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.st
 Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
 Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
 Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
+Route::get('/noticias', [NoticiaController::class, 'index']);
+
 
 /*
 |--------------------------------------------------------------------------

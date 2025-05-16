@@ -310,7 +310,7 @@
 
 /* Estilo para el botón de búsqueda */
 .search-button {
-    margin-left: 16px;
+    margin-left: 40px;
 }
 
 /* Icono de la lupa*/
@@ -324,7 +324,7 @@
     color: rgb(255, 255, 255); /* Ícono de lupa en negro */
     transition: transform 0.16s ease, box-shadow 0.24s ease;
     padding: 8px;
-    right: 60px;
+    right: 20px;
     box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
 
@@ -341,84 +341,150 @@
     box-shadow: none;
 }
 
-
 /* 🔍 Efecto hover elegante */
 .search-button:hover {
     transform: scale(1.08);
-    box-shadow: none; /* Asegura que no haya borde visual */
+    box-shadow: none;
 }
 
 /* 🔍 Efecto al hacer clic */
 .search-button:active {
     transform: scale(0.76);
-    box-shadow: none; /* Sin sombra al hacer clic */
+    box-shadow: none;
+}
+/* 🔍 Estilos para el botón de lupa - Versión mejorada */
+.search-button {
+    background-color: #ffffff; /* Fondo blanco sólido */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 50%; /* Forma circular */
+    outline: none;
+    cursor: pointer;
+    font-size: 17px;
+    color: #3B83BD;
+    transition: all 0.2s ease;
+    padding: 8px;
+    width: 36px; /* Tamaño fijo */
+    height: 36px; /* Tamaño fijo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+    position: absolute; /* Posicionamiento absoluto */
+    right: 20px; /* Alineado a la derecha */
+    top: 50%; /* Centrado verticalmente */
+    transform: translateY(-50%); /* Ajuste fino de centrado */
+    z-index: 1001; /* Por encima de otros elementos */
+}
+
+/* Efecto hover para el botón */
+.search-button:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Icono dentro del botón */
+.search-button i {
+    margin: 0; /* Elimina márgenes por defecto */
+    display: block; /* Mejor alineación */
+}
+
+/* 🔍 Contenedor principal de búsqueda */
+.search-wrapper {
+    position: absolute;
+    right: 65px; /* Ajusta según el padding de tu navbar */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre botón y barra de búsqueda */
+    z-index: 1000;
 }
 
 /* 🔍 Contenedor de la barra de búsqueda */
 .search-container {
-    position: fixed;
-    top: 13.6px;
-    left: 980px;
+    position: relative;
     display: none; /* Oculto por defecto */
     flex-direction: row;
     align-items: center;
     background-color: #ffffff;
-    border: none; /* Se elimina el borde */
     border-radius: 20px;
-    padding: 6.4px 9.6px;
-    box-shadow: 0px 3.2px 6.4px rgba(0, 0, 0, 0.3);
-    z-index: 1001;
-    width: fit-content; /* Ajusta el tamaño al contenido */
-    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform; /* Optimización para animaciones */
+    padding: 6px 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    width: 238px;
+    height: 40px;
 }
 
-/* 🔍 Campo de entrada de texto */
+/* 🔍 Input de búsqueda */
 .search-input {
     border: none;
-    padding: 5px;
-    outline: none;
-    height: auto;
+    padding: 6px 10px;
     font-size: 13px;
-    color: black;
+    font-weight: 500;
+    outline: none;
+    color: #333;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
 }
 
-/* 🔍 Botón de búsqueda dentro del contenedor */
-.search-container .search-button {
-    background: none;
-    border: none;
-    outline: none; /* Asegura que no tenga borde al hacer clic */
-    cursor: pointer;
-    font-size: 17.6px;
-    color: #3B83BD; /* 🔵 Color de la lupa */
-    transition: transform 0.16s ease;
+/* 📌 Contenedor de sugerencias */
+.search-suggestions {
     position: absolute;
-    right: 1px;
-    box-shadow: none; /* Asegura que no tenga borde */
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 10px 0;
+    font-size: 14px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 2000;
+    margin-top: 0.2px;
 }
 
-/* Efecto hover para el botón de búsqueda */
-.search-container .search-button:hover {
-    transform: scale(1.12);
-    box-shadow: none; /* Sin sombra en hover */
+/* Items de sugerencias */
+.search-suggestions div {
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #333;
 }
 
+.search-suggestions div:hover {
+    background-color: #f5f5f5;
+}
 
-/* === TITULO CON EL CARRUSEL DE IMAGENES === */
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    overflow-y: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+/* 🖼️ Sección del carrusel de imágenes con título */
 .section-container {
     position: relative;
     width: calc(80% - 32px);
     height: 48px;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Cambiado de center a flex-start */
-    text-align: left; /* Alineación izquierda */
+    justify-content: flex-start;
+    text-align: left;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
     border-bottom: 1.6px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     margin: 0 auto 16px;
-    padding: 8px 0 8px -40px;
+    padding: 8px 16px;
 }
+
 
 /* Pantallas grandes (hasta 1280px) */
 @media (max-width: 1280px) {

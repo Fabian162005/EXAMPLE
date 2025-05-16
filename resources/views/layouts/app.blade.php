@@ -96,17 +96,25 @@
             </div>
             
             <div class="nav-item nav-politicos">Partidos Politicos</div>
-            
-            <!-- Contenedor de la barra de búsqueda (inicialmente oculta) -->
-            <div id="search-container" class="search-container">
-                <input type="text" class="search-input" placeholder="Buscar...">
-                <button class="search-button">🔍</button>
-            </div>
+<!-- Botón de lupa -->
+<button id="search-icon" class="search-button">
+    <i class="fas fa-search"></i>
+</button>
 
-            <!-- Botón de búsqueda estilizado -->
-            <button id="search-icon" class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
+<!-- Contenedor de búsqueda -->
+<div class="search-wrapper">
+    <div id="search-container" class="search-container">
+        <input 
+            id="search-input" 
+            class="search-input" 
+            type="text" 
+            placeholder="Buscar..." 
+            autocomplete="off" 
+            spellcheck="false"
+        />
+        <div id="search-suggestions" class="search-suggestions"></div>
+    </div>
+</div>
         </div>
     </div>
 </div>
@@ -354,5 +362,7 @@
     <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
     <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
     <script type="module" src="{{ asset('js/admin.js') }}"></script> 
+    <script type="module" src="{{ asset('js/show-navbar.js') }}"></script> 
+
 </body>
 </html>
