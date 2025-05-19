@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -224,23 +214,59 @@
         </div>
     </section>
 
-    <!-- Propuestas -->
-    <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll text-red-700">Propuestas Clave</h2>
-            <p class="text-xl text-gray-700 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Agenda legislativa y política</p>
+<!-- Propuestas -->
+<section class="py-16 bg-red-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4 animate-on-scroll text-red-700">Nuestras Propuestas</h2>
+        <p class="text-xl text-gray-700 text-center mb-12 max-w-3xl mx-auto animate-on-scroll">Agenda para un Perú moderno, justo y seguro</p>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
-                    <div class="text-white bg-red-700 w-12 h-12 flex items-center justify-center rounded-full mb-4 text-2xl">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Seguridad Ciudadana</h3>
-                    <p class="
-::contentReference[oaicite:7]{index=7}
- 
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Propuesta 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                <div class="text-white bg-red-600 w-12 h-12 flex items-center justify-center rounded-full mb-4 text-2xl">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Reforma Institucional</h3>
+                <p class="text-gray-700">
+                    Impulsamos un Estado moderno, transparente y digital, al servicio del ciudadano, libre de corrupción.
+                </p>
+            </div>
 
- 
+            <!-- Propuesta 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                <div class="text-white bg-red-700 w-12 h-12 flex items-center justify-center rounded-full mb-4 text-2xl">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Salud y Educación de Calidad</h3>
+                <p class="text-gray-700">
+                    Acceso equitativo a servicios de salud y educación pública de excelencia, con inversión en infraestructura y formación docente.
+                </p>
+            </div>
+
+            <!-- Propuesta 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                <div class="text-white bg-red-600 w-12 h-12 flex items-center justify-center rounded-full mb-4 text-2xl">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Desarrollo Rural</h3>
+                <p class="text-gray-700">
+                    Potenciamos la agricultura familiar, el acceso al agua, y los mercados locales, reduciendo las brechas con las ciudades.
+                </p>
+            </div>
+
+            <!-- Propuesta 4 -->
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform animate-on-scroll hover-scale">
+                <div class="text-white bg-red-700 w-12 h-12 flex items-center justify-center rounded-full mb-4 text-2xl">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Empleo y Reactivación Económica</h3>
+                <p class="text-gray-700">
+                    Impulso al emprendimiento, MYPES y nuevos polos de desarrollo productivo para generar empleo digno en todo el país.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Footer con Redes Sociales Destacadas -->
 <footer class="bg-gray-900 text-white pt-12 pb-6">

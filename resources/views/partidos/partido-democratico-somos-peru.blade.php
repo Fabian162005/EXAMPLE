@@ -258,20 +258,16 @@
     </section>
 </main>
 
-
-
-
-
-
- <!-- Footer con Redes Sociales Destacadas -->
-<footer class="bg-gray-900 text-white pt-12 pb-6">
+    <!-- Footer -->
+<!-- Footer con Redes Sociales Destacadas -->
+<footer id="contacto" class="bg-gray-900 text-white pt-12 pb-6">
     <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-3 gap-8 mb-8">
             
             <!-- Columna 1: Logo y descripción -->
             <div class="text-center md:text-left">
                 <div class="flex justify-center md:justify-start mb-4">
-                    <img src="{{ asset('imagenes/image18.png') }}" alt="Logo Grupo Paladines" class="h-20">
+                    <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo Grupo Paladines" class="h-20">
                 </div>
                 <p class="text-gray-300 text-sm mb-4">
                     Líderes en desarrollo social y transparencia política en el Perú.
@@ -282,16 +278,16 @@
             <div>
                 <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Nuestras Redes</h3>
                 <div class="grid grid-cols-2 gap-4">
-                    <a href="https://facebook.com/grupopaladines" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                    <a href="https://www.facebook.com/share/1ET24v1wFc/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-3 transition-colors flex items-center">
                         <i class="fab fa-facebook-f mr-2"></i> Facebook
                     </a>
-                    <a href="https://x.com/grupopaladines" target="_blank" class="bg-black hover:bg-gray-800 text-white rounded-lg p-3 transition-colors flex items-center">
-                        <i class="fab fa-x-twitter mr-2"></i> X/Twitter
+                    <a href="https://www.tiktok.com/@gpcanaloficial?_t=ZM-8wPZeB7k0SU&_r=1" target="_blank" class="bg-black hover:bg-gray-800 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-tiktok mr-2"></i> TikTok
                     </a>
-                    <a href="https://instagram.com/grupopaladines" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:to-purple-700 text-white rounded-lg p-3 transition-colors flex items-center">
-                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    <a href="https://x.com/G_P_Canal?t=1WN73yiRWQq5ipmpxifVrg&s=09" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:to-purple-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-twitter mr-2"></i> Twitter
                     </a>
-                    <a href="https://youtube.com/grupopaladines" target="_blank" class="bg-red-600 hover:bg-red-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                    <a href="https://youtube.com/@gpcanal9019?si=9R2s8ia-5cYN2Qts" target="_blank" class="bg-red-600 hover:bg-red-700 text-white rounded-lg p-3 transition-colors flex items-center">
                         <i class="fab fa-youtube mr-2"></i> YouTube
                     </a>
                 </div>
@@ -305,21 +301,7 @@
                         <i class="fas fa-envelope mr-3 text-orange-400 mt-1"></i>
                         <div>
                             <p class="text-gray-300 text-sm font-medium">Escríbenos</p>
-                            <a href="mailto:contacto@grupopaladines.pe" class="text-white hover:text-orange-300 text-sm">contacto@grupopaladines.pe</a>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-phone-alt mr-3 text-orange-400 mt-1"></i>
-                        <div>
-                            <p class="text-gray-300 text-sm font-medium">Llama gratis</p>
-                            <a href="tel:+51987654321" class="text-white hover:text-orange-300 text-sm">(01) 987-6543</a>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-map-marker-alt mr-3 text-orange-400 mt-1"></i>
-                        <div>
-                            <p class="text-gray-300 text-sm font-medium">Visítanos</p>
-                            <span class="text-white text-sm">Av. Progreso 123, Lima</span>
+                            <a href="mailto:contacto@grupopaladines.pe" class="text-white hover:text-orange-300 text-sm">grupopaladines@gmail.com</a>
                         </div>
                     </li>
                 </ul>
@@ -329,7 +311,7 @@
         <!-- Copyright -->
         <div class="border-t border-gray-800 pt-6 text-center">
             <p class="text-gray-400 text-xs">
-                © 2024 Grupo Paladines. Todos los derechos reservados. 
+                © 2025 Grupo Paladines. Todos los derechos reservados. 
                 <a href="#" class="hover:text-white">Políticas de Privacidad</a> | 
                 <a href="#" class="hover:text-white">Términos de Servicio</a>
             </p>
@@ -376,9 +358,21 @@
             });
         });
     </script>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
-
-
-
-

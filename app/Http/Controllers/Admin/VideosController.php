@@ -21,6 +21,7 @@ class VideosController extends Controller
             'tipo' => 'required|in:youtube,facebook',
             'url' => 'required|url',
             'descripcion' => 'nullable|string|max:255',
+            
         ]);
 
         $video = new Video();
@@ -32,26 +33,37 @@ class VideosController extends Controller
 
         return back()->with('success', 'Video guardado correctamente.');
     }
+        public function update(Request $request, $id)
+        {
+            $noticia = Noticia::findOrFail($id);
 
-    public function update(Request $request, $id)
-    {
-        $video = Video::findOrFail($id);
+            $request->validate([
+                'titulo' => 'required|string|max:255',
+                'descripcion' => 'required|string',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'video' => 'nullable|file|mimetypes:video/mp4,video/avi,video/mpeg|max:10240', // max 10MB
+            ]);
 
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'tipo' => 'required|in:youtube,facebook',
-            'url' => 'required|url',
-            'descripcion' => 'nullable|string|max:255',
-        ]);
+            $noticia->titulo = $request->titulo;
+            $noticia->descripcion = $request->descripcion;
 
-        $video->titulo = $request->titulo;
-        $video->tipo = $request->tipo;
-        $video->url = $request->url;
-        $video->descripcion = $request->descripcion;
-        $video->save();
+            // Si suben una nueva foto
+            if ($request->hasFile('foto')) {
+                $fotoPath = $request->file('foto')->store('fotos', 'public');
+                $noticia->foto = $fotoPath;
+            }
 
-        return back()->with('success', 'Video actualizado correctamente.');
-    }
+            // Si suben un nuevo video
+            if ($request->hasFile('video')) {
+                $videoPath = $request->file('video')->store('videos', 'public');
+                $noticia->video = $videoPath;
+            }
+
+            $noticia->save();
+
+            return redirect()->back()->with('success', 'Noticia actualizada correctamente.');
+        }
+
 
     public function destroy($id)
     {
@@ -62,10 +74,30 @@ class VideosController extends Controller
     }
 
     // NUEVO MÉTODO PARA LA VISTA PÚBLICA
-        public function publicos()
-        {
-            $videos = Video::orderBy('created_at', 'desc')->get();
-            return view('videos.index', compact('videos'));
-        }
+public function publicos(Request $request)
+{
+    $query = Video::query();
+
+    if ($request->filled('search')) {
+        $query->where('titulo', 'like', '%' . $request->search . '%');
+    }
+
+    if ($request->filled('start-date')) {
+        $query->whereDate('created_at', '>=', $request->input('start-date'));
+    }
+
+    if ($request->filled('end-date')) {
+        $query->whereDate('created_at', '<=', $request->input('end-date'));
+    }
+
+    $videos = $query->orderBy('created_at', 'desc')->paginate(12);
+
+    return view('videos.index', [
+        'videos' => $videos,
+        'search' => $request->search,
+        'startDate' => $request->input('start-date'),
+        'endDate' => $request->input('end-date'),
+    ]);
+}
 
 }

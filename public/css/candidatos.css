@@ -44,7 +44,8 @@ label {
   margin-top: 15px;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #2c10ab;
+  color: #1a1a1a; /* Negro suave legible */
+  font-size: 16px;
 }
 
 
@@ -87,15 +88,18 @@ label {
     max-width: 500px; /* Ancho máximo del buscador */
   }
 
-  #party-select {
-    padding: 12px 12px;
-    width: 150%;
-    border: 2px solid #0921ad;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s ease;
-  }
+#party-select {
+  padding: 12px 12px;
+  width: 150%;
+  border: 2px solid #0921ad;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #000000; /* ← Esto asegura que el texto sea negro */
+  background-color: #ffffff; /* ← Asegura que no tenga fondo raro */
+}
+
 
   #party-select:focus {
     border-color: #1e63f5;

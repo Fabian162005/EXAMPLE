@@ -191,18 +191,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (section) observer.observe(section);
     });
 });
-
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar los elementos del navbar
     const videosLink = document.querySelector('.nav-envivo');
     const noticiasLink = document.querySelector('.nav-noticias');
     const encuestasLink = document.querySelector('.nav-encuestas');
+    const partidosLink = document.querySelector('.nav-politicos');
+    const contactoLink = document.querySelector('.nav-contacto');  // faltaba definirlo
 
     // Configuración de offsets (ajusta estos valores según necesites)
     const scrollOffsets = {
-        noticias: 120,    // 120px desde el top para noticias
-        encuestas: 100,   // 100px desde el top para encuestas
-        contacto: 80      // 80px desde el top para contacto
+        noticias: 120,
+        encuestas: 100,
+        partidos: 100,    // offset para partidos políticos
+        contacto: 80
     };
 
     // Función para redirigir a videos.php
@@ -226,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Función para scroll suave a noticias con offset
+    // Scroll a noticias
     if(noticiasLink) {
         noticiasLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -235,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función para scroll suave a encuestas con offset
+    // Scroll a encuestas
     if(encuestasLink) {
         encuestasLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -244,7 +246,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función para scroll suave a contacto con offset
+    // Scroll a partidos políticos (nuevo)
+    if(partidosLink) {
+        partidosLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const partidosSection = document.querySelector('#partidos-politicos');
+            smoothScrollTo(partidosSection, scrollOffsets.partidos);
+        });
+    }
+
+    // Scroll a contacto
     if(contactoLink) {
         contactoLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -252,27 +263,19 @@ document.addEventListener('DOMContentLoaded', function() {
             smoothScrollTo(contactoSection, scrollOffsets.contacto);
         });
     }
-
-    // Opcional: Ajustar offset dinámicamente según el tamaño del navbar
-    function calculateNavbarHeight() {
-        const navbar = document.querySelector('.navbar-container');
-        if(navbar) {
-            return navbar.offsetHeight;
-        }
-        return 0;
-    }
-
-    // Versión alternativa que calcula el offset basado en el navbar
-    function smoothScrollToDynamic(element) {
-        if(element) {
-            const navbarHeight = calculateNavbarHeight();
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - (navbarHeight + 20); // 20px extra
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    }
 });
+
+  function toggleSocialIcons() {
+        const socialIcons = document.querySelector('.social-icons');
+        if (window.innerWidth <= 1024) { // tablet y móviles
+            if (socialIcons) socialIcons.style.display = 'none';
+        } else {
+            if (socialIcons) socialIcons.style.display = 'flex'; // o 'block' según tu diseño
+        }
+    }
+
+    // Ejecutar al cargar la página
+    window.addEventListener('load', toggleSocialIcons);
+
+    // Ejecutar al redimensionar la ventana
+    window.addEventListener('resize', toggleSocialIcons);

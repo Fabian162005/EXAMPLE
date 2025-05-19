@@ -1,134 +1,111 @@
-<?php
+    <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\VideosController;
-use App\Http\Controllers\AdminAuthController;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\PartidoController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\NoticiaController;
-use App\Http\Controllers\EncuestaController;
-use App\Models\Noticia;
+    use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\AdminAuthController;
+    use App\Http\Controllers\Admin\AdminController;
+    use App\Http\Controllers\Admin\NewsController;
+    use App\Http\Controllers\Admin\VideosController;
+    use App\Http\Controllers\SliderController;
+    use App\Http\Controllers\NoticiaController;
+    use App\Http\Controllers\EncuestaController;
+    use App\Http\Controllers\PartidoController;
+    use App\Models\Noticia;
 
-/*
-|--------------------------------------------------------------------------
-| RUTAS PRINCIPALES
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | RUTAS PÚBLICAS PRINCIPALES
+    |--------------------------------------------------------------------------
+    */
 
-Route::get('/', function () {
-    $noticias = Noticia::orderBy('created_at', 'desc')->take(6)->get();
-    return view('layouts.app', compact('noticias'));
-});
-
-Route::get('/noticias', function () {
-    return view('layouts.noticias');
-})->name('noticias');
-
-Route::get('/volver', function () {
-    $noticias = Noticia::latest()->get();
-    return view('layouts.app', compact('noticias'));
-})->name('app');
-
-Route::get('/menunoticias', function () {
-    return view('layouts.menunoticias');
-})->name('menunoticias');
-
-/*
-|--------------------------------------------------------------------------
-| ENCUESTAS (VISTAS)
-|--------------------------------------------------------------------------
-*/
-
-Route::view('/encuestas/lima', 'encuestas.lima')->name('encuestas.lima');
-Route::view('/encuestas/chiclayo', 'encuestas.chiclayo')->name('encuestas.chiclayo');
-Route::view('/encuestas/piura', 'encuestas.piura')->name('encuestas.piura');
-Route::view('/encuestas/morropon', 'encuestas.morropon')->name('encuestas.morropon');
-Route::view('/encuestas/castilla', 'encuestas.castilla')->name('encuestas.castilla');
-Route::view('/encuestas/plura2', 'encuestas.plura2')->name('encuestas.plura2');
-
-/*
-|--------------------------------------------------------------------------
-| ENCUESTAS (CONTROLADOR)
-|--------------------------------------------------------------------------
-*/
-Route::post('/encuestas', [EncuestaController::class, 'store'])->name('encuestas.store');
-
-/*
-|--------------------------------------------------------------------------
-| VIDEOS PÚBLICOS
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/videos', [VideosController::class, 'publicos'])->name('videos.index');
-
-/*
-|--------------------------------------------------------------------------
-| MINI-LOGIN AJAX (desde el navbar)
-|--------------------------------------------------------------------------
-*/
-Route::post('/admin/mini-login', [AdminAuthController::class,'miniLogin'])->name('admin.mini.login');
-
-
-
-/*
-|--------------------------------------------------------------------------
-| RUTAS PROTEGIDAS ADMIN
-|--------------------------------------------------------------------------
-*/
-Route::prefix('admin')->middleware(['admin'])->group(function () {
-    Route::get('/', fn() => view('layouts.admin'))->name('admin.index');
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-        // Dashboard oculto
-        Route::get('/dashboard', [AdminController::class,'dashboard'])->name('admin.dashboard');
-        // ... demás rutas admin ...
-        Route::post('/slider/upload',[SliderController::class,'upload'])->name('slider.upload');
-        Route::delete('/slider/{id}',[SliderController::class,'delete'])->name('slider.delete');
-        Route::resource('noticias',NoticiaController::class,['as'=>'admin']);
-        Route::resource('videos',VideosController::class,['as'=>'admin']);
-        Route::post('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
+    Route::get('/', function () {
+        $noticias = Noticia::orderBy('created_at', 'desc')->take(6)->get();
+        return view('layouts.app', compact('noticias'));
     });
 
-/*
-|--------------------------------------------------------------------------
-| LOGIN ADMIN - PÚBLICO
-|--------------------------------------------------------------------------
-*/
+    Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias');
+    Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
 
-// Mostrar formulario login admin (GET)
-Route::get('/admin/login', function () {
-    return view('admin.login'); // Aquí crea la vista resources/views/admin/login.blade.php
-})->name('admin.login.form');
+    Route::get('/menunoticias', fn() => view('layouts.menunoticias'))->name('menunoticias');
+    Route::get('/volver', function () {
+        $noticias = Noticia::latest()->get();
+        return view('layouts.app', compact('noticias'));
+    })->name('app');
 
-// Procesar login admin (POST)
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+    Route::get('/videos', [VideosController::class, 'publicos'])->name('videos.index');
 
-/*
-|--------------------------------------------------------------------------
-| NOTICIAS
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | ENCUESTAS
+    |--------------------------------------------------------------------------
+    */
 
-Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.store');
-Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
-Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
-Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
-Route::get('/noticias', [NoticiaController::class, 'index']);
+    // Vistas
+    Route::view('/encuestas/lima', 'encuestas.lima')->name('encuestas.lima');
+    Route::view('/encuestas/chiclayo', 'encuestas.chiclayo')->name('encuestas.chiclayo');
+    Route::view('/encuestas/piura', 'encuestas.piura')->name('encuestas.piura');
+    Route::view('/encuestas/morropon', 'encuestas.morropon')->name('encuestas.morropon');
+    Route::view('/encuestas/castilla', 'encuestas.castilla')->name('encuestas.castilla');
+    Route::view('/encuestas/plura2', 'encuestas.plura2')->name('encuestas.plura2');
 
+    // Envío
+    Route::post('/encuestas', [EncuestaController::class, 'store'])->name('encuestas.store');
 
-/*
-|--------------------------------------------------------------------------
-| PARTIDOS
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | PARTIDOS POLÍTICOS
+    |--------------------------------------------------------------------------
+    */
 
-Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
+    Route::get('/partidos/{nombre}', [PartidoController::class, 'show']);
 
-/*
-|--------------------------------------------------------------------------
-| AUTENTICACIÓN GENERAL (Laravel default)
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | AUTENTICACIÓN ADMIN (mini-login desde navbar)
+    |--------------------------------------------------------------------------
+    */
 
-Auth::routes();
+    Route::post('/admin/mini-login', [AdminAuthController::class, 'miniLogin'])->name('admin.mini.login');
+
+    /*
+    |--------------------------------------------------------------------------
+    | LOGIN ADMIN PÚBLICO (solo usuario 'ELVIS')
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/admin/login', fn() => view('admin.login'))->name('admin.login.form');
+    Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+
+    /*
+    |--------------------------------------------------------------------------
+    | RUTAS ADMIN PROTEGIDAS (requiere session admin_logged_in)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function () {
+        Route::get('/', fn() => view('layouts.admin'))->name('index');
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+        Route::post('/slider/upload', [SliderController::class, 'upload'])->name('slider.upload');
+        Route::delete('/slider/{id}/delete', [SliderController::class, 'delete'])->name('slider.delete');
+
+        Route::resource('noticias', NoticiaController::class);
+        Route::resource('videos', VideosController::class);
+
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | CRUD NOTICIAS (externo para usuarios)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.store');
+    Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
+    Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | AUTENTICACIÓN GENERAL (Laravel default)
+    |--------------------------------------------------------------------------
+    */

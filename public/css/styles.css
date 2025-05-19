@@ -112,14 +112,18 @@
     transition: color 0.3s ease;
 }
 
-/* 🟣 Twitch */
-.twitch {
+/* 🖤 TikTok */
+.tiktok {
     font-size: 30px;
     color: black;
     transition: color 0.3s ease;
 }
-.twitch:hover {
-    color: #8946fc;
+
+.tiktok:hover {
+    color: #fff;
+    background: linear-gradient(45deg, #69C9D0, #EE1D52);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* === Navbar === */
@@ -274,13 +278,13 @@
 
 .nav-item.nav-videos {
     position: absolute;
-    left: 12%;
+    left: 7%;
 
 }
 
 .nav-item.nav-noticias {
     position: absolute;
-    left: 22%;
+    left: 20%;
 
 
 }
@@ -586,7 +590,7 @@
     }
 }
 
-/* === ESTILOS DEL CARRUSEL === */
+/* === ESTILOS DEL CARRUSEL ACTUALIZADOS === */
 .slider-container-3d {
     max-width: 960px;
     margin: 8px auto;
@@ -594,15 +598,17 @@
     overflow: hidden;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
     position: relative;
-    transform-style: preserve-3d;
-    perspective: 800px;
+    aspect-ratio: 16 / 6; /* NUEVO: fuerza proporción rectangular */
+    background-color: #000; /* opcional: fondo mientras carga la imagen */
 }
 
 .carousel-item img {
-    height: 320px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }
+
 
 .carousel-control-prev, .carousel-control-next {
     width: 40px;
@@ -705,7 +711,9 @@
     padding: 48px 4%;
     background-color: #4b74fc;
     margin: 32px 0;
-    position: relative;
+    position: relative;             /* <- Esto redondea el contenedor */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .section-header-3d {
@@ -732,7 +740,7 @@
 }
 
 .section-header-3d h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     color: white !important;
     position: relative;
     margin: 0 0 1.2rem 0;
@@ -759,7 +767,8 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: white;
-  border-radius: 2px;
+  border-radius: 20px;               /* <- Añadir esto */
+  overflow: hidden;  
 }
 
 /* Altura por defecto sin video */
@@ -1316,7 +1325,7 @@
 
 .columna a {
     color: #444;
-    text-decoration: none;
+    text-decoration: black;
     transition: all 0.3s ease;
     display: inline-block;
 }

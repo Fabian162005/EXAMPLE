@@ -28,3 +28,31 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.style.display = "none";
     });
 });
+
+document.getElementById('inputImagen').addEventListener('change', function (e) {
+    const archivo = e.target.files[0];
+    const mensajeError = document.getElementById('mensajeError');
+
+    if (!archivo) return;
+
+    const img = new Image();
+    img.src = URL.createObjectURL(archivo);
+
+    img.onload = function () {
+        const ancho = img.width;
+        const alto = img.height;
+        const proporcion = ancho / alto;
+        const proporciónEsperada = 16 / 9;
+        const tolerancia = 0.1; // ±10% de margen
+
+        if (Math.abs(proporcion - proporciónEsperada) > tolerancia) {
+            mensajeError.textContent = "⚠️ La imagen debe tener formato rectangular horizontal (relación 16:9, por ejemplo 1280x720 px).";
+            e.target.value = ""; // Limpia el input
+        } else {
+            mensajeError.textContent = "";
+        }
+
+        URL.revokeObjectURL(img.src);
+    };
+});
+

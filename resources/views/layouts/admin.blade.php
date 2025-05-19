@@ -124,8 +124,6 @@
 
 <!-- Espaciado fijo para el contenido principal -->
 <div class="main-content-spacer" style="height: 140px;"></div>
-
-
 <div class="container my-4">
   <!-- Contenido principal -->
   <h2 class="section-title mb-3">El Mejor Lugar para Mantenerte Informado</h2>
@@ -134,19 +132,6 @@
   <div class="d-flex mb-4">
     <button class="btn btn-success btn-sm me-2" id="create-buttonS">
       Agregar Imagen
-    </button>
-    <button 
-      class="btn btn-danger btn-sm" 
-      id="open-delete-buttonS"
-      onclick="
-        (function(){
-          const active = document.querySelector('.carousel-item.active');
-          if (active) {
-            openDeleteModal(active.getAttribute('data-id'));
-          }
-        })();
-      ">
-      Eliminar Imagen
     </button>
   </div>
 
@@ -164,60 +149,85 @@
           accept="image/*"
           class="form-control"
           required>
+        <small class="text-muted">
+          Tamaño recomendado: <strong>960×360 px</strong> o <strong>1600×600 px</strong> (relación 16:6)
+        </small>
+        <p id="image-limit-warning" style="color: red; display: none;">
+          ¡Solo puedes subir hasta 5 imágenes!
+        </p>
         <button type="submit" class="btn btn-primary mt-3">Agregar</button>
       </form>
-      <p id="image-limit-warning" style="color: red; display: none;">
-        ¡Solo puedes subir hasta 5 imágenes!
-      </p>
     </div>
   </div>
 
   <!-- Modal de eliminación -->
-  <div id="delete-modalS" class="modal" style="display: none;">
-    <div class="modal-content p-3 border rounded shadow">
-      <span class="close" style="cursor:pointer;">&times;</span>
-      <h4>¿Estás seguro de que quieres eliminar la imagen activa?</h4>
-      <button id="confirm-delete" class="btn btn-danger">Eliminar</button>
-      <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
-    </div>
-  </div>
-
-  <!-- Slider de imágenes -->
-  <div class="slider-container-3d">
-    <div 
-      id="mainCarousel" 
-      class="carousel slide position-relative" 
-      data-bs-ride="carousel">
-      <div class="carousel-inner">
-        @foreach(App\Models\SliderImagen::all() as $index => $imagen)
-          <div 
-            class="carousel-item {{ $index == 0 ? 'active' : '' }}"
-            data-id="{{ $imagen->id }}"
-            id="image-{{ $imagen->id }}">
-            <img 
-              src="{{ asset($imagen->filename) }}" 
-              class="d-block w-100" 
-              alt="Noticia {{ $index + 1 }}">
-          </div>
-        @endforeach
-      </div>
-      <button 
-        class="carousel-control-prev" 
-        type="button" 
-        data-bs-target="#mainCarousel" 
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      </button>
-      <button 
-        class="carousel-control-next" 
-        type="button" 
-        data-bs-target="#mainCarousel" 
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      </button>
-    </div>
+<div id="delete-modalS" class="modal" style="display: none;">
+  <div class="modal-content p-3 border rounded shadow">
+    <span class="close" style="cursor:pointer;">&times;</span>
+    <h4>¿Estás seguro de que quieres eliminar esta imagen?</h4>
+    <p><strong id="filename-to-delete"></strong></p>
+    <button id="confirm-delete" class="btn btn-danger">Eliminar</button>
+    <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
   </div>
 </div>
+
+<!-- Slider de imágenes -->
+<div class="slider-container-3d">
+  <div 
+    id="mainCarousel" 
+    class="carousel slide position-relative" 
+    data-bs-ride="carousel">
+    <div class="carousel-inner">
+      @foreach(App\Models\SliderImagen::all() as $index => $imagen)
+        <div 
+          class="carousel-item {{ $index == 0 ? 'active' : '' }}"
+          data-id="{{ $imagen->id }}"
+          data-filename="{{ basename($imagen->filename) }}"
+          id="image-{{ $imagen->id }}"
+          style="position: relative;"
+        >
+          <img 
+            src="{{ asset($imagen->filename) }}" 
+            class="d-block w-100" 
+            alt="Imagen {{ $index + 1 }}">
+
+          <!-- Nombre de la imagen debajo -->
+          <div class="mt-2 text-center">
+            {{ basename($imagen->filename) }}
+          </div>
+
+          <!-- Botón eliminar dentro del slide -->
+          <button 
+            type="button" 
+            class="btn btn-danger btn-sm"
+            style="position: absolute; top: 10px; right: 10px; z-index: 10;"
+            onclick="openDeleteModal({{ $imagen->id }}, '{{ basename($imagen->filename) }}')"
+          >
+            Eliminar
+          </button>
+        </div>
+      @endforeach
+    </div>
+    <button 
+      class="carousel-control-prev" 
+      type="button" 
+      data-bs-target="#mainCarousel" 
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button 
+      class="carousel-control-next" 
+      type="button" 
+      data-bs-target="#mainCarousel" 
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
+
+  
+</div>
+
 <!-- Sección Noticias -->
 <section class="news-section-3d">
   <div class="section-header-3d">
@@ -515,10 +525,10 @@
             </div>
         </div>
     </section>
-
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
-    <div class="title-container">
+ <section id="partidos-politicos">
+      <div class="title-container">
         <h1 class="title">Partidos Políticos</h1>
         <div class="dynamic-line"></div>
     </div>
@@ -544,33 +554,65 @@
 
 <!-- Fin de la sección de candidatos -->
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
-
-<section id="contacto" class="contacto-3d">
-  <div class="container">
-    <div class="card-3d">
-      <!-- Contacto -->
-      <div class="columna">
-        <h3>📩 Contáctanos</h3>
-        <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
-        <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
-        <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
-        <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 9am - 6pm</p>
-      </div>
-      
-      <!-- Redes -->
-      <div class="columna">
-        <h3>🌐 Síguenos</h3>
-        <div class="redes">
-          <a href="#" class="bi bi-facebook" title="Facebook"></a>
-          <a href="#" class="bi bi-youtube" title="Youtube"></a>
-          <a href="#" class="bi bi-instagram" title="Instagram"></a>
-          <a href="#" class="bi bi-twitter" title="Twitter"></a>
-          <a href="#" class="bi bi-twitch" title="Twitch"></a>
+<!-- Footer con Redes Sociales Destacadas -->
+<footer id="contacto" class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            
+            <!-- Columna 1: Logo y descripción -->
+            <div class="text-center md:text-left">
+                <div class="flex justify-center md:justify-start mb-4">
+                    <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo Grupo Paladines" class="h-20">
+                </div>
+                <p class="text-gray-300 text-sm mb-4">
+                    Líderes en desarrollo social y transparencia política en el Perú.
+                </p>
+            </div>
+            
+            <!-- Columna 2: Redes Sociales como Enlaces Rápidos -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Nuestras Redes</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="https://www.facebook.com/share/1ET24v1wFc/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-facebook-f mr-2"></i> Facebook
+                    </a>
+                    <a href="https://www.tiktok.com/@gpcanaloficial?_t=ZM-8wPZeB7k0SU&_r=1" target="_blank" class="bg-black hover:bg-gray-800 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-tiktok mr-2"></i> TikTok
+                    </a>
+                    <a href="https://x.com/G_P_Canal?t=1WN73yiRWQq5ipmpxifVrg&s=09" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:to-purple-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-twitter mr-2"></i> Twitter
+                    </a>
+                    <a href="https://youtube.com/@gpcanal9019?si=9R2s8ia-5cYN2Qts" target="_blank" class="bg-red-600 hover:bg-red-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-youtube mr-2"></i> YouTube
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Columna 3: Contacto -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Contacto Directo</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-envelope mr-3 text-orange-400 mt-1"></i>
+                        <div>
+                            <p class="text-gray-300 text-sm font-medium">Escríbenos</p>
+                            <a href="mailto:contacto@grupopaladines.pe" class="text-white hover:text-orange-300 text-sm">grupopaladines@gmail.com</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+        
+        <!-- Copyright -->
+        <div class="border-t border-gray-800 pt-6 text-center">
+            <p class="text-gray-400 text-xs">
+                © 2025 Grupo Paladines. Todos los derechos reservados. 
+                <a href="#" class="hover:text-white">Políticas de Privacidad</a> | 
+                <a href="#" class="hover:text-white">Términos de Servicio</a>
+            </p>
+        </div>
     </div>
-  </div>
-</section>
+</footer>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -592,6 +634,9 @@
     <script type="module" src="{{ asset('js/noticiasAD.js') }}"></script> 
     <script type="module" src="{{ asset('js/admin-slider.js') }}"></script> 
     <script src="{{ asset('js/noticias-admin.js') }}"></script>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
 
 
 </body>

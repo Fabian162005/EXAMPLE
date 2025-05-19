@@ -1298,14 +1298,21 @@
 
 
 .modal-noticia {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  display: none; /* oculto por defecto */
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* No ponemos display:flex aquí */
 }
+
+/* Cuando quieres mostrar el modal, le agregas una clase o cambias su display */
+.modal-noticia.show {
+  display: flex; /* así se muestra y centra el modal */
+}
+
 
 .modal-content-noticia {
     background-color: #fff;
@@ -1328,6 +1335,7 @@
   border-radius: 4px;
   box-sizing: border-box;
   resize: vertical;    /* permite que el usuario ajuste solo en vertical */
+  color: #000;
 }
 
 

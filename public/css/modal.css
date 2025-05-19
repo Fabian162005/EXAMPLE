@@ -231,6 +231,7 @@ input[type="file"] {
   border: 1px solid #007fff;
   border-radius: 5px;
   box-sizing: border-box;
+  color: #000;
 }
 
 /* Botón */

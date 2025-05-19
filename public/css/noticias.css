@@ -30,7 +30,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 80px 20px;
 }
 
 /* Header */
@@ -161,6 +161,7 @@ body {
 /* Sección de noticias */
 .news-section {
     padding-bottom: 50px;
+    padding: 80px 30px;
 }
 
 .section-header {

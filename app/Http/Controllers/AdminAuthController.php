@@ -1,44 +1,46 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\AdminUser;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 
 class AdminAuthController extends Controller
 {
-    // 3.1 Mini-login AJAX desde el navbar
-    public function miniLogin(Request $req)
+    /**
+     * Login admin desde /admin/login (pantalla completa)
+     */
+    public function login(Request $request)
     {
-        // aquí validas un usuario fijo o desde .env
-        if ($req->user === 'admin' && $req->pass === '1234') {
-            // marca la sesión de pre-auth
-            session(['admin_logged_in' => true]);
-            return response()->json(['success'=>true]);
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = AdminUser::where('username', $request->username)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return back()->withErrors(['error' => 'Credenciales inválidas'])->withInput();
         }
-        return response()->json(['success'=>false,'message'=>'Credenciales inválidas'],422);
-    }
 
-    // 3.2 Login completo (Blade /admin/login)
- public function login(Request $request)
-{
-    $request->validate([
-        'username' => 'required',
-        'password' => 'required',
-    ]);
+        session([
+            'admin_logged_in' => true,
+            'admin_user' => $user->username
+        ]);
 
-    if ($request->username === 'admin' && $request->password === '1234') {
-        session(['admin_logged_in' => true]);
         return redirect()->route('admin.dashboard');
     }
 
-    return back()->with('error', 'Credenciales inválidas');
-}
-
+    /**
+     * Logout admin
+     */
     public function logout()
     {
         Session::forget('admin_logged_in');
-        Auth::logout();
+        Session::forget('admin_user');
+
         return redirect()->route('admin.login.form');
     }
 }

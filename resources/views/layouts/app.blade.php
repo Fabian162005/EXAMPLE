@@ -29,11 +29,11 @@
 
 <!-- Redes sociales arriba del navbar -->
 <div class="social-icons">
-    <a href="https://www.facebook.com/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.facebook.com/share/1ET24v1wFc/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.instagram.com/" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.youtube.com/" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
-    <a href="https://twitter.com/" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://www.twitch.tv/" target="_blank" class="twitch"><i class="fab fa-twitch"></i></a>
+    <a href="https://youtube.com/@gpcanal9019?si=9R2s8ia-5cYN2Qts" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    <a href="https://x.com/G_P_Canal?t=1WN73yiRWQq5ipmpxifVrg&s=09" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.tiktok.com/@gpcanaloficial?_t=ZM-8wPZeB7k0SU&_r=1" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
 </div>
 
 <!-- Navbar Fijo -->
@@ -43,89 +43,55 @@
         <!-- Barra de navegación -->
         <div class="navbar-menu">
 
-            <!-- Acceso Admin para invitados -->
-            @guest
-            <div class="nav-item nav-submenu">
-                <i class="fas fa-lock" style="font-size: 14px; margin-right: 8px; vertical-align: middle;"></i>
-                <div class="admin-submenu">
-                    <div class="login-form">
-                        <h4>Acceso Admin</h4>
-                        <input type="text" id="admin-user" placeholder="Usuario">
-                        <input type="password" id="admin-pass" placeholder="Contraseña">
-                        <button id="admin-login">Ingresar</button>
-                        <div class="login-message"></div>
-                    </div>
-                </div>
-            </div>
-            @endguest
-
-            <!-- Acceso Admin para usuarios autenticados y con rol de admin -->
-            @auth
-                @if(auth()->user()->is_admin)
-                    <div class="nav-item nav-submenu" id="admin-toggle">
-                        <i class="fas fa-lock" style="font-size: 14px; margin-right: 8px;"></i>
-                        <div class="admin-submenu">
-                            <div class="admin-actions">
-                                <a href="{{ route('admin.news.index') }}" class="admin-link">
-                                    <i class="fas fa-newspaper"></i> Noticias
-                                </a>
-                                <a href="{{ route('videos.index') }}" class="admin-link">
-                                    <i class="fas fa-video"></i> Videos
-                                </a>
-                                <form action="{{ route('admin.logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="admin-logout">
-                                        <i class="fas fa-sign-out-alt"></i> Salir
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endauth
-
-            <a href="{{ route('videos.index') }}" class="nav-item nav-videos">Videos</a>
-            <div class="nav-item nav-noticias">Noticias</div>
-            <div class="nav-item nav-encuestas">Encuestas</div>
-
             <!-- Logo en medio -->
             <div class="logo-container">
                 <a href="/">
                     <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo GP Canal" class="navbar-logo">
                 </a>
             </div>
-            
-            <div class="nav-item nav-politicos">Partidos Politicos</div>
-<!-- Botón de lupa -->
-<button id="search-icon" class="search-button">
-    <i class="fas fa-search"></i>
-</button>
 
-<!-- Contenedor de búsqueda -->
-<div class="search-wrapper">
-    <div id="search-container" class="search-container">
-        <input 
-            id="search-input" 
-            class="search-input" 
-            type="text" 
-            placeholder="Buscar..." 
-            autocomplete="off" 
-            spellcheck="false"
-        />
-        <div id="search-suggestions" class="search-suggestions"></div>
-    </div>
-</div>
+            <!-- Ítems normales -->
+            <a href="{{ route('videos.index') }}" class="nav-item nav-videos">Videos</a>
+            <div class="nav-item nav-noticias">Noticias</div>
+            <div class="nav-item nav-encuestas">Encuestas</div>
+            <div class="nav-item nav-politicos">Partidos Políticos</div>
+
+
+
+            <!-- Botón de lupa -->
+            <button id="search-icon" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <!-- Contenedor de búsqueda -->
+            <div class="search-wrapper">
+                <div id="search-container" class="search-container">
+                    <input 
+                        id="search-input" 
+                        class="search-input" 
+                        type="text" 
+                        placeholder="Buscar..." 
+                        autocomplete="off" 
+                        spellcheck="false"
+                    />
+                    <div id="search-suggestions" class="search-suggestions"></div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
 
 
 
-
 <!-- Espaciado fijo para el contenido principal -->
 <div class="main-content-spacer" style="height: 140px;"></div>
 
-<!-- Contenido principal --><h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
+<!-- Contenido principal -->
+<h2 class="section-title">El Mejor Lugar para Mantenerte Informado</h2>
+
+
+<!-- Carrusel de imágenes del slider -->
 <div class="slider-container-3d">
   <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -206,94 +172,19 @@
     @endforelse
   </div>
 </section>
-
 <!-- Sección Encuestas -->
-    <section class="polls-section-3d">
-        <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
-        
-        <div class="polls-container-3d">
-            <!-- Encuesta 1 -->
-            <div class="poll-card-3d">
-                <div class="poll-header">
-                    <h3>Encuestas Presidenciales</h3>
-                    <div class="poll-toggle" data-target="presidential-polls">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-                
-                <div class="poll-content" id="presidential-polls">
-                    <a href="{{ url('encuestas/lima') }}" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-city"></i></div>
-                        <div class="poll-info">
-                            <h4>Lima</h4>
-                            <p>Última encuesta: 15 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/chiclayo.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-umbrella-beach"></i></div>
-                        <div class="poll-info">
-                            <h4>Chiclayo</h4>
-                            <p>Última encuesta: 12 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/piura.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-sun"></i></div>
-                        <div class="poll-info">
-                            <h4>Piura</h4>
-                            <p>Última encuesta: 10 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Encuesta 2 -->
-            <div class="poll-card-3d">
-                <div class="poll-header">
-                    <h3>Encuestas Regionales</h3>
-                    <div class="poll-toggle" data-target="regional-polls">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-                
-                <div class="poll-content" id="regional-polls">
-                    <a href="encuestas/morropon.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-mountain"></i></div>
-                        <div class="poll-info">
-                            <h4>Piura</h4>
-                            <p>Última encuesta: 8 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/castilla.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-archway"></i></div>
-                        <div class="poll-info">
-                            <h4>Castilla</h4>
-                            <p>Última encuesta: 5 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/plura2.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-water"></i></div>
-                        <div class="poll-info">
-                            <h4>Morropon</h4>
-                            <p>Última encuesta: 3 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="polls-section-3d">
+    <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
+    <p style="text-align: center; font-size: 2.5rem; margin-top: 1rem; color: #000; font-family: sans-serif;">
+    Próximamente...
+    </p>
+</section>
 
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
+ <section id="partidos-politicos">
+ 
+
     <div class="title-container">
         <h1 class="title">Partidos Políticos</h1>
         <div class="dynamic-line"></div>
@@ -320,33 +211,65 @@
 
 <!-- Fin de la sección de candidatos -->
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
-
-<section id="contacto" class="contacto-3d">
-  <div class="container">
-    <div class="card-3d">
-      <!-- Contacto -->
-      <div class="columna">
-        <h3>📩 Contáctanos</h3>
-        <p><i class="bi bi-envelope-fill"></i> <a href="mailto:info@noticias.com">info@noticias.com</a></p>
-        <p><i class="bi bi-telephone-fill"></i> <a href="tel:+51987654321">+51 987 654 321</a></p>
-        <p><i class="bi bi-geo-alt-fill"></i> Av. Principal 123, Lima, Perú</p>
-        <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 9am - 6pm</p>
-      </div>
-      
-      <!-- Redes -->
-      <div class="columna">
-        <h3>🌐 Síguenos</h3>
-        <div class="redes">
-          <a href="#" class="bi bi-facebook" title="Facebook"></a>
-          <a href="#" class="bi bi-youtube" title="Youtube"></a>
-          <a href="#" class="bi bi-instagram" title="Instagram"></a>
-          <a href="#" class="bi bi-twitter" title="Twitter"></a>
-          <a href="#" class="bi bi-twitch" title="Twitch"></a>
+<!-- Footer con Redes Sociales Destacadas -->
+<footer id="contacto" class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            
+            <!-- Columna 1: Logo y descripción -->
+            <div class="text-center md:text-left">
+                <div class="flex justify-center md:justify-start mb-4">
+                    <img src="{{ asset('images/logogpcanal.jpg') }}" alt="Logo Grupo Paladines" class="h-20">
+                </div>
+                <p class="text-gray-300 text-sm mb-4">
+                    Líderes en desarrollo social y transparencia política en el Perú.
+                </p>
+            </div>
+            
+            <!-- Columna 2: Redes Sociales como Enlaces Rápidos -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Nuestras Redes</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="https://www.facebook.com/share/1ET24v1wFc/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-facebook-f mr-2"></i> Facebook
+                    </a>
+                    <a href="https://www.tiktok.com/@gpcanaloficial?_t=ZM-8wPZeB7k0SU&_r=1" target="_blank" class="bg-black hover:bg-gray-800 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-tiktok mr-2"></i> TikTok
+                    </a>
+                    <a href="https://x.com/G_P_Canal?t=1WN73yiRWQq5ipmpxifVrg&s=09" target="_blank" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:to-purple-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-twitter mr-2"></i> Twitter
+                    </a>
+                    <a href="https://youtube.com/@gpcanal9019?si=9R2s8ia-5cYN2Qts" target="_blank" class="bg-red-600 hover:bg-red-700 text-white rounded-lg p-3 transition-colors flex items-center">
+                        <i class="fab fa-youtube mr-2"></i> YouTube
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Columna 3: Contacto -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Contacto Directo</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-envelope mr-3 text-orange-400 mt-1"></i>
+                        <div>
+                            <p class="text-gray-300 text-sm font-medium">Escríbenos</p>
+                            <a href="mailto:contacto@grupopaladines.pe" class="text-white hover:text-orange-300 text-sm">grupopaladines@gmail.com</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+        
+        <!-- Copyright -->
+        <div class="border-t border-gray-800 pt-6 text-center">
+            <p class="text-gray-400 text-xs">
+                © 2025 Grupo Paladines. Todos los derechos reservados. 
+            </p>
+        </div>
     </div>
-  </div>
-</section>
+</footer>
+    
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Bootstrap Icons -->
@@ -363,6 +286,9 @@
     <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
     <script type="module" src="{{ asset('js/admin.js') }}"></script> 
     <script type="module" src="{{ asset('js/show-navbar.js') }}"></script> 
+    <script type="module" src="{{ asset('js/show-login.js') }}"></script> 
 
+   <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>

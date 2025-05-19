@@ -30,12 +30,14 @@ h1, h2, h3, h4 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 3rem 1.5rem;
+        position: relative; /* Esto hace que los hijos absolutos se posicionen aquí */
+
 }
 
 .btn-back-home {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 40px; /* Más abajo, ajusta según prefieras */
     padding: 0.8rem 1.5rem;
     background-color: var(--secondary-color);
     color: white;
@@ -49,6 +51,7 @@ h1, h2, h3, h4 {
     font-size: 1.1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 .btn-back-home:hover {
     background-color: var(--primary-color);
@@ -66,7 +69,7 @@ h1, h2, h3, h4 {
 .section-title-3d {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 3.2rem; /* un poco más grande */
+    font-size: 4.2rem; /* un poco más grande */
     line-height: 1.2;
     color: var(--primary-color);
     margin: 0;
@@ -117,16 +120,7 @@ h1, h2, h3, h4 {
     color: var(--primary-color);
 }
 
-.noticia-image {
-    width: 100%;
-    height: auto;
-    border-radius: var(--border-radius);
-    margin: 2.5rem 0;
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-    max-height: 600px;
-    object-fit: cover;
-}
+
 
 .noticia-image:hover {
     transform: scale(1.01);
@@ -274,21 +268,32 @@ h1, h2, h3, h4 {
     margin: 20px 0;
 }
 
+/* CSS base */
+/* Modificación del CSS */
 .media-item {
-    width: 100%;
-    max-width: 480px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: var(--border-radius);
     overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin: 20px; /* Aumentado de 10px a 15px */
+    padding: 20px; /* Nuevo padding interno */
+    box-sizing: border-box;
 }
 
-.media-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+.media-item img {
+    max-width: 110%; /* Aumentado de 100% a 110% */
+    max-height: 110%; /* Aumentado de 100% a 110% */
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
+/* Efecto hover para mejor visualización */
+.media-item:hover img {
+    transform: scale(1.05);
+}
 /* Video más ancho */
 .media-item.video-item {
     max-width: 720px;
