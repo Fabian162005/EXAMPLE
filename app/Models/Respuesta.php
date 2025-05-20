@@ -9,15 +9,15 @@ class Respuesta extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'encuesta_id',
-        'grupo_id', // ✅ AGREGA ESTO
-        'pregunta',
-        'respuesta',
-    ];
+    protected $fillable = ['encuestado_id', 'pregunta_id', 'respuesta'];
 
-    public function encuesta()
+    public function encuestado()
     {
-        return $this->belongsTo(Encuesta::class);
+        return $this->belongsTo(Encuestado::class);
+    }
+
+    public function pregunta()
+    {
+        return $this->belongsTo(Pregunta::class);
     }
 }

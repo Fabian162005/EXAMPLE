@@ -26,29 +26,35 @@ function adjustLayout() {
 document.addEventListener('DOMContentLoaded', () => {
     adjustLayout();
     window.addEventListener('resize', adjustLayout);
-    
-    // Resto del código de inicialización...
-    updateProgressBar();
-    
+
     // Configurar event listeners para los botones
     document.querySelectorAll('.btn-next').forEach(btn => {
         btn.addEventListener('click', nextPage);
     });
-    
+
     document.querySelectorAll('.btn-prev').forEach(btn => {
         btn.addEventListener('click', prevPage);
     });
-    
-    // Validar edad en tiempo real
-    document.getElementById('edad').addEventListener('input', function() {
-        if(this.value < 18) this.value = 18;
-        if(this.value > 100) this.value = 100;
-        updateProgressBar();
-    });
-    
-    // Validar sexo en tiempo real
-    document.getElementById('sexo').addEventListener('change', updateProgressBar);
+
+    // Validar edad en tiempo real (si existe)
+    const edadInput = document.getElementById('edad');
+    if (edadInput) {
+        edadInput.addEventListener('input', function () {
+            if (this.value < 18) this.value = 18;
+            if (this.value > 100) this.value = 100;
+            updateProgressBar?.(); // llamada segura
+        });
+    }
+
+    // Validar sexo en tiempo real (si existe)
+    const sexoSelect = document.getElementById('sexo');
+    if (sexoSelect) {
+        sexoSelect.addEventListener('change', () => {
+            updateProgressBar?.(); // llamada segura
+        });
+    }
 });
+
 
 // Resto de las funciones (animateOption, nextPage, prevPage, etc.) permanecen iguales
 // ... [el resto de tu código JavaScript existente]

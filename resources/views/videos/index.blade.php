@@ -66,7 +66,7 @@
                     <div class="video-content">
                         <h3>{{ $video->titulo }}</h3>
                         <p>{{ $video->descripcion }}</p>
-<a href="#" class="watch-more" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">Ver video <i class="fas fa-angle-double-right"></i></a>
+                        <a href="#" class="watch-more">Ver video <i class="fas fa-angle-double-right"></i></a>
                     </div>
                 </div>
             @endforeach
@@ -153,6 +153,9 @@
 </footer>
 <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+
+    
     
 </body>
 </html>

@@ -159,77 +159,77 @@
 
 
 
-        <div class="videos-grid-3d">
-    @foreach($videos as $video)
-        <div class="video-card-3d" data-type="{{ $video->tipo }}">
-            <div class="video-img-container">
-                @if($video->tipo == 'youtube')
-                    @php
-                        // Extraemos el ID del video YouTube para montar el iframe embebido
-                        preg_match('/(?:youtube\.com.*v=|youtu\.be\/)([^&]+)/', $video->url, $matches);
-                        $youtubeId = $matches[1] ?? null;
-                    @endphp
-                    @if($youtubeId)
+            <div class="videos-grid-3d">
+        @foreach($videos as $video)
+            <div class="video-card-3d" data-type="{{ $video->tipo }}">
+                <div class="video-img-container">
+                    @if($video->tipo == 'youtube')
+                        @php
+                            // Extraemos el ID del video YouTube para montar el iframe embebido
+                            preg_match('/(?:youtube\.com.*v=|youtu\.be\/)([^&]+)/', $video->url, $matches);
+                            $youtubeId = $matches[1] ?? null;
+                        @endphp
+                        @if($youtubeId)
+                            <iframe
+                                width="100%"
+                                height="200"
+                                src="https://www.youtube.com/embed/{{ $youtubeId }}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                loading="lazy"
+                            ></iframe>
+                        @else
+                            <p>No se pudo cargar el video</p>
+                        @endif
+                    @elseif($video->tipo == 'facebook')
                         <iframe
+                            src="https://www.facebook.com/plugins/video.php?href={{ urlencode($video->url) }}&show_text=false&width=280"
                             width="100%"
                             height="200"
-                            src="https://www.youtube.com/embed/{{ $youtubeId }}"
+                            style="border:none;overflow:hidden;"
+                            scrolling="no"
                             frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
+                            allowfullscreen="true"
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                             loading="lazy"
                         ></iframe>
                     @else
-                        <p>No se pudo cargar el video</p>
+                        <p>Tipo de video no soportado</p>
                     @endif
-                @elseif($video->tipo == 'facebook')
-                    <iframe
-                        src="https://www.facebook.com/plugins/video.php?href={{ urlencode($video->url) }}&show_text=false&width=280"
-                        width="100%"
-                        height="200"
-                        style="border:none;overflow:hidden;"
-                        scrolling="no"
-                        frameborder="0"
-                        allowfullscreen="true"
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                        loading="lazy"
-                    ></iframe>
-                @else
-                    <p>Tipo de video no soportado</p>
-                @endif
+                </div>
+                <div class="video-content">
+                    <h3>{{ $video->titulo }}</h3>
+                    <p>{{ $video->descripcion ?? '' }}</p>
+                        <a href="#" class="watch-more" 
+                        data-embed-url="
+                        @if($video->tipo == 'youtube')
+                            https://www.youtube.com/embed/{{ $youtubeId ?? '' }}
+                        @elseif($video->tipo == 'facebook')
+                            https://www.facebook.com/plugins/video.php?href={{ urlencode($video->url) }}&show_text=false&width=560
+                        @endif
+                        " 
+                        data-video-type="{{ $video->tipo }}"
+                        >Ver video <i class="fas fa-angle-double-right"></i></a>
+                </div>
             </div>
-            <div class="video-content">
-                <h3>{{ $video->titulo }}</h3>
-                <p>{{ $video->descripcion ?? '' }}</p>
-                    <a href="#" class="watch-more" 
-                    data-embed-url="
-                    @if($video->tipo == 'youtube')
-                        https://www.youtube.com/embed/{{ $youtubeId ?? '' }}
-                    @elseif($video->tipo == 'facebook')
-                        https://www.facebook.com/plugins/video.php?href={{ urlencode($video->url) }}&show_text=false&width=560
-                    @endif
-                    " 
-                    data-video-type="{{ $video->tipo }}"
-                    >Ver video <i class="fas fa-angle-double-right"></i></a>
-            </div>
-        </div>
-    @endforeach
+        @endforeach
 
-    @if($videos->isEmpty())
-        <p>No hay videos disponibles.</p>
-    @endif
-</div>
+        @if($videos->isEmpty())
+            <p>No hay videos disponibles.</p>
+        @endif
+    </div>
 
 
- <!-- Modal para reproducir video en grande -->
-<div id="video-modal-player" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center;">
-  <div style="position:relative; width:80%; max-width:900px; background:#000; border-radius:8px;">
-    <button id="modal-close-btn" style="position:absolute; top:10px; right:15px; font-size:24px; color:#fff; background:none; border:none; cursor:pointer;">&times;</button>
-    <iframe id="modal-video-iframe" width="100%" height="500" frameborder="0" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
-  </div>
-</div>
+    <!-- Modal para reproducir video en grande -->
+    <div id="video-modal-player" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center;">
+    <div style="position:relative; width:80%; max-width:900px; background:#000; border-radius:8px;">
+        <button id="modal-close-btn" style="position:absolute; top:10px; right:15px; font-size:24px; color:#fff; background:none; border:none; cursor:pointer;">&times;</button>
+        <iframe id="modal-video-iframe" width="100%" height="500" frameborder="0" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+    </div>
+    </div>
 
-    </section>
+        </section>
 
     <!-- Incluir el archivo JS externo -->
     <script type="module" src="{{ asset('js/admin-videos.js') }}"></script>

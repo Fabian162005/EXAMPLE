@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Video;
+use App\Models\Noticia;
+
 
 class VideosController extends Controller
 {
@@ -33,36 +35,38 @@ class VideosController extends Controller
 
         return back()->with('success', 'Video guardado correctamente.');
     }
-        public function update(Request $request, $id)
-        {
-            $noticia = Noticia::findOrFail($id);
+public function update(Request $request, $id)
+{
+    $video = Video::findOrFail($id);
 
-            $request->validate([
-                'titulo' => 'required|string|max:255',
-                'descripcion' => 'required|string',
-                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'video' => 'nullable|file|mimetypes:video/mp4,video/avi,video/mpeg|max:10240', // max 10MB
-            ]);
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'tipo' => 'required|in:youtube,facebook',
+        'url' => 'required|url',
+        'descripcion' => 'nullable|string|max:255',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // si videos tienen foto
+        'video' => 'nullable|file|mimetypes:video/mp4,video/avi,video/mpeg|max:10240', // si permites subir archivo de video
+    ]);
 
-            $noticia->titulo = $request->titulo;
-            $noticia->descripcion = $request->descripcion;
+    $video->titulo = $request->titulo;
+    $video->tipo = $request->tipo;
+    $video->url = $request->url;
+    $video->descripcion = $request->descripcion;
 
-            // Si suben una nueva foto
-            if ($request->hasFile('foto')) {
-                $fotoPath = $request->file('foto')->store('fotos', 'public');
-                $noticia->foto = $fotoPath;
-            }
+    if ($request->hasFile('foto')) {
+        $fotoPath = $request->file('foto')->store('fotos', 'public');
+        $video->foto = $fotoPath;  // solo si la columna foto existe en videos
+    }
 
-            // Si suben un nuevo video
-            if ($request->hasFile('video')) {
-                $videoPath = $request->file('video')->store('videos', 'public');
-                $noticia->video = $videoPath;
-            }
+    if ($request->hasFile('video')) {
+        $videoPath = $request->file('video')->store('videos', 'public');
+        $video->video = $videoPath;  // solo si la columna video existe en videos
+    }
 
-            $noticia->save();
+    $video->save();
 
-            return redirect()->back()->with('success', 'Noticia actualizada correctamente.');
-        }
+    return redirect()->back()->with('success', 'Video actualizado correctamente.');
+}
 
 
     public function destroy($id)

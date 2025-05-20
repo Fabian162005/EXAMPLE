@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (imgContainer.querySelector('iframe')) return; // Evitar múltiples cargas
 
             let iframe = document.createElement('iframe');
+            iframe.setAttribute('width', '100%');
+            iframe.setAttribute('height', '100%');
             iframe.setAttribute('frameborder', '0');
             iframe.setAttribute('allowfullscreen', '');
             iframe.setAttribute('allow', 'autoplay; encrypted-media');
@@ -26,22 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (youtubeID) {
                     iframe.src = `https://www.youtube.com/embed/${youtubeID}?autoplay=1`;
-                    iframe.style.width = '100%';
-                    iframe.style.height = '100%';
                     imgContainer.innerHTML = '';
                     imgContainer.appendChild(iframe);
                 }
             } else if (embedUrl.includes('facebook.com')) {
                 iframe.src = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(embedUrl)}&show_text=false&autoplay=true`;
-
-                // 📏 Estilo ajustado para videos verticales de Facebook
-                iframe.style.width = '320px';
-                iframe.style.height = '450px';
-                iframe.style.maxWidth = '100%';
-                iframe.style.borderRadius = '8px';
-                iframe.style.border = 'none';
-                iframe.style.overflow = 'hidden';
-
                 imgContainer.innerHTML = '';
                 imgContainer.appendChild(iframe);
             }
@@ -60,21 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const youtubeID = matches ? matches[1] : null;
                     if (youtubeID) {
                         finalUrl = `https://www.youtube.com/embed/${youtubeID}?autoplay=1`;
-
-                        modalIframe.style.width = '100%';
-                        modalIframe.style.height = '100%';
-                        modalIframe.style.borderRadius = '0';
-                        modalIframe.style.border = 'none';
                     }
                 } else if (embedUrl.includes('facebook.com')) {
                     finalUrl = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(embedUrl)}&show_text=false&autoplay=true`;
-
-                    // 📏 Estilo ajustado para el modal con Facebook
-                    modalIframe.style.width = '320px';
-                    modalIframe.style.height = '450px';
-                    modalIframe.style.maxWidth = '100%';
-                    modalIframe.style.borderRadius = '8px';
-                    modalIframe.style.border = 'none';
                 }
 
                 modalIframe.src = finalUrl;
@@ -96,3 +75,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+    

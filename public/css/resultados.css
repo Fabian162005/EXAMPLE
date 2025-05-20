@@ -1,0 +1,81 @@
+/* Estilos para el formulario */
+.form-encuesta {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px 35px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.form-encuesta h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.form-encuesta label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.form-encuesta select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-encuesta button {
+  display: block;
+  margin: 20px auto 0;
+  background: #007bff;
+  border: none;
+  padding: 12px 30px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-encuesta button:hover {
+  background-color: #0056b3;
+}
+
+/* Contenedor resultados (igual que antes) */
+.resultados-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px 35px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.resultados-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #007bff;
+  text-shadow: 1px 1px 3px rgba(0, 123, 255, 0.4);
+}
+
+/* Canvas */
+#chartResultados {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto !important;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}

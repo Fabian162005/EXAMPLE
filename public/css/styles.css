@@ -332,19 +332,6 @@
     box-shadow: none; /* Elimina cualquier sombra que pudiera parecer borde */
 }
 
-.hamburger {
-    position: absolute;
-    background-color: transparent; /* Fondo completamente transparente */
-    border: none; /* Sin bordes */
-    outline: none; /* Evita el borde al hacer clic */
-    cursor: pointer;
-    font-size: 22.4px;
-    color: rgb(255, 255, 255); /* Ícono de lupa en negro */
-    transition: transform 0.16s ease, box-shadow 0.24s ease;
-    right: 0px;
-    box-shadow: none;
-}
-
 /* 🔍 Efecto hover elegante */
 .search-button:hover {
     transform: scale(1.08);
@@ -490,48 +477,128 @@
 }
 
 
-/* Pantallas grandes (hasta 1280px) */
+/* Pantallas medianas (hasta 1280px) */
 @media (max-width: 1280px) {
   .navbar-container {
-    width: 80%;
+    width: 90%;
     padding: 0 1rem;
   }
 
   .navbar-menu {
     gap: 30px;
-    font-size: 0.8rem;
-  }
-
-  .nav-item.nav-submenu {
-    left: 2%;
-
-  }
-
-  .nav-item.nav-envivo {
-    left: 10%;
-  }
-
-  .nav-item.nav-noticias {
-    left: 20%;
-  }
-
-  .nav-item.nav-encuestas {
-    left: 32%;
-  }
-
-  .nav-item.nav-contacto {
-    left: 50%;
-  }
-
-  .search-container {
-    left: 800px;
+    font-size: 0.9rem;
   }
 
   .logo-container img {
     height: 60px;
-     margin-top: 7px;
+    margin-top: 7px;
   }
 }
+
+/* Tablets y pantallas medianas (hasta 992px) */
+@media (max-width: 992px) {
+  .navbar-menu {
+    gap: 20px;
+    font-size: 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-container {
+    margin-top: 120px;
+    left: 30%;
+    width: 100%;
+  }
+
+  .logo-container img {
+    height: 55px;
+  }
+
+  .nav-item {
+    text-align: center;
+    padding-top: 20px;
+  }
+}
+
+/* Celulares grandes (hasta 768px) */
+@media (min-width: 481px) and (max-width:768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-item {
+    text-align: center;
+    padding-top: 70px;
+    font-size: 0.8rem;
+  }
+  .navbar-menu {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .nav-item.nav-videos {
+    position: absolute;
+    left: 2%;
+   }
+   .nav-item.nav-noticias {
+    position: absolute;
+    left: 15%;
+    }
+    .nav-item.nav-encuestas {
+    position: absolute;
+    left: 30%;
+    }
+
+  .logo-container img {
+    height: 50px;
+  }
+}
+
+/* Celulares pequeños (hasta 480px) */
+@media (min-width: 100px) and (max-width: 480px) {
+  .navbar-menu {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center;    /* Centra horizontalmente */
+    justify-content: center;
+  }
+
+  .nav-item {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 0.6rem;
+  }
+  .nav-item.nav-videos {
+    position: absolute;
+    left: 5%;
+   }
+   .nav-item.nav-noticias {
+    position: absolute;
+    left: 25%;
+    }
+    .nav-item.nav-encuestas {
+    position: absolute;
+    left: 59%;
+    }
+
+    .nav-item.nav-politicos {
+    position: absolute;
+    left: 75%;
+    }
+
+
+  .logo-container img {
+    height: 40px;
+    margin-top: 15px; 
+  }
+
+
+
+  .search-button {
+    display: none;
+  }
+}
+
 
 /* === ESTILOS DEL TÍTULO === */
 .section-title {
@@ -695,8 +762,10 @@
     }
 
     .carousel-control-prev, .carousel-control-next {
-        width: 30px;
-        height: 30px;
+        width: 50px;
+        height: 50px;
+        margin-top: -25px;
+        
     }
 
     .slider-container-3d {

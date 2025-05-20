@@ -30,7 +30,6 @@
 <!-- Redes sociales arriba del navbar -->
 <div class="social-icons">
     <a href="https://www.facebook.com/share/1ET24v1wFc/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://youtube.com/@gpcanal9019?si=9R2s8ia-5cYN2Qts" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
     <a href="https://x.com/G_P_Canal?t=1WN73yiRWQq5ipmpxifVrg&s=09" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
     <a href="https://www.tiktok.com/@gpcanaloficial?_t=ZM-8wPZeB7k0SU&_r=1" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
@@ -173,12 +172,91 @@
   </div>
 </section>
 <!-- Sección Encuestas -->
-<section class="polls-section-3d">
-    <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
-    <p style="text-align: center; font-size: 2.5rem; margin-top: 1rem; color: #000; font-family: sans-serif;">
-    Próximamente...
-    </p>
-</section>
+
+    <section class="polls-section-3d">
+        <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
+        
+        <div class="polls-container-3d">
+            <!-- Encuesta 1 -->
+            <div class="poll-card-3d">
+                <div class="poll-header">
+                    <h3>Encuestas Presidenciales</h3>
+                    <div class="poll-toggle" data-target="presidential-polls">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
+                <div class="poll-content" id="presidential-polls">
+                    <a href="{{ url('encuestas/lima') }}" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-city"></i></div>
+                        <div class="poll-info">
+                            <h4>Lima</h4>
+                            <p>Última encuesta: 15 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/chiclayo.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-umbrella-beach"></i></div>
+                        <div class="poll-info">
+                            <h4>Chiclayo</h4>
+                            <p>Última encuesta: 12 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/piura.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-sun"></i></div>
+                        <div class="poll-info">
+                            <h4>Piura</h4>
+                            <p>Última encuesta: 10 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Encuesta 2 -->
+            <div class="poll-card-3d">
+                <div class="poll-header">
+                    <h3>Encuestas Regionales</h3>
+                    <div class="poll-toggle" data-target="regional-polls">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                
+                <div class="poll-content" id="regional-polls">
+                    <a href="encuestas/morropon.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-mountain"></i></div>
+                        <div class="poll-info">
+                            <h4>Piura</h4>
+                            <p>Última encuesta: 8 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/castilla.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-archway"></i></div>
+                        <div class="poll-info">
+                            <h4>Castilla</h4>
+                            <p>Última encuesta: 5 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                    
+                    <a href="encuestas/plura2.html" class="poll-item">
+                        <div class="poll-icon"><i class="fas fa-water"></i></div>
+                        <div class="poll-info">
+                            <h4>Morropon</h4>
+                            <p>Última encuesta: 3 Oct 2023</p>
+                        </div>
+                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
@@ -197,6 +275,13 @@
             <!-- Opciones generadas dinámicamente -->
         </select>
     </div>
+    <!-- 📌 Párrafo informativo con fondo plomo claro -->
+    <p style="
+    text-align: center;  font-size: 1rem; margin: 20px auto;  padding: 15px; 
+    background-color: #f0f0f0;  border: 1px solid #ccc; border-radius: 10px; max-width: 800px;  color: #333; "> 
+    📌 <strong>Presione la imagen</strong> para conocer más sobre el partido político, informarte de sus propuestas o descubrir quiénes lo representan. ¡Haz clic y entérate de todo! 🗳️✨
+    </p>
+
     <div class="gallery">
         <ul class="cards">
             <!-- Las tarjetas de los partidos se insertarán aquí mediante JavaScript -->
@@ -277,8 +362,7 @@
 
     <!-- Scripts al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
-    <script src="{{ asset('js/scroll-efect.js') }}"></script>
-    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+            <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
     <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
     <script type="module" src="{{ asset('js/candidatos.js') }}"></script> 
     <script type="module" src="{{ asset('js/functions.js') }}"></script> 

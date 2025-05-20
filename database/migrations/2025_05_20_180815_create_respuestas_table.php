@@ -1,17 +1,18 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRespuestasTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
         Schema::create('respuestas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('encuesta_id')->constrained()->onDelete('cascade');
-            $table->string('pregunta');
-            $table->text('respuesta')->nullable();
+            $table->foreignId('encuestado_id')->constrained('encuestados')->onDelete('cascade');
+            $table->foreignId('pregunta_id')->constrained('preguntas')->onDelete('cascade');
+            $table->text('respuesta');
             $table->timestamps();
         });
     }
@@ -20,4 +21,4 @@ class CreateRespuestasTable extends Migration
     {
         Schema::dropIfExists('respuestas');
     }
-}
+};
