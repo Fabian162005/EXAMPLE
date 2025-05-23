@@ -1,29 +1,38 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Encuesta;
-use App\Models\Respuesta;
 
 class EncuestaAdminController extends Controller
 {
-    public function verEncuesta($slug)
+    // Método para mostrar listado agrupado de encuestas provinciales y distritales
+public function listadoEncuestas()
 {
-    // Convertir slug a nombre esperado reemplazando guiones por espacios
-    $nombreBuscado = str_replace('-', ' ', $slug);
+    $provinciales = Encuesta::whereHas('categoria', function($query) {
+        $query->where('nombre', 'Provinciales'); // ✅ Esto sí existe en tu BD
+    })->get();
 
-    // Buscar encuesta por nombre similar (LIKE)
-    $encuesta = Encuesta::where('nombre', 'like', '%' . $nombreBuscado . '%')->first();
+    $distritales = Encuesta::whereHas('categoria', function($query) {
+        $query->where('nombre', 'Distritales'); // ✅ También correcto
+    })->get();
 
-    if (!$encuesta) {
-        abort(404, 'Encuesta no encontrada.');
-    }
-
-    return view('admin.encuestas.ver', compact('encuesta'));
+    return view('admin.encuestas.listado', compact('provinciales', 'distritales'));
 }
 
 
+    // Método para mostrar encuesta individual
+    public function verEncuesta($slug)
+    {
+        $nombreBuscado = str_replace('-', ' ', $slug);
 
+        $encuesta = Encuesta::where('nombre', 'like', '%' . $nombreBuscado . '%')->first();
+
+        if (!$encuesta) {
+            abort(404, 'Encuesta no encontrada.');
+        }
+
+        return view('admin.encuestas.ver', compact('encuesta'));
+    }
 }

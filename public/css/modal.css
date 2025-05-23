@@ -19,7 +19,7 @@ body {
   top: 20%; /* Ajusta la posición para que esté un poco más arriba de la mitad de la pantalla */
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1;
   padding: 10px 0;
   transform: translateY(-50%); /* Ajusta la posición vertical para estar centrado */
 }

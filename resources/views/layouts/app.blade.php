@@ -255,9 +255,14 @@
                 </div>
             </div>
         </div>
+
     </section>
 
-
+        <p style="text-align: center; font-size: 2.5rem; color: #000; font-family: sans-serif; position: relative; top: -80px;">
+        <a href="{{ url('/verResultados') }}" class="cool-button">
+            Ver Resultados
+        </a>
+        </p>
 <!--seccion candidatos -------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Nueva sección: Partidos Políticos -->
  <section id="partidos-politicos">

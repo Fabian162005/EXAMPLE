@@ -1506,3 +1506,40 @@
 }
 
 
+/* resultados*/
+
+.cool-button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 24px;
+    font-weight: bold;
+    border: 4px solid #007BFF;
+    border-radius: 12px;
+    background-color: #fff;
+    color: #007BFF;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    z-index: 1;
+  }
+
+  .cool-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #007BFF;
+    z-index: -1;
+    transition: width 0.4s ease;
+  }
+
+  .cool-button:hover::before {
+    width: 100%;
+  }
+
+  .cool-button:hover {
+    color: #fff;
+  }

@@ -1551,3 +1551,102 @@ input[type="file"]::file-selector-button:hover {
   border-radius: 4px;
   margin-bottom: 1rem;
 }
+
+
+/* ADMIN DE ENCUESTAS*/
+
+
+/* Botón Crear (más grande y más notorio) */
+.btn-create {
+    background-color: #3B83BD;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin-left: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-create:hover {
+    background-color: #2f6aa0;
+    transform: scale(1.05);
+}
+
+/* Botones Editar y Eliminar */
+.poll-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+.btn-edit, .btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Botón Editar: azul más oscuro para mejor visibilidad */
+.btn-edit {
+    color: #1c4e80; /* Azul más oscuro */
+}
+
+.btn-edit:hover {
+    background-color: rgba(28, 78, 128, 0.15);
+    color: #163e66; /* Más contraste al pasar el mouse */
+}
+
+/* Botón Eliminar: rojo más oscuro */
+.btn-delete {
+    color: #d32f2f;
+}
+.btn-delete:hover {
+    background-color: rgba(211, 47, 47, 0.1);
+    color: #b71c1c;
+}
+
+
+
+
+/* resultados*/
+
+.cool-button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 24px;
+    font-weight: bold;
+    border: 4px solid #007BFF;
+    border-radius: 12px;
+    background-color: #fff;
+    color: #007BFF;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    z-index: 1;
+  }
+
+  .cool-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #007BFF;
+    z-index: -1;
+    transition: width 0.4s ease;
+  }
+
+  .cool-button:hover::before {
+    width: 100%;
+  }
+
+  .cool-button:hover {
+    color: #fff;
+  }

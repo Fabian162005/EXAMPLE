@@ -10,9 +10,13 @@ return new class extends Migration
     {
         Schema::create('encuestas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
+            $table->string('nombre');
+            $table->unsignedBigInteger('categoria_id');
             $table->timestamps();
+
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
+
     }
 
     public function down()

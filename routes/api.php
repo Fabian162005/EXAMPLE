@@ -1,19 +1,37 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EncuestaController;
+use App\Http\Controllers\RespuestaController;
+use App\Http\Controllers\PreguntaController;
+use App\Http\Controllers\EncuestadoController;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| API ROUTES
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| Rutas para API de encuestas, preguntas, respuestas, encuestados y categorías.
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Encuestas (CRUD + agrupadas)
+Route::get('/encuestas', [EncuestaController::class, 'index']);
+Route::get('/encuestas/agrupadas', [EncuestaController::class, 'indexAgrupadoPorCategoria']);
+Route::get('/encuestas/{id}', [EncuestaController::class, 'show']);
+Route::post('/encuestas', [EncuestaController::class, 'store']);
+Route::put('/encuestas/{id}', [EncuestaController::class, 'update']);
+Route::delete('/encuestas/{id}', [EncuestaController::class, 'destroy']);
+
+// Respuestas (API Resource)
+Route::apiResource('respuestas', RespuestaController::class);
+
+// Preguntas (API Resource)
+Route::apiResource('preguntas', PreguntaController::class);
+
+// Encuestados (API Resource)
+Route::apiResource('encuestados', EncuestadoController::class);
+
+// Categorías (solo listado)
+Route::get('/categorias', [CategoriaController::class, 'index']);

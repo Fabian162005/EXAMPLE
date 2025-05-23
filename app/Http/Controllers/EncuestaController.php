@@ -3,108 +3,144 @@
 namespace App\Http\Controllers;
 
 use App\Models\Encuesta;
+use App\Models\Categoria;
 use App\Models\Respuesta;
-use App\Models\Encuestado;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Pregunta;
+use Illuminate\Support\Str;
+
 
 class EncuestaController extends Controller
 {
+    /**
+     * Listar todas las encuestas simples
+     */
+
+     
+    public function index()
+    {
+        $encuestas = Encuesta::all(['id', 'nombre', 'categoria_id']);
+        return response()->json($encuestas);
+    }
+
+    /**
+     * Listar encuestas agrupadas por categoría (usando relación)
+     * Ejemplo útil para mostrar Provinciales y Distritales
+     */
+    public function indexAgrupadoPorCategoria()
+    {
+        $categorias = Categoria::with('encuestas')->get();
+        return response()->json($categorias);
+    }
+
+
+    
+public function ver($slug)
+{
+    $encuesta = Encuesta::where('slug', $slug)->with('preguntas.opciones')->firstOrFail();
+    return view('admin.encuestas.ver', compact('encuesta'));
+}
+    /**
+     * Crear nueva encuesta
+     */
     public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'sexo' => 'required|string|in:masculino,femenino,otro',
-            'edad' => 'required|integer|min:0|max:120',
-            'respuestas' => 'required|json',
+            'categoria_id' => 'required|exists:categorias,id',
         ]);
 
-        $datosEncuesta = json_decode($request->input('respuestas'), true);
+        $encuesta = Encuesta::create([
+            'nombre' => $request->nombre,
+            'categoria_id' => $request->categoria_id,
+        ]);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return response()->json(['success' => false, 'message' => 'JSON inválido en respuestas'], 422);
-        }
-
-        if (!isset($datosEncuesta['respuestas']) || !is_array($datosEncuesta['respuestas'])) {
-            return response()->json(['success' => false, 'message' => 'Formato de respuestas inválido'], 422);
-        }
-
-        DB::transaction(function () use ($request, $datosEncuesta) {
-            // Crear o buscar la encuesta
-            $encuesta = Encuesta::firstOrCreate(
-                ['nombre' => $request->input('nombre')]
-            );
-
-            if (!$encuesta || !$encuesta->id) {
-                throw new \Exception('No se pudo crear o encontrar la encuesta');
-            }
-
-            // Crear encuestado relacionado
-            $encuestado = Encuestado::create([
-                'encuesta_id' => $encuesta->id,
-                'genero' => $request->input('sexo'),
-                'edad' => $request->input('edad'),
-            ]);
-
-            foreach ($datosEncuesta['respuestas'] as $item) {
-                $preguntaTexto = $item['pregunta'] ?? null;
-                $respuesta = $item['respuesta'] ?? null;
-
-                if (is_array($respuesta)) {
-                    $respuesta = implode(', ', $respuesta);
-                }
-
-                if (!is_null($respuesta) && $respuesta !== '' && $preguntaTexto) {
-                    // Buscar o crear pregunta
-                    $pregunta = DB::table('preguntas')
-                        ->where('encuesta_id', $encuesta->id)
-                        ->where('texto', $preguntaTexto)
-                        ->first();
-
-                    if (!$pregunta) {
-                        $preguntaId = DB::table('preguntas')->insertGetId([
-                            'encuesta_id' => $encuesta->id,
-                            'texto' => $preguntaTexto,
-                            'created_at' => now(),
-                            'updated_at' => now(),
-                        ]);
-                    } else {
-                        $preguntaId = $pregunta->id;
-                    }
-
-                    // Insertar respuesta
-                    DB::table('respuestas')->insert([
-                        'encuestado_id' => $encuestado->id,
-                        'pregunta_id' => $preguntaId,
-                        'respuesta' => $respuesta,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ]);
-                }
-            }
-        });
-
-        return response()->json(['success' => true, 'message' => 'Encuesta guardada correctamente']);
+        return response()->json([
+            'message' => 'Encuesta creada correctamente',
+            'encuesta' => $encuesta,
+        ], 201);
     }
 
+    /**
+     * Actualizar encuesta existente
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'categoria_id' => 'required|exists:categorias,id',
+        ]);
+
+        $encuesta = Encuesta::find($id);
+
+        if (!$encuesta) {
+            return response()->json(['message' => 'Encuesta no encontrada'], 404);
+        }
+
+        $encuesta->update([
+            'nombre' => $request->nombre,
+            'categoria_id' => $request->categoria_id,
+        ]);
+
+        return response()->json(['message' => 'Encuesta actualizada correctamente']);
+    }
+
+    /**
+     * Eliminar encuesta
+     */
+    public function destroy($id)
+    {
+        $encuesta = Encuesta::find($id);
+
+        if (!$encuesta) {
+            return response()->json(['message' => 'Encuesta no encontrada'], 404);
+        }
+
+        $encuesta->delete();
+
+        return response()->json(['message' => 'Encuesta eliminada correctamente']);
+    }
+
+    /**
+     * Obtener respuestas con detalles de pregunta, encuesta y encuestado
+     */
     public function obtenerRespuestasConNombre()
     {
-        // Suponiendo que Respuesta tiene relación con Pregunta, Encuestado y Encuesta
-        $respuestas = Respuesta::with(['pregunta', 'encuestado.encuesta'])->get();
+        $respuestas = Respuesta::with(['pregunta', 'encuestado.encuesta.categoria'])->get();
 
         $respuestasTransformadas = $respuestas->map(function ($respuesta) {
             return [
                 'id' => $respuesta->id,
                 'pregunta' => $respuesta->pregunta ? $respuesta->pregunta->texto : null,
                 'respuesta' => $respuesta->respuesta,
-                'encuesta_nombre' => $respuesta->encuestado && $respuesta->encuestado->encuesta 
-                                    ? $respuesta->encuestado->encuesta->nombre 
-                                    : null,
-                'genero' => $respuesta->encuestado->genero ?? null,
-                'edad' => $respuesta->encuestado->edad ?? null,
+                'encuesta_nombre' => ($respuesta->encuestado && $respuesta->encuestado->encuesta)
+                    ? $respuesta->encuestado->encuesta->nombre
+                    : null,
+                'categoria' => ($respuesta->encuestado && $respuesta->encuestado->encuesta && $respuesta->encuestado->encuesta->categoria)
+                    ? $respuesta->encuestado->encuesta->categoria->nombre
+                    : null,
+                'genero' => $respuesta->encuestado ? $respuesta->encuestado->genero : null,
+                'edad' => $respuesta->encuestado ? $respuesta->encuestado->edad : null,
             ];
         });
 
         return response()->json($respuestasTransformadas);
     }
+
+
+public function verPorNombre($nombre)
+{
+    // Busca la encuesta por nombre o lanza error 404
+    $encuesta = Encuesta::where('nombre', $nombre)->firstOrFail();
+
+    // Obtiene las preguntas usando la relación
+    $preguntas = $encuesta->preguntas;
+
+    return view('admin.encuestas.ver', [
+        'nombreEncuesta' => $encuesta->nombre,
+        'preguntas' => $preguntas,
+        'encuesta' => $encuesta,
+    ]);
+}
+
 }

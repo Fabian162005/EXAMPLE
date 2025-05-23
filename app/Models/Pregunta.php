@@ -20,4 +20,9 @@ class Pregunta extends Model
     {
         return $this->hasMany(Respuesta::class);
     }
+    public function opciones()
+{
+    return $this->hasMany(Opcion::class);
+}
+
 }
