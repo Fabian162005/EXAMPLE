@@ -8,6 +8,7 @@
     <h2 class="section-title-3d">
         Encuestas <span class="highlight">Populares</span>
         <button class="btn-create" onclick="openModal('modalCreate')">+ Crear</button>
+        <button class="btn-delete" onclick="openModal('modalDelete')">🗑️ Eliminar</button>
     </h2>
 
     @foreach ($categorias as $categoria)
@@ -21,7 +22,7 @@
             <div class="poll-content" id="polls-{{ Str::slug($categoria->nombre) }}">
                 @foreach ($categoria->encuestas as $encuesta)
                     @if (!empty($encuesta->nombre))
-                        <a href="{{ url('encuestas/' . Str::slug($encuesta->nombre)) }}" class="poll-item">
+                        <a href="{{ url('admin/encuestas/' . Str::slug($encuesta->nombre)) }}" class="poll-item">
                             <div class="poll-icon"><i class="fas fa-poll"></i></div>
                             <div class="poll-info">
                                 <h4>{{ $encuesta->nombre }}</h4>
@@ -29,7 +30,7 @@
                             </div>
                             <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
                         </a>
-                    @endif
+                    @endif      
                 @endforeach
             </div>
         </div>
@@ -45,7 +46,7 @@
     <span class="close" onclick="closeModal('modalCreate')">&times;</span>
     <h3>Crear Nueva Encuesta</h3>
     <form id="formCreateEncuesta">
-      <input id="inputNombreCrear" type="text" placeholder="Nombre de encuesta" required>
+      <input id="inputNombreCrear" type="text" placeholder="Naombre de encuesta" required>
 
       <select id="selectCategoriaCrear" required>
         <option value="">Selecciona categoría</option>
@@ -59,31 +60,19 @@
   </div>
 </div>
 
-<!-- Modal Editar -->
-<div id="modalEdit" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('modalEdit')">&times;</span>
-    <h3>Editar Encuesta</h3>
-
-    <select id="selectEncuestaEdit" required>
-      <option value="">Selecciona encuesta</option>
-      {{-- Opciones cargadas dinámicamente vía JS --}}
-    </select>
-
-    <form id="formEditEncuesta">
-      <input id="inputNombreEditar" type="text" placeholder="Nuevo nombre de encuesta" required>
-      <button type="submit">Guardar cambios</button>
-    </form>
-  </div>
-</div>
-
-<!-- Modal Eliminar -->
+<!-- Modal Eliminar Encuesta -->
 <div id="modalDelete" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('modalDelete')">&times;</span>
-    <h3>¿Eliminar esta encuesta?</h3>
-    <button class="btn-confirm-delete">Sí, eliminar</button>
+    <h3>Eliminar Encuesta</h3>
+    <p>Seleccione la encuesta que desea eliminar:</p>
+    <select id="encuestaSelect">
+      <option value="">-- Seleccione una encuesta --</option>
+    </select>
+    <button id="btnEliminarEncuesta" disabled>Eliminar</button>
+    <p id="deleteStatus" class="status-message"></p>
   </div>
 </div>
 
 @endsection
+

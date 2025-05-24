@@ -6,19 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('encuestaForm').addEventListener('submit', handleSubmit);
 });
 
+// Mostrar página actual
 function showPage(pageNumber) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const current = document.getElementById(`page${pageNumber}`);
     if (current) current.classList.add('active');
 
     const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
-        const percent = (pageNumber / totalPages) * 100;
-        progressBar.style.width = `${percent}%`;
-    }
+    if (progressBar) progressBar.style.width = `${(pageNumber / totalPages) * 100}%`;
+
     currentPage = pageNumber;
 }
 
+// Validación de campos requeridos
 function validatePage(pageElement) {
     if (!pageElement) return false;
 
@@ -26,14 +26,11 @@ function validatePage(pageElement) {
     const validatedGroups = new Set();
 
     for (const field of requiredFields) {
-        const tag = field.tagName;
-        const type = field.type;
-
-        if ((type === 'radio' || type === 'checkbox') && !validatedGroups.has(field.name)) {
+        if ((field.type === 'radio' || field.type === 'checkbox') && !validatedGroups.has(field.name)) {
             validatedGroups.add(field.name);
             const checked = pageElement.querySelectorAll(`input[name="${field.name}"]:checked`);
             if (checked.length === 0) return false;
-        } else if (['SELECT', 'TEXTAREA', 'INPUT'].includes(tag) && !field.value.trim()) {
+        } else if (['SELECT', 'TEXTAREA', 'INPUT'].includes(field.tagName) && !field.value.trim()) {
             return false;
         }
     }
@@ -56,23 +53,34 @@ function prevPage(pageNumber) {
 function animateOption(element) {
     if (!element) return;
     element.classList.add('animate__animated', 'animate__pulse');
-    setTimeout(() => {
-        element.classList.remove('animate__animated', 'animate__pulse');
-    }, 600);
+    setTimeout(() => element.classList.remove('animate__animated', 'animate__pulse'), 600);
 }
-
 async function handleSubmit(e) {
     e.preventDefault();
+
     const form = e.target;
     const currentPageElement = document.getElementById(`page${currentPage}`);
-
     if (!validatePage(currentPageElement)) {
         alert('Por favor, complete los campos requeridos antes de enviar.');
         return;
     }
 
+    // Validación y lectura segura de campos
+    const encuestaIdInput = form.querySelector('[name="encuesta_id"]');
+    const sexoInput = form.querySelector('[name="sexo"]');
+    const edadInput = form.querySelector('[name="edad"]');
+
+    if (!encuestaIdInput || !sexoInput || !edadInput) {
+        console.error("Faltan campos requeridos en el formulario:");
+        console.error("encuesta_id:", encuestaIdInput);
+        console.error("sexo:", sexoInput);
+        console.error("edad:", edadInput);
+        alert("Error interno al enviar el formulario. Consulta la consola.");
+        return;
+    }
+
     const respuestas = Array.from(document.querySelectorAll('.pregunta')).map(container => {
-        const preguntaTexto = container.querySelector('h3')?.innerText.trim() || 'Pregunta sin texto';
+        const preguntaId = container.getAttribute('data-pregunta-id');
         let respuesta = null;
 
         const checkedRadio = container.querySelector('input[type="radio"]:checked');
@@ -87,100 +95,144 @@ async function handleSubmit(e) {
             respuesta = textInput.value.trim();
         }
 
-        return { pregunta: preguntaTexto, respuesta };
+        return { pregunta_id: parseInt(preguntaId), respuesta };
     });
 
-    document.getElementById('respuestasInput').value = JSON.stringify({
-        fecha: new Date().toISOString(),
+    const payload = {
+        encuesta_id: parseInt(encuestaIdInput.value),
+        genero: sexoInput.value,
+        edad: parseInt(edadInput.value),
         respuestas
-    });
+    };
 
-    const formData = new FormData(form);
-    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const tokenMeta = document.querySelector('meta[name="csrf-token"]');
+    const token = tokenMeta ? tokenMeta.content : '';
 
     try {
-        const response = await fetch(rutaEncuestasStore, {
+        const response = await fetch('/respuestas', {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': token,
-                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
-            body: formData
+            body: JSON.stringify(payload)
         });
 
-        if (!response.ok) throw new Error(await response.text());
+        if (!response.ok) {
+            if (response.status === 403) {
+                const errorData = await response.json();
+                alert(errorData.message || 'Ya has votado desde esta IP. No puedes votar nuevamente.');
+                return;
+            }
+            throw new Error(await response.text());
+        }
 
         await response.json();
+        alert('¡Encuesta enviada con éxito! Gracias por participar.');
         form.style.display = 'none';
-        mostrarResultadosReales();
 
     } catch (error) {
         console.error('Error al enviar la encuesta:', error);
-        alert('Hubo un error al enviar la encuesta. Por favor, intente nuevamente.');
+        alert('Error al enviar. Ver consola para más detalles.');
     }
 }
 
-function mostrarResultadosReales() {
-    const resultadosDiv = document.getElementById('resultados');
-    resultadosDiv.style.display = 'block';
-    resultadosDiv.innerHTML = 'Cargando resultados...';
 
-    fetch('/respuestas-con-encuesta')
-        .then(res => res.json())
-        .then(data => {
-            resultadosDiv.innerHTML = '';
-            const preguntas = [...new Set(data.map(item => item.pregunta))];
+// Modal editar encuesta
+function abrirModal() {
+    const modal = document.getElementById('modalEditarEncuesta');
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+    document.getElementById('nombreEncuesta').focus();
+}
 
-            preguntas.forEach(pregunta => {
-                const respuestasFiltradas = data.filter(item => item.pregunta === pregunta);
-                const conteo = {};
+function cerrarModal() {
+    const modal = document.getElementById('modalEditarEncuesta');
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+}
 
-                respuestasFiltradas.forEach(item => {
-                    const resp = item.respuesta;
-                    if (Array.isArray(resp)) {
-                        resp.forEach(op => conteo[op] = (conteo[op] || 0) + 1);
-                    } else {
-                        conteo[resp] = (conteo[resp] || 0) + 1;
-                    }
-                });
+document.getElementById('modalEditarEncuesta').addEventListener('click', e => {
+    if (e.target === e.currentTarget) cerrarModal();
+});
 
-                const contenedor = document.createElement('div');
-                contenedor.classList.add('grafico-pregunta');
-                contenedor.style.marginBottom = '40px';
+// Slug dinámico
+function generarSlug() {
+    const nombre = document.getElementById('nombreEncuesta').value;
+    const slug = nombre.trim().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+    document.getElementById('slugEncuesta').value = slug;
+}
 
-                const titulo = document.createElement('h4');
-                titulo.textContent = pregunta;
-                contenedor.appendChild(titulo);
+// Editor de preguntas
+function agregarPregunta() {
+    const container = document.getElementById('preguntasNuevasContainer');
+    const id = Date.now();
 
-                const canvas = document.createElement('canvas');
-                contenedor.appendChild(canvas);
-                resultadosDiv.appendChild(contenedor);
+    const div = document.createElement('div');
+    div.className = 'pregunta-editable';
+    div.dataset.id = id;
+    div.innerHTML = `
+        <input type="text" name="preguntas_nuevas[${id}][texto]" required />
+        <button type="button" onclick="eliminarPregunta(this)">Eliminar Pregunta</button>
+        <div class="opciones-container"></div>
+        <button type="button" onclick="agregarOpcion(this, 'nueva')">Agregar Opción</button>
+    `;
 
-                new Chart(canvas.getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(conteo),
-                        datasets: [{
-                            label: `Respuestas para: ${pregunta}`,
-                            data: Object.values(conteo),
-                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        scales: {
-                            x: { beginAtZero: true },
-                            y: { beginAtZero: true }
-                        }
-                    }
-                });
-            });
-        })
-        .catch(err => {
-            console.error('Error al cargar los resultados:', err);
-            resultadosDiv.innerHTML = 'No se pudieron cargar los resultados.';
-        });
+    container.appendChild(div);
+}
+
+function agregarOpcion(btn, tipo = 'nueva') {
+    const preguntaDiv = btn.closest('.pregunta-editable');
+    const id = preguntaDiv.dataset.id;
+    const opciones = preguntaDiv.querySelector('.opciones-container');
+
+    const div = document.createElement('div');
+    div.className = 'opcion-editable';
+
+    const name = tipo === 'existente'
+        ? `opciones_existentes[${id}][]`
+        : `opciones_nuevas[${id}][]`;
+
+    div.innerHTML = `
+        <input type="text" name="${name}" required />
+        <button type="button" onclick="eliminarOpcion(this)">Eliminar Opción</button>
+    `;
+
+    opciones.appendChild(div);
+}
+
+function eliminarPregunta(btn) {
+    const div = btn.closest('.pregunta-editable');
+    const id = div.dataset.id;
+
+    if (!isNaN(id)) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'preguntas_eliminar[]';
+        input.value = id;
+        document.getElementById('formEditarEncuesta').appendChild(input);
+    }
+
+    div.remove();
+}
+
+function eliminarOpcion(btn) {
+    const div = btn.closest('.opcion-editable');
+    const input = div.querySelector('input[type="text"]');
+    const matches = input?.name.match(/\[(\d+)\]$/);
+
+    if (matches) {
+        const inputHidden = document.createElement('input');
+        inputHidden.type = 'hidden';
+        inputHidden.name = 'opciones_eliminar[]';
+        inputHidden.value = matches[1];
+        document.getElementById('formEditarEncuesta').appendChild(inputHidden);
+    }
+
+    div.remove();
 }

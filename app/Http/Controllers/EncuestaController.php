@@ -8,6 +8,7 @@ use App\Models\Respuesta;
 use Illuminate\Http\Request;
 use App\Models\Pregunta;
 use Illuminate\Support\Str;
+use App\Models\Opcion;
 
 
 class EncuestaController extends Controller
@@ -35,31 +36,44 @@ class EncuestaController extends Controller
 
 
     
-public function ver($slug)
+public function verPublica($slug)
 {
     $encuesta = Encuesta::where('slug', $slug)->with('preguntas.opciones')->firstOrFail();
-    return view('admin.encuestas.ver', compact('encuesta'));
+
+    return view('encuestas.ver', compact('encuesta'));
 }
     /**
      * Crear nueva encuesta
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'categoria_id' => 'required|exists:categorias,id',
-        ]);
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'categoria_id' => 'required|exists:categorias,id',
+    ]);
 
-        $encuesta = Encuesta::create([
-            'nombre' => $request->nombre,
-            'categoria_id' => $request->categoria_id,
-        ]);
+    $nombre = $request->input('nombre');
 
+    // Verificamos si ya existe una encuesta con ese nombre
+    if (Encuesta::where('nombre', $nombre)->exists()) {
         return response()->json([
-            'message' => 'Encuesta creada correctamente',
-            'encuesta' => $encuesta,
-        ], 201);
+            'message' => 'Ya existe una encuesta con ese nombre.'
+        ], 422);
     }
+
+    // Si no existe, crear encuesta
+    $encuesta = Encuesta::create([
+        'nombre' => $nombre,
+        'slug' => Str::slug($nombre),
+        'categoria_id' => $request->input('categoria_id'),
+    ]);
+
+    return response()->json([
+        'message' => 'Encuesta creada correctamente',
+        'encuesta' => $encuesta,
+    ], 201);
+}
+
 
     /**
      * Actualizar encuesta existente
@@ -128,19 +142,92 @@ public function ver($slug)
     }
 
 
-public function verPorNombre($nombre)
+public function verAdmin($slug)
 {
-    // Busca la encuesta por nombre o lanza error 404
-    $encuesta = Encuesta::where('nombre', $nombre)->firstOrFail();
+    $encuesta = Encuesta::where('slug', $slug)->with('preguntas.opciones')->firstOrFail();
 
-    // Obtiene las preguntas usando la relación
-    $preguntas = $encuesta->preguntas;
+    return view('admin.encuestas.ver', compact('encuesta'));
+} 
+  public function actualizar(Request $request, $id)
+    {
+        $encuesta = Encuesta::findOrFail($id);
+        $encuesta->nombre = $request->nombre;
+        $encuesta->slug = $request->slug;
+        $encuesta->save();
 
-    return view('admin.encuestas.ver', [
-        'nombreEncuesta' => $encuesta->nombre,
-        'preguntas' => $preguntas,
-        'encuesta' => $encuesta,
-    ]);
-}
+        // 1. Actualizar preguntas existentes
+        if ($request->has('preguntas')) {
+            foreach ($request->preguntas as $pid => $pData) {
+                $pregunta = Pregunta::find($pid);
+                if ($pregunta) {
+                    $pregunta->texto = $pData['texto'];
+                    $pregunta->save();
+                }
+            }
+        }
+
+        // 2. Actualizar opciones existentes
+        if ($request->has('opciones')) {
+            foreach ($request->opciones as $pid => $opciones) {
+                foreach ($opciones as $oid => $texto) {
+                    $opcion = Opcion::find($oid);
+                    if ($opcion) {
+                        $opcion->texto = $texto;
+                        $opcion->save();
+                    }
+                }
+            }
+        }
+
+        // 3. Agregar nuevas opciones a preguntas existentes
+        if ($request->has('opciones_existentes')) {
+            foreach ($request->opciones_existentes as $pid => $opcionesNuevas) {
+                $pregunta = Pregunta::find($pid);
+                if ($pregunta) {
+                    foreach ($opcionesNuevas as $textoNuevaOpcion) {
+                        $textoNuevaOpcion = trim($textoNuevaOpcion);
+                        if ($textoNuevaOpcion !== '') {
+                            $pregunta->opciones()->create(['texto' => $textoNuevaOpcion]);
+                        }
+                    }
+                }
+            }
+        }
+
+        // 4. Crear preguntas nuevas con sus opciones nuevas
+        if ($request->has('preguntas_nuevas')) {
+            foreach ($request->preguntas_nuevas as $idTemporal => $datosPreguntaNueva) {
+                $preguntaNueva = Pregunta::create([
+                    'encuesta_id' => $encuesta->id,
+                    'texto' => $datosPreguntaNueva['texto'],
+                    'tipo' => 'texto',
+                ]);
+
+                $opcionesParaPregunta = $request->input("opciones_nuevas.$idTemporal", []);
+
+                foreach ($opcionesParaPregunta as $textoOpcion) {
+                    $textoOpcion = trim($textoOpcion);
+                    if ($textoOpcion !== '') {
+                        $preguntaNueva->opciones()->create([
+                            'texto' => $textoOpcion,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        // Eliminar preguntas marcadas
+        if ($request->has('preguntas_eliminar')) {
+            Pregunta::whereIn('id', $request->preguntas_eliminar)->delete();
+        }
+
+        // Eliminar opciones marcadas
+        if ($request->has('opciones_eliminar')) {
+            Opcion::whereIn('id', $request->opciones_eliminar)->delete();
+        }
+
+
+        return redirect()->back()->with('success', 'Encuesta actualizada correctamente');
+    }
 
 }

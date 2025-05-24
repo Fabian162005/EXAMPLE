@@ -10,6 +10,7 @@ use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\PartidoController;
 use App\Models\Noticia;
 use App\Models\Resultado;
+use App\Http\Controllers\RespuestaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,13 +52,14 @@ Route::get('/videos', [VideosController::class, 'publicos'])->name('videos.index
 */
 
 // Mostrar encuesta pública por slug (nombre amigable en URL)
-Route::get('/encuestas/{slug}', [EncuestaController::class, 'ver'])->name('encuestas.ver');
+Route::get('/encuestas/{slug}', [EncuestaController::class, 'verPublica'])->name('encuestas.ver');
 
 // Ruta para guardar respuestas o encuestas públicas
 Route::post('/encuestas', [EncuestaController::class, 'store'])->name('encuestas.store');
 
 // Resultados públicos con detalles
 Route::get('/respuestas-con-nombre', [EncuestaController::class, 'obtenerRespuestasConNombre'])->name('respuestas.con.nombre');
+Route::post('/respuestas', [RespuestaController::class, 'store'])->name('respuestas.store');
 
 // Vista resultados generales públicos
 Route::view('/verResultados', 'verResultados')->name('resultados.publicos');
@@ -68,10 +70,10 @@ Route::get('/adminVerResultados', function () {
     return view('admin.adminVerResultados', compact('fotos'));
 })->name('admin.resultados');
 
+
 /*
 |--------------------------------------------------------------------------
 | PARTIDOS POLÍTICOS
-|--------------------------------------------------------------------------
 */
 
 // Mostrar partido por nombre
@@ -106,7 +108,9 @@ Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function ()
     Route::resource('videos', VideosController::class);
 
     // Ver encuesta admin por nombre (corregido para no tener 'admin/admin')
-    Route::get('/encuestas/{nombre}', [EncuestaController::class, 'verPorNombre'])->name('encuestas.verNombre');
+    Route::get('/encuestas/{slug}', [EncuestaController::class, 'verAdmin'])->name('encuestas.verAdmin');
+    Route::put('/encuestas/{id}/actualizar', [EncuestaController::class, 'actualizar'])->name('encuestas.actualizar');
+
 
     // Logout admin
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');

@@ -173,90 +173,37 @@
 </section>
 <!-- Sección Encuestas -->
 
-    <section class="polls-section-3d">
-        <h2 class="section-title-3d">Encuestas <span class="highlight">Populares</span></h2>
-        
-        <div class="polls-container-3d">
-            <!-- Encuesta 1 -->
-            <div class="poll-card-3d">
-                <div class="poll-header">
-                    <h3>Encuestas Presidenciales</h3>
-                    <div class="poll-toggle" data-target="presidential-polls">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-                
-                <div class="poll-content" id="presidential-polls">
-                    <a href="{{ url('encuestas/lima') }}" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-city"></i></div>
-                        <div class="poll-info">
-                            <h4>Lima</h4>
-                            <p>Última encuesta: 15 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/chiclayo.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-umbrella-beach"></i></div>
-                        <div class="poll-info">
-                            <h4>Chiclayo</h4>
-                            <p>Última encuesta: 12 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/piura.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-sun"></i></div>
-                        <div class="poll-info">
-                            <h4>Piura</h4>
-                            <p>Última encuesta: 10 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
+<section class="polls-section-3d">
+    <h2 class="section-title-3d">
+        Encuestas <span class="highlight">Populares</span>
+    </h2>
+
+    @foreach ($categorias as $categoria)
+        <div class="poll-card-3d">
+            <div class="poll-header">
+                <h3>Encuestas {{ $categoria->nombre }}</h3>
+                <div class="poll-toggle" data-target="polls-{{ Str::slug($categoria->nombre) }}">
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
-            
-            <!-- Encuesta 2 -->
-            <div class="poll-card-3d">
-                <div class="poll-header">
-                    <h3>Encuestas Regionales</h3>
-                    <div class="poll-toggle" data-target="regional-polls">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-                
-                <div class="poll-content" id="regional-polls">
-                    <a href="encuestas/morropon.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-mountain"></i></div>
-                        <div class="poll-info">
-                            <h4>Piura</h4>
-                            <p>Última encuesta: 8 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/castilla.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-archway"></i></div>
-                        <div class="poll-info">
-                            <h4>Castilla</h4>
-                            <p>Última encuesta: 5 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                    
-                    <a href="encuestas/plura2.html" class="poll-item">
-                        <div class="poll-icon"><i class="fas fa-water"></i></div>
-                        <div class="poll-info">
-                            <h4>Morropon</h4>
-                            <p>Última encuesta: 3 Oct 2023</p>
-                        </div>
-                        <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </a>
-                </div>
+            <div class="poll-content" id="polls-{{ Str::slug($categoria->nombre) }}">
+                @foreach ($categoria->encuestas as $encuesta)
+                    @if (!empty($encuesta->nombre))
+                        <a href="{{ url('encuestas/' . Str::slug($encuesta->nombre)) }}" class="poll-item">
+                            <div class="poll-icon"><i class="fas fa-poll"></i></div>
+                            <div class="poll-info">
+                                <h4>{{ $encuesta->nombre }}</h4>
+                                <p>Última encuesta: {{ $encuesta->created_at->format('d M Y') }}</p>
+                            </div>
+                            <div class="poll-arrow"><i class="fas fa-arrow-right"></i></div>
+                        </a>
+                    @endif      
+                @endforeach
             </div>
         </div>
+    @endforeach
 
-    </section>
+</section>
 
         <p style="text-align: center; font-size: 2.5rem; color: #000; font-family: sans-serif; position: relative; top: -80px;">
         <a href="{{ url('/verResultados') }}" class="cool-button">

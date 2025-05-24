@@ -7,27 +7,25 @@
 
     <!-- Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="{{ asset('css/admin/encuestas.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/encuestas.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/resultados.css') }}" />
-    <title>Encuesta Comuunal Admin</title>
+    <title>Encuesta Comunal</title>
+    
 </head>
 <body>
-    <div class="wrapper">
-
+    
     <div class="encuesta-container animate__animated animate__fadeIn">
     <h1 class="animate__animated animate__fadeInDown">{{ $encuesta->nombre }}</h1>
 
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <!-- Botón para abrir el modal -->
-        <button type="button" class="btn-editar" onclick="abrirModal()">Editar Encuesta</button>
 
-        <form action="{{ route('encuestas.store') }}" method="POST" id="encuestaForm">
+        <form id="encuestaForm">
             @csrf
             <input type="hidden" name="encuesta_id" value="{{ $encuesta->id }}">
-            <input type="hidden" name="categoria_id" value="{{ $encuesta->categoria_id }}" />
             <input type="hidden" name="nombre" value="{{ $encuesta->nombre }}" />
+            <input type="hidden" name="categoria_id" value="{{ $encuesta->categoria_id }}" />
             <input type="hidden" name="respuestas" id="respuestasInput" />
 
             <!-- Página 1 -->
@@ -84,59 +82,7 @@
             <h2>Resultados de la encuesta</h2>
             <canvas id="chartResultados" width="400" height="200"></canvas>
         </div>
-
-        <!-- Modal -->
-        <div id="modalEditarEncuesta" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="cerrarModal()">&times;</span>
-                <h2>Editar Encuesta</h2>
-
-                <form id="formEditarEncuesta" method="POST" action="{{ route('admin.encuestas.actualizar', $encuesta->id) }}">
-                    @csrf
-                    @method('PUT')
-
-                    <!-- Editar nombre de encuesta -->
-                    <div class="form-group">
-                        <label for="nombreEncuesta">Nombre:</label>
-                        <input type="text" name="nombre" id="nombreEncuesta" value="{{ $encuesta->nombre }}" required oninput="generarSlug()" />
-                    </div>
-
-                    <!-- Editar slug automáticamente -->
-                    <div class="form-group">
-                        <label for="slugEncuesta">Slug:</label>
-                        <input type="text" name="slug" id="slugEncuesta" value="{{ $encuesta->slug }}" readonly />
-                    </div>
-
-                            <div id="preguntasContainer">
-                                @foreach ($encuesta->preguntas as $pregunta)
-                                    <div class="pregunta-editable" data-id="{{ $pregunta->id }}">
-                                        <input type="text" name="preguntas[{{ $pregunta->id }}][texto]" value="{{ $pregunta->texto }}" required />
-                                        <button type="button" onclick="eliminarPregunta(this)">Eliminar Pregunta</button>
-
-                                        <div class="opciones-container">
-                                            {{-- Opciones existentes (editar) --}}
-                                            @foreach ($pregunta->opciones as $opcion)
-                                                <div class="opcion-editable">
-                                                    <input type="text" name="opciones[{{ $pregunta->id }}][{{ $opcion->id }}]" value="{{ $opcion->texto }}" />
-                                                    <button type="button" onclick="eliminarOpcion(this)">Eliminar Opción</button>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                        <button type="button" onclick="agregarOpcion(this, 'existente')">Agregar Opción</button>
-                                    </div>
-                                @endforeach
-                            </div>
-                        <!-- Contenedor para preguntas nuevas -->
-                        <div id="preguntasNuevasContainer"></div>
-                    <button type="button" onclick="agregarPregunta()">Agregar Pregunta Nueva</button>
-                    <button type="submit">Guardar Cambios</button>
-                </form>
-            </div>
-        </div>
     </div>
-</div>
-
-
 
     <!-- Scripts -->
     <script>

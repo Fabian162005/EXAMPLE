@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Encuesta;
 use Illuminate\Support\Facades\View;
-
+use App\Models\Categoria;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
 
+
+
 public function boot()
 {
     View::composer('*', function ($view) {
@@ -35,8 +37,15 @@ public function boot()
             $q->where('nombre', 'Distrital');
         })->get();
 
-        $view->with('provinciales', $provinciales)->with('distritales', $distritales);
+        $categorias = Categoria::all(); // 👉 Aquí agregas tus categorías
+
+        $view->with([
+            'provinciales' => $provinciales,
+            'distritales' => $distritales,
+            'categorias' => $categorias, // 👉 Las compartes con todas las vistas
+        ]);
     });
 }
+
 
 }

@@ -1,36 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-  loadEncuestas();
-  loadCategorias();
+  loadEncuestas();       // Carga encuestas para eliminar
+  loadCategorias();      // Carga categorías para crear
   renderEncuestasAgrupadas();
 
-  const selectEncuestaEdit = document.getElementById('selectEncuestaEdit');
-  const inputNombreEditar = document.getElementById('inputNombreEditar');
+  const selectEncuestaDelete = document.getElementById('encuestaSelect');
   const formCreateEncuesta = document.getElementById('formCreateEncuesta');
-  const formEditEncuesta = document.getElementById('formEditEncuesta');
-  const btnConfirmDelete = document.querySelector('.btn-confirm-delete');
-  const selectCategoriaCrear = document.getElementById('selectCategoriaCrear');
+  const btnConfirmDelete = document.getElementById('btnEliminarEncuesta');
 
-  if (!selectEncuestaEdit || !inputNombreEditar || !formCreateEncuesta || !formEditEncuesta || !btnConfirmDelete || !selectCategoriaCrear) {
+  if (!selectEncuestaDelete || !formCreateEncuesta || !btnConfirmDelete) {
     console.error('Faltan elementos necesarios en el DOM');
     return;
   }
 
-  // ------------------------
-  // Cargar nombre al seleccionar encuesta
-  // ------------------------
-  selectEncuestaEdit.addEventListener('change', async () => {
-    const selectedId = selectEncuestaEdit.value;
-    inputNombreEditar.value = '';
-    if (!selectedId) return;
-
-    try {
-      const res = await fetch(`/api/encuestas/${selectedId}`);
-      const data = await res.json();
-      inputNombreEditar.value = data.nombre || '';
-    } catch (err) {
-      alert('Error al cargar encuesta');
-      console.error(err);
-    }
+  // Activar botón eliminar solo si hay encuesta seleccionada
+  selectEncuestaDelete.addEventListener('change', () => {
+    btnConfirmDelete.disabled = !selectEncuestaDelete.value;
   });
 
   // ------------------------
@@ -39,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   formCreateEncuesta.addEventListener('submit', async e => {
     e.preventDefault();
     const nombre = document.getElementById('inputNombreCrear')?.value.trim();
-    const categoria_id = selectCategoriaCrear.value;
+    const categoria_id = document.getElementById('selectCategoriaCrear').value;
 
     if (!nombre) return alert('El nombre es obligatorio');
     if (!categoria_id) return alert('Selecciona una categoría');
@@ -71,46 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ------------------------
-  // Editar encuesta
-  // ------------------------
-  formEditEncuesta.addEventListener('submit', async e => {
-    e.preventDefault();
-    const id = selectEncuestaEdit.value;
-    const nombre = inputNombreEditar.value.trim();
-
-    if (!id) return alert('Selecciona una encuesta para editar');
-    if (!nombre) return alert('El nombre es obligatorio');
-
-    try {
-      const res = await fetch(`/api/encuestas/${id}`, {
-        method: 'PUT',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({ nombre }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.text();
-        throw new Error(`Error al actualizar encuesta: ${errorData}`);
-      }
-
-      alert('Encuesta actualizada');
-      closeModal('modalEdit');
-      await loadEncuestas();
-
-    } catch (err) {
-      alert(err.message);
-      console.error(err);
-    }
-  });
-
-  // ------------------------
   // Eliminar encuesta
   // ------------------------
   btnConfirmDelete.addEventListener('click', async () => {
-    const id = selectEncuestaEdit.value;
+    const id = selectEncuestaDelete.value;
     if (!id) return alert('Selecciona una encuesta para eliminar');
     if (!confirm('¿Seguro que quieres eliminar esta encuesta?')) return;
 
@@ -139,27 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ------------------------
-// Cargar encuestas
+// Cargar encuestas (solo para eliminar)
 // ------------------------
 async function loadEncuestas() {
   try {
     const res = await fetch('/api/encuestas');
+    if (!res.ok) throw new Error('Error al obtener encuestas');
     const data = await res.json();
 
-    const selectEdit = document.getElementById('selectEncuestaEdit');
-    if (!selectEdit) return;
+    const selectDelete = document.getElementById('encuestaSelect');
+    if (!selectDelete) return;
 
-    selectEdit.innerHTML = '<option value="">Selecciona encuesta</option>';
+    selectDelete.innerHTML = '<option value="">-- Seleccione una encuesta --</option>';
     if (!Array.isArray(data)) throw new Error('Los datos recibidos no son un array');
 
     data.forEach(e => {
       const option = document.createElement('option');
       option.value = e.id;
       option.textContent = e.nombre;
-      selectEdit.appendChild(option);
+      selectDelete.appendChild(option);
     });
 
-    document.getElementById('inputNombreEditar').value = '';
   } catch (err) {
     alert('Error al cargar encuestas');
     console.error(err);
@@ -167,13 +115,13 @@ async function loadEncuestas() {
 }
 
 // ------------------------
-// Cargar categorías
+// Cargar categorías para crear encuesta
 // ------------------------
 async function loadCategorias() {
   try {
     const res = await fetch('/api/categorias');
-    const text = await res.text();
-    const categorias = JSON.parse(text);
+    if (!res.ok) throw new Error('Error al obtener categorías');
+    const categorias = await res.json();
 
     const select = document.getElementById('selectCategoriaCrear');
     if (!select) return;
@@ -214,18 +162,18 @@ window.addEventListener('click', e => {
 });
 
 // ------------------------
-// Toggle encuestas
+// Renderizar encuestas agrupadas por categoría
 // ------------------------
-
 async function renderEncuestasAgrupadas() {
   try {
     const res = await fetch('/api/encuestas/agrupadas');
+    if (!res.ok) throw new Error('Error al obtener encuestas agrupadas');
     const data = await res.json();
 
     const container = document.getElementById('pollContainer');
     if (!container) return;
 
-    container.innerHTML = ''; // Limpia el contenido anterior
+    container.innerHTML = '';
 
     data.forEach(cat => {
       const wrapper = document.createElement('div');
@@ -243,13 +191,11 @@ async function renderEncuestasAgrupadas() {
       container.appendChild(wrapper);
     });
 
-    // Eventos toggle para cada categoría
     document.querySelectorAll('.poll-toggle').forEach(toggle => {
       toggle.addEventListener('click', () => {
         const targetId = toggle.getAttribute('data-target');
         const content = document.getElementById(targetId);
         const icon = toggle.querySelector('i');
-
         if (!content) return;
 
         const isVisible = content.style.display === 'block';
@@ -266,4 +212,3 @@ async function renderEncuestasAgrupadas() {
     console.error('Error al cargar encuestas agrupadas:', err);
   }
 }
-

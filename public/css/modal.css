@@ -334,3 +334,98 @@ input[type="file"] {
   justify-content: space-around;
   margin-top: 20px;
 }
+
+/* Estilos para el modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  width: 320px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Botón cerrar (X) */
+.modal-content .close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-content .close:hover {
+  color: #f44336; /* rojo cuando hover */
+}
+
+/* Título */
+.modal-content h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Select */
+.modal-content select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.modal-content select:focus {
+  border-color: #2196f3;
+  outline: none;
+}
+
+/* Botón eliminar */
+.modal-content button#btnEliminarEncuesta {
+  background-color: #e53935; /* rojo fuerte */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  user-select: none;
+}
+
+.modal-content button#btnEliminarEncuesta:hover:not(:disabled) {
+  background-color: #b71c1c; /* rojo oscuro */
+}
+
+.modal-content button#btnEliminarEncuesta:disabled {
+  background-color: #f5c6c5;
+  cursor: not-allowed;
+}
+
+/* Mensaje de estado */
+.status-message {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #666;
+}

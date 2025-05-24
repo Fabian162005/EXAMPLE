@@ -1,27 +1,33 @@
 :root {
-    --primary-color: #2563eb;    /* Azul vibrante */
-    --hover-color: #1d4ed8;      /* Azul oscuro */
-    --bg-color: #f8fafc;         /* Fondo claro */
-    --text-color: #1e293b;       /* Texto oscuro */
-    --transition-speed: 0.3s;    /* Velocidad animaciones */
-    --accent-color: #3b82f6;     /* Azul medio */
-    --success-color: #10b981;    /* Verde */
-    --warning-color: #f59e0b;   /* Amarillo */
-    --error-color: #ef4444;      /* Rojo */
-    --border-color: #e2e8f0;     /* Borde gris claro */
+    --primary-color: #2563eb;
+    --hover-color: #1d4ed8;
+    --bg-color: #f8fafc;
+    --text-color: #1e293b;
+    --transition-speed: 0.3s;
+    --accent-color: #3b82f6;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --border-color: #e2e8f0;
     --card-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
-    max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
-
 h1, h2 {
     color: var(--primary-color);
     text-align: center;
@@ -376,33 +382,33 @@ input[type="checkbox"]:checked + label {
     .opciones {
         grid-template-columns: 1fr;
     }
-    
+
     .escala {
         flex-wrap: wrap;
         gap: 10px;
     }
-    
+
     .escala-item {
         flex: 1 0 40px;
     }
-    
+
     body {
         padding: 15px;
     }
-    
+
     .encuesta-container {
         padding: 20px;
     }
-    
+
     h1 {
         font-size: 1.8rem;
     }
-    
+
     .nav-buttons {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .btn-next, .btn-prev {
         float: none;
         width: 100%;
@@ -432,5 +438,194 @@ input[type="checkbox"]:checked + label {
     100% {
         opacity: 0;
         transform: scale(40, 40);
+    }
+}
+:root {
+    --modal-bg: rgba(0, 0, 0, 0.6);
+    --modal-white: #ffffff;
+    --modal-shadow: rgba(0, 0, 0, 0.3);
+    --modal-border: #ccc;
+    --accent-blue: #007bff;
+    --accent-blue-hover: #0056b3;
+    --accent-red: #dc3545;
+    --accent-red-hover: #bd2130;
+    --accent-info: #17a2b8;
+    --accent-info-hover: #138496;
+}
+
+/* Modal base */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* << permite scroll si el contenido es largo */
+    padding: 1rem;
+}
+
+
+/* Mostrar modal */
+.modal.active {
+    display: flex;
+}
+
+
+
+/* Contenido del modal */
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 700px;
+    max-height: 90vh;
+    width: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow-y: auto;
+}
+
+/* Botón cerrar */
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+.close:hover {
+    color: #000;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Formulario */
+form .form-group {
+    margin-bottom: 1rem;
+}
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+form input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--modal-border);
+    margin-bottom: 0.5rem;
+}
+
+/* Botones generales */
+button {
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.btn-editar {
+    background-color: var(--accent-blue);
+    color: white;
+}
+.btn-editar:hover {
+    background-color: var(--accent-blue-hover);
+}
+
+/* Botones en preguntas/opciones */
+.pregunta-editable button,
+.opcion-editable button {
+    margin-left: 0.5rem;
+    background-color: var(--accent-red);
+    color: white;
+}
+.pregunta-editable button:hover,
+.opcion-editable button:hover {
+    background-color: var(--accent-red-hover);
+}
+
+button[type="button"]:not(.btn-editar):not(.close):not([onclick*="cerrarModal"]) {
+    background-color: var(--accent-info);
+    color: white;
+}
+button[type="button"]:hover:not(.btn-editar):not(.close):not([onclick*="cerrarModal"]) {
+    background-color: var(--accent-info-hover);
+}
+
+/* Contenedores */
+.pregunta-editable {
+    border: 1px solid var(--modal-border);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+.opciones-container {
+    margin-left: 1rem;
+}
+.opcion-editable {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 1.5rem;
+        max-width: 90%;
+        font-size: 0.95rem;
+    }
+
+    form label,
+    form input[type="text"],
+    button {
+        font-size: 1rem;
+    }
+
+    .close {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1rem;
+        max-height: 85vh;
+        border-radius: 8px;
+    }
+
+    .pregunta-editable {
+        padding: 0.75rem;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 0.75rem;
+    }
+
+    .opcion-editable {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .opciones-container {
+        margin-left: 0;
     }
 }
