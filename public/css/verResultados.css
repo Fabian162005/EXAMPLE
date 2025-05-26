@@ -1,52 +1,69 @@
+/* verResultados.css */
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f9fc;
+    margin: 0;
+    padding: 20px;
+    color: #333;
 }
 
 .titulo {
-  text-align: center;
-  font-size: 3rem;
-  color: #007BFF;
-  margin-bottom: 40px;
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+    color: #222;
+    font-weight: 700;
 }
 
-.resultados-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 0 30px;
+#resultados-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(500px, 1fr)); /* tarjetas grandes */
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    justify-content: center;
 }
 
-.result-card {
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
+
+@media (max-width: 800px) {
+    #resultados-container {
+        grid-template-columns: 1fr;
+        padding: 0 15px 30px 15px;
+    }
 }
 
-.result-card:hover {
-  transform: translateY(-8px);
+.resultado-item {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.result-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.resultado-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.18);
 }
 
-.result-info {
-  padding: 20px;
+.titulo-imagen {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 20px 20px 10px 20px;
+    text-align: center;
+    color: #444;
+    flex-shrink: 0;
 }
 
-.result-info h3 {
-  margin: 0 0 10px;
-  color: #007BFF;
-}
-
-.result-info p {
-  margin: 0;
-  color: #333;
+.resultado-item img {
+    width: 100%;
+    height: 500px; /* Aumentamos altura */
+    object-fit: cover;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    display: block;
 }

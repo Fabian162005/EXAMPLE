@@ -1,36 +1,40 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const resultadosContainer = document.getElementById('resultados-container');
-
-  const resultados = [
-    {
-      titulo: "Encuesta Presidencial Lima",
-      descripcion: "Resultados finales de la encuesta realizada el 15 Oct 2023.",
-      imagen: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      titulo: "Encuesta Regional Piura",
-      descripcion: "Datos y análisis de la encuesta regional del 10 Oct 2023.",
-      imagen: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      titulo: "Encuesta Regional Morropon",
-      descripcion: "Estadísticas y gráficos de la encuesta del 8 Oct 2023.",
-      imagen: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80"
+document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+    if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const preview = document.createElement('img');
+            preview.src = e.target.result;
+            preview.style.maxWidth = "200px";
+            preview.style.marginTop = "10px";
+            document.querySelector('form').appendChild(preview);
+        };
+        reader.readAsDataURL(e.target.files[0]);
     }
-  ];
+});
 
-  resultados.forEach(res => {
-    const card = document.createElement('div');
-    card.className = 'result-card';
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modalEliminar');
+    const modalTexto = document.getElementById('modalTexto');
+    const formEliminar = document.getElementById('formEliminar');
+    const cerrarBtn = document.querySelector('.cerrar-modal');
 
-    card.innerHTML = `
-      <img src="${res.imagen}" alt="${res.titulo}" />
-      <div class="result-info">
-        <h3>${res.titulo}</h3>
-        <p>${res.descripcion}</p>
-      </div>
-    `;
+    document.querySelectorAll('.btn-eliminar').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const imagenId = btn.getAttribute('data-id');
+            const titulo = btn.getAttribute('data-titulo');
+            modalTexto.textContent = `¿Estás seguro de que deseas eliminar la imagen "${titulo}"?`;
+            formEliminar.action = `/admin/resultados/${imagenId}`;
+            modal.style.display = 'block';
+        });
+    });
 
-    resultadosContainer.appendChild(card);
-  });
+    cerrarBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
 });

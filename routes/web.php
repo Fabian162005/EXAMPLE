@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ResultadoImagenController;
+use App\Models\ResultadoImagen;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\PartidoController;
 use App\Models\Noticia;
 use App\Models\Resultado;
 use App\Http\Controllers\RespuestaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,14 +64,16 @@ Route::post('/encuestas', [EncuestaController::class, 'store'])->name('encuestas
 Route::get('/respuestas-con-nombre', [EncuestaController::class, 'obtenerRespuestasConNombre'])->name('respuestas.con.nombre');
 Route::post('/respuestas', [RespuestaController::class, 'store'])->name('respuestas.store');
 
-// Vista resultados generales públicos
-Route::view('/verResultados', 'verResultados')->name('resultados.publicos');
+// Vistas públicas
+Route::get('/verResultados', function () {
+    $imagenes = ResultadoImagen::latest()->get();
+    return view('verResultados', compact('imagenes'));
+})->name('verResultados');
 
-// Resultados administrativos (vista con fotos)
-Route::get('/adminVerResultados', function () {
-    $fotos = Resultado::all();
-    return view('admin.adminVerResultados', compact('fotos'));
-})->name('admin.resultados');
+// Vista ADMIN para subir y mostrar fotos
+Route::get('/adminVerResultados', [ResultadoImagenController::class, 'index'])->name('resultados.index');
+Route::post('/adminVerResultados', [ResultadoImagenController::class, 'store'])->name('resultados.subirFoto');
+Route::delete('/admin/resultados/{id}', [ResultadoImagenController::class, 'eliminar'])->name('resultados.eliminar');
 
 
 /*
@@ -115,3 +120,7 @@ Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function ()
     // Logout admin
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
+    //apartado de busqueda del navbar
+    use App\Http\Controllers\BusquedaController;
+
+Route::get('/buscar', [BusquedaController::class, 'buscar'])->name('buscar');

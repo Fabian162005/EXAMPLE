@@ -7,8 +7,16 @@
 </head>
 <body>
     <h1 class="titulo">Resultados de Encuestas</h1>
-    <div id="resultados-container" class="resultados-grid"></div>
 
-    <script src="{{ asset('js/verResultados.js') }}"></script>
+    <div id="resultados-container" class="resultados-grid">
+        @foreach ($imagenes as $imagen)
+            <div class="resultado-item">
+                <h3 class="titulo-imagen">{{ $imagen->titulo }}</h3>
+                <img src="{{ asset('storage/' . $imagen->ruta) }}" alt="{{ $imagen->titulo }}">
+            </div>
+        @endforeach
+    </div>
+
+    <script src="{{ asset('js/verRes    ultados.js') }}"></script>
 </body>
 </html>

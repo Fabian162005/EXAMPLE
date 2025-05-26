@@ -2,43 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>GP CANAL RESULTADO ADMIN</title>
-    <link rel="stylesheet" href="{{ asset('css/admin/   verResultados.css') }}">
+    <title>GP CANAL RESULTADO</title>
+    <link rel="stylesheet" href="{{ asset('css/admin/verResultados.css') }}">
 </head>
 <body>
     <h1 class="titulo">Resultados de Encuestas</h1>
 
-    <div class="btn-container">
-        <button class="btn" onclick="abrirModal()">Subir Foto de Resultado</button>
-    </div>
+    <form action="{{ route('resultados.subirFoto') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="text" name="titulo" placeholder="Título de la imagen" required>
+        <input type="file" name="imagen" accept="image/*" required>
+        <button type="submit">Subir Imagen</button>
+    </form>
 
     <div id="resultados-container" class="resultados-grid">
-        {{-- Aquí se cargarán dinámicamente las imágenes desde la base de datos --}}
-        @foreach ($fotos as $foto)
-            <div class="foto-card">
-                <img src="{{ asset('storage/resultados/' . $foto->archivo) }}" alt="Resultado">
-                <button class="editar" onclick="editarFoto({{ $foto->id }}, '{{ $foto->archivo }}')">Editar</button>
-                <button class="eliminar" onclick="eliminarFoto({{ $foto->id }})">Eliminar</button>
+        @foreach ($imagenes as $imagen)
+            <div class="resultado-item">
+                <h3 class="titulo-imagen">{{ $imagen->titulo }}</h3>
+                <img src="{{ asset('storage/' . $imagen->ruta) }}" alt="{{ $imagen->titulo }}">
+                <button class="btn-eliminar" data-id="{{ $imagen->id }}" data-titulo="{{ $imagen->titulo }}">Eliminar</button>
             </div>
         @endforeach
     </div>
 
-    <!-- Modal Subir/Editar Foto -->
-    <div id="fotoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarModal()">&times;</span>
-            <h3 id="modal-title">Subir Foto de Resultado</h3>
-            <form id="fotoForm" action="{{ route('resultados.store') }}" method="POST" enctype="multipart/form-data">
+
+<!-- Modal de confirmación -->
+<div id="modalEliminar" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar-modal">&times;</span>
+        <p id="modalTexto">¿Estás seguro de que deseas eliminar esta imagen?</p>
+            <form id="formEliminar" method="POST" action="">
                 @csrf
-                <input type="hidden" name="id" id="foto_id">
-                <input type="file" name="foto" accept="image/*" required>
-                <br><br>
-                <button type="submit" class="btn">Guardar</button>
+                @method('DELETE')
+                <button type="submit" class="btn-confirmar">Sí, eliminar</button>
             </form>
-        </div>
     </div>
+</div>
 
 
-    <script src="{{ asset('js/admin-verResultados.js') }}"></script>
+    <script src="{{ asset('js/verResultados.js') }}"></script>
 </body>
 </html>

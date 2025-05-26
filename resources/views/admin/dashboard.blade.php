@@ -44,9 +44,10 @@
 <div id="modalCreate" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('modalCreate')">&times;</span>
-    <h3>Crear Nueva Encuesta</h3>
+    <h3>CREAR NUEVA ENCUESTA</h3>
+    <h3>⚠️ DEBES ELEGIR UNA CATEGORIA. ⚠️</h3>
     <form id="formCreateEncuesta">
-      <input id="inputNombreCrear" type="text" placeholder="Naombre de encuesta" required>
+      <input id="inputNombreCrear" type="text" placeholder="Nombre de encuesta" required>
 
       <select id="selectCategoriaCrear" required>
         <option value="">Selecciona categoría</option>

@@ -399,33 +399,98 @@ input[type="file"] {
   outline: none;
 }
 
-/* Botón eliminar */
-.modal-content button#btnEliminarEncuesta {
-  background-color: #e53935; /* rojo fuerte */
+/* Fondo del modal (overlay) */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semi-transparente */
+  backdrop-filter: blur(2px); /* Difumina el fondo */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px 20px;
+  border: 1px solid #ddd;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  position: relative;
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Animación suave al abrir */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Botón de cerrar (X) */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #000;
+}
+
+/* Títulos */
+.modal-content h3 {
+  margin-top: 0;
+  color: #333;
+  text-align: center;
+}
+
+/* Inputs y selects dentro del formulario */
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* Botones */
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3B83BD;
   color: white;
   border: none;
-  padding: 10px 20px;
+  border-radius: 6px;
   font-size: 16px;
-  font-weight: 600;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  user-select: none;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.modal-content button#btnEliminarEncuesta:hover:not(:disabled) {
-  background-color: #b71c1c; /* rojo oscuro */
+.modal-content button:hover {
+  background-color: #3B83BD;
 }
 
-.modal-content button#btnEliminarEncuesta:disabled {
-  background-color: #f5c6c5;
-  cursor: not-allowed;
-}
-
-/* Mensaje de estado */
+/* Mensajes de estado */
 .status-message {
-  margin-top: 12px;
-  font-size: 14px;
-  color: #666;
+  margin-top: 15px;
+  color: #d32f2f;
+  font-weight: bold;
+  text-align: center;
 }

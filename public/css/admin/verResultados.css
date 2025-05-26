@@ -1,130 +1,175 @@
+/* verResultados.css */
+
+/* Reset y base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    padding: 30px 20px;
+    min-height: 100vh;
 }
 
+/* Título principal */
 .titulo {
-  text-align: center;
-  font-size: 3rem;
-  color: #007BFF;
-  margin-bottom: 40px;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.resultados-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 0 30px;
+/* Formulario */
+form {
+    max-width: 480px;
+    margin: 0 auto 40px;
+    padding: 25px 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
 }
 
-.result-card {
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
+/* Inputs del formulario */
+form input[type="text"],
+form input[type="file"] {
+    flex: 1 1 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
 }
 
-.result-card:hover {
-  transform: translateY(-8px);
+form input[type="text"]:focus,
+form input[type="file"]:focus {
+    outline: none;
+    border-color: #2980b9;
 }
 
-.result-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+/* Botón */
+form button {
+    flex: 1 1 100%;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
-.result-info {
-  padding: 20px;
+form button:hover {
+    background-color: #1f6391;
 }
 
-.result-info h3 {
-  margin: 0 0 10px;
-  color: #007BFF;
+/* Contenedor de resultados (grid) */
+#resultados-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.result-info p {
-  margin: 0;
-  color: #333;
-}   
+/* Cada item resultado */
+.resultado-item {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
 
-        /* Estilos rápidos para modales y botones */
-        .btn-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .btn {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 5px;
-        }
+.resultado-item:hover {
+    transform: translateY(-5px);
+}
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+/* Título de la imagen */
+.titulo-imagen {
+    padding: 15px 10px 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #34495e;
+    background-color: #ecf0f1;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.5);
-        }
+/* Imagen */
+.resultado-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-top: 1px solid #ddd;
+}
 
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-        }
+/* Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
+    form {
+        padding: 20px 15px;
+    }
 
-        .close {
-            float: right;
-            font-size: 24px;
-            cursor: pointer;
-        }
+    .titulo {
+        font-size: 2rem;
+    }
+}
 
-        .resultados-grid img {
-            width: 200px;
-            height: auto;
-            margin: 10px;
-            border-radius: 8px;
-        }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
 
-        .foto-card {
-            display: inline-block;
-            position: relative;
-        }
+.modal-contenido {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
 
-        .foto-card button {
-            position: absolute;
-            bottom: 5px;
-            left: 5px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.cerrar-modal {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
-        .foto-card .editar {
-            left: 5px;
-        }
+.btn-confirmar {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-        .foto-card .eliminar {
-            right: 5px;
-        }
+.btn-eliminar {
+    margin-top: 10px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
