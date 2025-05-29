@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/admin/encuestas.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/resultados.css') }}" />
     <title>Encuesta Comunal Admin</title>
+       <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
 </head>
 <body>
     <div class="wrapper">
@@ -84,7 +87,15 @@
             <h2>Resultados de la encuesta</h2>
             <canvas id="chartResultados" width="400" height="200"></canvas>
         </div>
-
+        <div id="mensajeGracias" style="display: none; text-align: center; margin-top: 20px;">
+            <h2>¡Gracias por votar! Si gustas ver los resultados vuelve a la página principal para visualizarlos</h2>
+            <div style="margin-top: 20px;">
+                <button id="btnInicio" style="margin-right: 10px; padding: 10px 20px;">Ir a Inicio</button>
+                <a href="{{ url('/verResultados') }}" style="font-weight: bold; margin-right: 10px; padding: 10px 20px; display: inline-block; text-decoration: none; color: inherit;">
+                    Ver Resultados
+                </a>
+            </div>
+        </div>
         <!-- Modal -->
         <div id="modalEditarEncuesta" class="modal">
             <div class="modal-content">

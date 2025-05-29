@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
     <title>GP CANAL</title>
 
     <!-- Bootstrap CSS -->
@@ -318,7 +321,6 @@
     <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
     <script type="module" src="{{ asset('js/candidatos.js') }}"></script> 
     <script type="module" src="{{ asset('js/functions.js') }}"></script> 
-    <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
     <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
     <script type="module" src="{{ asset('js/admin.js') }}"></script> 
     <script type="module" src="{{ asset('js/show-navbar.js') }}"></script> 
@@ -326,5 +328,7 @@
 
    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+        <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
+
 </body>
 </html>

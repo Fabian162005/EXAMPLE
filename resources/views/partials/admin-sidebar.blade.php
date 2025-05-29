@@ -10,6 +10,9 @@ if (!isset($_SESSION['admin_logged_in'])) {
 <head>
     <meta charset="UTF-8">
     <title>Admin - Noticias</title>
+       <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;

@@ -9,6 +9,9 @@ if(!isset($_SESSION['admin_logged_in'])) {
 <html>
 <head>
     <title>Admin - Noticias</title>
+       <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
     <!-- Incluye tus estilos CSS -->
 </head>
 <body>

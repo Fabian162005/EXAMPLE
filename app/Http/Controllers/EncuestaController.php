@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Pregunta;
 use Illuminate\Support\Str;
 use App\Models\Opcion;
+use App\Models\ResultadoImagen; // importa el modelo
 
 
 class EncuestaController extends Controller
@@ -36,6 +37,12 @@ class EncuestaController extends Controller
 
 
     
+public function verResultados()
+{
+    $imagenes = ResultadoImagen::all();
+
+    return view('verResultados', compact('imagenes'));
+}
 public function verPublica($slug)
 {
     $encuesta = Encuesta::where('slug', $slug)->with('preguntas.opciones')->firstOrFail();

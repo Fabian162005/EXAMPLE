@@ -4,6 +4,9 @@
       <meta charset="UTF-8">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
       <title>GP CANAL</title>
 
       <!-- Bootstrap CSS -->
@@ -271,6 +274,9 @@
                 name="foto"
                 accept="image/*"
                 required>
+          <p style="font-size: 0.9rem; color: #666; margin-top: 4px;">
+            Tamaño recomendado para buena visualización: <strong>2048x1472 px</strong>.
+          </p>
 
           <label for="video">Video de la noticia (opcional):</label>
           <input type="file"
@@ -552,7 +558,6 @@
       <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
       <script type="module" src="{{ asset('js/candidatos.js') }}"></script> 
       <script type="module" src="{{ asset('js/functions.js') }}"></script> 
-      <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
       <script type="module" src="{{ asset('js/noticias.js') }}"></script> 
       <script type="module" src="{{ asset('js/admin.js') }}"></script> 
       <script type="module" src="{{ asset('js/adminpartidos.js') }}"></script> 
@@ -561,7 +566,8 @@
       <script src="{{ asset('js/noticias-admin.js') }}"></script>
       <!-- Tailwind CSS (CDN) -->
       <script src="https://cdn.tailwindcss.com"></script>
-      
+            <script type="module" src="{{ asset('js/scriptENC.js') }}"></script> 
+
 
 
   </body>

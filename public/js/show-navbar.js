@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `Buscar "${text}" en noticias`,
             `Buscar "${text}" en videos`,
             `Buscar "${text}" en encuestas`,
-            `Buscar "${text}" en partidos políticos`
         ];
 
         suggestionsBox.innerHTML = items.map(item => `<div class="suggestion-item">${item}</div>`).join("");

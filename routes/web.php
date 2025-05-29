@@ -124,3 +124,6 @@ Route::prefix('admin')->middleware(['admin'])->name('admin.')->group(function ()
     use App\Http\Controllers\BusquedaController;
 
 Route::get('/buscar', [BusquedaController::class, 'buscar'])->name('buscar');
+// Cambia la ruta existente por esta:
+// Para la ruta de videos
+Route::get('/verResultados', [EncuestaController::class, 'verResultados'])->name('verResultados');

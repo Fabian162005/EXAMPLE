@@ -3,45 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
     <title>Portal de Noticias | Últimas Actualizaciones</title>
     <link rel="stylesheet" href="css/noticias.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<style>
-  html {
-            scroll-behavior: smooth;
-        }
-
-        #hero {
-            background-size: cover;
-        }
-</style>
-<body>
-    <header id="" class="h-screen flex flex-col justify-center items-center text-center px-4 bg-white">
-    <!-- Botón de regreso -->
-    <a href="{{ route('app') }}" class="text-blue-600 hover:text-blue-800 text-lg mb-6 flex items-center">
-        <i class="fas fa-arrow-left mr-2"></i> Volver al inicio
-    </a>
-
-    <!-- Título y subtítulo centrado -->
-    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-black drop-shadow-lg">
-        Portal de Noticias
-    </h1>
-    <p class="text-lg md:text-2xl mb-6 max-w-xl text-gray-600">
-        Información actualizada al momento
-    </p>
-
-    <!-- Flecha para bajar -->
-    <a href="#noticias" class="text-blue-600 hover:text-blue-800 text-3xl mt-4 animate-bounce">
-        <i class="fas fa-arrow-down"></i>
-    </a>
-</header>
-
-
     <main id="noticias" class="main-content">
         <section class="news-section">
             <div class="container">
+            <a href="{{ route('app') }}" class="btn-back-home">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
                 <div class="section-header">
                     <h2 class="section-title">Últimas Noticias</h2>
                     <div class="results-count">Mostrando <span id="results-count">6</span> resultados</div>
@@ -63,7 +38,7 @@
           $created = request('created_at');
           $updated = request('updated_at');
 
-          $matchSearch = empty($search) || 
+          $matchSearch = empty($search) ||
                          str_contains(strtolower($noticia->id), $search) ||
                          str_contains(strtolower($noticia->titulo), $search) ||
                          str_contains(strtolower($noticia->descripcion), $search);
@@ -111,13 +86,13 @@
       <p class="no-news">No hay noticias publicadas que coincidan con la búsqueda.</p>
     @endforelse
   </div>
-</section>  
+</section>
 
     <!-- Footer con Redes Sociales Destacadas -->
 <footer id="contacto" class="bg-gray-900 text-white pt-12 pb-6">
     <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-3 gap-8 mb-8">
-            
+
             <!-- Columna 1: Logo y descripción -->
             <div class="text-center md:text-left">
                 <div class="flex justify-center md:justify-start mb-4">
@@ -127,7 +102,7 @@
                     Líderes en desarrollo social y transparencia política en el Perú.
                 </p>
             </div>
-            
+
             <!-- Columna 2: Redes Sociales como Enlaces Rápidos -->
             <div>
                 <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Nuestras Redes</h3>
@@ -146,7 +121,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <!-- Columna 3: Contacto -->
             <div>
                 <h3 class="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2">Contacto Directo</h3>
@@ -161,12 +136,12 @@
                 </ul>
             </div>
         </div>
-        
+
         <!-- Copyright -->
         <div class="border-t border-gray-800 pt-6 text-center">
             <p class="text-gray-400 text-xs">
-                © 2025 Grupo Paladines. Todos los derechos reservados. 
-                <a href="#" class="hover:text-white">Políticas de Privacidad</a> | 
+                © 2025 Grupo Paladines. Todos los derechos reservados.
+                <a href="#" class="hover:text-white">Políticas de Privacidad</a> |
                 <a href="#" class="hover:text-white">Términos de Servicio</a>
             </p>
         </div>
@@ -176,6 +151,6 @@
     <script src="js/noticias.js"></script>
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
 </body>
 </html>

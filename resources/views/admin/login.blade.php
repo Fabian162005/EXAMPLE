@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Login Admin</title>
+     <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
   <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/admin/loginadmin.css') }}">
 </head>

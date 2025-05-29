@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>GP CANAL RESULTADO</title>
+       <!-- Favicon / Logo -->
+    <link rel="icon" href="{{ asset('images/logogpcanal.jpg') }}" type="image/jpeg">
+
     <link rel="stylesheet" href="{{ asset('css/admin/verResultados.css') }}">
 </head>
 <body>

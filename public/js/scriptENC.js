@@ -1,10 +1,250 @@
+// Sistema de notificaciones profesionales
+function showAlert(message, type = 'success') {
+  const alertContainer = document.createElement('div');
+  alertContainer.className = `alert-notification ${type}`;
+  alertContainer.innerHTML = `
+    <div class="alert-icon">
+      ${type === 'success' ? '✓' : '✗'}
+    </div>
+    <div class="alert-content">
+      <div class="alert-title">${type === 'success' ? 'Éxito' : 'Error'}</div>
+      <div class="alert-message">${message}</div>
+    </div>
+    <div class="alert-close" onclick="this.parentElement.remove()">×</div>
+  `;
+
+  document.body.appendChild(alertContainer);
+  
+  // Animación de entrada
+  setTimeout(() => {
+    alertContainer.style.transform = 'translateX(0)';
+  }, 10);
+  
+  // Eliminar después de 5 segundos
+  setTimeout(() => {
+    alertContainer.style.opacity = '0';
+    setTimeout(() => alertContainer.remove(), 300);
+  }, 5000);
+}
+
+// Diálogo de confirmación profesional
+async function showConfirm(message) {
+  return new Promise((resolve) => {
+    const confirmContainer = document.createElement('div');
+    confirmContainer.className = 'confirm-dialog';
+    confirmContainer.innerHTML = `
+      <div class="confirm-backdrop"></div>
+      <div class="confirm-box">
+        <div class="confirm-header">
+          <h3>Confirmación</h3>
+        </div>
+        <div class="confirm-body">
+          <p>${message}</p>
+        </div>
+        <div class="confirm-footer">
+          <button class="confirm-btn confirm-cancel">Cancelar</button>
+          <button class="confirm-btn confirm-accept">Aceptar</button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(confirmContainer);
+    
+    // Manejar eventos
+    confirmContainer.querySelector('.confirm-cancel').addEventListener('click', () => {
+      confirmContainer.remove();
+      resolve(false);
+    });
+    
+    confirmContainer.querySelector('.confirm-accept').addEventListener('click', () => {
+      confirmContainer.remove();
+      resolve(true);
+    });
+  });
+}
+
+// Estilos para las notificaciones (se inyectan dinámicamente)
+const style = document.createElement('style');
+style.textContent = `
+  /* Notificaciones */
+  .alert-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+    transform: translateX(150%);
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    opacity: 1;
+  }
+  
+  .alert-notification.success {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+  }
+  
+  .alert-notification.error {
+    background: linear-gradient(135deg, #F44336, #C62828);
+    color: white;
+  }
+  
+  .alert-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    font-weight: bold;
+  }
+  
+  .alert-content {
+    flex: 1;
+  }
+  
+  .alert-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .alert-message {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .alert-close {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  
+  .alert-close:hover {
+    opacity: 1;
+  }
+  
+  /* Diálogos de confirmación */
+  .confirm-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+  
+  .confirm-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .confirm-box {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    z-index: 1;
+    animation: modalFadeIn 0.3s;
+  }
+  
+  .confirm-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .confirm-header h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .confirm-body {
+    padding: 20px;
+    color: #555;
+  }
+  
+  .confirm-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .confirm-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  
+  .confirm-cancel {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  .confirm-cancel:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .confirm-accept {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+  }
+  
+  .confirm-accept:hover {
+    background: linear-gradient(135deg, #3d8b40, #1b5e20);
+  }
+  
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+document.head.appendChild(style);
+
 let currentPage = 1;
 const totalPages = 3;
 
 document.addEventListener('DOMContentLoaded', () => {
     showPage(currentPage);
-    document.getElementById('encuestaForm').addEventListener('submit', handleSubmit);
+
+    const modal = document.getElementById('modalEditarEncuesta');
+    if (modal) {
+        modal.addEventListener('click', e => {
+            if (e.target === e.currentTarget) cerrarModal();
+        });
+    }
+
+    const btnInicio = document.getElementById('btnInicio');
+    if (btnInicio) {
+        btnInicio.addEventListener('click', () => {
+            window.location.href = '/'; 
+        });
+    }
+
+    const btnResultados = document.getElementById('btnResultados');
+    if (btnResultados) {
+        btnResultados.addEventListener('click', () => {
+            window.location.href = '/verResultados';
+        });
+    }
 });
+
 
 // Mostrar página actual
 function showPage(pageNumber) {
@@ -40,7 +280,7 @@ function validatePage(pageElement) {
 function nextPage(pageNumber) {
     const page = document.getElementById(`page${pageNumber}`);
     if (!validatePage(page)) {
-        alert('Por favor, complete los campos requeridos antes de continuar.');
+        showAlert('Por favor, complete los campos requeridos antes de continuar.', 'error');
         return;
     }
     if (pageNumber < totalPages) showPage(pageNumber + 1);
@@ -55,13 +295,14 @@ function animateOption(element) {
     element.classList.add('animate__animated', 'animate__pulse');
     setTimeout(() => element.classList.remove('animate__animated', 'animate__pulse'), 600);
 }
+
 async function handleSubmit(e) {
     e.preventDefault();
 
     const form = e.target;
     const currentPageElement = document.getElementById(`page${currentPage}`);
     if (!validatePage(currentPageElement)) {
-        alert('Por favor, complete los campos requeridos antes de enviar.');
+        showAlert('Por favor, complete los campos requeridos antes de enviar.', 'error');
         return;
     }
 
@@ -75,7 +316,7 @@ async function handleSubmit(e) {
         console.error("encuesta_id:", encuestaIdInput);
         console.error("sexo:", sexoInput);
         console.error("edad:", edadInput);
-        alert("Error interno al enviar el formulario. Consulta la consola.");
+        showAlert("Error interno al enviar el formulario. Consulta la consola.", 'error');
         return;
     }
 
@@ -122,22 +363,43 @@ async function handleSubmit(e) {
         if (!response.ok) {
             if (response.status === 403) {
                 const errorData = await response.json();
-                alert(errorData.message || 'Ya has votado desde esta IP. No puedes votar nuevamente.');
+                showAlert(errorData.error || 'Ya has votado desde esta IP. No puedes votar nuevamente.', 'error');
                 return;
             }
             throw new Error(await response.text());
         }
 
         await response.json();
-        alert('¡Encuesta enviada con éxito! Gracias por participar.');
+
+        showAlert('¡Encuesta enviada con éxito! Gracias por participar.');
+
         form.style.display = 'none';
+
+        // Mostrar el div con mensajeGracias
+        const mensajeGracias = document.getElementById('mensajeGracias');
+        if (mensajeGracias) {
+            mensajeGracias.style.display = 'block';
+        }
+
+        // Opcional: agregar eventos a los botones para redireccionar
+        const btnInicio = document.getElementById('btnInicio');
+        if (btnInicio) {
+            btnInicio.onclick = () => {
+                window.location.href = '/'; // o la ruta que quieras para inicio
+            };
+        }
+        const btnResultados = document.getElementById('btnResultados');
+        if (btnResultados) {
+            btnResultados.onclick = () => {
+                window.location.href = '/resultados'; // o la ruta que uses para resultados
+            };
+        }
 
     } catch (error) {
         console.error('Error al enviar la encuesta:', error);
-        alert('Error al enviar. Ver consola para más detalles.');
+        showAlert('Error al enviar. Ver consola para más detalles.', 'error');
     }
 }
-
 
 // Modal editar encuesta
 function abrirModal() {
@@ -178,9 +440,9 @@ function agregarPregunta() {
     div.dataset.id = id;
     div.innerHTML = `
         <input type="text" name="preguntas_nuevas[${id}][texto]" required />
-        <button type="button" onclick="eliminarPregunta(this)">Eliminar Pregunta</button>
+        <button type="button" class="btn-eliminar" onclick="eliminarPregunta(this)">Eliminar Pregunta</button>
         <div class="opciones-container"></div>
-        <button type="button" onclick="agregarOpcion(this, 'nueva')">Agregar Opción</button>
+        <button type="button" class="btn-agregar" onclick="agregarOpcion(this, 'nueva')">Agregar Opción</button>
     `;
 
     container.appendChild(div);
@@ -200,7 +462,7 @@ function agregarOpcion(btn, tipo = 'nueva') {
 
     div.innerHTML = `
         <input type="text" name="${name}" required />
-        <button type="button" onclick="eliminarOpcion(this)">Eliminar Opción</button>
+        <button type="button" class="btn-eliminar" onclick="eliminarOpcion(this)">Eliminar Opción</button>
     `;
 
     opciones.appendChild(div);
@@ -236,3 +498,10 @@ function eliminarOpcion(btn) {
 
     div.remove();
 }
+document.getElementById('btnInicio').addEventListener('click', () => {
+    window.location.href = "{{ url('/') }}";  // Redirige a la página principal (app.blade.php)
+});
+
+document.getElementById('btnResultados').addEventListener('click', () => {
+    window.location.href = "{{ url('/verResultados') }}";  // Redirige a la página de resultados
+});

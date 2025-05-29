@@ -823,21 +823,27 @@
 
 .news-grid-3d {
     display: grid;
-    grid-template-columns: repeat(3, minmax(400px, 40px));
-    justify-content: center; /* Centra las columnas */
-    gap: 40px;
-    padding: 8px 0;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* antes 260px */
+    gap: 12px; /* espacio muy reducido */
+    justify-content: center;
+    padding: 10px;
+    max-width: 1100px; /* un poco más ancho */
+    margin: 0 auto;
 }
 
 .news-card-3d {
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: white;
-  border-radius: 20px;               /* <- Añadir esto */
-  overflow: hidden;  
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    cursor: pointer;
+    will-change: transform;
+    user-select: none;
+    width: 100%; /* asegura que llene el espacio disponible */
+    max-width: 100%; /* sin restricciones máximas */
 }
 
 /* Altura por defecto sin video */
@@ -852,19 +858,17 @@
 
 
 .news-img-container {
-  flex: 0 0 auto;
-  width: 100%;
-  max-height: 180px; /* Limita alto de imagen */
-  overflow: hidden;
-  border-bottom: 1px solid #eee;
-  position: relative;
+    width: 100% !important;
+    height: 220px !important; /* altura fija más alta */
+    overflow: hidden;
+    position: relative;
 }
 
 .news-img-container img.news-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Que la imagen no se deforme */
-  display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
 .news-video {
@@ -876,38 +880,40 @@
 }
 
 .news-card-3d:hover .news-img {
-    transform: scale(1.04);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
 }
 
 .news-badge {
     position: absolute;
     top: 12px;
-    right: 12px;
-    background: var(--accent-color);
-    color: rgb(0, 0, 0);
-    padding: 4px 8px;
-    border-radius: 16px;
-    font-size: 0.64rem;
-    font-weight: bold;
+    left: 12px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 20px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    user-select: none;
 }
 
 .news-badge.trending {
-    background: #FF9F43;
+    background-color: #E67E22; /* naranja */
 }
 
 .news-badge.hot {
-    background: #FF6B6B;
+    background-color: #C0392B; /* rojo más oscuro */
 }
 
+/* Contenido de la noticia */
 .news-content {
-  flex: 1 1 auto; /* Que tome espacio restante */
-  padding: 1rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    padding: 12px 14px; /* más compacto */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
-
 .news-content p {
     color: #666;
     margin-bottom: 12px;

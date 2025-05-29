@@ -9,6 +9,235 @@
     --text-color: #333;
     --white: #fff;
 }
+/* Footer Styles */
+#contacto {
+    background-color: #111827; /* bg-gray-900 */
+    color: white;
+    padding-top: 3rem; /* pt-12 */
+    padding-bottom: 1.5rem; /* pb-6 */
+}
+
+#contacto .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; /* px-4 */
+}
+
+/* Grid Layout */
+#contacto .grid {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+    margin-bottom: 2rem; /* mb-8 */
+}
+
+/* Column Styles */
+#contacto .text-center {
+    text-align: center;
+}
+
+#contacto .text-left {
+    text-align: left;
+}
+
+#contacto .flex {
+    display: flex;
+}
+
+#contacto .justify-center {
+    justify-content: center;
+}
+
+#contacto .justify-start {
+    justify-content: flex-start;
+}
+
+#contacto .mb-4 {
+    margin-bottom: 1rem;
+}
+
+#contacto .h-20 {
+    height: 5rem;
+}
+
+#contacto .text-gray-300 {
+    color: #d1d5db;
+}
+
+#contacto .text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+/* Social Media Section */
+#contacto .text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+#contacto .font-bold {
+    font-weight: 700;
+}
+
+#contacto .border-b {
+    border-bottom-width: 1px;
+}
+
+#contacto .border-gray-700 {
+    border-color: #374151;
+}
+
+#contacto .pb-2 {
+    padding-bottom: 0.5rem;
+}
+
+/* Social Media Buttons */
+#contacto .grid-cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; /* gap-4 */
+}
+
+#contacto .bg-blue-600 {
+    background-color: #2563eb;
+}
+
+#contacto .bg-black {
+    background-color: #000;
+}
+
+#contacto .bg-gradient-to-r {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+#contacto .from-pink-500 {
+    --tw-gradient-from: #ec4899;
+    --tw-gradient-to: rgba(236, 72, 153, 0);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+#contacto .to-purple-600 {
+    --tw-gradient-to: #9333ea;
+}
+
+#contacto .bg-red-600 {
+    background-color: #dc2626;
+}
+
+#contacto .hover\:bg-blue-700:hover {
+    background-color: #1d4ed8;
+}
+
+#contacto .hover\:bg-gray-800:hover {
+    background-color: #1f2937;
+}
+
+#contacto .hover\:to-purple-700:hover {
+    --tw-gradient-to: #7e22ce;
+}
+
+#contacto .hover\:bg-red-700:hover {
+    background-color: #b91c1c;
+}
+
+#contacto .text-white {
+    color: white;
+}
+
+#contacto .rounded-lg {
+    border-radius: 0.5rem;
+}
+
+#contacto .p-3 {
+    padding: 0.75rem;
+}
+
+#contacto .transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+#contacto .flex {
+    display: flex;
+}
+
+#contacto .items-center {
+    align-items: center;
+}
+
+#contacto .mr-2 {
+    margin-right: 0.5rem;
+}
+
+/* Contact Section */
+#contacto .space-y-3 > * + * {
+    margin-top: 0.75rem;
+}
+
+#contacto .flex {
+    display: flex;
+}
+
+#contacto .items-start {
+    align-items: flex-start;
+}
+
+#contacto .text-orange-400 {
+    color: #fb923c;
+}
+
+#contacto .mt-1 {
+    margin-top: 0.25rem;
+}
+
+#contacto .hover\:text-orange-300:hover {
+    color: #fdba74;
+}
+
+/* Copyright Section */
+#contacto .border-t {
+    border-top-width: 1px;
+}
+
+#contacto .border-gray-800 {
+    border-color: #1f2937;
+}
+
+#contacto .pt-6 {
+    padding-top: 1.5rem;
+}
+
+#contacto .text-center {
+    text-align: center;
+}
+
+#contacto .text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+#contacto .text-gray-400 {
+    color: #9ca3af;
+}
+
+#contacto .hover\:text-white:hover {
+    color: white;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    #contacto .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    #contacto .md\:text-left {
+        text-align: left;
+    }
+    
+    #contacto .md\:justify-start {
+        justify-content: flex-start;
+    }
+}
 /* Estilos para la barra de búsqueda */
 .search-top-bar {
     display: flex;
@@ -20,6 +249,19 @@
     background: white;
     border-bottom: 1px solid #eaeaea;
 }
+.search-container {
+    max-width: 1800px;
+    width: 98%;
+    margin: 20px auto;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+
+    /* 🔵 Borde azul agregado */
+    border: 3px solid var(--secondary-color); /* usa tu variable azul */
+}
+
 
 .back-button {
     display: inline-flex;

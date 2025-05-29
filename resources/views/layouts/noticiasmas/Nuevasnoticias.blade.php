@@ -122,7 +122,6 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/victor@1.1.0/build/victor.min.js"></script>
-    <script src="{{ asset('js/scroll-efect.js') }}"></script>
     <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
     <script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
     <script type="module" src="{{ asset('js/candidatos.js') }}"></script> 
